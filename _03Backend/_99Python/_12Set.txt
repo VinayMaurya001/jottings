@@ -1,0 +1,254 @@
+
+                                  Lists            Tuples            Sets
+
+1.Representation                   [ ]              ()                {}
+
+2.Homogenous elements              yes              yes               yes
+
+3.HEterogeneous elements           yes              yes               yes
+
+4.Duplicate elements               Yes              Yes               No
+
+5.Insertion order                  yes              yes               No
+
+6.Indexing                         Yes              Yes               No
+
+7.Slicing                          Yes              Yes               No
+
+8.Object type                    Mutable           Immutable         Mutable
+
+9.elements                  Mutable/Immutable  Mutable/Immutable    only Immutables
+                                                                    ex:x={10,20,30,(15,25,35)}
+                                                                    
+10.Nested structure         [[],[],[]]-yes       ((),(),())-Yes      {{},{},{}}-No
+                                                                      
+
+                                                                      
+                                                                      
+                                                                      
+                                                                      
+                                                                      
+
+
+SET:SET is a collection datatype which holds group of values.
+
+Properties of SET:
+
+1.Set represented by using curly braces {  }
+
+2.Set allows homogeneous elements.  ex;  x={10,20,30,40,50}
+
+3.Set allows heterogeneous elements. ex: x={501,6.1,True,"hello"}
+
+4.Set doesn't allow duplicates.  ex: x={10,20,30,40,50,10,20,30}
+									print(x)    #{50, 20, 40, 10, 30}
+
+5.In Set, insertion order is not preserved i.e the way they are inserted ,
+  in the same order they are not stored or displayed.
+
+6.Set doesn't support indexing.
+  we cannot access elements of set using index, print(x[1]) is invalid.
+  we can access the elements of a set using for loop,
+  we cannot access using while loop also because while loop requires index.
+
+7.Set is a mutable object, but elements of set should be immutable only.
+  ex:  x={10,20,30,(40,50,60)}
+
+8.Set can be created directly by using { } or by using set() function.
+
+9.sets within a set is not allowed bcoz set allows only immutables within it.
+
+10.we can perform mathematical operations on a set object.
+  ex: max,min,sorted------>applied on homogeneous elements.
+
+
+
+
+
+
+
+
+
+
+#creating set object
+x={10,20,30,40,50}  #homogeneous elements
+print(x)
+print(type(x))
+print(len(x))
+
+y={501,6.1,True,"hello"} #heterogeneous elements
+print(y)
+print(type(y))
+print(len(y))
+
+z={10,20,30,(30,40,50,60)}  # only immutable elements are allowed within the set
+print(z)
+print(type(z))
+print(len(z))	#4
+
+
+c={10,20,10,20,30} #duplicate elements will be eliminated
+print(c)
+print(len(c))	#3
+
+'''d={{10,20,30},{40,50,60},{70,80,90}} # sets within set are not allowed
+print(d)'''
+
+
+
+
+
+#For loop on a set
+x={10,20,30,40,50,10}
+print(x,len(x))
+for p in x:
+    print(p,end=" ")
+
+
+
+
+
+
+#applying functions on a set
+x={40,10,30,20,50,50,40}
+print(x)
+print(type(x))
+print(id(x))
+print(len(x))
+print(sum(x))
+avg=sum(x)/len(x)
+print(avg)
+print(max(x))
+print(min(x))
+print(sorted(x))#sorted() function always returns list in sorted order
+print(sorted(x,reverse=True))
+
+
+
+
+
+
+
+
+
+
+# methods of set -----add(),copy(),update(),pop(),discard(),remove(),clear()
+x={10,20,30,40,50}
+print(x,id(x),len(x))
+
+x.add(60)     #adding 60 to set
+print(x,id(x),len(x))
+
+#x.add(70,80) #error bcoz---> add() accepts only one argument
+
+x.add((70,80,90)) # accepted but (70,80,90) taken as tuple
+print("after adding:")
+print(x,len(x))			#{50, 20, (70, 80, 90), 40, 10, 60, 30} 7
+
+
+#-----------------------------------------------------------------------------------------------------
+
+#update( ): For inserting multiple elements at  a time
+x.update((60,70,80)) #here 3 elements gets added but not a tuple
+print(x,id(x),len(x))	#{80, 50, 20, 70, 40, 10, 60, 30} 2407748540384 8
+
+x.update(range(1,4))
+print(x,len(x))			#{1, 2, 3, 70, 10, 80, 20, 30, 40, 50, 60} 11
+
+#copy( ): for duplicating a set
+y=x.copy()  #creates a copy of x
+print("another copy :") 
+print(y,id(y))				
+print(x is y)	#False
+
+z=x
+print(z,type(z),id(z))
+print(x is z)	#True
+print(x == z)	#True
+
+
+x.clear()  				#clears all the set elements
+print(x)				#set()
+print(len(x),id(x))		#0 2658543332352
+print(y,id(y))			#{50, 20, 40, 10, 30} 2658543671264
+print("z=",z)			#z= set()
+
+#pop() : removes a element randomly
+x.pop()     
+print(x)
+
+x.pop()     
+print(x)
+
+x.pop()     
+print(x)
+
+x.pop()     
+print(x)
+
+x.discard(20)
+print(x)
+
+x.remove(30) #removes particular element of our choice
+print(x)
+
+
+'''x.remove(95) #it gives error
+print(x) '''
+
+x.discard(95) #wont give any error
+print(x)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#mathematical operations using set methods
+A={10,20,30,40,50}
+B={10,20,60,70,80}
+print(A)
+print(B)
+
+print(A|B)		#{70, 40, 10, 80, 50, 20, 60, 30}
+print(B|A)
+print(A.union(B))
+print(B.union(A))
+
+print(A & B)		#{10, 20}
+print(B & A)
+print(A.intersection(B))      #Common elements
+print(B.intersection(A))
+
+print(A-B)            #Removing elements of B from set A-> {40, 50, 30}
+print(B-A)				#{80, 60, 70}
+print(A.difference(B))	#{40, 50, 30}
+print(B.difference(A)) 	#{80, 60, 70}
+
+
+print(A^B)	#common elements are removed- {80, 50, 70, 40, 60, 30}
+print(B^A)	#{80, 50, 70, 40, 60, 30}
+print(A.symmetric_difference(B))	#{80, 50, 70, 40, 60, 30}
+print(B.symmetric_difference(A))	#{80, 50, 70, 40, 60, 30}
+
+
+
+A={"Ajay","Blake","Rohith","Miller","James"}
+B={"James","Pavan","Raj","George","Ajay"}
+
+#I want those  emps who are in both the sets
+print(A.intersection(B))		#{'Ajay', 'James'}
+
+#I want those names which are not part of B
+print(A.difference(B))         	#{'Miller', 'Blake', 'Rohith'}                                           

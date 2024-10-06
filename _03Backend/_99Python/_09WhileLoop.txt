@@ -1,0 +1,96 @@
+#While loop :
+#while loop executes set of stmts for repeated number of times or for multiple times
+'''
+All the stmts within the while loop should follow the indentation.
+#Syntax for defining while loop
+initialization
+while(condition):
+    stmt1
+    stmt2
+    stmt3
+    stmt4
+    increment/decrement
+All the stmts within the while loop will be executed untill the condition
+becomes False,
+Once the condition becomes False then ctrl comes out of while loop and executes
+The other stmts
+'''
+#printing numbers from 1 to 10 using while loop
+x=1                #initialization
+while(x<=10):      #Condition
+    print(x)
+    x=x+1          #increment
+print("end")
+    
+
+
+#printing a msg for multiple times
+x=1
+while(x<=10):
+    print("Good Morning!!!")
+    x=x+1
+print("end")
+
+
+#Infinite loop
+while(True):
+    print("Hello")
+
+
+#while-else: If while condition becomes False  after executing for multiple
+#            times then ctrl goes to else block
+x=1
+while(x<=10):
+    print("hello")
+    x=x+1
+else:
+    print("Good Morning")
+print("end")
+
+
+#break stmt :If break stmt is used in a loop then ctrl comes out of that loop
+#and stmts after break are not executed.
+x=1
+while(True):
+    print("hello")
+    if(x==5):
+        break
+        print("hi")
+    x=x+1
+print("end")
+
+
+#continue:It skips the current iteration and continues with the next iteration
+x=0
+while(x<10):
+    x=x+1
+    if(x==5):
+        continue
+        print("hi")
+    print(x,"hello")
+print("end")
+        
+
+#break and continue
+while(True):
+    username=input("Enter the username:")
+    if(username!="vijay"):
+        continue
+    password=input("Hello..Vijay!!!..please enter ur password:")
+    if(password=="python"):
+        break
+print("LOGIN SUCCESSFULL!!!")
+
+        
+
+
+#pass stmt: represents an empty block
+x=10
+y=4
+if(x>y):
+    print("Before pass")
+    pass
+else:
+    pass
+    
+

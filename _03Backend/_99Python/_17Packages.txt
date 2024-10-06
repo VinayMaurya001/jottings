@@ -1,0 +1,9 @@
+
+#Packages:
+-A Package is a folder or a directory which is a collection of python modules.
+
+-To treat a folder or a directory as a package,we need to have a special file
+ called __init__.py file
+
+-A Package is a collecion of modules and sub-packages and again each sub-package
+ should contain __init__.py file

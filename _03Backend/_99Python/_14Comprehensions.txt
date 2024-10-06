@@ -1,0 +1,261 @@
+
+#Q)Can we if-else in a single line
+#To check whether a given number is Even or odd
+n=int(input("Enter a Number:"))
+print("Even Number") if(n%2==0) else print("odd Number")
+
+#Q) can we write for loop in a single line
+x=[p for p in range(1,5)]
+print(x)      #[1, 2, 3, 4]
+print([p for p in range(1,6)])  #[1, 2, 3, 4, 5]
+
+
+
+
+#Comprehensions:4 types
+'''
+1.List comprehension
+2.Tuple comprehension---->is not suported
+3.Set Comprehension
+4.Dictionary Comprehension'''
+
+#1.List comprehension: Creating a list from other iterable types
+
+#Case 1 :Creating a list from a range
+x=range(1,5)
+y=[p for p in x]
+print(y,type(y))	#[1, 2, 3, 4] <class 'list'>
+#ex:2
+y=[p for p in range(1,5)]
+print(y,type(y))	#[1, 2, 3, 4] <class 'list'>
+
+#=============================================================================
+#case 2: Creating a list from a string
+
+x="Good Morning Hyderabad"
+y=[p for p in x.split(" ")]
+print(y,type(y))    #['Good', 'Morning', 'Hyderabad'] <class 'list
+
+z=x.split(" ")
+print(z,type(z))    #['Good', 'Morning', 'Hyderabad'] <class 'list
+
+#ex:2
+y=[p for p in "Hello world".split(" ")]
+print(y,type(y))
+
+#=============================================================================
+#Case 3: Creating a list from a list
+emps=["rahul","ajay","miller","james","john","amar"]
+
+#Create a list from the above data in which each employee name should start
+#with uppercase character
+y=[p.capitalize() for p in emps]
+print(y,type(y))
+
+#Create a nested list
+y=[[p,p.upper(),len(p)]  for p in emps]
+print(y,type(y))
+
+#=============================================================================
+#Case 4: Creating a list from a tuple
+x=((101,"Ajay",30000),(102,"Rahul",40000),(103,"Balke",50000))
+y=[p for p in x]
+print(y,type(y))	#[(101, 'Ajay', 30000), (102, 'Rahul', 40000), (103, 'Balke', 50000)] <class 'list'>
+
+#==============================================================================
+#Case 5: Creating a list from a set
+x={10,20,30,40,50,10,20}
+y=[p for p in x]
+print(y,type(y),len(y))	#[50, 20, 40, 10, 30] <class 'list'> 5
+
+#=============================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Tuple comprehension:
+
+#Creating a tuple from a range
+
+x=range(1,6)
+y=(p for p in x)
+print(y,type(y))   #<generator object <genexpr> at 0x0000026F88BF3AC0> <class 'generator'>???????????????????????????
+
+#Here tuple is not created, tuple is immutable. Tuple comprehension is not supported
+
+
+
+
+
+
+
+
+
+
+#Set Comprehension: Creating a set from other Iterable types
+#Case 1: Creating a set from a range object
+x=range(1,7)
+y={p for p in x}
+print(y,type(y))
+
+#Case 2: Creating a set from a string
+x="Good morning Hyderabad"
+y={p for p in x.split(" ")}
+print(y,type(y))
+
+#Case 3: Creating a set from a list
+emps=["Ajay","Rohith","Miller","Blake","James"]
+y={p for p in emps}
+print(y,type(y))
+
+#Case 4: Creating a set from a tuple
+x=(10,20,30,40,50)
+y={p for p in x}
+print(y,type(y))
+
+#Case 5: Creating a set from a set
+x={10,20,30,40,50}
+y={p for p in x}
+print(y,type(y))
+
+
+
+
+
+
+
+
+
+
+
+
+#Dictionary comprehension:Creating a Dictionary from other iterable types
+
+#Case 1: Creating a dictionary from a range
+x=range(1,7)
+y={p:p**2 for p in x}
+print(y,type(y))
+
+#Case 2: Creating a dictionary from a string
+x="Good Morning Hyderabad"
+y={p:len(p) for p in x.split(" ")}
+print(y,type(y))
+
+#Case 3: Creating a dictionary from a list
+emps=["Ajay","Rohith","George","Ajith","Miller"]
+y={p:len(p) for p in emps}
+print(y,type(y))
+
+
+
+
+
+
+
+
+
+#Accepting list of string from the user keyboard
+
+print("Enter Names of 5 Subjects:")
+y=[p for p in input().split()]
+print(y,type(y))
+
+
+
+
+
+
+
+
+
+#Accepting list of integers from the user keyboard
+
+print("Enter marks of 5 Subjects:")
+y=[int(p) for p in input().split()]
+print(y,type(y))
+print("TOTAL MARKS=",sum(y))
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Accepting set of values from the user keyboard
+
+print("Enter marks of 5 Subjects:")
+y={int(p) for p in input().split()}
+print(y,type(y))
+print("TOTAL MARKS=",sum(y))
+
+
+
+
+
+
+
+
+#Accepting Dictionary keys and values from the user keyboard
+#merging 2 lists using zip() function
+#Creating a dictionary from a list
+
+subject=[]
+marks=[]
+
+for p in range(1,6):
+    x=input("Enter name of subject"+str(p)+":")
+    subject.append(x)
+
+for p in range(0,5):
+    y=int(input("Enter marks of "+subject[p]+":"))
+    marks.append(y)
+
+print(subject)
+print(marks)
+#merge both the lists using zip()
+x=zip(subject,marks)
+print(x,type(x))	#<zip object at 0x000002795FA4FF40> <class 'zip'>
+
+y=list(x)
+print(y,type(y))	#[('A', 1), ('B', 2)] <class 'list'>
+
+z=dict(y)
+print(z,type(z))	#{'A': 1, 'B': 2} <class 'dict'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+    
+
+
+
+
+

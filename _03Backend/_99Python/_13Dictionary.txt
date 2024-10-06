@@ -1,0 +1,215 @@
+#Dictionary:
+Dictionary: Dictionary is a collection datatype which holds group of (key,value) pairs
+
+x={"Name":"Ajay","Age":25}
+     k      v      k   v
+
+#Properties of a Dictionary:
+
+1.Dictionary represented by using curly braces { }
+
+2.keys and values can be either homogeneous or heterogeneous.
+
+3.keys cann't be duplicated,but values can be duplicated.  ex: age=60 & wt=60
+
+4.Insertion order is not preserved(not followed)
+
+5.Indexing/slicing is not supported.
+
+6.Dictionary is a mutable object.
+  witin a dictionary , we can have both mutable and immutable types.
+
+7.Dictionary can be created directly by using { } or by using dict() function.
+
+8.To access a element of a dictionary,if we pass the key, we will get the value.
+  ex: x['Age']-------->returns value 25.
+ 
+
+
+
+# creating dictionary elements
+x={"Kohli":90,"Rohith":65,"Rahul":35}  # homogeneous keys(string type),homogeneous values(int type)
+print(x)
+print(type(x))		#<class 'dict'>
+print(len(x))		#3
+
+
+y={"height":5.5,1:"male",0:"female"} #heterogeneous keys and heterogeneous values
+print(y)
+print(type(y))
+print(len(y))
+
+
+z={"ECE":90,"CSE":120,"IT":60,"EEE":60,"CSE":60} #duplicate keys are not allowed,but values are allowed.
+print(z)
+print(type(z))
+print(len(z))		#4 not 5
+
+
+
+x={"a":20,"b":5,"a":10,"b":15,"a":3,"c":(20,30)}
+print(x,len(x))		#{'a': 3, 'b': 15, 'c': (20, 30)} 3
+print(x['a'])  #if we pass the key----->we get the value
+print(x['b'])
+print(x['c'])
+
+p={"x":100,"y":200,"y":400,"x":300}
+print(p,len(p))			#{'x': 300, 'y': 400} 2
+
+details={"name":"Ajay","age":25,"height":6.2}
+print(details)						#
+print(type(details),len(details))	#<class 'dict'> 3
+
+#Accessing the values of a dictionary 
+print(details["name"])
+print(details["age"])
+print(details["height"])
+
+for p in details:
+    print(p,type(p))
+Output:
+name <class 'str'>
+age <class 'str'>
+height <class 'str'>
+
+
+#printing values using for loop
+for p in details:
+    print(details[p],type(details[p]))
+
+#printing both keys and values
+for p in details:
+    print(p,":",details[p])
+
+for p in details:
+    print(p,":",details[p],'type=',type(details[p]))
+
+
+
+
+
+
+
+
+
+#modifying,adding and printing an element of a dictionary
+std={"name":"pavan","height":5.6,"weight":75,"marks":[40,50,70]}
+
+print(std)
+print(len(std))
+print(std["name"])  #value of the key will be printed
+
+#modifying the weight
+std["weight"]=80          #if key availabe it modifies else creates a new key
+print("after modifying \n",std)
+
+#adding new elements into dictionary.
+std["age"]=28           #insertion order is not followed
+std["city"]="Chennai"
+print("after adding:\n",std)
+
+#modifyig the marks-->50 to 60
+std["marks"][1]=60
+print(std)
+
+
+
+
+
+
+
+
+#methods of a dictionary
+#getting keys and values
+material={"Desktops":10,"mouse":20,"Keyboards":30}
+print(material.items())
+print(material.keys())  #prints all keys
+print(material.values()) #prints all values
+y=material.values()
+print(y,type(y))
+
+
+
+
+
+#methods of dictionary
+x={"name":"amar","branch":"CSE","Rank":5}
+print(x)
+print(id(x))
+print(x["name"])
+print(x.get("name"))
+x.pop("branch") #removing particular key value
+print(x)
+x.popitem()    #randomly any key and value will b removed
+print(x)
+x.clear()
+print(type(x),len(x),id(x))
+
+x["name"]="James"
+print(x,id(x))
+
+
+
+
+
+#Dictionary within a dictionary
+x={"Name":"Kohli","age":34,"city":"Delhi","wife":{"Name":"Anushka","age":28}}
+
+print(x["Name"],len(x))     #Kohli 4
+print(x["wife"]["Name"])    #Anushka
+print(x["wife"])            #{'Name': 'Anushka', 'age': 28}
+
+print(x.keys())             #dict_keys(['Name', 'age', 'city', 'wife'])
+print(x.values())           #dict_values(['Kohli', 34, 'Delhi', {'Name': 'Anushka', 'age': 28}])
+print(x["wife"].values())   #dict_values(['Anushka', 28])
+
+
+#creating dictionary using dict
+#x=dict([10,20,30,40,50]) #error bcoz-->we get on only dict values-->keys are missing
+
+x=dict([["Ajay",30],["James",40],["Amar",30]])
+print(x)    #{'Ajay': 30, 'James': 40, 'Amar': 30}
+
+#Normal lists cant be converted into dictionary, but nested lists can be converted into dictionary
+
+
+
+  
+  
+  
+
+diff b/W List,Tuple,Set,Dictionary
+
+#    List                  Tuple                set                  Dictionary
+1. represented as []  1.represented as () 1.represented as {}   1.represented as {(k:v)}
+
+
+2. mutable object     2.Immutabe object   2.Mutable object      2.mutable object
+
+
+3. elements can be    3.elements can be   3.elements should     3.elements can be 
+   mutable/immutable    mutable/immutable   be immutable          mutable/immutable
+
+   
+4.duplicates allowed  4.duplicates allowed 4.not allowed        4.duplicate keys are
+                                                                  not allowed,values are
+                                                                  allowed.
+5.Insertion order     5.Insertion order is 5.not preserved      5.not preserved
+   is preserved         preserved
+   
+6.Indexing/slicing is   Supported            not supported        not supported
+  supported
+  
+7.created using list()6.created using      6.using set()        6.created using dict() 
+                         tuple()
+
+8.for  insertions,    8.For retrieval      8.for mathematical   7.for representing
+       updations and         operations           operations      a object like emp,custome etc.
+       deletions
+
+
+
+
+
+
+

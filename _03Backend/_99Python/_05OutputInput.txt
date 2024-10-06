@@ -1,0 +1,92 @@
+#print():output function in python
+
+x=10
+y=20
+
+
+print(x,y)   # same as print(x,y,sep=" ",end="\n")
+
+print(x,",",y)
+print() #1 line gap
+print("\n") #2 line gap
+
+print(x,y,sep=",")
+print(x,y,sep=" ");print(x,y,sep="\t")
+print(x,y,sep=":")
+print(x,y,sep="-->")
+print(x,y,sep="\n")
+
+a=10;b=20;c=30
+print(a);print(b);print(c)
+
+print("Good",end=" ")
+print("Morning")
+
+#ex:2
+print("Good",end="\t")
+print("Morning")
+
+#ex:3
+print("Good",end="")
+print("Morning")
+
+#ex:4
+print("Good",end=" ")
+print("Morning",end=" ")
+print("hyderabad")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#input(): For accepting input from the user keyboard
+fname=input("Enter the First Name:")
+lname=input("Enter the Last Name:")
+print(fname+" "+lname)
+print(fname,lname,sep=" ")
+
+
+#Accepting 2 values from the user keyboard and performing addition
+#Note:Whatever we are accepting from the user keyboard by default taken as
+#     string and later we need to convert(typecast) to required type
+x=int(input("Enter value of x:"))
+y=int(input("Enter value of y:"))
+print(x,type(x))
+print(y,type(y))
+print(x+y)
+
+
+
+
+#Accepting customer details
+cname=input("Enter the Customer Name:")
+accno=int(input("Enter the Account No:"))
+bal=float(input("Enter the Balance:"))
+
+print("CUSTOMER NAME=",cname)
+print("ACCOUNT NO=",accno)
+print("BALANCE=",bal)
+
+
+
+Comment
+	1)Single line #
+	2)Multiline	'''	'''   or  """ """
+
+
+
+
+

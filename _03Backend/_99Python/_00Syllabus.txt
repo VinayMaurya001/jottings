@@ -1,0 +1,37 @@
+
+Data types, Literals, Type COnversion
+Operators
+Flow Controls & Looping
+Input/Output functions
+Functions
+Lambdas
+Decorators
+Generators
+Classes & Objects
+	Encapsulation
+	Abstraction
+	Inheritance
+	Polymorphism
+Exception Handling
+Files
+Regular Expressions
+Multi Threading
+
+
+
+
+
+Revision
+Vijay SIr, Durga
+DUrga SIr
+Bharat Reddy, Udemy
+Project
+Certification
+	https://pythoninstitute.org/python-essentials-1
+	https://pythoninstitute.org/pcep
+	
+	
+Django
+Project
+Haddoop_PySPark
+AIML

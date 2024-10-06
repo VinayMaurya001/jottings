@@ -1,0 +1,762 @@
+#Functions:
+-Functions are the block of stmts which performs particular task.
+-Functions are not executed automatically
+-To execute Functions,we need to make a function call.
+-we can make 'n' number of function calls.
+-Functions are executed on demand by making a function call.
+-All the stmts within a function should follow the indentation
+-A Function is defined by using a keyword def
+
+#Syntax for defining a function:
+def functionname(arguments):
+    """doc string"""
+    stmt1
+    stmt2
+    stmt3
+    stmt4
+    return stmt
+
+doc string specifies the functionality of a function i.e what is the
+function meant for
+Specifying doc string is optional
+specifying arguments and return stmt is also optional
+
+
+
+def display():      #Function definition
+    """Function to display a msg"""
+    print("Hello")
+    print("Good Morning!!!")
+
+display()  #Function call
+display()
+display()
+#Advantage : re-usability
+
+
+
+#Function to accept 2 Numbers and perform addition
+def add():      #Function definition
+    x=int(input("Enter value of x:"))
+    y=int(input("Enter value of y:"))
+    z=x+y
+    print("SUM=",z)
+add()   #Function call
+
+
+#Function to find the cube of a number
+def cube():
+    x=int(input("Enter value of x:"))
+    y=x**3
+    print("Cube of",x,"is:",y)
+cube()
+
+
+#Program to compute simple interest
+def compute():
+    p=int(input("Enter the principle Amount:"))
+    t=float(input("Enter the Time period:"))
+    r=float(input("Enter the Rate of interest:"))
+    si=(p*t*r)/100
+    print("SIMPLE INTEREST=",si)
+compute()
+
+
+#Function Properties:
+#1.A Function can be called for multiple times
+def display():      #Function definition
+    """Function to display a msg"""
+    print("Hello")
+    print("Good Morning!!!")
+
+display()  #Function call
+display()
+display()
+#==============================================================================
+#2. The order in which the functions are defined and the order in which they
+#   are called need not be the same.
+
+def English():
+    print("ABCDEFGHIJ..........")
+
+def Maths():
+    print("123456789.........")
+
+def Chemistry():
+    print("H2O is the chemical name of water")
+
+Maths()
+Chemistry()
+English()
+
+#=============================================================================
+#3. A Function can call another function
+
+def hyd():
+    print("Hello Hyderabad....")
+    mumbai()
+
+def mumbai():
+    print("Hello Mumbai.....")
+hyd()
+#=============================================================================
+#4. A Function cannot be called before the function definition.
+'''
+display1()
+display2()
+
+def display1():
+    print("Good Morning!!!")
+    
+def display2():
+    print("Good Evening!!!")
+'''
+
+#==============================================================================
+#5.Defining a function in another function
+def compute():
+    print("Hello world")
+    def show():
+        print("Hello India")
+    show()
+
+compute()
+#show()
+
+
+
+
+
+    
+
+
+#Function categories:
+#1.Function without arguments and without returntype
+def add1():          #No arguments
+    x=10
+    y=20
+    z=x+y
+    print("sum=",z)  #No returntype
+add1()
+#=============================================================================
+#2.Function with arguments and without returntype
+
+def add2(x,y):          #With arguments
+    z=x+y
+    print("sum=",z)     #without returntype
+add2(20,30) #Call-by-value--->calling a function b providing some values
+
+print(add2(10,40)) #None
+#=============================================================================
+#3.Function with arguments and with returntype
+#Note: Functions can also be used for assignment
+def add3(x,y):
+    z=x+y
+    return z
+print(add3(30,40))#whatever the function returns is stored by the function call.
+#or
+p=add3(40,20)
+print("p=",p)
+#=============================================================================
+#Advantage of return stmt: if the computed results of a function if to be
+#   used in the later part of the program then use return stmt
+
+#ex: compute tax(10%) and netsalary
+
+salary=int(input("Enter the Salary:"))
+
+def compute():
+    tax=salary*0.10
+    return tax
+t=compute()
+netsal=salary-t
+print("NET SALARY=",netsal)
+#==============================================================================
+#Q)Can a function return multiple values----->yes
+
+def display(s1,s2,s3):
+    tot=s1+s2+s3
+    avg=tot/3
+    return tot,avg
+x=display(90,80,70)
+print(x,type(x))		##(240, 80.0) <class 'tuple'>
+print("TOTAL=",x[0])    #TOTAL= 240
+print("aVERAGE=",x[1])  #aVERAGE= 80.0
+#or
+x,y=display(90,80,70)
+print("TOTAL=",x)   #TOTAL= 240
+print("aVERAGE=",y) #aVERAGE= 80.0
+
+#==============================================================================
+#Case 4:Functions without arguments and with return type.
+
+def add4():
+    x=10
+    y=20
+    z=x+y
+    return z
+p=add4()
+print("p=",p)
+#==============================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Local and Global variables:
+#Local Variables :The variables which are defined within the function and
+#                 can be accessed only within the function
+#Global variables :The variables which are defined outside the function and
+#                  can be accessed by all the functions
+
+x=10               #Global variable
+def display():
+    y=20           #Local variable
+    print(x)
+    print(y)
+
+def show():
+    print(x)
+    #print(y)     
+display()
+show()
+
+
+
+
+
+
+#Local and global variable with same name
+x=10         #Global varible
+def display():
+    x=20     #Local variable
+    print(x) #Always local variable will be given preference over Global
+
+def show():
+    print(x)
+
+display()
+show()
+    
+
+#Modifying global variable value within a function
+x=10          #Global variable
+def display():
+    global x#Forward declaration-->this declaration tells that the global variable
+            #value is going to get modified in the later stmts
+    x=15
+    print(x)
+
+def show():
+    print(x)
+
+show()		#10
+display()	#15
+show()		#15 due to global x forward declaration
+    
+
+x=10          #Global variable
+def display():
+    x=15
+    print(x)
+
+def show():
+    print(x)
+
+show()      #10
+display()   #15
+show()      #10
+
+
+
+
+
+
+
+
+
+#Types of Arguments:5 Types
+'''
+1.Non-default Arguments (or) positional arguments
+2.Default Arguments
+3.Keyword Arguments
+4.Non-keyword Arguments
+5.Arbitrary or Variable length Arguments
+'''
+#1.Non-default Arguments : Arguments specified in the function definition
+# and argument values should compulsorily be defined within function call
+
+def display(name,age): #Non-default arguments
+    print(name,age)
+
+display("Ajay",25)
+
+#2.Default Arguments: Arguments specified in the function definition with
+#                    some default values and it is not compulsory to specify
+#                    within the function call.If not specified then these
+#                    default values will be considered.
+
+def show(name="Rahul",age=30):
+    print(name,age)
+
+show()
+show("Amar")
+show("Ajith",25)
+
+
+
+#Non-default and default arguments
+
+def display(name,city="pune"):
+    print(name,city)
+
+#display()  #TypeError: display() missing 1 required positional argument: 'name'
+display("Arjun")
+display("Amar","Delhi")
+
+#Default and non-default arguments
+
+'''
+def show(name="Ajay",city):
+    print(name,city)
+
+show()
+show("pune")
+show("Rahul")
+#Note:After default arguments, we cannot specify non-default arguments
+#After non-default argument we can specify default arguments
+'''
+
+
+
+
+#Keyword and non-keyword arguments
+
+#Keyword arguments:During function call,with parameter name(keyword) passing value
+
+#Non-keyword arguments:During function call,without  paramter name(keyword) passing value
+
+def emp(eid,ename,sal,city="pune"):
+    print(eid,ename,sal,city)
+
+emp(101,"Ajay",40000)                             #Non-keyword arguments
+emp(sal=50000,eid=102,ename="Rohith",city="delhi")#Keyword arguments
+emp("Miller",103,"chennai",30000)#Valid but not recommended
+
+#Note:After keyword arguments,we cannot specify non-keyword arguments
+# But after non-keyword ,we can specify keyword arguments
+emp(104,"Rahul",sal=70000,city="mumbai")
+#emp(eid=105,ename="Ajith",80000,"Pune")
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Arbitrary arguments or variable length arguments:
+
+#here during fn call,we can specify more no of parameter values than
+#specified in the fn definition.
+
+#A asterisk (*) is placed before the variable name that holds
+#multiple values,which is always of tuple type
+
+def display(name,*marks):  #fn def   #here marks is the arbitrary arguments
+    print(name,type(name))
+    print(marks,type(marks))		#(75, 65, 90) <class 'tuple'>
+    for p in marks:
+        print(p)
+display("Blake",75,65,90)  #fn call
+print("\n\n\n")
+
+
+
+def display(x,y,*z):
+    print(x,type(x))
+    print(y,type(y))
+    print(z,type(z))
+display(10,20,30)   #(30,) <class 'tuple'>
+print("\n")     
+display(10,20,30,40,50) #(30, 40, 50) <class 'tuple'>
+print("\n")     
+display(10,20)  #() <class 'tuple'>
+print("\n")
+display(10,20,"hello")  #('hello',) <class 'tuple'>
+print("\n")
+display(10,"hai","hello")   #('hello',) <class 'tuple'>
+print("\n")
+display(10,"hai","hello","world")   #('hello', 'world') <class 'tuple'>
+print("\n")
+display(10,20,30,[40,50])   #(30, [40, 50]) <class 'tuple'>
+
+
+def display(*p,q,r):
+    print(p,type(p))
+    print(q,type(q))
+    print(r,type(r))
+    
+#display(10,20,30)   #TypeError: display() missing 2 required keyword-only arguments: 'q' and 'r'
+#display(10,20,30,40,50)
+#display(10,20)
+#error-----------> becoz all values are taken by p as tuple
+#values of q & r are missing
+#Note: we can take arbitrary argument as the first argument provided that we use
+#default or keyword arguments
+
+
+
+#to overcome above problem,we assign values to q and r using keyword arguments
+#or default arguments.
+def display(*p,q,r=40):
+    print(p,type(p))
+    print(q,type(q))
+    print(r,type(r))
+display(10,20,q=30)     #(10, 20) <class 'tuple'>
+display(10,20,30,q=40)  #(10, 20, 30) <class 'tuple'>
+display((10,20,30),q=40)    #((10, 20, 30),) <class 'tuple'>
+display((10,20,30),(40,50),q=40,r=50)   #((10, 20, 30), (40, 50)) <class 'tuple'>
+
+
+#Arbitrary arguments
+def display(name,*marks,**details):    #*---->tuple  **----->dictionary
+    print(name,type(name))
+    print(marks,type(marks))
+    print(details,type(details))
+display("Ajay",90,70,80,age=25,city="hyd")
+	Ajay <class 'str'>
+	(90, 70, 80) <class 'tuple'>
+	{'age': 25, 'city': 'hyd'} <class 'dict'>
+display("Rahul",70,50,80,height=6.3,weight=90)
+	Rahul <class 'str'>
+	(70, 50, 80) <class 'tuple'>
+	{'height': 6.3, 'weight': 90} <class 'dict'>
+
+
+#Arbitrary Arguments
+def display(x,*y,z):
+    print(x,type(x))	#10 <class 'int'>
+    print(y,type(y))	#(20, 30, 40) <class 'tuple'>
+    print(z,type(z))	#50 <class 'int'>
+display(10,20,30,40,z=50)
+
+
+
+
+
+
+
+
+
+
+
+
+#Types of Functions:
+'''
+1.Lambda function or Anonymous function
+2.Filter function
+3.Map function
+4.reduce function
+5.zip function
+6.boolean function
+7.Recursive function
+'''
+#1.Lambda function : A Function without any name is called as lambda function
+
+#Syntax for defining a lambda function"
+#lamda arguments:expression
+#Q)If a function doesnt have a name then how to call that function???
+#-assign that function to a variable and the variable behaves like the
+#function name and using which we can make a function call.
+
+#ex:lambda function to square a number 
+
+f1=lambda x:x**2 #assigning lambda function  to a variable f1
+print(f1(10))    #using f1, we make a function call
+print(f1(20))
+
+#Same task using normal function
+def f2(x):
+    return x**2
+print(f2(10))
+print(f2(20))
+
+#Note:we can have multiple arguments but only one expression
+
+p=lambda x,y:x*y   #here x,y are non-default arguments
+print(p(10,20))     #Non-keyword arguments
+print(p(x=30,y=20)) #Keyword arguments
+
+#ex:
+q=lambda x=20,y=40:x*y #here x,y are default arguments
+print(q())		#800
+print(q(40,50))	#2000
+print(q(30))	#1200
+
+
+
+In which situation you go for lamda function
+Ans: when providing one function as a argument to another function,then
+we go for lambda function
+ex:
+    def f1(function):
+        -----------
+        -----------
+        -----------
+    def f2():
+        -----------
+        -----------
+        -----------
+f1(f2())
+Instead of all these,we use lambda func
+we see how lambda function is used as a argument to other functions like filter,
+map,reduce,etc
+
+
+
+#Filter():Filtering the data based on condition
+
+#filter function takes 2 arguments
+#1.lambda function
+#2.Iterable type like list
+
+#ex:
+list1=[10,20,30,40,50,60]
+#Task: Filter only those elements whose value>30
+res=list(filter(lambda x:x>30,list1))#here x is eachelement of list of type int
+print(res,type(res))	#[40, 50, 60] <class 'list'>
+
+#ex:2
+emps=[[101,"miller",10000,'m',11,'hyd'],
+      [102,'blake',20000,'m',12,'pune'],
+      [103,'sony',30000,'f',11,'pune'],
+      [104,'sita',40000,'f',12,'hyd'],
+      [105,'james',50000,'m',13,'hyd']]
+
+#Task1 : Filter those emps who belongs to the city hyd
+hyd_recs=list(filter(lambda x:x[5]=='hyd',emps))
+print(hyd_recs)	#[[101, 'miller', 10000, 'm', 11, 'hyd'], [104, 'sita', 40000, 'f', 12, 'hyd'], [105, 'james', 50000, 'm', 13, 'hyd']]
+
+#Task2 :Filter only male emp records
+male_recs=list(filter(lambda x:x[3]=='m',emps))
+print(male_recs)	#[[101, 'miller', 10000, 'm', 11, 'hyd'], [102, 'blake', 20000, 'm', 12, 'pune'], [105, 'james', 50000, 'm', 13, 'hyd']]
+
+print("\n")
+#Task3 :Filter those emps whose sal>25000
+res2=list(filter(lambda x:x[2]>25000,emps))
+print(res2)		#[[103, 'sony', 30000, 'f', 11, 'pune'], [104, 'sita', 40000, 'f', 12, 'hyd'], [105, 'james', 50000, 'm', 13, 'hyd']]
+print("\n")
+#We can also provide multiple conditions
+#Task 4: Filter those emps who belongs to city "hyd" and sal >25000
+res3=list(filter(lambda x:x[5]=="hyd" and x[2]>25000,emps))
+print(res3)		#[[104, 'sita', 40000, 'f', 12, 'hyd'], [105, 'james', 50000, 'm', 13, 'hyd']]
+
+
+
+
+
+
+
+#map():for each element Transformation
+
+#map function also takes 2 arguments
+#1.lambda function
+#2.Iterable type like list
+
+#ex:
+list1=[10,20,30,40,50,60]
+#Task: adding 5 to each element of a list
+res=list(map(lambda x:x+5,list1)) #here x is each element of type int
+print(res)
+
+#ex:2
+emps=[[101,"miller",10000,'m',11,'hyd'],
+      [102,'blake',20000,'m',12,'pune'],
+      [103,'sony',30000,'f',11,'pune'],
+      [104,'sita',40000,'f',12,'hyd'],
+      [105,'james',50000,'m',13,'hyd']]
+
+#Task 1:addding 5000 as bonus to the sals of each employee
+res2=list(map(lambda x:[x[0],x[1],x[2]+5000,x[3],x[4],x[5]],emps))
+print(res2)
+print("\n")
+#or
+res2=list(map(lambda x:x[0:2]+[x[2]+5000]+x[3:],emps))
+print(res2)
+print("\n")
+
+#Task 2:Transform each empname to start with uppercase character
+res3=list(map(lambda x:[x[0],x[1].capitalize(),x[2],x[3],x[4],x[5]],res2))
+print(res3)
+print("\n")
+
+#Task 3:Transform---->"m"---->"male"
+#                     "f"---->"female"
+res4=list(map(lambda x:[x[0],x[1],x[2],"male" if(x[3]=='m') else "female",x[4],x[5]],res3))
+print(res4)
+print("\n")
+
+#Task 4: modifying the dno of blake from 12 to 11
+res5=list(map(lambda x:[x[0],x[1],x[2],x[3],11 if(x[1]=="Blake") else x[4],x[5]],res4))
+print(res5)
+
+
+
+#Q)Can we write if-else in a single line
+#To check whether a given number is even or odd
+x=int(input("Enter value of x:"))
+print("Even Number") if(x%2==0) else print("odd number")
+
+
+
+
+
+
+
+
+
+
+
+
+#reduce():for cummulative operations
+
+#reduce function also takes 2 arguments
+#1.lambda function
+#2.Iterable type like list
+
+#ex:
+from functools import reduce
+list1=[1,2,3,4,5,6]
+
+#Task:To compute the sum of list elements
+res=reduce(lambda x,y:x+y,list1)
+print(res)
+
+#o/p:21
+#(((((1+2)+3)+4)+5)+6)=21
+
+#ex: To find the max element of the list
+res=reduce(lambda x,y:x if(x>y) else y,list1)
+print(res)
+
+
+
+
+
+
+
+
+
+
+           
+
+#zip() :for merging 2 lists
+
+emps=["Ajay","Rohith","miller","James","Blake"]
+
+sals=[10000,20000,30000,40000,50000]
+
+#merge these 2 lists using zip fumction
+x=zip(emps,sals)
+print(x,type(x))
+
+#To dislay the o/p convert to list
+y=list(x)
+print(y,type(y))
+
+z=dict(y)
+print(z,type(z))
+
+#Note:we can directly convert a zip object to dictionary
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Recursive function: A function which is called by itself is known as a recursive function.
+
+x=1                    #global variable
+def recur():
+    print("hello")
+    global x     #Forward declaration
+    while(x<=5):
+        x=x+1  #x+=1
+        recur()
+        
+recur()
+
+
+
+
+
+
+
+
+
+#Recursive function : A function which is called by itself
+#factorial program using recursive function.
+
+def fact(n):
+    if(n==1):
+        return 1
+    else:
+        return (n*fact(n-1))  #recursive function call
+        '''5*fact(4)
+        5*4*fact(3)
+       5*4*3*fact(2)
+      5*4*3*2*fact(1)
+      5*4*3*2*1=120'''
+          
+               
+num=int(input("enter a number:"))
+if(num >= 1):
+    print("Factorial of",num,"is",fact(num))
+
+
+
+
+
+    
+ 
+#Boolean function :A Function which returns either True or False
+
+x=10
+y=4
+
+def compute():
+    if(x>y):
+        return True
+    else:
+        return False
+
+p=compute()
+print(p)
+
+
+    
+
+
+

@@ -1,0 +1,288 @@
+
+#Modules:
+
+#Module :Every Python program by default is a module
+
+#A module consists of
+  1)Executable stmts
+  2)Global variables
+  3)Functions
+  4)classes
+  
+main module :If we execute any module,by default it is main-module
+
+we can import the properties of one module to another module using import stmt
+
+Sub-module :If a module imported another module, the imported module is
+called as sub-module
+
+        sample.py                  Test.py
+..................... -----import->.........If we execute Test.py then
+.....................              .........Test.py will be the main module and
+.....................              .........sample.py will be the sub-module
+.....................              .........
+.....................              .........
+
+#Module properties:
+1.If we execute the main module(sample.py) then all the stmts of
+sample.py will be converted into intermediate code called byte code(sample.cpy)
+and again this byte code(sample.cpy) is converted into machine code and is
+executed, once the execution is completed then the byte code(sample.cpy)
+which was generated will be deleted automatically.
+
+2.If we execute the main module(Test.py) then 2 .cpy file will be created
+  for the main module(Test.py) and sub-module(sample.py)
+  If sub-module.cpy(sample.cpy) is already available then again it wont be
+  generated untill or unless if there is a change in the source code of
+  sample.py
+  Once the execution is completed then the main module.cpy(Test.cpy) will
+  be deleted automatically where as sub-module.cpy(sample.cpy) will still
+  remains permanently in the disk.
+
+3.If we execute the main module(Test.py) for the 2nd time then only one
+  .cpy file will be created i.e main module.cpy(Test.cpy),
+   here sub-module.cpy is not generated bcoz it is already available
+
+4.Before executing the Test.py for the 3rd time, if i go and modify the
+  sub-module(sample.py) then 2 .cpy files will be generated for the
+  main module(Test.py) and the modified sub-module(sample.py)
+
+5.If we execute a module then all the executable stmts of sub-module also
+  executed automatically.
+
+
+Example
+mod1.py
+print("Hello from mod1!!!")    #Executable stmt
+x=10                          #Global variable
+def display():                 #Function
+    print("x=",x)
+
+mod2.py
+import mod1
+y=20
+z=mod1.x+y
+
+def show():
+    mod1.display()
+    print("y=",y)
+    print("z=",z)
+show()
+print(dir()) #Displays the directory of properties of the main module(mod2)
+print(dir(mod1))
+
+#print(),type(),id(),input(),int(),float(),str(),bool(),list(),tuple(),set(),
+#dict(),len(),max(),min(),sum(),sorted(),range,round() etc all are the
+#built-in functions which are present in a module called __builtins__
+#__builtins__ is the only module in python without importing we can use
+#its properties
+print(dir(__builtins__))
+
+
+
+
+
+sample.py -> sample.cpy or sample.pyc
+
+
+
+Import from list
+a.py
+x=[10,20,30,40,50]
+
+b.py
+import a
+print(a.x)
+for p in a.x:
+    print(p)
+print("sum of list elements=",sum(a.x))
+
+
+
+
+
+    
+
+
+
+
+Renaming a module
+#Renaming a module:If the modulename is too big then we can rename the module using alias name or shortcut name
+
+
+studentintermarks.py
+maths=90
+phy=50
+chem=80
+def display():
+    print("MATHS=",maths)
+    print("PHYSICS=",phy)
+    print("CHEMISTRY=",chem)
+
+
+
+result.py
+import studentintermarks as s1
+total=s1.maths+s1.phy+s1.chem
+avg=total/3
+
+def show():
+    s1.display()
+    print("TOTAL=",total)
+    print("AVERAGE=",avg)
+show()
+
+result2.py
+import results
+print("MATHS=",results.s1.maths)
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+math module
+import math as m
+print(dir(m))
+print(m.pi)
+print(m.e)
+help(m.sqrt)
+print(m.sqrt(16))
+help(m.pow)
+print(m.pow(10,3))
+help(m.prod)
+print(m.prod([1,2,3,4,5]))
+help(math)
+help('modules')
+
+
+
+
+
+
+
+employees.py
+emp1={
+      "Name"    :"Ajay",
+      "Salary"  :70000,
+      "City"    :"hyderabad"
+     }
+
+emp2={
+      "Name"    :"Uday",
+      "Salary"  :80000,
+      "City"    :"Mumbai"
+     }
+
+emp3={
+      "Name"    :"Senthil",
+      "Salary"  :90000,
+      "City"    :"Chennai"
+     } 
+
+
+
+employees2.py
+import employees
+
+#printing a particular dictionary of "Uday"
+print(employees.emp2)
+print("\n")
+
+#I want to print a particular empname--->"Uday"
+print(employees.emp2["Name"])
+
+#printing all the employees(dictionaries)
+print(employees.emp1)
+print(employees.emp2)
+print(employees.emp3)
+print("\n")
+
+#or
+from employees import *
+x=[emp1,emp2,emp3]
+for p in x:
+    print(p)
+
+#printing empname,salary and city of all the employees
+
+for p in x:
+    print("NAME:",p["Name"])
+    print("SALARY:",p["Salary"])
+    print("City:",p["City"])
+    print("============================")
+
+
+
+
+
+from import
+
+
+#Types of imports:2Types
+'''
+1.Normal import: whenever we import a property from a module then it is
+                 compulsory to use the modulename before the propertyname
+  ex:mod1.x
+     mod1.display()
+     math.sqrt()
+     math.pow()
+     math.pi
+2.from import :Here no need to use the modulename before the propertyname
+               here directly,we can import
+  
+fromimport.py
+'''
+'''
+from mod1 import x,display
+from mod3 import y,show
+from math import pi,sqrt
+'''
+from mod1 import *
+from mod3 import *
+from math import *
+z=30
+w=x+y+z
+
+def compute():
+    display()
+    show()
+    print("z=",z)
+    print("w=",w)
+    print("pi=",pi)
+    print("sqrt=",sqrt(16))
+compute()
+    
+
+
+mode1.py
+print("Hello from mod1!!!")    #Executable stmt
+x=10                          #Global variable
+def display():                 #Function
+    print("x=",x)
+
+
+mode3.py
+y=20
+def show():
+    print("y=",y)
+
+
+
+
+
+
+
+
+
+
+
+

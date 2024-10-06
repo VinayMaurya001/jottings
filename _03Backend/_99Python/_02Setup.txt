@@ -1,0 +1,65 @@
+
+Python Installation:
+		Google-------->python download------------->download----->all releases----->select python 3.12.3
+		select add python to path
+		go for customize installation------->next----->select location to install as C:\python312
+		--- install
+		type python------->it should display python version and interpreter.
+		2*3
+		x=10
+		x*3
+		quit()
+		
+		Linux
+			sudo apt-get install python 3.12
+			
+			
+Python Execution Modes: 2 modes of Execution
+	1)Interactive mode
+		Interactive mode: 
+			Here we directly type our python stmts on interpreter and can easily communicate line by line.
+		    Advantage: For learning Python and to test the functionalities of python
+	2)Batch mode
+		Batch mode: Here we write set or batch of stmts within Editors/IDE's and save it by using
+	            .py extension and later submit to python interpreter.
+		
+
+Various Editors
+	1)Notepad
+	2)Editplus
+	3)vi 
+	4)nano
+	5)gedit
+
+Various IDE's (Integrated Development Environment)
+	1)IDLE
+			whenever we install python, along with python
+			we can IDLE(Integrated Development Learning Environment)----->
+			where we can work with interactive mode as well as batch mode.
+	2)PyCharm---------->mostly used
+			https://www.jetbrains.com/pycharm/download/?section=windows
+	3)Eclipse(with PyDev plugin)
+	4)PyDev
+	5)VisualStudioCode
+	6)Komodo
+	7)Spyder
+	8)Netbeans
+	9)Jupyter Notebook
+	10)Atom
+			
+	
+Developing Python Applications using Editors
+		ex: Notepad
+		sample1.py
+			x=10
+			y=20
+			print(x+y)
+			print(x-y)
+			print(x*y)
+			print(x/y)
+		submitting the file to interpreter------->
+		goto cmdprompt---->python C:\python8ambatch\sample1.py
+		It gives the ouput
+
+	
+	

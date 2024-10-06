@@ -1,0 +1,362 @@
+#for loop:For loop executes set of stmts for every element of collection object
+#All the stmts within the for loop should follow the indentation
+x=[10,20,30,40,50]
+for p in x:
+    print(p)
+
+#printing all values in the same line.
+for p in x:
+    print(p,end=" ")
+    
+
+#printing a msg for multiple times
+x=[10,20,30,40,50]
+for p in x:
+    print("Good Morning!!!")
+
+
+#To Square each element of a list
+x=[10,20,30,40,50]
+for p in x:
+    print(p**2) #or  print(p*p)
+
+
+#For loop on a string
+x="python"
+for p in x:
+    print(p)
+
+#printing each character for 3 times
+for p in x:
+    print(p*3)
+#printing a msg for multiple times
+for p in x:
+    print("Good Morning!!!")
+
+
+
+
+#range(n):Generates values from 0 to n-1
+#ex:range(10)---->Generates values from 0 to 9
+x=range(10)	# same as range(0,10,1)
+print(x)		#range(0, 10)
+print(type(x))	#<class 'range'>
+#retrieving one by one value from the range object using for loop
+for p in x:
+    print(p)
+#ex:2
+y=range(10,20)
+for q in y:
+    print(q)
+#ex:3
+z=range(20,30,2) #(startvalue,stopvalue,stepvalue)
+for r in z:
+    print(r)
+#ex:4
+w=range(40,30,-1)
+for s in w:
+    print(s)
+
+#range(n):Generates values from 0 to n-1
+#ex:range(10)---->Generates values from 0 to 9
+#retrieving one by one value from the range object using for loop
+for p in range(10):
+    print(p)
+for q in range(10,20):
+    print(q)
+for r in range(20,30,2):
+    print(r)
+for s in range(40,30,-1):
+    print(s)
+
+
+
+
+#printing a msg for 100 times
+for p in range(100):
+    print("Good Morning!!!")
+
+#printing numbers from 1 to 300
+for p in range(1,301):
+    print(p,end=" ")
+    
+#printing  odd number upto 200
+for p in range(1,201,2):
+    print(p,end=" ")
+
+#printing  even numbers upto 200
+for p in range(2,202,2):
+    print(p,end=" ")
+
+
+#printing multiplication table of a number
+n=int(input("Enter a Number:"))
+print("MULTIPLICATION TABLE is:")
+for p in range(1,11):
+    print(n,'x',p,'=',n*p)
+#o/p:
+'''
+5x1=5
+5x2=10
+5x3=15
+.
+.
+.
+5x10=50
+'''
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+#For loop pattern assignments
+
+#1.Floyd's triangle
+'''
+1
+22
+333
+4444
+55555
+666666
+7777777
+88888888
+999999999
+'''
+row =9;
+for i in range(1,row+1):
+    for num in range(0,i):
+        print(i,sep='',end='');
+    print();
+
+#2.
+'''
+1
+12
+123
+1234
+12345
+123456
+1234567
+12345678
+123456789
+'''
+row =9;
+for i in range(1,row+1):
+    for num in range(0,i):
+        print(num+1,sep='',end='');
+    print();
+
+
+#3.
+'''
+*
+**
+***
+****
+*****
+******
+*******
+********
+*********
+'''
+row =9;
+for i in range(1,row+1):
+    for num in range(0,i):
+        print('*',sep='',end='');
+    print();
+
+
+#4.
+'''
+A
+BB
+CCC
+DDDD
+EEEEE
+FFFFFF
+GGGGGGG
+HHHHHHHH
+IIIIIIIII
+'''
+
+#5.
+'''
+A
+AB
+ABC
+ABCD
+ABCDE
+ABCDEF
+ABCDEFG
+ABCDEFGH
+ABCDEFGHI
+'''
+#6. Pascal Triangle
+'''
+        *
+       * *
+      * * *
+     * * * *
+    * * * * *
+   * * * * * *
+  * * * * * * *
+ * * * * * * * *
+* * * * * * * * *
+'''
+#7.
+'''
+1
+22
+333
+4444
+55555
+666666
+7777777
+666666
+55555
+4444
+333
+22
+1
+'''
+#8.
+'''
+1
+12
+123
+1234
+12345
+123456
+1234567
+123456
+12345
+1234
+123
+12
+1
+'''
+#9.
+'''
+999999999
+88888888
+7777777
+666666
+55555
+4444
+333
+22
+1
+'''
+#10
+'''
+123456789
+12345678
+1234567
+123456
+12345
+1234
+123
+12
+1
+'''
+
+#11.
+'''
+987654321
+98765432
+9876543
+987654
+98765
+9876
+987
+98
+9
+'''
+
+#12.
+'''
+AAAAAAAAA
+BBBBBBBB
+CCCCCCC
+DDDDDD
+EEEEE
+FFFF
+GGG
+HH
+I
+'''
+#13.
+'''
+ABCDEFGHI
+ABCDEFGH
+ABCDEFG
+ABCDEF
+ABCDE
+ABCD
+ABC
+AB
+A
+'''
+#14.
+'''
+55555
+ 4444
+  333
+   22
+    1
+'''
+#15.
+'''
+12345
+ 1234
+  123
+   12
+    1
+'''
+
+#16.
+'''
+AAAAA
+ BBBB
+  CCC
+   DD
+    E
+'''
+#17.
+'''
+555555555  -9TIMES
+ 4444444   -7TIMES
+  33333    -5TIMES
+   222     -3TIMES
+    1      -1TIME
+'''
+#18.
+'''
+999999999
+ 7777777
+  55555
+   333
+    1
+'''
+#19.
+'''
+123456789
+ 1234567
+  12345
+   123
+    1
+'''

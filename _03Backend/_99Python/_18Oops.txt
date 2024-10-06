@@ -1,0 +1,306 @@
+
+
+#Object-Oriented Programming(OOP):
+--------------------------------
+-OOP provides
+            -Security
+            -re-usability and
+            -flexibility
+
+  cid=101
+  cname="Ajay"  ------>customer data
+  accno=30987640
+  bal=90000
+
+  eid=101
+  ename="Rahul" ------>Empdata
+  salary=60000
+  desig="Manager"
+
+  def deposit():
+      ........
+      .......    ------->Customer functions
+  def withdraw():
+      ........
+      ........
+
+  def tax():
+      ......
+      ......    -------->Empfunctions
+  def netsal():
+      .......
+      .......
+
+ here All the global variables can be accessed by all the functions,there is no security,
+ so to provide security we go for OOP
+ 
+#Features of OOP:
+    1.Encapsulation
+    2.Abstraction
+    3.Inheritance
+    4.Polymorphism
+
+#1.Encapsulation: combining data(variables) + methods(functions)
+
+ Q)Why we need to combine data and methods???
+
+
+  Here all the customer and emp variables are global variables which can be
+  accessed by all the functions ,but actually customer variables should be
+  accessed only by customer functions and emp variables should be accessed
+  only by emp functions
+
+  so we need to make customer variables available to customer functions only
+  and we need to make emp variables available to emp functions only.
+
+  so we group or combine customer variables and customer functions as one group
+
+  similarly we group or combine emp variables and emp functions as one group
+
+#  Encapsulation: It is the process of grouping or binding related data(variables)
+#                 along with its functions(methods)
+
+
+  Encapsulation is implemented by using a class
+
+  in the above example,we have 2 groups----->1)customer group------->variables
+                                                                          +
+                                                                       methods
+                                                                       
+                                             2)Emp group ----------->variables
+                                                                         +
+                                                                       methods
+
+ In the above example,we have 2 groups,these 2 groups are represented by 2classes
+ class customer   
+ and
+ class emp
+
+# Class :A Class is a structure which groups related data(variables) along with
+         with its functionalities(methods)
+
+         class is a collection of variables and methods
+         within the class,we see 2 types of variables
+         1)Static variables(sv)
+         2)Non-static Variables(NSV)
+
+#Syntax for defining a class
+class classname:
+    """doc string"""
+    variables
+    .........
+    .........
+    methods
+    ........
+
+document string is just like a comment-->it says about the functionality of a
+class i.e what is the class meant for
+
+========================================================
+#object: object is an instance of a class
+
+#syntax for creating object:
+objectname=classname()
+ex:  e1=emp()
+     c1=customer()
+class is a collection of similar objects
+
+we can create 'n' no of objects
+class is executable
+#ex:
+class employee:
+    """class representing employee details """
+    eid=input(.......)
+    ename=input(......)
+    sal=input(.......)
+    desig=input(.....)
+    company=input(......)
+    company_address=input(....)
+    def tax():
+        .....
+        .....
+    def netsal():
+        .....
+        .....
+#end of the class
+#creating objects for the class
+emp1=employee() #1st object
+emp2=employee() #2nd object
+emp3=employee() #3rd object
+
+here emp1,emp2,emp3 are the objects of the class employee
+The above class employee is re-used by 3 objects
+
+each object will have its own eid,ename,sal,desig
+
+
+#--------------------------------------------------------------------------------------------
+
+    
+
+
+
+ 
+
+#----------------------------------------------------------------------------------------------
+
+ 
+#--------------------------------------------------------------------------------------------
+                      
+#Static Variables and Non-static variables:
+
+#within the class, we can represent data using
+i.static variables.
+ii.non static variables#
+
+#when to go for Static variables and when to go for Nonstatic variables
+
+#Static variables: object to object if data is common, go with Static variables
+
+#Non-static variables:object to object if data is changing,go for Non-static variables
+
+ex:
+    eid------>NSV
+    ename---->NSV
+    sal ----->NSV
+    desig---->NSV
+    company-->SV
+    company_address--->SV
+
+
+
+#Static variables:
+
+#Static variables:The variables which are defined within the class and defined
+# outside all the methods of a class are known as static variables.
+
+ex: class sample:
+          x=10 #static variable,defined within class and outside the method
+          def m1(self):  #method
+              print(sample.x) #Accessing SV within the class using classname
+    #end of the class
+    print("x=",sample.x)  #Accessing SV from outside the class using classname
+
+#Note: Static variables are defined outside the methods but they can be accessed
+#      by all the methods
+-------------------------------------------------------------------------------------------------------------------
+ #properties of static variables:
+
+ 1.The data which is common for all the objects,then it is recommended to
+  represent by using static variables.
+     ex:bank name---->SBI
+        withdrawlimit-->20000
+    
+   if data which is changing from one object to another object--->then
+    use non-static variable
+    ex:-ename,eid,designation,salary
+        
+ 2.for static variable,only once memory is allocated,as it is initialized only once.
+ 
+ 3.A static variable can be accessed by all the methods of that class and also 
+   by other classes
+   ex:
+       class sample:
+           x=10  #SV
+           def display(self):
+               print(sample.x)
+           def show(self):
+               print(sample.x)
+        Here x is a static variable which can be accessed by all the methods like
+        display,show etc.
+     
+ 4.A static variable always be accessed by using classname i.e from within the class
+ and from outside the class also, we access using classname only
+ ex:classname.staticvariable
+ 
+ ex:
+ class sample:
+     x=10 #Static variable
+     y=20 #Static variable
+     def display(self):
+         print(sample.x) #Accessing static variables using class name 
+         print(sample.y)
+     def show(self):     #here all the methods can access the SV
+         print(sample.x)  
+         print(sample.y)
+#end of the class
+print(sample.x)  #accessing SV from outside the class using classname
+print(sample.y)
+
+#---------------------------------------------------------------------------------------------         
+#diff b/w function and method:
+
+#        Function                                         Method
+ 1.Function always defined outside the class   1.Method always defined within the class
+
+
+ 2.Function called normally without object      2.Method always called using a object
+    ex:  display()                                ex:  emp1.display()
+	                                             without object we cannot call a method
+	                                             #ex:   string.upper()
+	                                                    string.lower()
+	                                                    list.append(60)                                               
+
+3. Function doesnt have self argument        3.Method should have self as a argument
+                                                     ex: def compute(self):
+                                                              stmt1
+                                                              stmt2
+                                                              .
+                                                              .
+#----------------------------------------------------------------------------------------------     
+#Difference b/w Static variable(SV) and NOn-Static Variable(NSV)
+ 
+#              Static Variable(SV)                   Non-Static Variable(NSV)
+
+1)for object to object if data is common       1)For object to object if data is changing 
+  go for static variable                         go for Non-static variable
+  ex:company="TCS"                               ex: ename=input("Enter the name:")
+
+
+ 2.defined within class,outside the methods  2.defined withinthe class and within the methods
+                                               p=20 ------------->global variable
+  class sample:                                class test:
+                                                    x=10  ------->SV
+       x=10        #SV                              def display(self):
+      def show(self): #Method                               self.y=20     #NSV
+          print("hello")                                         z=30     #Local varible
+
+
+3)Static variable is no way related to         3)object is used to intialize a NSV
+  object.                                      without object NSV cannot be created or initialized
+                                                      objname.NSV=value
+                                               ex:    emp1.eid=101
+
+3.intitialized only once                    3
+  ex:company="TCS"                            #ex:
+                                               emp1.eid=101
+                                               emp2.eid=102
+                                               emp3.eid=103
+                                               
+                                            
+
+4)SV--->only once memory is allocated          4)here multiple times memory is allocated
+  i.e only once they are initialized             i.e multiple times they are initialized.
+  ex:company="TCS"                               e1.eid=101
+                                                 e2.eid=102
+                                                 e3.eid=103
+                                                 if 3 objects--->3 times NSV's are initialized
+                                                 if n objects--->n times NSV's are initialized
+  													if 'n' objects are there then
+   									   		           'n' no of times they are initialized or
+                                    		           'n' no of times memory allocated.
+                                               
+                
+ 5.within the class (or)               5.we access NSV,within the class using self
+    from outside the class,              we access NSV,outside the class using objectname
+    we access SV always using classname         ex:  print(e1.ename)
+    ex: print(employee.company)
+  No way related to object 
+  
+
+  
+
+  
+  
+
+

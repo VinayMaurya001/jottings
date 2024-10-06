@@ -1,0 +1,167 @@
+
+Python was developed by Guido Van Rossum in 1989.
+
+1)What & why Python?
+
+2)who can learn Python? 
+	Almost no prerequisite
+4)Python Real Time Applications
+5)Python USage
+6)Python Features
+7)Python Comparision with other programming
+8)Python Scope and Jobmarket.
+9)Python Software Foundation(PSF)
+
+
+What is Python?
+	Python is 
+		interpreted, 
+		functional and 
+		object oriented 
+		high level programming language.
+		simple-syntax
+		inbuilt libraries or modules
+
+	Python is interpreted so it is very quick.There is no compilation step.
+	And also it is both functional as well as it supports all the Object Oriented principles.
+	It's very easy to learn Python because of its syntax and we can also Develop applications quickly because
+	of its in-built modules or libraries.
+
+why Python?
+		Python is a
+		          -General Purpose
+		          			Pascal- Mathematical purpose 
+		          			Fortran-Scienctific purpose
+		          			COBOL- Business Purpose
+		          -Multi Programming paradigm
+								Python was built or derived by taking the features or advantages from various other programming languages such as
+								1)Procedural Oriented PRogramming: ex :C-Language---------->Functions
+								2)Object Oriented Programming      ex: C++,Java  ----------->Security,Re-usability,flexibility
+								3)Scripting Languages              ex: shellscript--------->dynamic Datatypes
+								4)Modular PRogramming              ex: modula-3  ---------->Modules--------->89300 modules         		
+		          -High-level
+		          			Low-level-Languages
+		          					Assembly level
+		          					No human understandable
+		          					Not Portable-Machine depedent
+		          -performance 
+										interpreted  ??????????????????
+		          			Compilation-Not line by line execution-debuging difficult
+										the performance of the applications developed in Python is super good 
+											because Python is a interpreted language. 
+											There is no additional step of compilation.
+		          -easy to learn & use
+								Python is a user-friendly programming language which provides simple syntaxes which looks like normal english stmts.
+								Python gives us a very easy to learn and use syntax making the life of a developer a super easy to build applications,
+							-Rapid development
+								We can quickly develop our applications because Python comes with a lot of inbuilt modules 
+								that can be used to build our applications.
+								We need not code everything from scratch.
+								There is a lot module/packages available in Python itself.That can be used. 
+							-Dynamically typed
+								Just like javascript, Python is dynamically typed.
+								That is we need not specify what datatype we are going to assign a variable depending on whatever data we assign.
+								Python will dynamically decide what type of data that variable is carrying 
+							-Large community
+								For any open source framework or language,it is very important that it has a good following and Python has a huge community.
+								So at any point if we have to work on something new in our application 
+									and if we need some support from python then we have a huge community of developer to rely on.
+							-third party libraries.
+								This is where Python is called batteries included 
+								because Python can easily integrate with any third party library for example.
+									cherryPy  is object oriented http framework.
+									Similarly Boto is a library that can be used to work with Amazon Web Services while working with python applications.
+									https://www.pythonanywhere.com/batteries_included/
+										list out all the packages
+
+
+-----------------------------------------------------------------------------------------------------
+
+Python Real Time Applications
+		Today python is mostly used in developing the following Applications:
+		1.Web Applications:		
+				DJango
+				sqlite3
+		2.Automation Applications
+		  -Datascience--------->MAchine Learning--->
+		  -IOT
+		  -Devops
+		3.Bigdata: KB,MB,GB,    TB,PB,EB,ZB,YB,SB
+		4.Scientific Applications: Scipy
+		5 .GUI/Animations :
+		6. Game Development: PyGame,Pykara ,PySoy
+		7.Software Development:
+		8.Bussiness : Tryton		
+		9. Database
+		10.N/W Programming :Twisted Python
+		11. Audio and video Applications
+		12.CAD Applications
+		13.Embeded Applications: raspberry pi
+		14.Desktop Applications:
+		15.WebScraping: 
+		16.Computer vision 
+		17.Robotics
+		18.Data Analysis
+		19. Scheduling tasks
+		20. Test cases
+		21. Numerical Ananlysis: numpy
+		
+
+
+		
+		
+---------------
+who are using Python Today:
+			1)Google : USes Python Script in web Search systems.
+			2)Youtube : Video sharing service is largely written in python.
+			3)MMOG : MAssively Multi-player Oline Games uses python
+			4)Maya : A powerfull 3D animation system provides python scripting API
+			5)iRobot: uses python to develop commercial and military robotic devices.
+			6)BitTorrent: File sharing system, began its life as a python program.
+			7)Google's App Engine: webdevelopment framework uses python as an application language.
+			8)Ironport Email server : USes more tham 1 million lines of python code to do its job.
+			9)HArdware Testing: Intel,Cisco,HP,Seagate,Qualcomm ,IBM etc uses python for H/W Testing.
+			10)Financial MArketing.....
+			11)Yahoo
+			12)Instagram
+			13)Quora
+			14)Reddit
+			15)Pinterest
+			16)Dropbox
+			17)Netflix
+			18)Uber
+
+			
+			
+Python Software Foundation(PSF):
+		PSF is a non-profit organization devoted to python programming language.
+		-It was launched on March 6th,2001.
+		-Mission : to faster the development of python community.
+		-in 2005, PSF recieved "COmputerworld Horizon Award" for cutting-edge Technology
+		President and Founder : Guido Van Rossum
+		Headquarters: Delaware,Unitedstates
+		Official website: www.python.org/psf
+		
+		
+Python versions:
+		python 1.xxx ------------>1989
+		python 2.xxx ------------>2000
+		python 3.xxx ------------>2008
+		
+		Latest version of python------------->python 3.12
+		Stable version of python------------->python 3.11
+		(mostly used version)
+
+
+Python Features:
+	1)Powerfull standard Library: provides many Builtin Functionalities for performing various operations.
+	2)Wide varieties of modules :89300 modules
+	3)Supports interactive mode: USer can easily interact with Python interpreter line by line.
+	4)Supports dynamic datatypes:
+	5)supports Object oriented PRogramming:
+	6)supports all major databases.
+	7)Extendable
+	8)Can be easily integrated with other languages
+	9)simple and easy and looks like normal english stmts.
+		
+		

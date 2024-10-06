@@ -1,0 +1,165 @@
+#String :A String is a sequence collection of characters
+"""
+In Python, a string is represented using
+1.single quote(' ')
+2.Double quote(" ")
+3.Triple quote('''  ''')
+
+city="hyderabad"
+
+Each character of a string is represented or accessed by a unique index
+
+String supports 2 types of indexes:
+1.Positive index of Forward index--->index starts from left to right
+                                 --->index starts with 0
+
+2.Negative index or Backward index-->index starts from right to left
+                                  --->index starts with -1
+   012345------>positive index or forward index
+x="python"
+  -6    -1----->Negative index or backward index
+"""
+
+x="python"
+print(x)
+print(type(x))
+print(len(x))
+print(x[3])
+print(x[-3])
+
+y="programming"
+print(x+" "+y)#Concatenation-->Adding 2 strings-->1st string followed by 2nd string
+
+
+
+
+
+
+
+#String slicing:Extracting particular portion of a string
+x="python program"
+#Extract---->"python"
+print(x[0:6]) #Always upper bound is excluded
+#Extract--->"prog"
+print(x[7:11])
+print(x[11:7])#Empty string--->bcoz always slicing in the forward direction
+#Extract--->"prog" using -ve index
+print(x[-7:-3])
+#Extract--->"program"
+print(x[7:14])
+print(x[7: ])
+print(x[-7: ])
+
+print(x[ :6])
+
+#Extract--->"python program"
+print(x[ : ])
+print(x[:])
+print(x)
+print(x[0: ])
+
+print(x[-7:11]) #prog
+
+print(x[0:14:2]) #(startvalue,stopvalue,stepvalue)
+print(x[::2])
+
+print(x[::-1]) #reverses the string
+
+#palindrome: If we reverse a string if we get the same string then it is a palindrome
+#ex:madam,malayalam,dad,mom,eye,racecar,level,nitin,
+
+x="madam"
+print(x)
+
+y=x[::-1]
+print(y)
+
+
+
+
+
+
+
+	
+
+#String methods:
+
+#1.upper():To print in uppercase
+x="hyderabad"
+print(x.upper())
+
+#2.lower():To print in lowecase
+x="MUMBAI"
+print(x.lower())
+
+#3.capitalize(): For capitalizing the 1st character of a string
+x="india"
+print(x.capitalize())
+
+#4.title():For capitalizing the 1st character of each word in a string
+x="good morning hyderabad"
+print(x.title())
+#ex:
+emps="rohith,ajay,miller,james,john,amar"
+print(emps.title())
+
+#5.swapcase():For converting one case to another case
+x="good morning hyderabad"
+print(x.swapcase())
+
+#6.replace():For replacing a portion of a string
+x="Java is Easy and Java is simple"
+print(x.replace("Java","Python"))
+
+#7.count():To count the number of occurences of a sub-string or a character
+x="hello..hello...hello..how are you?"
+print(x.count("hello"))
+print(x.count("h"))
+
+#8.format():for substitutions
+x="{} is the captain of Indian Team"
+print(x.format("Rohith"))
+
+#ex:2
+y="{} is the {} of {}"
+print(y.format("Modi","PM","India"))
+print(y.format("Delhi","capital","India"))
+print(y.format("Python","most popular","all languages"))
+
+#9.strip():For removing the blank spaces before and after the string
+x="             Good Morning Hyderabad                 "
+print(x,len(x))
+y=x.strip()
+print(y,len(y))
+
+#10.lstrip():removes the left most spaces only
+y=x.lstrip()
+print(y,len(y))
+
+#11.rstrip():removes the right most spaces only
+y=x.rstrip()
+print(y,len(y))
+
+#12.find():To check whether a sub-string is available or not
+#If found, it returns the 1st character index position of the substring
+#else it returns -1
+x="python is easier than Java"
+print(x.find("Java"))   #22
+print(x.find("python")) #0
+print(x.find("hadoop")) #-1
+
+
+#13.split():If we split a string,we get a list
+x="Good Morning Hyderabad"
+#print---->"hyderabad"
+y=x.split(" ")
+print(y,type(y))
+print(y[2])
+
+#ex:
+emp="101,Ajay,40000,Manager"
+#print--->name and designation
+y=emp.split(",")
+print(y,type(y))
+print(y[1],y[3])
+                

@@ -1,0 +1,168 @@
+#Collections: 4 Types
+1.List ---->[ ]
+2.tuple---->( ) or no bracket
+3.set------>{ }
+4.Dictionary-->{k:v} -->{"name":"Ajay","age":25}
+                            k     v      k    v
+
+#list :List is a collection datatype which holds group of values
+
+#List properties:
+1. List represented using []
+
+2.List allows both homogeneous(similar) and heterogeneous(dissimilar) elements
+   ex:  x=[10,20,30,40,50] ------>homogeneous
+        y=[101,"Ajay",30980.70]--->heterogenous elements
+
+3.List allows duplicate elements  ex: x=[10,20,30,40,50,10,20,30]
+
+4.In List,Insertion order is followed(preserved) i.e the way the elements are
+  inserted in the same order they are stored or displayed.
+
+5.Each element of a list is identified or accessed by a unique index
+  List supports 2 types of indexes
+  1.Forward index or positive index-->index starts from left to right
+                                   -->index starts with 0.
+  2.Backward index or negative index-->index starts from right to left
+                                    -->index starts with -1.
+
+     0   1    2   3   4-------->positive index/forward index
+  x=[10, 20, 30, 40, 50]
+     -5  -4  -3  -2  -1 ------->Negative index /backward index
+
+     x[3]=40
+     x[-2]=40
+
+  
+ 6.List is a mutable object i.e changes and modifications are allowed
+   withinn a list.
+   x[1]=25
+ 7.List can also be created by using list() function.
+
+
+#Creating a list
+x=[10,20,10,30,40,50]
+print(x)
+print(type(x))
+print(len(x))
+print(id(x))
+
+print(x[0],type(x[0]),id(x[0]))
+print(x[1],type(x[1]),id(x[1]))
+print(x[2],type(x[2]),id(x[2]))
+
+#Using the list() constructor to make a List:
+x = list(('apple', 'banana', 'cherry'))
+x = list(['apple', 'banana', 'cherry'])
+print(x)
+
+
+
+#Heterogeneous list
+x=[101,"Ajay",90870.40]
+print(x)
+print(x[1][2])   #a
+print(x[1],x[2])
+
+
+
+
+#for loop on a list
+x=["Ajay","Rohith","Miller","Blake","James"]
+for p in x:
+    print("NAME:",p)
+
+
+#List addresses
+x=[10,20,30,40,50]
+y=[10,20,30,40,50]
+print(x,id(x))
+print(y,id(y))
+print(x is y)
+#Note: 2 mutable objects with same content also,returns 2 diff objects
+#      2 immutable objects with same content returns only one object
+#2 mutable objects can never have the same address
+
+
+#Function applied on a list
+x=[30,10,40,20,50]
+print(x)
+print(type(x))
+print(len(x))
+print(max(x))
+print(min(x))
+print(sum(x))
+print(sorted(x))
+print(sorted(x,reverse=True))
+
+             
+             
+#List methods:
+#1.append(): For appending an element at the end of the list
+x=[10,20,30,40,50]
+print(x,len(x))
+
+x.append(60)
+print(x,len(x))
+
+#x.append(70,80) #Error-->bcoz append() accepts only one argument
+
+x.append([1,2,3])
+print(x,len(x))
+#-----------------------------------------------------------------------------
+#2.extend():For extending a list with the elements of other list
+
+y=[1.5,2.5,3.5,4.5,5.5]
+
+x.extend(y)
+print(x,len(x))
+
+#-----------------------------------------------------------------------------
+#3.insert(index,value):For inserting an element at the desired positon
+x.insert(2,25)
+
+x.insert(4,"mumbai")
+print(x,len(x))
+
+#-----------------------------------------------------------------------------
+#4.pop(index):For removing an element based on index
+x.pop(5)
+print(x)
+
+#remove the element---->60 using pop()
+#first find the index of 60 and remove
+#------------------------------------------------------------------------------
+#5.index(element): To find the index of an element
+print(x.index(60))
+x.pop(x.index(60))
+print(x)
+#-----------------------------------------------------------------------------
+#6.remove(value):For removing (only first occurrence )an element based on value
+x.remove(30)
+
+x.remove("mumbai")
+
+print(x)
+#-----------------------------------------------------------------------------
+#7.sort():for sorting the elements of a list
+y=[5,3,1,4,2]
+y.sort()
+print(y)
+#-----------------------------------------------------------------------------
+#8.reverse():For reversing the elements of a list
+y.reverse()
+print(y)
+#-----------------------------------------------------------------------------
+#9.copy():For duplicating a list
+z=y.copy()
+print(z)
+#-----------------------------------------------------------------------------
+#10.count():To count the no of times, a element has occured in a list
+
+medals=["Ind","Eng","Aus","Jap","Ind","Jap","Ind","Eng","Ind"]
+print(medals.count("Ind"))
+
+#------------------------------------------------------------------------------
+
+
+

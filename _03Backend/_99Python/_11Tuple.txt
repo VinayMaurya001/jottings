@@ -1,0 +1,195 @@
+
+#Tuples: Tuple is a collection datatype which holds group of values
+#Tuple Properties:
+
+1.Tuple represented using ()
+
+2.Tuple allows both homogenous(same datatype) and heterogeneous(different datatype) elements
+  ex:  x=(10,20,30,40,50)   #homogenous elements
+       y=(101,"James",70890.70,[1,2,3]) #heterogeneous elements
+
+3. Tuple allows duplicate elements   ex:  x=(10,20,30,10,20)
+
+4. In tuple insertion order is preserved(followed) ,i.e the order in which the
+   elements are inserted,in the same order they are stored or displayed
+
+5. Every element of a tuple,is identified or accessed by a unique index
+   tuple support 2 types of indexes:
+       1.Forward index (or) Positive index---->starts from left to right
+                                         ----->starts with 0
+       2.Backward index(or) Negative index----->Starts from right to left
+                                          ----->starts with -1.
+                                          
+                  0   1   2   3   4---->forward/positive index
+        ex:  x= (10, 20, 30, 40, 50)
+                 -5  -4  -3  -2  -1---->Backward/Negative index
+
+6. Tuple is a immutable object i,e changes and modifications are not allowed
+    within a tuple
+    ex: y=(101,"James",70890.70,[1,2,3])
+        
+7. tuple can also be created by using tuple() function.
+
+
+
+
+
+
+
+
+
+
+#Creating tuples
+
+x=(10,20,30,40,50)               #Homogeneous tuple
+print(x)
+print(type(x)) 
+print(id(x))
+print(len(x)) 
+
+y=(101,"Blake",70890.70,"pune")    #Heterogeneous tuple
+print(y)
+print(type(y))
+print(len(y))
+
+
+cities="hyd","pune","mumbai","chennai"
+print(cities,type(cities),len(cities))
+
+z=10,20,30
+print(z)        #(10, 20, 30)
+print(type(z))  #<class 'tuple'>
+print(len(z))
+
+
+z=10
+print(z)        #10
+print(type(z))  #<class 'int'>
+
+w=("python")#If there is only one element within the parenthesis then it is not a tuple.
+print(w,type(w),len(w))		#python <class 'str'> 6
+
+p=("python",)
+print(p,type(p),len(p))     #('python',) <class 'tuple'> 1
+
+q=(10)
+print(q,type(q))			#10 <class 'int'>
+
+r=(10,)
+print(r,type(r),len(r))		#(10,) <class 'tuple'> 1
+
+s1=10
+print(s1,type(s1))			#10 <class 'int'>
+
+s2=10,
+print(s2,type(s2),len(s2))	#(10,) <class 'tuple'> 1
+
+x=([10,20,30])			
+print(x,type(x),len(x))		#[10, 20, 30] <class 'list'> 3
+
+x=([10,20,30],[40,50])
+print(x,type(x),len(x))		#([10, 20, 30], [40, 50]) <class 'tuple'> 2
+print(len(x[0]))			#3
+print(len(x[1]))			#2
+print(x[0][1])				#20
+
+y=({10,20,30,40,50,40})		
+print(y,type(y),len(y))		#{50, 20, 40, 10, 30} <class 'set'> 5
+
+
+x=[10]
+print(x,type(x),len(x))		#[10] <class 'list'> 1
+#-------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+#Merging 2 tuples
+x=(10,20,30)
+y=(40,50)
+w=([60,70,80],)
+
+z1=x+y
+print(z1,type(z1),len(z1))  #(10, 20, 30, 40, 50) <class 'tuple'> 5
+
+z2=x+w
+print(z2,type(z2),len(z2))  #(10, 20, 30, [60, 70, 80]) <class 'tuple'> 4
+
+z3=x+y+w
+print(z3,type(z3),len(z3))  #(10, 20, 30, 40, 50, [60, 70, 80]) <class 'tuple'> 6
+
+x="hello"
+print(x*3)          #hellohellohello
+
+
+y=(10,20,30)
+print(y*3)      #(10, 20, 30, 10, 20, 30, 10, 20, 30)
+print(y)        #(10, 20, 30)
+#print(y+3)
+
+z=[1,2,3]
+print(z+[4,5])  #[1, 2, 3, 4, 5]
+
+
+
+
+
+
+
+
+
+
+#Functions applied on a tuple
+x=(30,10,40,20,50)
+print(x)
+print(type(x))
+print(id(x))
+print(len(x))
+print(sum(x))
+print(max(x))
+print(min(x))
+print(sorted(x)) #Sorted() always returns list type
+print(sorted(x,reverse=True))
+
+
+
+
+
+
+
+
+
+#Tuple packing and unpacking
+
+#Tuple packing : Creating a tuple without parenthesis(braces)
+marks=90,80,70
+print(marks,type(marks))	#(90, 80, 70) <class 'tuple'>
+
+#Tuple unpacking: Assigning a tuple to multiple variables
+marks=(95,60,45)
+
+s1,s2,s3=marks
+print(s1,type(s1))	#95 <class 'int'>
+print(s2,type(s2))	#60 <class 'int'>
+print(s3,type(s3))	#45 <class 'int'>
+
+
+
+
+#Tuples within a tuple
+x=(("Kohli",95),("Dhoni",45),("Rohith",82),("Hardik",30))
+print(x,len(x))		#(('Kohli', 95), ('Dhoni', 45), ('Rohith', 82), ('Hardik', 30)) 4
+
+for p in x:
+    print(p,type(p))
+
+for p,q in x:
+    print("====================")
+    print("PLAYER:",p)
+    print("RUNS:",q)
+    print("====================")
+    

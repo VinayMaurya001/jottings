@@ -1,0 +1,234 @@
+#Operators
+"""
+1.Arithmetic operators
+2.Comparision operators
+3.Logical operators
+4.Assignment operators
+5.Identity operators
+6.membership operators
+"""
+
+
+#1.Arithmetic operators: for performing Arithmetic operations
+
+#Various Arithmetic operators are:
+"""
+1.Addition(+)
+2.Subtraction(-)
+3.mutiplication(*)
+4.Division(/)       ---------->returns quotient with decimals
+5.Floor Division(//1) -------->returns quotient without decimals
+6.Modulo Division(%)  -------->returns remainder
+7.Exponent(**)
+"""
+
+x=10
+y=4
+
+add=x+y
+print("sum=",add)
+
+sub=x-y
+print("diff=",sub)
+
+mul=x*y
+print("Product=",mul)
+
+div=x/y
+print("Division=",div)
+
+floordiv=x//y
+print("Floordiv=",floordiv)
+
+moddiv=x%y
+print("moddiv=",moddiv)
+
+exp=x**y
+print("exp=",exp)
+
+print(10/3)
+print(10//3)
+print(10%3)
+
+#Arithmetic operations on float and boolean
+print(4.5+True)   	#5.5
+print(4.5-True)		#3.5
+print(5*False)		#0
+
+print(True+True)	#2
+
+
+#Arithmetic operations on int and string
+#print("hello"+3)		#TypeError: can only concatenate str (not "int") to str
+print("hello"+"3")		#hello3
+print("hello"+str(3))	#hello3
+
+print("hello"*3)		#hellohellohello
+print(3*"hello")		#hellohellohello
+
+
+
+
+
+
+
+
+
+
+
+#Comparision operators:These operators are used to compare the contents of 2 objects
+#Comparision operators always returns either True or Flase
+#Various Comparision operators are: > ,< ,>=, <=, == ,!=
+x=10
+y=4
+print(x>y)	#True
+print(x<y)	#False
+print(x>=y)
+print(x<=y)
+print(x==y)
+print(x!=y)
+
+
+
+
+
+
+
+
+#Logical operators:These operators gives the logical relationship b/w 2 objects
+#Logical operators also returns either True/False
+#Various Logical operatrs are:
+#1.and
+#2.or
+#3.not
+"""
+                  x       y       x and y   x or y
+                  True    True     True      True  
+                  True    False    False     True
+                  False   True     False     True
+                  False   False    False     False
+"""
+#Logical and returns True only if both the conditions are True else it returns False
+#Logical or returns True if anyone condition is True or if both the conditions are True.
+
+x=10
+y=20
+z=30
+
+p=(x>y) and (z>x)
+print(p)
+
+q=(x>y) and (z>x) or (z!=y)		#True
+print(q)
+
+r=(x>y) and (z==x+y) or (y==z-x) #True
+print(r)
+
+print(not False)
+print(not True)
+
+
+
+
+
+
+
+
+
+
+
+
+#Assignment operators:
+
+#These operators are used to assign-
+#                                   a value to a variable             x=10
+#                                   a variable to another variable    y=x
+#                                   an expression to a variable       z=x+y+4
+#Asssignment operators are also called as short-hand operators
+
+#Expression    #Equivalence
+'''
+x+=4 ---------->x=x+4
+x-=4 ---------->x=x-4
+x*=4 ---------->x=x*4
+x/=4 ---------->x=x/4
+x//=4 --------->x=x//4
+x%=4 ---------->x=x%4
+x**=4 --------->x=x**4
+'''
+x=10
+x+=4
+
+print(x)
+
+x-=6
+print(x)
+
+x*=2
+print(x)
+
+x/=5
+print(x)
+
+x=10
+x//=3
+print(x)
+
+x**=3
+print(x)
+
+
+
+
+
+
+
+#Identity operators :These operators are used to compare the address of 2 objects
+#Identity operators also returns either True/False
+#Various Identity operators are:
+
+#1.is
+#2.is not
+
+#ex:
+x=10
+y=20
+
+print(x,id(x))
+print(y,id(y))
+
+print(x is y)#Compares the addresses
+print(x == y)#Compares the content
+print(x is not y)
+
+#Ex:2
+a=10
+b=10
+print(a,id(a))
+print(b,id(b))
+
+print(a is b)
+print(a == b)
+print(a is not b)
+
+
+
+
+#Membership operators :
+#These operators are used to check whether an element is a member or not
+#membership operators also returns either True/False
+#Various membership operators are
+#1.in
+#2.not in
+#Ex:1
+x=[10,20,30,40,50]
+print(10 in x)
+print(70 not in x)
+print(70 in x)
+#ex:2
+emps=["Ajay","Rohith","Miller","Blake","James","Amar"]
+print("Amar" in emps)
+print("John" in emps)
+print("Ram" not in emps)
+print("James" in emps)
+

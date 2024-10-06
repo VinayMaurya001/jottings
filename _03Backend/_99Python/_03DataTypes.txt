@@ -1,0 +1,103 @@
+Datatypes: 2 Types
+	1.Fundamental Datatypes----------->Object holding a single value
+		  5Types
+		  1.int ----->age=25
+		  2.float --->sal=90870.40
+		  3.boolean-->True/False
+		  4.string -->city="Hyderabad"
+		  5.complex-->x+jy
+
+	2.Collection Datatypes ----------->Object holding group of values
+		4Types
+		1.List  ------->[ ]  ex: x=[10,20,30,40]
+		2.Tuple ------->( )      y=(10,20,30,40)
+		3.Set   ------->{ }      z={10,20,30,40}
+		4.Dictionary -->{k:v}    p={"Name":"Ajay" ,"Age":25}
+		                              k       v
+	                              
+
+#There are 2 types of objects
+"""
+1.Immutable objects:Objects which doesnt allow to change or modify its  content
+                    are called as immutable objects
+ex: all fundamental datatypes and tuples
+
+
+
+2.mutable objects:Objects which allow to change or modify its  content
+                    are called as mutable objects
+ex:list,set,dictionary
+"""
+#ex:
+x=[10,20,30,40,50]
+print(x)
+x[1]=25
+print(x)
+
+
+	                           
+	                              
+Variables for Int
+Example1 :
+x=10
+print(x)		#10
+print(id(x))    #140705362746072
+print(type(x))  #<class 'int'>                                                      
+
+
+Example2:
+#Defining 2 variables with same values->only one object created and its address is returned to both variables
+x=10
+y=10
+print(x)		#10
+print(y)		#10
+print(id(x))    #140705362746072
+print(id(y))    #140705362746072
+print(type(x))  #<class 'int'>   
+print(type(y))  #<class 'int'>   
+
+
+Exapmle3:
+#initializing multiple values to a variable---> multiple objects created--->always latest value will be returned.
+x=10
+print(id(x))    #140705362746072
+
+x=20
+print(x)		#20
+print(id(x))	#140705362746392
+print(type(x))	#<class 'int'>
+
+x=10
+print(x)		#10
+print(id(x))	#140705362746072  (same as at start when value was 10 )
+print(type(x))	#<class 'int'>
+
+
+Garbage Collector
+	Objects whose reference count become zero, 
+	Reference Count
+		No of variables pointing to an object
+				or
+		No of variables storing address of an object
+
+
+Variable for float
+# float datatype
+x=4.5
+
+print(x)
+print(type(x))
+print(id(x))
+
+y=20
+print(y)
+print(id(y))
+print(type(y))
+
+z=x+y  #int+float------>float
+print(z)
+print(type(z))
+print(id(z))
+
+
+
