@@ -53,11 +53,6 @@ why Python?
 		          -easy to learn & use
 								Python is a user-friendly programming language which provides simple syntaxes which looks like normal english stmts.
 								Python gives us a very easy to learn and use syntax making the life of a developer a super easy to build applications,
-							-Rapid development
-								We can quickly develop our applications because Python comes with a lot of inbuilt modules 
-								that can be used to build our applications.
-								We need not code everything from scratch.
-								There is a lot module/packages available in Python itself.That can be used. 
 							-Dynamically typed
 								Just like javascript, Python is dynamically typed.
 								That is we need not specify what datatype we are going to assign a variable depending on whatever data we assign.
@@ -65,7 +60,7 @@ why Python?
 							-Large community
 								For any open source framework or language,it is very important that it has a good following and Python has a huge community.
 								So at any point if we have to work on something new in our application 
-									and if we need some support from python then we have a huge community of developer to rely on.
+									and if we need some support from python then we have a huge community/user base of developer to rely on.
 							-third party libraries.
 								This is where Python is called batteries included 
 								because Python can easily integrate with any third party library for example.
@@ -73,6 +68,11 @@ why Python?
 									Similarly Boto is a library that can be used to work with Amazon Web Services while working with python applications.
 									https://www.pythonanywhere.com/batteries_included/
 										list out all the packages
+								-Rapid development
+									We can quickly develop our applications because Python comes with a lot of inbuilt modules 
+									that can be used to build our applications.
+									We need not code everything from scratch.
+									There is a lot module/packages available in Python itself.That can be used. 
 
 
 -----------------------------------------------------------------------------------------------------

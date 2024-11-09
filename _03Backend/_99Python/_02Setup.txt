@@ -62,4 +62,6 @@ Developing Python Applications using Editors
 		It gives the ouput
 
 	
-	
+	Comments or doc strings
+		#
+		"""	'''

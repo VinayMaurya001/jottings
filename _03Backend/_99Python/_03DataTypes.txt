@@ -1,3 +1,18 @@
+Data types:
+	1)None types 
+			an object that does not contain any value
+	2)Numeric types
+			int, float, complex, binary(0B), hexadecimal(0X), octal(0O)
+			a=b+cj;
+			d=0B1010;//10
+			e=0XFF;//255
+			f=0O70;//56
+	3)boolean-->True/False
+	4)Sequences
+			str, bytes, bytearray,list, tuple, range
+	5)Sets
+	6)Mappings
+
 Datatypes: 2 Types
 	1.Fundamental Datatypes----------->Object holding a single value
 		  5Types
@@ -7,6 +22,7 @@ Datatypes: 2 Types
 		  4.string -->city="Hyderabad"
 		  5.complex-->x+jy
 
+
 	2.Collection Datatypes ----------->Object holding group of values
 		4Types
 		1.List  ------->[ ]  ex: x=[10,20,30,40]
@@ -14,7 +30,7 @@ Datatypes: 2 Types
 		3.Set   ------->{ }      z={10,20,30,40}
 		4.Dictionary -->{k:v}    p={"Name":"Ajay" ,"Age":25}
 		                              k       v
-	                              
+
 
 #There are 2 types of objects
 """
@@ -98,6 +114,40 @@ z=x+y  #int+float------>float
 print(z)
 print(type(z))
 print(id(z))
+
+
+
+Data type conversion
+All data types in python are object types and have a associated class
+a=3.50
+print(type(a)) #<class 'float'>
+b=int(a)
+print(type(b)) #<class 'int'>
+
+i=float("22.0")
+print(type(i)) #<class 'float'>
+
+print(bin(10)) #0b1010
+print(hex(255)) #0xFF
+
+
+Identifier
+	case sensitive
+	can not start with a number
+	can start with _  
+
+
+
+Which type is used to represent mathematical algebraic expressions or equations?
+	Complex
+What does a single underscore at the beginning of a variable or function name typically signify in Python?
+	convention for private variable or function
+
+
+
+
+
+
 
 
 
