@@ -1,0 +1,41 @@
+Kafka CLuster Architecture
+	Kafka doesn't uses master slave architecture.
+	Zookeeper
+		zookeeper-shell.bat localhost:2181
+		ls /
+		ls /brokers
+		ls /brokers/ids
+		The list of active brokers in the cluster is maintained as the list of ephemeral nodes under the /brokers/ids path in the zookeeper.
+		Zookeeper is the database of the Kafka cluster control information.
+		Cluster Membership
+	
+	Kafka Cluster Controller
+		get /controller
+		Administrative tasks
+		At a point of time only one controller in a cluster.
+		The controller is responsible for monitoring the list of active brokers in the zookeeper. 
+			When the controller notices that a broker left the cluster, it knows that it is time to reassign some work to the other brokers. 
+		The controller election is is straightforward.
+			The first broker that starts in the cluster becomes the controller by creating an ephemeral (controller) node in the zookeeper. 
+			When other brokers start,they also try to create this node, but they receive an exception as 'node already exists,' which means that the controller is already elected.
+
+	Partition Allocation & fault tolerance
+		Goal
+			Even partition distribution
+	            Fault tolerance(so replication)
+		Partition assignment
+			1)Ordered list of partition (from diff broker of diff rack )
+			2)Leader & follower assignment
+
+		Leader vs FOllower
+			Producer & consumers always interact with Leader partition.
+			Leader partition maintains the ISR list- In Sync Replica (not far >10sec)
+				Follower partition can be fail to be in sync with  Leader partition due to various reasons:
+					1)Network COngestion
+					2)Follower Broker crash/restart
+
+	If ISR list become empty & leader crash then we would loss messages & so we have the folllowing 2 mechanism to prevent this:
+		Commited vs Uncommited message
+			If Producer with ACKS=ALL, uncommited message will be resend by producer
+		Minimum In-Sync Replicas
+			min.insync.replicas=2

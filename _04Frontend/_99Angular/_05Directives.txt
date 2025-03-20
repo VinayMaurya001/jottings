@@ -1,0 +1,507 @@
+https://angular.io/api/common#directives
+
+Directives
+	Directives are instructions in the DOM.
+	Directives we can use to add some additional feature on html controls.
+	1)Build-In Deirectives
+		Angular provides many pre-defined directives.
+		Router-Outlet is a directive 
+		a)Component/Element Directives:
+				Using this we can place components
+				<app-root>, <app-reg>
+		b) Structural directives
+				To add/remove the element on dom at runtime
+				*ngIf,*ngIf with else,  *ngFor, *ngSwitchCase,*ngSwitchDefault
+		c) Attribute/Property
+				TO change the behaviour of HTML element
+				[ngSwitch],[ngStyle], [ngClass]	
+				
+		ngNonBindable
+			We use ngNonBindable to tell Angular not to bind or compile a part of our page. 
+			<div *ngFor="let course of courses">
+				<b>{{course}}</b>
+				<div ngNonBindable>The code that renders the above is {{course}}</div>
+			</div>
+			
+	2)Custom Deirectives
+	
+	
+Structural directive
+	We can not apply multiple Structural directive on single element.
+	Angular provides a structural directive: ngIf
+ Show content based on a condition / boolean expression
+
+	*ngIf 
+		To add/remove(not hide) element on document based on condition
+		<p *ngIf="isCreated">Server name is {{serverName}}</p>
+		<p *ngIf="funA()">Server name is </p>
+		<h1 *ngIf="x>y && x>z">X is big</h1>
+		<div *ngIf="false">Welcome time</div>
+		<div *ngIf="!tmp">Welcome time</div>
+		<p *ngIf="temp=true">Display me always</p>//CTE
+		<p *ngIf="temp=!temp">Alternatively display me</p>//CTE
+		<div *ngIf="{{tmp}}">Welcome time</div>//CTE
+		<input type="button" value="temp=true" (click)="temp = true" />
+		<input type="button" value="temp=!tmp" (click)="temp = !temp" />
+		<input type="button" value="temp=funB()" (click)="temp = funB()" />
+		<input type="button" value="funA()" (click)="funA()" />  //No CTE, but no visual effect
+
+	*ngIf with else
+		Using this we can execute a template  when the condition is false
+			ng-template: usig this tag we can call else block
+			<div *ngIf="flag; else elseDiv">if block</div>
+			<ng-template #elseDiv> else block </ng-template>
+
+		<p *ngIf="isCreated; else noServer">Server name</p>
+		<ng-template #noServer>
+		  <p>No Server Created</p>
+		</ng-template>		
+	
+		
+		 x:number=100
+ 		 y:number=50
+ 		 z:number=25
+ 		 1)
+	 			 <div *ngIf="x > y && y > z">X Biggest</div>
+	 			 <div *ngIf="x < y && y > z">Y Biggest</div>
+	 			 <div *ngIf="z > y && x < z">Z Biggest</div>
+ 		 2)	 
+					<div *ngIf="x>y;else ydiv">
+					  <div *ngIf="x>z;else zdiv">
+					    X is big
+					  </div>
+					</div>
+					<ng-template #ydiv>
+					  <div *ngIf="y>z; else zdiv">
+					    Y is big
+					  </div>
+					</ng-template>
+					<ng-template #zdiv>
+					  <div>
+					    Z is big
+					  </div>
+					</ng-template>
+		
+	*ngFor	
+		*ngFor : To run a loop throught the elements of array.
+		ngFor is a structural directive
+		It renders a template for each item in a collection
+
+		index : using this property we can get index number of element
+			<p *ngFor="let server of servers">{{server}} ngFor</p>
+				<p *ngFor="let server of servers ; let i=index">{{server}}- {{i}} ngFor</p>
+			<p *ngFor="let i of [].constructor(count)">{{count}} times Hi</p>
+					<p *ngFor="let i of [].constructor(count); let x=index">{{count}} times Hi-{{x}}-</p>
+			<app-header *ngFor="let server of servers"></app-header>
+			<select [(ngModel)]="defaultCity">
+			  <option *ngFor="let cityname of cities">
+			    {{ cityname }}
+			  </option>
+			</select>
+			<input type="text" [(ngModel)]="city" (blur)="fun1()" />
+						fun1() {    this.cities.push(this.city);}
+
+Attribute directive
+	Unlike structural directives, attribute directives don't add or remove elements.
+	They only change the element they were placed on
+	[ngSwitch]
+		[ngSwitch] :Using this attribute directive we can assign a variable to work with switch case.
+		*ngSwitchCase : To define a case block- structure directive
+		*ngSwitchDefault : To define a default block	- structure directive
+		
+	Example 1:
+		 lang:string="h"
+		  fun1(language:string){
+		    this.lang=language;
+		  }
+		  <input type="button" value="Hindi" (click)="fun1('h')" />
+		<input type="button" value="English" (click)="fun1('e')"/>
+		<input type="button" value="Tamil" (click)="fun1('t')" />
+		{{lang}}
+		<div [ngSwitch]="lang">
+		  <h2 *ngSwitchCase="'e'">English</h2>
+		   <h2 *ngSwitchCase="e">English</h2>//CTE
+		  <h2 *ngSwitchCase="'t'">Tamil</h2>
+		  <h2 *ngSwitchDefault="'h'">Hindi</h2>
+		</div>
+
+		Example 2:
+		 drp1:string=""
+		 <select  [(ngModel)]="drp1">
+		  <option value="">--Select Any--</option>
+		  <option value="a">Apple</option>
+		  <Option value="m">Mango</Option>
+		  <option value="all">All</option>
+		</select>
+		{{drp1}}
+		<div [ngSwitch]="drp1">
+		  <div *ngSwitchCase="'a'">
+		    <h2>Apple</h2>
+		  </div>
+		  <div *ngSwitchCase="'m'">
+		    <h2>Mango</h2>
+		  </div>
+		  <div *ngSwitchDefault>
+		    <h2>All</h2>
+		  </div>
+		</div>
+		 
+
+	[ngStyle]
+		attribute directive
+		To apply styles on elements
+		Styling Elements Dynamically using ngStyle
+
+		[ngStyle.<cssproperty>]="value"
+				<div [style.color]="'red'" [style.font-size.px]=	"40">Styling Single CSS property</div>
+				<p [ngStyle]="{color:'green','background-color': 'red'}">Styling Multiple CSS property</p>
+
+
+		<p [ngStyle]="{backgroundColor: 'red'}">Styling Elements Dynamically using ngStyle</p>
+		<p [ngStyle]="{'background-color': 'red'}">Styling Elements Dynamically using ngStyle</p>
+		<p [ngStyle]="{backgroundColor: getColor()}">Styling Elements Dynamically using ngStyle</p>
+			The square brackets here are not part of the directive name.
+			The directive name is just ngStyle.
+			The square brackets indicate that we want to bind to some property on this directive.
+			And this property name happens to also be ngStyle.
+			We will see this in practice on our own directives in the directive section later.
+			But super important to understand that property binding is not the same as a directive.
+			It's totally different.
+			We are binding to a property of the directive.
+			This ngStyle property expects to get a JavaScript object. 
+			And here we define key value pairs of the style name, as the key,and the value of the style as the well value.
+				
+				no = 100;
+				txt1: any;
+				fun1 = () => {
+				    this.no = this.txt1;
+				  };
+				  //Here it is an array oject  {color:'red',backgroundColor:'silver',width:'50px'}
+				<div [ngStyle]="no<150 ? {color:'red',backgroundColor:'silver',width:'50px'} : {color:'green'}">
+				  {{no}}
+				</div>
+				<input type="text" (blur)="fun1()" [(ngModel)]="txt1"  />
+				
+				
+				
+	[ngClass]
+		attribute directive
+				<p [ngClass]="{cssClassName: true}">Applying CSS Classes Dynamically using ngClass</p>
+				
+		Applying CSS Classes Dynamically using ngClass
+
+			  tmp:string="abc"
+				.abc{
+				    color:red;
+				    font-size: 30px;
+				}
+				.xyz{
+				    color:green;
+				    font-size: 20px;
+				}
+		    <div [ngClass]="tmp" (mouseover)="tmp='abc'" (mouseout)="tmp='xyz'">hi scott</div>
+				<p [ngClass]="{abc: tmp =='abc'}">Applying CSS Classes Dynamically using ngClass</p>
+			
+
+				    <td [style.color]="color" [ngClass]="classObj">{{student.score}}</td>
+					 useTdata:boolean;
+  					classObj:Object;
+  					constructor() { 
+						    this.useTdata=false;
+    						this.classObj={
+    							  tdata:this.useTdata
+    						}
+  					}
+  					.tdata{
+						   font-size: 80px 
+						}
+
+
+
+
+
+
+
+
+
+
+
+
+Directives
+	Directives are instructions in the DOM.
+	
+Build-In Deirectives
+ngIf
+	structural directive
+	<p *ngIf="isCreated">Server name is {{serverName}}</p>
+ngIf with else
+	structural directive
+	<p *ngIf="isCreated; else noServer">Server name is {{serverName}</p>
+	<ng-template #noServer>
+	  <p>No Server Created</p>
+	</ng-template>
+ngStyle
+	attribute directive
+	<p [ngStyle]="{backgroundColor: getColor()}">Styling Elements Dynamically using ngStyle</p>
+	<p [ngStyle]="{'background-color': getColor()}">Styling Elements Dynamically using ngStyle</p>
+ngClass
+	attribute directive
+	<p [ngClass]="{online: isCreated}">Applying CSS Classes Dynamically using ngClass</p>
+	.online{
+  		color: red;
+	}
+ngFor	
+	<app-server *ngFor="let server of servers"></app-server>
+	<p *ngFor="let server of servers">{{server}} ngFor</p>
+	<p *ngFor="let server of servers ; let i=index">{{server}}- {{i}} ngFor</p>
+	On same element we cann't put both directive *ngFor and *ngIf
+	
+	
+Attribute vs Structural Directive
+Structural Attribute
+	Look like a normal Html Attribute but having a leading *(for dedugarging)
+	Affect a whole area in the DOM (elements get addded/removed)
+	It starts with *.
+Attribute Directive
+	Look like a normal Html Attribute(possibly with databinding or event binding)
+	Only affect/change the element they are added to
+	
+	
+
+Custom directive
+	ng g directive directives/myIf
+			ng g d directives/myIf
+	TemplateRef
+	ViewContainerRef
+	
+Creating a Basic Attribute Directive
+	<p appBasicHighlight>Basic Attribute Directive</p>
+	
+	basic-highlight.directive.ts (ng generate directive basic-highlight)
+	import { Directive, ElementRef, OnInit } from '@angular/core';
+	@Directive({
+	  selector: '[appBasicHighlight]'
+	})
+	export class BasicHighlightDirective implements OnInit {
+	  constructor(private elementRef: ElementRef) {}
+	  ngOnInit() {   this.elementRef.nativeElement.style.backgroundColor = 'green';}
+	}
+	
+
+Using the Rendere to build a better Attribute Directive
+	<p appBetterHighlight>Better Attribute Directive</p>
+	
+	Directive({
+	  selector: '[appBetterHighlight]'
+	})
+	export class BetterHighlightDirective implements OnInit {
+  	constructor(private elRef: ElementRef, private renderer: Renderer2) { }
+	ngOnInit() {
+    	this.renderer.setStyle(this.elRef.nativeElement, 'background-color', 'blue');
+  	}
+  	}
+  	We should use the Renderer for any DOM manipulations.
+  	https://angular.io/api/core/Renderer2
+  	
+  	
+Using HostListener to Listen to Host Events
+	Directive({
+	  selector: '[appBetterHighlight]'
+	})
+	export class BetterHighlightDirective implements OnInit {
+  	constructor(private elRef: ElementRef, private renderer: Renderer2) { }
+	 @HostListener('mouseenter') mouseover(eventData: Event) {
+     	this.renderer.setStyle(this.elRef.nativeElement, 'background-color', 'blue');
+     }
+	 @HostListener('mouseleave') mouseleave(eventData: Event) {
+    	this.renderer.setStyle(this.elRef.nativeElement, 'background-color', 'transparent');
+  	 }
+
+
+Using @HostBinding to Bind to Host Properties
+	@Directive({
+  		selector: '[appBetterHighlight]'
+	})
+	export class BetterHighlightDirective implements OnInit {
+  		@HostBinding('style.backgroundColor') backgroundColor: string;
+  		
+  		constructor(private elRef: ElementRef, private renderer: Renderer2) { }
+  		@HostListener('mouseenter') mouseover(eventData: Event) {
+    		this.backgroundColor ='blue';
+  		}
+		@HostListener('mouseleave') mouseleave(eventData: Event) {
+    		this.backgroundColor = 'transparent';
+  		}
+  	}
+
+
+Binding to Directive Properties
+	<p appBetterHighlight>Style me with a better directive!</p>
+	@Directive({
+  		selector: '[appBetterHighlight]'
+	})
+	export class BetterHighlightDirective implements OnInit {
+  		@Input() defaultColor: string = 'transparent';
+  		@Input() highlightColor: string = 'blue';
+  		
+  		@HostBinding('style.backgroundColor') backgroundColor: string;
+  		
+  		constructor(private elRef: ElementRef, private renderer: Renderer2) { }
+  		ngOnInit() {
+    		this.backgroundColor = this.defaultColor;
+  		}
+  		@HostListener('mouseenter') mouseover(eventData: Event) {
+    		this.backgroundColor = this.highlightColor;
+  		}
+	    @HostListener('mouseleave') mouseleave(eventData: Event) {
+    		this.backgroundColor = this.defaultColor;
+  		}
+	}
+	
+	
+	
+	<p appBetterHighlight [defaultColor]="'yellow'" [highlightColor]="'red'">Style me with a better directive!</p>
+	@Directive({
+  		selector: '[appBetterHighlight]'
+	})
+	export class BetterHighlightDirective implements OnInit {
+  		@Input() defaultColor: string = 'transparent';
+  		@Input() highlightColor: string = 'blue';
+  		@HostBinding('style.backgroundColor') backgroundColor: string;
+  		
+  		constructor(private elRef: ElementRef, private renderer: Renderer2) { }
+  		ngOnInit() {
+    		this.backgroundColor = this.defaultColor;
+  		}
+  		@HostListener('mouseenter') mouseover(eventData: Event) {
+    		this.backgroundColor = this.highlightColor;
+  		}
+	    @HostListener('mouseleave') mouseleave(eventData: Event) {
+    		this.backgroundColor = this.defaultColor;
+  		}
+	}
+	
+	
+	 <p [appBetterHighlight]="'red'" [defaultColor]="'yellow'">Style me with a better directive!</p>
+	 <p [appBetterHighlight]="'red'" defaultColor="yellow">Style me with a better directive!</p>
+	@Directive({
+  		selector: '[appBetterHighlight]'
+	})
+	export class BetterHighlightDirective implements OnInit {
+  		@Input() defaultColor: string = 'transparent';
+  		@Input('appBetterHighlight') highlightColor: string = 'blue';
+  		@HostBinding('style.backgroundColor') backgroundColor: string;
+
+  		constructor(private elRef: ElementRef, private renderer: Renderer2) { }
+
+  		ngOnInit() {
+    		this.backgroundColor = this.defaultColor;
+		}
+
+  		@HostListener('mouseenter') mouseover(eventData: Event) {
+		    this.backgroundColor = this.highlightColor;
+  		}
+
+	   @HostListener('mouseleave') mouseleave(eventData: Event) {
+	   	 this.backgroundColor = this.defaultColor;
+	   }
+	}
+	
+	
+	
+	
+Structural Directives
+  		<div *ngIf="!onlyOdd">
+  			<li
+            class="list-group-item"
+            [ngClass]="{odd: even % 2 !== 0}"
+            [ngStyle]="{backgroundColor: even % 2 !== 0 ? 'yellow' : 'transparent'}"
+            *ngFor="let even of evenNumbers">
+            {{ even }}
+          </li>
+  		</div>
+  		<ng-template [ngIf]="!onlyOdd">
+  		  <div>
+          <li
+            class="list-group-item"
+            [ngClass]="{odd: even % 2 !== 0}"
+            [ngStyle]="{backgroundColor: even % 2 !== 0 ? 'yellow' : 'transparent'}"
+            *ngFor="let even of evenNumbers">
+            {{ even }}
+          </li>
+          </div>
+        <ng-template>
+        
+        
+Building a Structural Directives
+
+		import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
+		@Directive({  selector: '[appUnless]'})
+		export class UnlessDirective {
+		  @Input() set appUnless(condition: boolean) {
+    		if (!condition) {
+    		  this.vcRef.createEmbeddedView(this.templateRef);
+    		} else {
+      			this.vcRef.clear();
+    		}
+  		  }
+  		  constructor(private templateRef: TemplateRef<any>, private vcRef: ViewContainerRef) { }
+		}
+		
+		<div *appUnless="onlyOdd">
+          <li
+            class="list-group-item"
+            [ngClass]="{odd: even % 2 !== 0}"
+            [ngStyle]="{backgroundColor: even % 2 !== 0 ? 'yellow' : 'transparent'}"
+            *ngFor="let even of evenNumbers">
+            {{ even }}
+          </li>
+        </div>
+        
+Understanding ngSwitch
+	<div [ngSwitch]="value">
+        <p *ngSwitchCase="5">Value is 5</p>
+        <p *ngSwitchCase="10">Value is 10</p>
+        <p *ngSwitchCase="100">Value is 100</p>
+        <p *ngSwitchDefault>Value is Default</p>
+    </div>        
+    
+    
+    
+Building a Dropdown Custom Directive
+<li class="dropdown" appDropdown>
+          <a href="#" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Save Data</a></li>
+            <li><a href="#">Fetch Data</a></li>
+          </ul>
+        </li>  
+  
+	import { Directive, HostListener, HostBinding } from '@angular/core';
+	@Directive({
+  		selector: '[appDropdown]'
+	})
+	export class DropdownDirective {
+  @HostBinding('class.open') isOpen = false;
+  @HostListener('click') toggleOpen() {
+    this.isOpen = !this.isOpen;
+  }
+}
+
+Closing the Dropdown From Anywhere
+import {Directive, ElementRef, HostBinding, HostListener} from '@angular/core';
+@Directive({
+  selector: '[appDropdown]'
+})
+export class DropdownDirective {
+  @HostBinding('class.open') isOpen = false;
+  @HostListener('document:click', ['$event']) toggleOpen(event: Event) {
+    this.isOpen = this.elRef.nativeElement.contains(event.target) ? !this.isOpen : false;
+  }
+  constructor(private elRef: ElementRef) {}
+}
+        
+        
+        
+        
+   

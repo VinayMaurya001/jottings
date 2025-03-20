@@ -1,0 +1,40 @@
+
+Parts of speech
+  parts of speech are words that have a standalone function.
+    The function could be to describe actions,
+      or to join clauses,to describe objects,to show their attributes like size, shape, taste or location.
+
+  Noun
+    What
+    Who 
+  Verb
+    What to do?
+  Adjective
+    Attribute of a noun
+    describe the noun
+  Adverb
+    Modifies a verb, an adjective or another adverb
+    How ?
+  Pronoun
+    To replace a noun
+    I, you, he, she, it, we, they, 
+    what, this, that, these, those
+    him
+  Preposition
+    in, on, of, at, to, under, over, before, after
+  Conjunction
+    connect words, phrases and clauses
+    and
+
+
+
+Parts of sentence
+  a role of a word in a sentance
+  subject
+    main person or thing
+    do the action
+  predicate
+    action that subject is doing
+  object  
+    receives the action
+  

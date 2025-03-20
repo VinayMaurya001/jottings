@@ -1,0 +1,146 @@
+Spring Boot:
+	 Spring Boot is an open-source java-based framework maintained by a company called Pivotal.
+	 Spring Boot is an open-source framework designed to simplify the setup and development of Spring applications, 
+	 especially for web and microservice architectures
+	 Spring Boot is built on top of the spring framework, with minimal or less configurations.
+	 Spring Boot makes it easy to create stand-alone, production-grade Spring based Applications that you can "just run".
+	 Spring Boot can be used to develop Spring based applications either by using 
+	 	JAVA or 
+		Kotlin or 
+		Groovy
+	 Great for microservices architecture, supporting easy deployment in cloud and container environments.
+	 Spring Boot provides production-ready features (Actuators) such as metrics, health checks and externalized configuration.
+	 Spring Boot reduces application development time.
+	 Spring Boot will improve Productivity.
+	 SpringBoot provided auto-configuration mechanism to simplify programmers’ life.
+
+
+Without Spring Boot the challenges are:
+	 We need to manually search for and include all compatible libraries for a specific version of Spring
+	 Often, we end up configuring the same beans repeatedly, 
+	 	such as DataSource, JdbcTemplate, Transaction Manager, DispatcherServlet, HandlerMapping, and ViewResolver.
+	 Deploying requires the use of an external server.
+
+
+GroupId: A unique base name of the company or group that created the project
+ArtifactId: A unique name of the project
+
+
+Spring Boot Features:
+	1. Auto Configuration
+	2. Embedded Servers
+	3. Starter Dependencies
+	4. Actuators
+
+
+Auto-Configuration:
+	 Spring Boot automatically configures many common components based on the
+	dependencies in your project. This means you don’t need to manually configure beans or
+	manage XML configurations, saving a lot of setup time
+	 For example, if you include a dependency for an in-memory database like H2, Spring Boot
+	will automatically configure it, allowing you to get started without additional setup.
+
+How Auto-configuration is triggered in Spring Boot:
+	 The @SpringBootApplication annotation is the primary entry point for Spring Boot applications. 
+	It combines three key annotations:
+		o @Configuration: Marks the class as a source of bean definitions.
+		o @EnableAutoConfiguration: Tells Spring Boot to enable auto-configuration.
+		o @ComponentScan: Enables component scanning so that spring can find and register beans in the application context.
+			 It is the built-in functionality in Spring Boot Application.
+			 The is the process of identifying spring beans available in our application
+
+What is Spring Bean?
+	 Any Normal Java class is initialized by Spring IOC Container is called Spring Bean.
+	 Spring IOC manages the life cycle of spring bean cycle, bean scopes & injecting any required dependencies in the bean
+
+
+Spring Boot Starters Dependencies:
+	 Help easy dependency Management
+	 Without Spring Boot, you need to manually configure all the necessary dependencies in your
+	`pom.xml` file.
+	 Spring Boot starters combine commonly used dependencies into a single starter, which can
+	be added to your project's Maven or Gradle build.
+	 SpringBoot Starters: Transitive dependencies are available
+		o Spring-boot-starter-parent
+		o Spring-boot-starter-web – web applications or distributed applications
+		o Spring-boot-starter-webflux – reactive programming
+		o Spring-boot-starter-data-jpa – database jar hibernate
+		o Spring-boot-starter-mail
+		o Spring-boot-validation
+
+Embedded Servers:
+	 Spring Boot applications can run with an embedded server like Tomcat, Jetty, or Undertow.
+	This eliminates the need for deploying a .war file to an external application server, allowing
+	the application to run as a stand-alone .jar.
+	 This also simplifies deployment and makes it easy to containerize or deploy to cloud
+	environments.
+	 By default, Spring Boot applications use an embedded Tomcat server.
+	 The spring-boot-starter-web automatically includes spring-boot-starter-tomcat, which
+	launches Tomcat as an embedded server. This eliminates the need to deploy the application
+	on an externally installed Tomcat server.
+	To add undertow server instead of tomcat
+		<exclusions> tag inside web-dependecy to remove tomcat server starter
+		add dependency of undertow
+	server.port=0 
+		rendom port number will be
+	java -jar myproject.0.1.SNAPSHOT.jar
+	
+
+Actuators:
+	 In Spring Boot, Actuator is a set of built-in tools that provide production-ready features for
+	monitoring and managing your application. It exposes various endpoints that can help you
+	manage and monitor your Spring Boot application’s health, metrics, environment, and more
+	 Health Checks:
+		o Exposes a /actuator/health endpoint to check the application's health, including
+	database connectivity, messaging services, etc.
+	 Metrics:
+		o Provides a /actuator/metrics endpoint to monitor various metrics like memory
+usage, active threads, HTTP requests, and more.
+
+
+Logging Levels in SpringBoot
+	 By default, Spring Boot uses Logback as the logging framework, which is a popular and
+	powerful logging tool.
+	 Spring Boot supports various logging levels such as TRACE, DEBUG, INFO, WARN, and ERROR
+	to control the verbosity of the logs
+	 Logging can be easily configured through properties in application.properties or
+	application.yml files.
+	Example
+	# Set the root logging level to INFO
+	logging.level.root=INFO
+	# Set logging level for a specific package or class
+	logging.level.org.springframework.web=DEBUG
+	logging.level.com.example.myapp=ERROR
+	# Log file configuration
+	logging.file.name=myapp.log # Specify log file name
+	logging.file.path=/var/logs # Specify log file directory
+
+
+
+Change Default Banner in SpringBoot:
+	 In Spring Boot, you can easily change the default banner that is displayed when your
+	application starts up. By default, Spring Boot displays a text-based banner with the Spring
+	logo and version information in the console. You can customize this banner with your own
+	message, logo, or image
+	 Text-based Banner: Create a banner.txt file in src/main/resources for a custom text banner.
+	 Disable Banner: Use spring.main.banner-mode=off in application.properties or
+	application.yml to disable the default banner.
+	 Image Banner: Place an image (banner.png or banner.jpg) in src/main/resources for an
+	image-based banner.
+	 To get complete endpoints list use below URL
+		o http://localhost:8080/actuator
+
+
+Interview Questions:
+	1. What are the benefits of using Spring Boot over the traditional Spring Framework?
+	2. How can we monitor a Spring Boot application?
+	3. What are the key features and advantages of Spring Boot?
+	4. Why do we need Actuators in Spring Boot?
+	5. What does the `@SpringBootApplication` annotation do?
+	6. How can we disable a specific auto-configuration class in Spring Boot?
+	7. How can we configure the application to log only application-level messages?
+	8. What is the purpose of the parent starter in the `pom.xml` file?
+	9. What version of Spring Boot are you using in your project?
+	10. Which JDK version are you using in your project?
+
+SpringBootApplication with excludeattribue ???????????

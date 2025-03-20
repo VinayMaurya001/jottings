@@ -1,0 +1,11 @@
+
+
+
+
+
+
+
+
+
+Typescript documentations
+	http://www.typescriptlang.org/

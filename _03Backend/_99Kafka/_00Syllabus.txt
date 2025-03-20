@@ -1,0 +1,41 @@
+Resources
+	https://www.udemy.com/course/apache-kafka-for-beginners/learn/lecture/25977596#overview
+			https://github.com/LearningJournal/Apache-Kafka-For-Absolute-Beginners
+			
+	https://www.udemy.com/course/kafka-fundamentals-for-java-developers/learn/lecture/27511198#overview
+	https://www.udemy.com/course/apache-kafka/learn/lecture/6685998#overview
+	https://github.com/LearningJournal/Apache-Kafka-For-Absolute-Beginners
+	https://www.udemy.com/course/kafka-streams-with-spring-cloud-streams/?referralCode=2E363F31009C936AB5FB
+	https://www.udemy.com/course/apache-kafka-for-developers-using-springboot/learn/lecture/12852294#overview
+
+	https://www.udemy.com/course/apache-kafka/
+		Section 4 :Kafka Theory
+	
+	https://developer.confluent.io/quickstart/kafka-docker/
+	
+	/allNotes/3AdvanceJava/kafka/Install+Kafka+Diagram.pdf
+	
+Kafka for beginners, 
+	which is going to give you a very strong base for Kafka learn basic operations and write your first consumers and producers.
+Kafka Connect API
+	Understand how to import/export from/to Kafka
+Kafka Streams API
+	Learn how to process & transform data within Kafka
+ksqIDB
+	Write Kafka Streams applications using SQL
+Confluent Components
+	REST proxy & Schema Registry
+Kafka Security
+	
+Kafka Monitoring and Operations
+	Use Prometheus & Grafana to monitor Kafka, learn operations
+Kafka Cluster Setup and Administration 
+	How to setup Kafka & Various Administration tasks
+
+Certifications
+	https://blog.devgenius.io/my-experience-in-getting-the-ccdak-confluent-certified-developer-for-apache-kafka-certification-2bd6089c599c
+	1)https://training.confluent.io/learningpath/confluent-fundamentals-accreditation
+	2)
+		Confluent Certification for Developers
+			Certified Developer for Apache Kafka
+		Confluent Certification for Operators.

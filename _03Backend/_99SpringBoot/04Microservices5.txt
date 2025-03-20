@@ -1,0 +1,92 @@
+
+Observer Design Pattern
+ Introduction to Distributed Tracing
+ Setting Up Zipkin for Trace Analysis
+ Tracing Requests Across Services
+
+
+  Distributed Tracing
+  1. How do we debug where a problem in Microservices?
+    a. How do we trace one or more transactions across multiple services, physical machines and different data stores and try to find where exactly the problem or bug
+  2. How do we aggregate all application logs?
+    a. How do we combine all the logs from multiple services into a central location where
+      they can be indexed, searched, filtered and grouped to find bugs that are
+      contributing to a problem?
+  3. How do we monitor our chain of service calls?
+    a. How do we understand for a specific chain service call the path it travelled inside our
+    microservices network, time it took at each microservice etc.
+  
+  
+  Micrometer Tracing
+    In a Microservice ecosystem, a workflow/request can talk to multiple services. So tracing
+    helps us to track the workflow in a productive way.
+   Micrometer Tracing provides Spring Boot auto-configuration for distributed tracing.
+   It adds trace and span ids to all the logs, so you can just extract from a given trace or span in
+  a log aggregator
+   Micrometer Tracing will add three pieces of information to all the logs written by
+  microservices: [traceId,spanId, applicationName,]
+   traceId : It’s unique number that represents an entire transaction
+   spanId:
+   It’s a unique Id that represents part of the overall transaction.
+   Each service participating within the transaction will have its own span ID.
+  
+  
+  Trace Format
+      appname tracid spanId
+
+  Zipkin
+   Zipkin is a distributed tracing system. It helps gather timing data needed to troubleshoot
+  latency problems in service architectures.
+   If you have a trace ID in a log file, you can jump directly to it. Otherwise, you can query
+  based on attributes such as service, operation name, tags and duration. Some interesting
+  data will be summarized for you, such as the percentage of time spent in a service, and
+  whether or not operations failed.
+   The Zipkin UI also presents a Dependency diagram showing how many traced requests went
+  through each application. This can be helpful for identifying aggregate behavior including
+  error paths or calls to deprecated services.
+
+
+  Zipkin server
+  
+  Zipkin client
+
+
+  Distributed Tracing Properties
+  management:
+  endpoints:
+  web:
+  exposure:
+  include: '*'
+  zipkin:
+  tracing:
+  endpoint: http://localhost:9411/api/v2/spans
+  tracing:
+  sampling:
+  probability: 1.0
+  logging:
+  pattern:
+  level: '%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-
+  }]'
+  file:
+  name: accounts_logs/accounts.log
+  Zipkin & Micrometer
+  <dependency>
+  <groupId>io.micrometer</groupId>
+  <artifactId>micrometer-tracing-bridge-brave</artifactId>
+  </dependency>
+  <dependency>
+  <groupId>io.zipkin.reporter2</groupId>
+  <artifactId>zipkin-reporter-brave</artifactId>
+  </dependency>
+
+  Feign Micrometer
+  <dependency>
+  <groupId>io.github.openfeign</groupId>
+  <artifactId>feign-micrometer</artifactId>
+  </dependency>
+  @Bean
+  MicrometerCapability capability(final MeterRegistry registry) {
+  return new MicrometerCapability(registry);
+  }
+
+  In realtime ELK splunk will be used.

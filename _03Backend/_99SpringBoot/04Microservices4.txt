@@ -1,0 +1,93 @@
+ Resilience Design Pattern (Circuit Breaker Pattern)
+ Introduction to Circuit Breaker Pattern
+ Explore how Circuit Breakers improve reliability.
+ Add the Resilience4j dependencies to your Spring Boot project.
+ Set up a simple service call to simulate interaction between services.
+ Annotate a service method with @CircuitBreaker from Resilience4j.
+ Configure basic Circuit Breaker properties (failure threshold, wait duration).
+ Simulate failures to test the Circuit Breaker's behaviour (Open, Closed, Half-Open states).
+ Define FallBack methods to handle errors gracefully when the Circuit Breaker opens.
+ Use @CircuitBreaker with FallBack logic.
+
+
+Spring Cloud Circuit Breaker – Resilience4J
+   Whether we are dealing with a Microservice or monolithic architecture, it is pretty common
+  for a software service to call a remote software service
+   However, when the remote service is down and thousands of clients are simultaneously
+  trying to use the failing service, eventually all the resources get consumed.
+   Circuit breaker pattern helps us in these kinds of scenarios by preventing us from repeatedly
+  trying to call a service or a function that will likely fail and prevent waste of CPU cycles.
+   Resilience4j is one of the libraries which implemented the common resilience patterns.
+   Resilience4j has become more popular after Netflix announced that Hystrix will no longer be
+  in active development and recommended Resilience4j as a replacement
+  Scenario:
+
+  Description:
+   Circuit breaker works as a state machine which has three states (CLOSED, HALF_OPEN,
+  OPEN) as you see on the above diagram.
+   Normally the circuit breaker operates in the CLOSED state.
+   When a service tries to communicate with another service and the other system fails to
+  respond, the circuit breaker keeps track of these failures.
+   When the number of failures is above a certain threshold it goes into OPEN state. No further
+  requests are sent to the service downstream.
+   Meanwhile the circuit breaker may also help the system degrade gracefully by using some
+  fallback mechanism, by returning some cached or default response to the caller.
+   After specified wait duration, the circuit breaker goes into HALF_OPEN state and tries to
+  reconnect to the service downstream.
+   Again, if the failure rate is above a certain threshold, it goes back into OPEN state, else it
+  goes into CLOSED state and returns to normal mode of operation.
+
+  Development Process:
+  1. Choose existing Project
+  2. Add below dependencies’
+  a. Spring-cloud-starter-circuitbreaker-resilience4j
+  3. Enable the actuators
+  4. Configure fallback method for Circuit Breaker
+  5. Enable Circuit breaker properties in application. properties file
+  How to test Circuit Breaker in Microservices?
+  Using Actuators, we can watch events in below URL
+   http://localhost:8080/actuators/health
+   http://localhost:8080/actuators/circuitbreakers
+   http://localhost:9003/actuator/metrics/resilience4j.circuitbreaker.state
+  Enable Circuit Breaker Events
+  spring:
+  cloud:
+  openfeign:
+  circuitbreaker:
+  enabled: true
+  Circuit Breaker Properties
+  resilience4j:
+  circuitbreaker:
+  configs:
+  default:
+  sliding-window-size: 5
+  permitted-number-of-calls-in-half-open-state: 2
+  failure-rate-threshold: 50
+  wait-duration-in-open-state: 30s
+  Configure Fallback for Cards MS
+  @FeignClient(name="CARDS",fallback = CardsFallback.class)
+  @LoadBalancerClient("CARDS")
+  public interface CardsFeignClient {
+  @GetMapping("api/fetch")
+  public CardsDto fetchCardDetails(@RequestParam String
+  mobileNumber);
+  }
+  Configure Fallback for Loans MS
+
+  @FeignClient(name="LOANS",fallback = LoansFallBack.class)
+  public interface LoansFeignClient {
+  @GetMapping("api/fetch")
+  public LoansDto fetchLoanDetails(@RequestParam String
+  mobileNumber);
+  }
+  Cards Fallback Implementation
+  @Component
+  public class CardsFallback implements CardsFeignClient{
+  @Override
+  public CardsDto fetchCardDetails(String mobileNumber) {
+  CardsDto cardsDto = new CardsDto();
+  cardsDto.setStatus("Please try again after sometime");
+  return cardsDto;
+  }
+
+  }

@@ -1,0 +1,211 @@
+
+Framework
+	Framework will provide standard template to design applications
+
+
+Type of Framework
+	Web framework
+		For web application only
+		Example:
+			Struts
+			JSF
+			Xwork2
+	Application framework
+		Standalone application
+		Web application
+		Distributed application
+		Database related application
+		Example:
+			Spring
+				Sring boot			
+
+
+
+Diff between Struts, JSF & Spring
+
+
+
+Spring Framework Core Features
+	IOC Container
+	Application context
+	Componenet scan
+	Depedency Injection
+	Spring beans
+	Auto-wiring
+
+
+
+Spring Framework
+	Red Johnson
+	June 2003
+	Appache 2.0 License
+	Spring provides an abstract layer on J2ee
+	Spring is not a replacement of J2ee api, as Spring uses internally J2EE api classes/interfaces.
+
+Why to choose Spring framework
+	Spring is non-invasive in nature.
+		THat means we don't need to extend any class or implements any interface to our class.
+	Spring is Versatile
+		it can be integrated with almost any existing technology in your project
+	Spring provides end to end development
+		Business layer
+		Persistence layer
+	Spring is lightweight due to mudules
+	Spring supports DI
+	Spring supports multiple project development
+		Core Java Application
+		Web Application
+		Distributed Application
+		Enterprise Application
+	Spring supports AOP for cross cutting concerns
+
+
+Spring mudules	
+	No module is dependent on other except Spring core.
+	Some important modules are:
+		Data Access/Integration
+			JDBC
+			ORM
+			OXM
+			JMS
+			Transactions
+		Web (MVC/Remoting)
+			Servlet
+			Portlet
+		AOP
+		Instrumentation
+		Core Container
+			Beans
+			Core
+			context
+			Expression Language
+		Test
+
+
+
+Spring Environment setup
+	Spring 5 requires Java 8 or higher
+	IDE
+	Maven
+	Git
+
+
+IOC(Inversion of Controll) Container
+	Giving the control to the container to get instance of the object is called IOC.
+	It provides loos coupling between object dependencies.
+	Primary functuons
+		Create & manage objects life cycle(IOC)
+		Inject object's depedencies(DI)
+
+
+BeanFactory(I)
+	XmlBeanFactory implemetns BeanFactory
+	ApplicationContext(I) extends BeanFactory
+		FileSystemXmlApplicationContext implemetns ApplicationContext
+		ClassPathXmlApplicationContext implemetns ApplicationContext
+		AnnotationConfigApplicationContext implemetns ApplicationContext
+		WebApplicationContext(I) extends ApplicationContext
+			AnnotationConfigApplicationContext implemetns WebApplicationContext			
+			XMLWebApplicationContext implemetns WebApplicationContext
+
+
+IOC Container /Spring Context
+
+
+Diff between POJO class, Java Beans & Spring Bean
+	POJO class, 
+		No constraints 
+		Plain Old Java objects
+	Java Beans 
+		Default Constructors
+		Setters & Getters
+		Serializable
+	Spring Bean
+		Any normal java class is initialized by Spring IOC Container
+		Spring Container manage life cycle of Spring Bean cycle, bean scopes & injecting any required dependencies in the bean.
+
+
+
+
+How to declare a Spring Bean?
+	@Bean at method level
+		Inside @Configuration class
+		@Bean
+		@Bean(name="emp")
+		It is used for 3rd parties classes. Like RestTemplate, Swagger related classes, Security Related classes
+	@Component at class level
+		@ComponentScan(basePackages="com.vinay") on @Configuration class
+		@Component
+		@Component(name="emp")
+		
+	Ways of creating bean:
+		1)Using Java Based Configuration
+		2)Using XML Based Configuration
+		3)Annotation-driven Component (Recommened approach)
+
+
+NoSuchBeanDefinitionException
+	When we miss any Stereotype annotation (like @Component) on class but context try to access it.
+
+project name - all letter should be lower case
+package name - all letter should be lower case
+name & artifact id should be same
+package name & group name should be same
+
+ctrl+shift+o - import statment in eclipse
+
+
+
+
+
+
+
+
+
+What is Depedency Injection Design Pattern?
+	Depedency means helper object
+	DI is a Design Pattern in order to remove dependency from the programming code
+	Way of injecting properties to an object is called DI
+	Way of DI	
+		1)Setter Injection
+				@Autowired on setter method
+		2)Constructor Injection
+				@Autowired on constructor
+		3)Field Injection
+				@Autowired on instance field
+				Internally it ues reflection api
+
+				
+
+Diff between Setter & Constructor Injection
+
+Autowiring
+	It is the process of indentifying dependent bean & inject into target bean.
+	@Autowired
+	Autowiring modes:
+		byName- based on bean name it will identify dependent object(have priority over byType)
+		byType- based on data type it will identify dependent object
+
+@Autowired with @Primary	
+	Real use case - if we have 2 databases
+
+@Qualifier
+	This annotation is used with @Autowired annotation.
+	It provides more control over the DI process
+	It can be specified on indvidual method parameters or constructors arguments.
+
+	@Autowired
+	@Qualifier("bubbleSOrt")
+	Sorting sorting;
+
+	Example:
+		One Interface hase many implementation
+		Sorting
+			BubbleSort
+			QuickSOrt
+			InsertionSOrt
+	NoUniqueBeanDefinitionException
+	UnsatisfiedBeanDefinitionException
+
+	Real use case-
+			For using 3rd party apis

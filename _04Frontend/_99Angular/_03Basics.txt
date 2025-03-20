@@ -1,0 +1,174 @@
+Angular packages
+	Angular functionalities are available in the form of packages. 
+	Available packages are core, common,compiler,platform-browser....
+	core : 
+		This package contains all core functionalities. 
+		It is providing many 
+			classes like Component,NgModule,Injactable,...
+			and interfaces OnInit,OnDestroy,...
+	common : 
+		This package provides common directives and pipes(filters).
+    		*ngIf,*ngFor...(directives we can use in html tag)
+	compiler : 
+		This package loads html templates in to javascrpt functions.
+	platform-browser: 
+		This package provides BrowserModule class to load common and compiler packages.
+	platform-browser-dynamic : 
+		This package is providing platformBrowserDynamic().bootstrapModule() function to load ng-module
+		
+		
+Angular/React is component progamming.
+	Component is collection of logics and design script.
+	Module : It is collection of component,services,pipes,....
+	
+Component
+	A class with @Component decorator
+	@Component({
+	  // selector: '[app-servers]',        <!--<div app-servers></div>-->
+	  // selector: '.app-servers',      <!--<div class="app-servers"></div>-->
+	  selector: 'app-servers',	 	<app-servers></app-servers>
+	  
+	  //  template: '<h1>template</h1>',
+	  template: `
+	    <app-server></app-server>
+	    <app-server></app-server>`,
+	  //templateUrl:'./servers.component.html',
+	  
+	  styleUrls: ['./servers.component.css']
+	  styles:['
+	  	   		p{
+	  	   			color:green
+	  	   		}
+	  	      '
+	  		]
+	 })
+	 
+	View Encapsulation
+		In Angular, whichever styles we define in a CSS file will only get applied to the component they belong to.
+		In Angular, a component's styles can be encapsulated within the component's host element 
+			so that they don't affect the rest of the application.
+		
+		Angular enforces style encapsulation.
+			Angular simply gives the same attribute to all elements in a component.
+			So all elements in this component have ngcontent_ejo-1 attached to it,
+				And it does this for each component with different unique attribute names like ejo-1 and ejo-0 and ejo-2
+				and with that, it can make sure that, once it changed your style selector, 
+				it automatically adds this attribute selector to all your styles defined for a component, 
+				that these styles get only applied to elements of that component.
+				This is how it enforces this behavior.
+		
+		The Component decorator provides the encapsulation option 
+			which can be used to control how the encapsulation is applied on a per component basis.
+		Component({
+		  selector: 'app-server-element',
+		  templateUrl: './server-element.component.html',
+		  styleUrls: ['./server-element.component.css'],
+		  encapsulation : ViewEncapsulation.None   //Default is Emulated, Other option is ShadomDom(Native)
+		})
+	 	
+Module	 	
+	@NgModule({
+    declarations: [
+      AppComponent,
+      ServersComponent,
+      ServerComponent
+    ],
+    imports: [
+      BrowserModule
+    ],
+    providers: [MyService],
+    bootstrap: [AppComponent] 
+  })
+  export class AppModule { } 	
+	 	
+	 	
+If we want put any selector for any  component in index.html 
+    	then we have to put that component in module.ts with bootstrap: [AppComponent, Any2Component]	 	
+	 	
+
+
+
+setTimeout(()=>{
+		this.allowNewServer=true;
+	},2000);
+
+Protocols: 
+	protocols are set of instructions to transfer the data from one location to another location.
+	protocols are mainly 2 types
+	1) Statefull  :
+    	These protocols can maintain the state of application. They can remember previous pages information in current page.
+    	We can use these protocols in windows applications.
+    	Ex: tcp,ftp etc
+	2) Stateless : 
+		These protocols can not maintain the state of application. means they don't remeber the previous request and responses values. 
+		In web applications we can use these protocols.
+    	Ex: tcp/ip,http,https etc.
+
+State Management: 
+	This concept provides objects(super global variables) to access data of one page from another page
+	These objects are 
+		sessions
+		cookies- 
+		local storage-persist even we close the browser
+		session storage- deleted when we close the browser
+		
+		localStorage preferred than cookies because cookies sent on each request.
+		inspect>application>storage>localstorage
+		
+		localStorage : It is an object provides many methods to create/read/remove local storage data.
+		localStorage.setItem() : This function we can use to create local storage data
+		localStorage.getItem() : To read the local storage data
+		localStorage.removeItem() : To remove the data of local storage
+		localStorage.clear() : To clear all local storage data
+
+		
+		pro.ts
+		function funCreate(){
+		  localStorage.setItem("uname","scott")
+		  localStorage.setItem("city","hyd")
+		//sessionStorage.setItem("uname","amith")
+		}
+		function funRead(){
+		  alert(localStorage.getItem("uname"))
+		}
+		funCreate()
+		funRead()
+		
+		pro1.ts
+		-------
+		function readData(){
+		if(localStorage.getItem("uname")){
+		alert(localStorage.getItem("uname"))
+		alert(localStorage.getItem("city"))
+		}
+		localStorage.clear()
+		}
+		readData()
+
+
+
+
+	
+
+The basic building blocks of an Angular application are ngModules or angular modules. 
+	Every angular application has at least one root module that bootstraps all the functional modules together.
+	So the components, the services are called functional ngModules 
+	and the AppModule is where we configure or bootstrap all these together, so we can run our application.
+	So an ngModule defines a compilation context for a set of components and services 
+		that address a particular functionality in our application.
+
+	Module
+		Advantage-
+			Modularization
+			Reusability
+			
+			
+Using the new component as Root Component
+	app.module.ts
+		  bootstrap: [ProductComponent]
+	index.html
+			<body> <app-product></app-product></body>
+
+
+
+https://v17.angular.io/guide/file-structure

@@ -1,0 +1,216 @@
+What is Spring Cloud?
+  Spring Cloud provides frameworks for developers to quickly build some of the common patterns of microservices.
+    Spring Cloud Config
+    Service Registration & Discovery
+    Spring Cloud OpenFeign
+
+    Micrometer Tracing(spring boot 3)
+    Spring Cloud Bus
+    Routing & Tracing
+    Load Balancing
+    Spring Cloud Security
+    Distributed Tracing & Messaging
+  
+Service Registry & Discovery (Registry Design Pattern & Client Side Discovery Pattern)
+  Service discovery and registration are key components of microservice architectures.
+  Service discovery & registration deals with the problems about how microservices talk to each other, i.e., perform API Calls.
+  Service Registry is used to register microservices available in our project.
+  Service Registry will provide a dashboard with services information like Status, Health and URL etc.
+
+Why we need Service Discovery Example:
+  Let’s imagine you have multiple microservices to collectively form an E-commerce application. So,
+    o we have a Product MS, - 8090,8060
+    o Order MS, and - 8050
+    o Consumer management microservices. - 8030
+  Now, how these microservices will talk to each other? So basically, you will have REST API exposed which other services can consume it.
+  For example, suppose Order Service needs the product information then the APIs of Product Service will be integrated inside Order microservice.
+  So how will you store this API endpoint?
+  Will you hard code it in your Order microservice?
+  If you hard code the API endpoint, what if the endpoint is changed in the future?
+  So here, Service Discovery comes into the picture.
+  Instances have dynamically assigned network locations. 
+    Consequently, in order for a client to make a request to service, it must use a service-discovery mechanism.
+
+Why Hardcoding URL is wrong?
+  1. Changes require code updates — 
+    If one microservice address has changed, then it has to be updated in all the other microservices that are in contact with it.
+  2. Dynamic URL in the cloud — 
+    When we deploy on the cloud we get dynamic URLs, and it changes if we stop and start the server again or deploy it elsewhere. We need to
+    accommodate the change; we can’t predict the URL changes.
+  3. Load balancing — 
+    If we spin up multiple instances, each instance might have different URLs
+    and it is very inefficient to hardcode the URLs of instances as well.
+  4. Multiple environments — 
+    The URLs change in each phase of the software engineering
+    process, i.e., the URLs might be different during development, QA testing, and production.
+    We can’t change the hardcoded URLs each time.
+  
+  Centralized Service Registry
+    service1 -> Service Registry
+    service2 -> Service Registry
+    service3 -> Service Registry
+    
+  Microservices Network:
+    Microservices service discovery & registration is a way for applications and Microservices to locate each other on a Network. This includes
+      o A Central server that maintains a global view of addresses.
+      o Microservices/clients that connect to the central server to register their address when they start & ready.
+      o Microservices/clients need to send their heartbeats at regular intervals to central server about the health.
+
+  Spring Cloud Support:
+    Spring Cloud Project makes Service discovery & Registration setup to undertake with the help of the below components
+      o Spring Cloud Netflix’s Eureka service which will act as a service discovery agent
+      o Spring Cloud Load Balancer library for client-side load balancing.
+      o Netflix Feign client to look up for a service between microservices
+  
+  Spring Cloud Support for Client Side Service Discovery
+    Eureka mainly consists of main components, let’s see what they are:
+    Eureka Server(Discovery Server):
+      o We can use Eureka Server as a Service Registry and it is open Source
+      o Eureka Server provided by Spring Cloud Netflix Libraries
+      o It is an application that contains information about all client service applications.
+        Each microservice is registered with the Eureka server and Eureka knows all the
+        client applications running on each port and IP address.
+      o Eureka Server is also known as Discovery Server.
+    Eureka Client:
+      o It's the actual microservice and it registers with the Eureka Server, so if any other
+      microservice wants the Eureka Client’s address then they’ll contact the Eureka Server.
+    In this course we use Eureka since it is mostly used but they are other service registries such as 
+      etcd, 
+      Consul, and 
+      Apache Zookeeper which are also good
+  
+  Eureka Server & Client
+    It provides a dashboard to Monitor(status, health check) all services.
+    It provides Service Discovery for communication between microservices.
+    It provides load balancing.????????????
+
+
+  Steps to build Eureka Server
+    1. Create Spring Boot Project and add dependency
+    2. Add the spring-cloud-starter-netflix-eureka-server dependency to your pom.xml file.
+      I. Web
+      II. Actuator
+      III. Eureka dependency
+    3. In your main application class, annotate it with @EnableEurekaServer. This will enable the Eureka Server functionality.
+    4. Configure Below Properties in application
+      I. Application Name
+          spring.application.name=loan-service
+      II. Port Number
+      III. Enable actuator’s
+            management.endpoints.web.exposure.include=*
+      IV. Eureka configurations
+          1. Register with Eureka
+          2. Fetch Registry
+          3. Default Zone URL
+          eureka:
+            client:
+              fetch-registry: false
+              register-with-eureka: false
+              service-url:
+                defaultZone: http://localhost:9002/eureka/
+            instance:
+              prefer-ip-address: true
+    5. Build and run the Eureka Server : Open a browser and navigate to http://localhost:9002. You
+        should see the Eureka server dashboard, which displays information about registered services instances
+
+  Steps to register a microservice as a Eureka Client
+    1. Use existing microservices and add necessary dependency in pom.xml file
+    2. Add the spring-cloud-starter-netflix-eureka-client dependency to your pom.xml file.
+    3. Enable the Eureka client in your main application class by adding the @EnableDiscoveryClient annotation.
+    4. Configure Below Properties in application
+      1. Application Name
+      2. Port Number
+      3. Enable actuator’s
+      4. Eureka configurations
+          1. Register with Eureka
+          2. Fetch Registry
+          3. Default Zone URL
+          4. prefer-ip-address (Only for cloud deployment)
+          Eureka Client Properties
+          eureka:
+            client:
+              fetch-registry: true
+              register-with-eureka: true
+              service-url:
+               defaultZone: http://localhost:9002/eureka/
+            instance:
+            prefer-ip-address: true
+
+
+In the parent POM, the main difference between the <dependencies> and <dependencyManagement> is this:
+  Artifacts specified in the <dependencies> section will ALWAYS be included as a dependency of the child module(s).
+  Artifacts specified in the <dependencyManagement> section, 
+    will only be included in the child module if they were also specified in the <dependencies> section of the child module itself. 
+  Why is it good you ask? 
+    Because you specify the version and/or scope in the parent, 
+    and you can leave them out when specifying the dependencies in the child POM. 
+    This can help you use unified versions for dependencies for child modules, 
+    without specifying the version in each child module.
+
+
+
+External-service communication
+  java.net
+  RestTemplate
+  WebClient
+Inter-service communication
+  FeignClient
+  java.net
+  RestTemplate
+  WebClient
+
+Communication between Services ( Proxy Design Pattern)   ????????????
+  Feign Client : Setup Inter-service communication between microservices
+
+  Spring Cloud Open Feign:
+    Spring Cloud OpenFeign provides OpenFeign integrations for Spring Boot apps through autoconfiguration and binding to the Spring Environment.
+    Without Feign, in Spring Boot application, we use Rest Template to call the User service. 
+    To use the Feign, we need to add spring-cloud-starter-OpenFeign dependency in the pom.xml file.
+    In our project, if one micro-services accessing another microservice then it is called as Interservice communication.
+      1) Rest Client
+      2) Web Client
+      3) Feign Client
+    When we use FeginClient, we no need to configure API URL to access.
+    Using api-name we can access api (FeginClient will get API URL from Service Registry Eureka)
+    Feign Client is part of Spring Cloud Netflix libraries
+    OpenFeign is a declarative REST client. 
+      It makes writing web service clients easier, just create an interface and add annotations on the interface.
+
+
+  Eureka Server & Multiple Eureka Clients & Feign Client:
+
+
+  Development Process for Feign Client:
+    1. Select existing project (accounts)
+    2. Add dependency
+      a. spring-cloud-starter-feign
+    3. Add annotation in entry point for SpringBoot application
+      a. @EnableFeignClients(“pacakgeName”)
+    4. Create a FeginClient Interface and annotate with @FeignClient and Pass the attributes name and URL.
+      a. Create target API Request URLS (using JAX-RS annotations)
+      b. Steps:
+        i. Create target microservice feign client
+        ii. Add which endpoint you want to access
+        iii. Create controller to access your feign client through autowiring  
+  
+        Feign Client for Cards MS
+        @FeignClient(name="CARDS")
+        @LoadBalancerClient("CARDS")
+        public interface CardsFeignClient {
+        @GetMapping("api/fetch")
+        public CardsDto fetchCardDetails(@RequestParam String
+        mobileNumber);
+        }
+        Feign Client for Loans MS
+        @FeignClient(name="LOANS")
+        public interface LoansFeignClient {
+        @GetMapping("api/fetch")
+        public LoansDto fetchLoanDetails(@RequestParam String
+        mobileNumber);
+        }
+
+  Ribbon
+    Ribbon is a client-side load balancer.
+    https://cloud.spring.io/spring-cloud-netflix/multi/multi_spring-cloud-ribbon.html
+
+

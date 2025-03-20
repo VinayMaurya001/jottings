@@ -1,0 +1,250 @@
+Binding
+	We can bind a variable & functions with html controls
+Type of biding
+	Function/event Binding: 
+		Bind  a function as listener of html control event
+	Data Binding: 
+		Bind data with html controls
+			1)One way data binding
+				i)String Manipulation/Interpolation
+				ii)Property/Attribute/Directive Binding
+			2)Two way data binding
+
+Databinding
+	Databinding =Comminication
+	1)TypescriptCode(Business Logic) to Template(Html)-Output Data
+		a)String Manipulation/Interpolation
+			{{data}} //Here data is a typescript expression which evaluate to string 
+				or something that can be coverted to string easily like number
+			{{title}}   or {{getServerStatus()}}
+			<input type="text" value="{{ uname }}" />
+			<input type="text" value="{{ getServerStatus() }}" />
+		b)Property/Attribute/Directive Binding
+			i) <input type="text" [value]="uname" />
+				<input type="text" [value]="getString()" />
+					[property]=*data*  //here data can be any typescript code
+					input property binding
+			ii) <input type="text" [ngModel]="uname" />
+				<input type="text" [ngModel]="getString()" />
+				<b [hidden]="getHide()">{{getSellers()}}</b>
+
+			<!-- practice using property binding -->
+					<input type="text" [value]="uname" />
+					<button [disabled]="!allowNewServer">Add Server</button>
+					<button [disabled]="isAllowNewServer()">Reset User</button>
+					<p [innerText]="title"></p>
+					<p [innerText]="title + ' using property binding'"></p>
+						<!-- title without property binding -->
+							<p [innerText]="'title' + ' without property binding'"></p>			
+			We can also bind to directive and component.??????????
+	2)React to (User) Events	
+		Event Binding/function binding
+			(event)=*expression*
+			i)<button (click)="m0()">Add Server</button>
+					m0() {    this.uname = 'm0';}
+					Output event binding
+					<input type="button" value="ToggleMe" (click)="toggle()"/>
+			ii)<input type="text" (input)="m1($event)">
+					m1(event:Event){ this.fieldName=(<HtmlInputElement>event.target).value}
+			Bindable Properties and Events
+				How do you know to which Properties or Events of HTML Elements you may bind? 
+					You can basically bind to all Properties and Events - 
+						a good idea is to console.log()  the element you're interested in to see which properties and events it offers.
+				Important: For events, you don't bind to onclick but only to click (=> (click)).
+				The MDN (Mozilla Developer Network) offers nice lists of all properties and events of the element you're interested in. 
+				Googling for YOUR_ELEMENT properties  or YOUR_ELEMENT events  should yield nice results.
+
+	3)Two-Way-Binding: Combination of Both
+		[(ngModel)]=*data*
+		<input type="text"  [(ngModel)]="serverName">
+		Here () is mandatory for 2-way data binding otherwise it will be only one-way data binding
+		
+		<select [(ngModel)]="selectedValue">
+		  <option>   A  </option>
+		  <option>   B  </option>
+		</select>
+		
+		FormsModule is Required for Two-Way-Binding
+			For Two-Way-Binding (covered in the next lecture) to work, you need to enable the ngModel  directive. 
+				This is done by adding the FormsModule  to the imports[]  array in the AppModule.
+				You then also need to add the import from @angular/forms  in the app.module.ts file:
+				import { FormsModule } from '@angular/forms';
+				
+				
+				
+
+
+
+@Input() and @Output() decorators
+	https://angular.io/guide/inputs-outputs
+	Sharing data between a parent component and one or more child components (@Input decorators)
+	@Input() and @Output() give a child component a way to communicate with its parent component. 
+		@Input() lets a parent component update data in the child component. 
+		Conversely, @Output() lets the child send data to a parent component.
+
+
+	Binding of Custom Properties
+		Parent Component .html
+			<app-server-element *ngFor="let parentElement of serverElements" [childElement]="parentElement"/>
+			<app-server-element *ngFor="let parentElement of serverElements" [childElement]="'parentStringElement'"/>
+		Child component .ts
+			@Input() childElement: {type: string, name: string, content: string};
+			
+		Assigning an Alias to custome events
+			<app-server-element *ngFor="let serverElement of serverElements" [cElement]="parentElement"/>
+			@Input('cElement') childElement: {type: string, name: string, content: string};
+		
+		ngOnChanges(simpleChanges:SimpleChanges)
+			At start when component is created & also called after a bound @input property changes(1 or more times) 
+
+
+	Binding to Custom Events
+		export class CockpitComponent implements OnInit {
+			  @Output() serverCreated = new EventEmitter<{serverName: string, serverContent: string}>();
+			  onAddServer() {
+				   this.serverCreated.emit({serverName: 'dummyName', serverContent: 'dummyContent'});
+			  }
+		}
+		 
+		<app-cockpit (serverCreated)="onServerAdded($eventData)"></app-cockpit>
+		export class AppComponent {
+			  onServerAdded(serverData: {serverName: string, serverContent: string}) {
+			  }
+		 }
+		 
+		Assigning Alias to Custom Events
+			@Output('sCreated') serverCreated = new EventEmitter<{serverName: string, serverContent: string}>();
+			<app-cockpit (sCreated)="onServerAdded($event)"></app-cockpit>
+			
+			
+	Custom Property and Event Binding Summary
+
+
+
+
+
+Using local references in Template
+	<input type="text" class="form-control" #localReferenceInput>
+  	<button class="btn btn-primary" (click)="onAddServer2(localReferenceInput)">Add Server2</button>
+  	<p>{{localReferenceInput.value}}</p>
+	onAddServer2(localReferenceInput:HTMLInputElement) {
+    	console.log(localReferenceInput);
+    	console.log(localReferenceInput.value);
+  	}
+  	
+  	
+
+
+Getting access to the template & DOM with @ViewChild in Angular 8+
+	 <input type="text" class="form-control" #localReferenceInput>
+  	 <p>{{localReferenceInput.value}}</p>
+
+	 export class CockpitComponent implements OnInit {
+		@ViewChild('localReferenceInput',{static: true}) serverContentInput: ElementRef
+		//@ViewChild(ChildComponent,{static: true}) serverContentInput: ElementRef   ??????????
+ 
+	    onAddServer2() {
+    		console.log('aaaaaaa'+this.serverContentInput.nativeElement.value);
+    		this.serverContentInput.nativeElement.value='ABC';//We should not change dom like this 
+  		}
+		ngOnInit(): void {
+	    	console.log('aaaaaaa' + this.serverContentInput.nativeElement);////Here we will not  get empty value ??????
+   			 console.log('aaaaaaa' + this.serverContentInput.nativeElement.value);//Here we get empty value
+   			 //Add { static: true } as a second argument, needs to be applied to ALL usages of @ViewChild() (and also @ContentChild() ) 
+   			 //If you plan on accessing the selected element inside of ngOnInit().
+  		}
+  		
+  		ngAfterViewInit(){
+			console.log('aaaaaaa' + this.serverContentInput.nativeElement.value);//Here we will not get empty value
+		}
+	}
+	
+
+
+Projecting content into Components with ng-content directives
+	app-component.html
+		<app-server-element *ngFor="let serverElement of serverElements" [srvElement]="serverElement">
+	        <strong *ngIf="serverElement.type === 'server'" style="color: red">{{ serverElement.content }}</strong>
+	        <em *ngIf="serverElement.type === 'blueprint'">{{ serverElement.content }}</em>
+		</app-server-element>
+		By default, content of <app-server-element> will not be shown anywhere.
+
+	app-server-component.html
+		 <p>
+	     <!-- <strong *ngIf="element.type === 'server'" style="color: red">{{ element.content }}</strong>
+	          <em *ngIf="element.type === 'blueprint'">{{ element.content }}</em>
+	       -->
+	          <ng-content></ng-content>
+	    </p>
+    
+    
+    
+    
+Understanding the Component Lifecycle Hook
+	When angular find any selector (like <app-header>) then it instantiate a new version of the component & add it to the DOM.
+	During this component creation process , 
+	Angular go through few pahses & Angular give us a chance to hook into these phases & execute some code.
+	We can hook into these phases by implementing some methods. Angular will call, if they are present.
+	
+	ngOnChanges(simpleChanges:SimpleChanges)
+		At start when component is created & also called after a bound @input property changes(1 or more times) 
+	ngOnInit
+		Called once the component is initialized
+		It will run after the constructor
+	ngDoCheck
+		Called during every change detection run
+		Whether something changed on the template of a component, or inside of a component.
+		Like when you clicked somewhere, or a timer fired, or an observable was resolved.
+	ngAfterContentInit
+		Called after content (ng-content) has been projected into view
+	ngAfterContentChecked
+		Called every time the projected content has been checked
+	ngAfterViewInit
+		Called after the component�s view (and child views) has been initialized
+	ngAfterViewChecked
+		Called every time the view (and child views) have been checked
+	ngOnDestroy
+		Called once the component is about to be destroyed
+
+
+
+		  export class ServerElementComponent implements OnInit, OnChanges {
+		  constructor() {
+		    console.log('Constructor() called');
+		  }
+		  ngOnChanges(changes: SimpleChanges): void {
+		    console.log('ngOnChanges() called');
+		    console.log(changes);
+		  }
+		  ngOnInit(): void {
+		    console.log('ngOnInit() called');
+		  }
+		}
+
+
+
+Lifecycle Hooks & template Access
+	
+	
+
+
+
+Getting Access to ng-content with @ContentChild
+	@ContentChild('contentPara') para: ElementRef;
+  	ngAfterContentInit(): void {
+    	console.log('sssss' + this.para.nativeElement.textContent);
+  	}
+  	
+  	<app-server-element *ngFor="let serverElement of serverElements" [srvElement]="serverElement">
+    <p #contentPara>
+        <strong *ngIf="serverElement.type === 'server'" style="color: red">{{ serverElement.content }}</strong>
+        <em *ngIf="serverElement.type === 'blueprint'">{{ serverElement.content }}</em>
+    </p>
+    </app-server-element>
+    
+    
+    
+    
+   <input type="button" value="Toggle" (click)="hide!=hide"/>
+   <input type="button" value="Toggle" (click)="toggle()"/>
+   

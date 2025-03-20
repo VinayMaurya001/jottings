@@ -1,0 +1,193 @@
+Angular(Angular 2 onwards) : 
+	Angular is an open-source, JavaScript framework written in TypeScript, 
+		which allows us to create reactive SPAs(Single Page Application).
+	Angular is a SPA framework.
+	
+Angular Versions
+	AngularJS(Angular 1)-Misko Hevery - 2010 
+	Angular 2(Complete Re-write) -2016
+	Angular (no 3 version),4,5,6,,7,8,9...18,19
+
+	Angular is supported by Google.
+	New version every 6 months
+	Angular is backward compatible till Angular 2.
+	
+Angular Features
+	Supports Data-binding
+	Supports Single page application(routing)
+	Supports many services like httpclient
+	Supports many Library
+	Supports many validation concepts
+	Supports material design controls
+	Supports MVC - MVV design Paterns
+	Filters(Pipes)
+	Simple Coding
+	Supports a structure to implement logics
+
+Angular Features
+• Component-based framework
+• Clean separation of template coding and application logic
+• Built-in support for data-binding and dependency injection
+• Supports responsive web design and modern frameworks
+• Bootstrap, Google Material Design (Angular Material) and others …
+
+Angular related technologies
+	1)Angular
+	2)Angular CLI
+	3)JavaScript/TypeScript
+	4)Reactive Programming, RxJS, Observables, operators
+	5)Redux, ngRx
+	6)Jasmine, Karma for testing
+	
+	
+The Component Based Model 
+	Angular use Component Based Model.
+	Tree with Root component
+
+	To reuse, a component can be assigned a name/selector.
+	Every component can have a sub-components.
+	A tree will be formed from components.
+	There will be only one root component.
+
+	
+Angularjs - Angular
+	Both support data binding.
+	
+	Angularjs is the framework of javascript. 
+	Angular is the framework of typescript.
+
+	Version 1.x is Angularjs. 
+	From 2.0 onwords we can call as Angular
+
+	Angularjs not support OOPS. 
+	Angular supports OOPS
+
+	Angularjs is not supporting data types.
+	Angular supports data types.
+
+	Angularjs is good for data binding and single page applications but not supports mobile browsers.
+	Angular built based on mobile support.
+
+	Angularjs functionalities are available in angular.js file. 
+	Angular functionalities are available  in the form of node packages.
+
+	Angularjs code is visible in browser source option, but not angular.
+
+	Angularjs is modular programming and angular is component programming.
+
+	Angular is providing more support in routing than angular js
+
+	Angular is simple in coding than AJs
+
+	Angular supports material design controls(it provide rich look & feel).
+	
+	
+	
+	
+AngularJS : It is framework of javascript (1.x)
+Angular : It is framework of typescript to implement dynamic web pages.
+			It is client side script.
+				Client side script:
+					To apply dynamic functionalities on html controls
+					To validate input controls
+					To execute logics in browser
+					To work with AJAX
+			Supports databinding
+			single page application
+			provides many services
+			supports many validation states
+			Supports material design controls
+			Supports Design patterns
+			Provides a structure to implement logics
+			Filters/Pipes
+
+Javascript & Typescript
+		Javascript : loosely typed script
+		Typescript : It is type safe
+		
+		Javascript is interpreted
+		Typescript is compiled
+		
+		Javascript is not supporting all OOPS
+		Typescript supports OOPS
+		
+		Javascript is not good to display errors
+		Typescript display any type of error
+		
+		Typescript is very simple than javascript coding
+		
+		Typescript is superset of javascript
+		
+		Javascript - Netscape corp
+		Typescript - Microsoft
+
+	
+SPA-Single Page Application
+		Page loaded only once
+		Dom would be updated dynamically
+		Example-
+			Facebook
+			Gmail
+	Advantage-
+		Better User Experience
+				feel like entrie application running locally
+		Fast
+		Easy development
+			diff frontend and backend
+		Work Offline
+	Disadvantage-
+		Initial load takes time but subsequent interaction will be faster
+		Less secured
+			Cross-Origin Resource Sharing (CORS)
+		Memory Leaks
+
+
+Angular Development
+• For Angular development, we can develop using various languages
+	• JavaScript: extremely popular programming language
+	• ECMAScript: standardized version of JavaScript (ES6, ES9, …)
+	• TypeScript: adds optional types to JavaScript
+		• TypeScript is the most popular language for Angular development
+	• Other languages such as Dart, etc …
+
+TypeScript
+• FAQ: Why do most Angular developers use TypeScript?
+• Strongly-typed language with compile time checking and IDE support
+• Increased developer productivity and efficiency
+• The Angular framework is internally developed using TypeScript
+• Docs, online blogs and tutorials use TypeScript for coding examples
+
+http://www.typescriptlang.org/ 
+
+
+
+Angular Architecture
+	Components
+		Child Components
+		Child Components
+		Child Components
+	View Templates 
+	Services
+	Directive
+	Modules
+
+Key Terms
+	Term 				Definition
+	Component
+		Main player in an Angular application. Has two parts:
+		1. View for user interface
+		2. Class that contains application logic / event handling for the view
+	View Template 
+		The user interface for the component
+		Static HTML with dynamic elements
+	Directive 
+		Adds custom behavior to HTML elements
+		Used for looping, conditionals etc
+	Service 
+		Helper class that provides desired functionality
+		Retrieving data from a server, performing a calculation, validation etc
+	Module 
+		A collection of related components, directives, services etc
+
+
+In Angular world,developers commonly use "public" properties

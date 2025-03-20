@@ -1,0 +1,128 @@
+Cross Cutting Pattern (API Gateway Design Pattern)
+  Overview of the API Gateway pattern.
+  Set up a basic Spring Boot application with Spring Cloud Gateway dependency.
+  Define and configure routes in application.yml.
+  Set up routing to multiple services, e.g., Accounts and Loans services.
+  Test routing by sending requests through the gateway
+
+In a scenario where multiple clients directly connect with various services, several challenges arise.
+  For instance, clients must be aware of the URLs of all the services and enforcing common requirements 
+    such as security, auditing, logging and routing becomes a repetitive task across all services.
+  To address these challenges, it becomes necessary to establish a single gateway 
+    as the entry point to the microservices network
+
+
+Spring Cloud API Gateway (Cross Cutting Concerns)
+  The service Gateway sits as the gatekeeper for all inbound traffic to microservice calls within our application.
+  Our service clients never directly call the URL of an individual service, but instead place all calls to the service gateway
+  An API gateway is an API management tool that sits between a client and a collection of backend services.
+  Spring Cloud Gateway is a library for building an API gateway, so it looks like any another spring Boot Application.
+  API Gateway is used to manage all the apis which are available in our application.
+  Spring Cloud gateway is the preferred API Gateway implementation from the Spring Cloud Team. 
+    It’s built on Spring 5, Reactor and Spring Webflux.
+
+
+What is Request Proxy?  
+  Reverse proxy is something that is making requests on behalf of something else. 
+    It acts more like simple routing.
+
+
+Internal Architecture:
+  Request ->  
+  Gateway Handler Mapping using Routing Config -> Request ->  
+  Predicates( to check if the requestsfullfill a set of given condition) -> Request -> 
+  Pre filters ->  Request ->
+  microservice call ->  Response ->
+  Post filters -> Response ->
+  Gateway Handler Mapping using Routing Config -> Response
+
+
+Development Process:
+1. Create SpringBoot Application
+2. Add below dependencies
+    a. Actuator
+    b. Config client
+    c. Spring-cloud-starter-gateway
+    d. Eureka-client
+3. Enable below Properties in application. properties
+    a. Port Number
+    b. Application Name
+    c. Enable Discovery Locator
+    d. Config import
+    e. Routes
+
+
+Gateway Properties
+  Gateway Properties
+  spring:
+  application:
+  name: gatewayserver
+  cloud:
+  gateway:
+  discovery:
+  locator:
+  enabled: true
+  lower-case-service-id: true
+  httpclient:
+  response-timeout: 5s
+  routes:
+  - id: accounts-service
+  uri: lb://accounts
+  predicates:
+  - Path=/javaexpress/accounts/**
+  filters:
+  - RewritePath=/javaexpress/accounts/(?<segment>.*), /$\{segment}
+  - name: CircuitBreaker
+  args:
+  name: accountsCircuitBreaker
+  fallbackUri: forward:/contactSupport
+  - name: Retry
+  args:
+  retries: 3
+  statuses: BAD_GATEWAY
+  - id: cards-service
+  uri: lb://cards
+  predicates:
+  - Path=/api/v1/cards/**
+  filters:
+  - RewritePath=/javaexpress/accounts/(?<segment>.*), /$\{segment}
+  - id: loans-service
+  uri: lb://loans
+  predicates:
+  - Path=/api/v1/loans/**
+  filters:
+  - RewritePath=/javaexpress/accounts/(?<segment>.*), /$\{segment}
+  
+  Enable Below Configuration for Gateway Routes
+
+  Configure the Routing Config
+  @Bean
+  RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
+  return builder.routes()
+  .route(p ->
+  p.path("/javaexpress/accounts/**")
+  .filters(f ->
+  f.rewritePath("/javaexpress/accounts/(?<segment>.*)", "/${segment}")
+  .uri("lb://ACCOUNTS"))
+  .route(p ->
+  p.path("/javaexpress/cards/**")
+  .filters(f -> f.rewritePath("/javaexpress/cards/(?<segment>.*)", "/${segment}"))
+  .uri("lb://CARDS"))
+  .route(p ->
+  p.path("/javaexpress/loans/**")
+  .filters(f -> f.rewritePath("/javaexpress/loans/(?<segment>.*)", "/${segment}"))
+  .uri("lb://LOANS"))
+  .build();
+  }
+
+
+
+How to test gateway APIs?
+  http://localhost:8072/actuator
+  http://localhost:8072/actuator/gateway/routes
+  http://localhost:8072/javaexpress/accounts/api/fetchCustomerDetails?mobileNumber=780100791
+
+Commercial API Gateways available in market
+  1. APIGEE
+  2. AWS API Gateway
+

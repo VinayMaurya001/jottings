@@ -1,0 +1,21 @@
+
+
+
+
+Angular tutorials
+  https://angular.dev/tutorials
+Angular docs  
+  https://angular.dev/
+Angular CLI docs  
+  https://angular.dev/tools/cli
+Angular language service
+  https://angular.dev/tools/language-service
+Angular Dev tools 
+  https://angular.dev/tools/devtools
+Angular Sites
+  https://www.madewithangular.com/sites
+
+Resources
+  https://www.udemy.com/course/angular-6-crash-course
+  https://www.udemy.com/course/full-stack-angular-spring-boot-tutorial
+  https://www.udemy.com/course/the-complete-guide-to-angular-2/

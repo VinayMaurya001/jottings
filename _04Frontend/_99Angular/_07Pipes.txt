@@ -1,0 +1,158 @@
+Introduction
+ To Transform/format data
+ {{name | uppercase}}
+ titlecase	lowercase	uppercase	date	currency	json	number	percentages	async	slice
+ 
+Text pipes
+	titlecase	lowercase	uppercase	
+ 
+Date pipe
+	<h3>{{date2 | date:'dd-MM-yyyy'}}   =24-01-2025</h3>
+	<h3>{{date2 | date:'dd-MMM-yyyy'}}  =24-Jan-2025</h3>
+	<h3>{{date2 | date:'shortDate'}}	  =1/24/25</h3>
+	<h3>{{date2 | date:'mediumDate'}}	  =Jan 24, 2025</h3>
+	<h3>{{date2 | date:'fullDate'}}	    =Friday, January 24, 2025</h3>
+
+Currency pipes
+	<h3>{{balance}}                    =1200</h3>
+	<h3>{{balance | currency}}         =$1,200.00</h3>
+	<h3>{{balance | currency:'GBP'}}   =£1,200.00</h3>
+	<h3>{{balance | currency:'INR'}}   =₹1,200.00</h3>
+
+Json pipe
+	<h3>{{course}}         =[object Object]</h3>
+	<h3>{{course | json}}  ={ "id": 1, "courseName": "Angular" }</h3>
+
+Number pipe
+	number:"{minIntegerDigits}.{minDecimalDegits}-{maxDecimalDigits}"
+	<h3>{{balance}}                   =1200.12345</h3>
+	<h3>{{balance | number:'4.2-3'}}  =1,200.123</h3>
+	<h3>{{balance | number:'7.2-3'}}  =0,001,200.123</h3>
+	<h3>{{balance | number:'4.0-2'}}  =1,200.12</h3>
+
+
+Percent pipe
+	<h3>{{stock }}  =3.5</h3>
+	<h3>{{stock | percent}}  =350%</h3>
+	<h3>{{stock | percent:'3.1-2'}}  =350.0% </h3>
+	<h3>{{stock | percent:'4.2-3'}}  =0,350.00%</h3>
+
+
+Slice pipe
+	arr | slice:startIndex:endIndex
+
+	<h3>{{arr}}             =1,2,3,4,5</h3>
+	<h3>{{arr | slice:3}}   =4,5</h3>
+	<h3>{{arr | slice:-3}}  =3,4,5</h3>
+	<h3>{{arr | slice:1:2}} =2</h3>
+	<h3>{{arr | slice:0:2}} =1,2</h3>
+	<h3>{{arr | slice:1:-1}} =2,3,4</h3>
+
+	<b *ngFor="let item of arr | slice:2:4">
+	{{item}}
+	</b>
+
+
+aync pipe
+	mypromise | async
+	An async pipe is very useful when we are dealing with promises or observables in our html components and model TypeScript files.
+	We can directly use the promises that I returned from a backend call or from our services in the html template. 
+	Let's see how we deal with promises or observables without using the async pipe first
+	and then we will use the async pipe and use those promises directly in the html template.
+	{{ appStatus | async}}
+	appStatus = new Promise((resolve, reject) => {
+				setTimeout(() => {
+					resolve('stable');
+				}, 2000);
+			});
+
+
+Custom pipe
+
+
+
+
+
+ 
+Parametrizing Pipes
+ 	{{ server.started | date:'fullDate'}}
+ 	
+Where to learn more about pipes?
+	https://angular.io/api?query=pipe
+	
+	
+	
+Chaining Multiple pipes
+	{{ server.started | date:'fullDate' | uppercase}}
+	{{ server.started | uppercase | date:'fullDate' }} // Error!
+	
+	
+Creating a custom pipe
+	ng generate pipe shorten
+	{{ server.name | shorten}}
+	@Pipe({
+  		name: 'shorten'
+	})
+	export class ShortenPipe implements PipeTransform {
+  		transform(value: any) {
+    		if (value.length > 10) {
+      			return value.substr(0, 10) + ' ...';
+    		}
+    		return value;
+  		}
+	}
+	
+Parametrizing a custom pipe
+	{{ server.name | shorten:10}}
+	@Pipe({
+  		name: 'shorten'
+	})
+	export class ShortenPipe implements PipeTransform {
+  		transform(value: any, limit: number) {
+    		if (value.length > limit) {
+      			return value.substr(0, limit) + ' ...';
+    		}
+    		return value;
+  		}
+	}
+	
+	
+	
+Creating a filter pipe
+	 <input type="text" [(ngModel)]="filteredStatus">
+	 <li class="list-group-item" *ngFor="let server of servers | filter:filteredStatus:'status'">
+          <span class="badge"> {{ server.status }}</span>
+          <strong>{{ server.name | shorten:15 }}</strong>
+     </li>
+	  filteredStatus = '';
+@Pipe({
+  name: 'filter'
+})
+export class FilterPipe implements PipeTransform {
+  transform(value: any, filterString: string, propName: string): any {
+    if (value.length === 0 || filterString === '') {
+      return value;
+    }
+    const resultArray = [];
+    for (const item of value) {
+      if (item[propName] === filterString) {
+        resultArray.push(item);
+      }
+    }
+    return resultArray;
+  }
+}
+	  
+	  
+Pure & Impure Pipes(or How to fix the filter pipe)
+	@Pipe({
+  		name: 'filter',
+  		pure: false
+	})
+
+
+
+	
+  	
+  	
+  	

@@ -1,0 +1,83 @@
+
+  
+
+
+
+
+  Spring Cloud Centralized Configuration
+   Configuration management in microservices is a critical aspect of microservices architecture.
+   This configuration information can include database connection strings, URLs for other
+  services, and other environment-specific details.
+   In microservices architecture, each service is typically a separate application with its own
+  configuration.
+   Managing these configurations can become complex, especially when you have many
+  microservices running in different environments (development, testing, production, etc.).
+  Configuration Management in Microservices
+   One common approach to manage configurations in microservices architecture is using a
+  centralized configuration server.
+   In Spring Boot, the Config server and Config client work together to provide a centralized
+  configuration management system for microservices.
+   The Config server is a Spring Boot application that uses a Git repository to store
+  configuration files for all of the microservices that are registered with it.
+   When a service starts up, it queries the configuration server to get its configuration.
+   The Config client is a Spring Boot application that retrieves configuration properties from the
+  Config server and uses them in its own configuration.
+
+  Config Server & Config Client
+  Development steps for Config Server
+  1. Create a Spring Boot application for the Config Server.
+  2. Add the spring-cloud-config-server dependency to your pom.xml file.
+  3. Annotate the main class with @EnableConfigServer.
+  4. Configure the properties for the Config Server in the application.yml file, including the Git
+  URL.
+
+  Dependency
+  <dependency>
+  <groupId>org.springframework.cloud</groupId>
+  <artifactId>spring-cloud-config-server</artifactId>
+  </dependency>
+  Config Server Properties
+  management:
+  endpoints:
+  web:
+  exposure:
+  include: '*'
+  server:
+  port: 9001
+  spring:
+  application:
+  name: configserver
+  cloud:
+  config:
+  server:
+  git:
+  default-label: main
+  force-pull: true
+  timeout: 100
+  uri: https://github.com/javaexpresschannel/javaexpress-config-latest
+  profiles:
+  active: git
+  build:
+  version: 1
+  Development steps for Config Client
+  1. Use existing microservices and add necessary dependency in pom.xml file
+  2. Add the spring-cloud-starter-config dependency to your pom.xml file.
+  3. Configure Configuration Server url in the application.yml file
+  <dependency>
+  <groupId>org.springframework.cloud</groupId>
+  <artifactId>spring-cloud-starter-config</artifactId>
+  </dependency>
+  <dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-configuration-processor</artifactId>
+  <optional>true</optional>
+  </dependency>
+
+  Config Client Properties
+  spring:
+  application:
+  name: accounts
+  config:
+  import: "optional:configserver:http://localhost:9001/"
+  profiles:
+  active: "prod"

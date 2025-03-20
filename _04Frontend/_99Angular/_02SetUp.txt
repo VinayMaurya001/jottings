@@ -1,0 +1,246 @@
+IDE
+	Visual Studio Code: https://code.visualstudio.com/
+	WebStorm-https://www.jetbrains.com/webstorm/
+	SublimeText
+	Atom
+	Bracket
+
+Softwares
+	node -v
+	npm -v
+	ng version
+
+Installing Node Js 
+	It will have npm (node package manager)also
+	https://nodejs.org/en/download/
+	node -v
+	npm -v
+		Updating npm: [sudo] npm install -g npm  (sudo  is only required on Mac/ Linux)
+	C:\Users\java\AppData\Roaming\npm
+	
+	node For running JavaScript code from command-line
+
+	Quick Introduction to NPM
+		https://www.npmjs.com/
+		NPM is something like Maven in JS world.
+		npm(NodeJs package ecosystem) is the largest ecosystem of open source libraries in the world.
+		NPM is package manager for JS & world's largest software registry.
+		npm init //create dependency in package.json
+		npm install jquery
+		npm install --save bootstrap@3
+		npm install bootstrap
+		npm install fontawesome
+		npm install mongojs
+		npm install 
+			Install the dependencies to the local node_modules folder
+			By default, npm install will install all modules listed as dependencies in package.json.
+			https://www.geeksforgeeks.org/difference-between-npm-i-and-npm-ci-in-node-js/
+
+Installing Angular CLI (ng)
+	A command line interface for angular.
+	Angular CLI helps us to create great angular projects.
+	Documentation: 
+  		https://github.com/angular/angular-cli/wiki
+	npm install -g @angular/cli@latest
+		npm install -g @angular/cli
+	npm install -g @angular/cli@7.0.3
+	The prefix ng stands for "Angular"
+	ng version
+    ng help
+	ng version --help
+    https://cli.angular.io/
+		npm install -g @angular/cli   (This is called a 'scoped' package name. These names are of the format @group/package)
+		/usr/local/lib/
+	 Updating the CLI
+		[sudo] npm uninstall -g angular-cli @angular/cli 
+		npm cache verify 
+		[sudo] npm install -g @angular/cli 
+	
+Common ng commands
+    ng new (n) 
+    	Creates a new workspace and an initial sample Angular app.
+			The Angular CLI makes it easy to create an application that already works, right out of the box. It already follows our best practices!
+    ng generate (g) 
+    	Generates and/or modifies files based on a schematic.
+			Generate components, routes, services and pipes with a simple command. 
+			The CLI will also create simple test shells for all of these.
+    test (t) 
+  		 Runs unit tests in a project.
+  		 Typically unit test in Angular are written in Jasmine framework. 
+  		 We use Karma to run unit test.
+  		 Protector(End to end integration esting tools) use selenium in the background .
+	     https://angular.io/cli/test
+    e2e (e) 
+  			Builds and serves an Angular app, then runs end-to-end tests using Protractor.
+    lint (l) 
+   			Runs linting tools on Angular app code in a given project folder.
+  			Check coding standards rules follows or not like "File should end with newline"
+  			All rules are defined in tslint.json
+	  help 
+	  	Lists available commands and their short descriptions.
+
+    build (b) 
+  			Compiles an Angular app into an output directory named dist/ at the given output path. 
+  			Must be executed from within a workspace directory.
+  			Dist folder can be deploy on server.
+    ng serve (s) 
+    	Builds and serves your app, rebuilding on file changes & check errors.
+			Easily test your app locally while developing.
+			ng serve --port ANOTHERPORT
+			ng serve -o 
+				ng serve --open
+				-o to open in browser
+		run 
+	  	Runs an Architect target with an optional custom builder configuration defined in your project.
+	 	update 
+	  	Updates your application and its dependencies. See https://update.angular.io/
+	 	deploy 
+	 		Invokes the deploy builder for a specified project or for the default project in the workspace.
+	 	
+	  add 
+	  	Adds support for an external library to your project.
+	  config 
+	 		Retrieves or sets Angular configuration values in the angular.json file for the workspace.
+	  doc (d) 
+	 		Opens the official Angular documentation (angular.io) in a browser, and searches for a given keyword.
+	  version (v) 
+	  	Outputs Angular CLI version.
+	  xi18n (i18n-extract) 
+	  	Extracts i18n messages from source code.
+  
+ng serve
+	1. Builds the app (compile / transpile)
+	2. Starts the server
+	3. Watches the source files
+	4. Rebuilds the apps when source is updated (hot reload)
+
+
+Yarn
+	Better performance than NPM
+	A way improved over NPM
+	yarn can be downloaded and installed or can be install via npm
+	npm install --global yarn
+		https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable
+		yarn -v
+  
+ NPM vs Yarn
+ 	npm install
+ 	yarn add
+ 	Disadvantage of NPM
+ 		Security
+ 		COnsistencty
+ 		Performance
+ 		No offline mode
+ 	Advantage of Yarn
+ 		Better Seurity
+ 		Better stability
+ 		Better performance/faster
+  		Has Offline mode
+  	Disadvantage of YARN
+  		More disk space
+  		Smaller community than NPM
+  			
+  		
+Project Setup
+  ng new projectName --no-standalone --routing
+	ng new practice --routing --skip-install (Creating an angular project with routing &&  will avoid npm install ) 
+	ng new my-dream-app --no-strict
+	ng new my-project --strict false
+	ng new my-project --skip-install
+	cd my-dream-app
+	ng serve 
+		ng s
+		ng serve --port 4300
+	localhost:4200
+
+	npm start
+		package.json>>scripts>>start
+	
+	After ng serve, By default node_modules folder will be searches in current project folder & then parent folder onwards
+		copy node_modules folder in parent folder to avoid each time installing this for each project
+	
+	<input type="text" [(ngModel)]="title"> {{title}}
+	import { FormsModule } from '@angular/forms';
+	FormsModule	
+	strict: false in your tsconfig.json file.
+
+	If you're getting errors when running npm install, 
+		you can often solve them by running npm install --legacy-peer-deps instead of npm install.
+	
+	Got any problems with the code (e.g. error messages when running it or you don't know how to use it)? 
+		Check this thread created by Jost: https://www.udemy.com/the-complete-guide-to-angular-2/learn/lecture/6709112#questions/8079942
+	
+	Generate component
+		ng generate component componet-name
+			ng g c componet-name
+			ng g c componet-name --skip-tests
+			it create component(4 files) & update module declarations section with this component 
+				but it not update bootstrap section of module
+		ng g c componet-name/inner-component-name
+			ng g c componet-name/inner-component-name --skip-tests(without spec.ts file)
+	
+Use Bootstrap
+	https://stackoverflow.com/questions/26192897/should-i-use-bootstrap-from-cdn-or-make-a-copy-on-my-server/26198380#26198380
+Way 1)
+	npm install --save bootstrap@3  //install locally in project
+		npm i --save bootstrap@3  
+	angular.json file
+		"styles":{
+			"node_modules/bootstrap/dist/css/bootstrap.min.css",
+			"src/styles.css"
+		}
+Way 2)
+	Add links in index.html
+	<!-- Bootstrap CSS -->
+	 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/x.y.z/css/bootstrap.min.css" …>
+
+Install fontawesome	
+	npm install @fortawesome/fontawesome-free
+
+	
+Importing Angular App into Visual Studio Code
+	Cttl+P: Open File from Project of Visual Studio Code
+	Ctrl+F: search file
+	
+	File>Open Folder(Ctrl+K+Ctrl+O)
+	Ctrl+O:Open File from Computer
+	Exlorer Hide -Show: Ctrl+B
+
+	
+ 
+ 
+Debugging
+	Browser Console
+	CLI console
+	Debugging the code in browser using Sourcemaps 
+			1)inspect>sources>main.ts
+			2)inspect>sources>webpack/src/
+	
+First App
+		index.html
+				<body>
+			  		<app-root></app-root>
+				</body>
+		main.ts
+				platformBrowserDynamic().bootstrapModule(AppModule)
+		app.mudule.ts
+				@NgModule({
+			  		declarations: [AppComponent ],    // components
+					imports: [
+			    				BrowserModule      // Modules
+			  				],
+			  		providers: [],					//Services
+			  		bootstrap: [AppComponent]          //All components that we use in index.html
+				})
+				export class AppModule { }
+		app.component.ts
+				@Component({
+			  		selector: 'app-root',
+			  		templateUrl: './app.component.html',
+			  		styleUrls: ['./app.component.css']
+				})
+				export class AppComponent {
+				}
+	
+	
+
