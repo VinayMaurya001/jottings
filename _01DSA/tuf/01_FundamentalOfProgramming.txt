@@ -1,0 +1,44 @@
+Computer
+	A computer is a machine that follows instructions.
+	Computer = Fast + Obedient + No Common Sense
+
+Hardware vs Software
+
+CPU, CPU register,ROM & BIOS, RAM,Storage
+
+What Is a Program?
+	A program is a set of instructions that tells the computer what to do.
+
+
+What Is a Bug?
+	A bug is a error or mistake in the program.
+	Fun fact: In 1947, a computer stopped working. Engineers searched and found a real insect (a moth) stuck inside the machine! They removed the "bug" and the computer worked again. The name stuck.
+
+Debugging
+	Finding & fixing bugs
+	Debugging is the process of finding and fixing bugs.
+	As programmers, we spend a lot of time debugging. It is normal. Even the best programmers create bugs. 
+		The skill lies in finding and fixing them.
+
+
+Binary	
+	Computer's language (0s and 1s)
+Programming Language
+	Human-readable way to write instructions
+Operating System	
+	Main software that manages computer (Windows/iOS)
+
+
+Popular Programming Languages
+	Python (Easy to learn, very popular)
+	Java (Used in many companies, Android apps)
+	C/C++ (Fast, used in games, systems)
+	JavaScript (Used in websites)
+	
+	Python is good for AI and data science.
+	JavaScript is good for websites.
+	C++ is good for games.
+	Swift is good for iPhone apps.
+
+
+

@@ -1,0 +1,80 @@
+Prompt
+	It is an instruction to AI model.
+
+Example:
+  Give me strong ginger tea
+
+Prompt engineering 
+	how you ask questions to AI
+	Prompt engineering is the skill of communicating clearly with AI to get high-quality results
+
+
+
+
+Prompt Formula
+	RTC CO
+	R-Role
+		Act as a teacher
+	T-Task
+	C-Context
+	C-Constraints
+	O-Output format
+
+Role: Act as a [expert role]
+Task: [What to do]
+Context: [Background info]
+Constraints: [Limitations]
+Output format: [How result should look]
+
+Example:
+Act as a senior Java developer.
+Explain microservices architecture using Spring Boot.
+Include service discovery and API gateway.
+Explain in 5 bullet points only.
+
+
+Tones
+	Friendly
+	Professionally
+	Strict
+	Funny
+	Sad 
+	etc
+
+
+Length Control of Answer
+	short
+	medium
+	detailed/long
+
+	
+Step by Step Prompting
+	We tell AI to explain in ordered steps
+	This avoids confusion
+	Eg:
+		Explain SQL joins step by step
+		step1: What is join
+		Step2: Why join is required
+		Step3: Simple example
+
+	eg:
+		(step by step+length control)
+		Explain for loop in python
+		audience:beginner
+		Explain step by step
+		Each step in 2 lines only
+	Q) How do you avoid long AI answers?
+	Ans)Clearly mantioning length & using step by step prompts
+
+
+
+
+
+
+
+
+
+
+
+
+	

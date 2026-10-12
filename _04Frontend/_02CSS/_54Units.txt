@@ -1,0 +1,49 @@
+
+Units in CSS
+
+Absolute
+  pixels (px)
+  96px = 1 inch
+  font-size: 2px;
+
+  px
+  mm
+  cm
+  inch
+
+
+Relative
+  Percentage (%)
+    It is often used to define a size as relative to an element's parent object.
+    width : 33% ;
+    margin-left : 50% ;
+  Em
+    It’s based on the font size of the element or its parent, depending on where it's used.
+    1em = 100% of the current font size
+    It makes designs scalable and responsive.
+    Good for accessibility — users who increase their base font size won’t break your layout.
+    Can nest styles and have them scale naturally.
+    Em  
+      font size of the parent, in case of typographical propertieslike font-size,
+      font size of the element itself, in case of other properties like width
+      #parent{
+        font-size=10px
+      }
+      #child{
+        font-size:2em;
+        width:5em;
+      }
+  rem
+    font-size of root element
+    width: 3rem
+  vh: relative to 1% viewport height
+    width:100vh
+  vw : relative to 1% viewport width
+
+
+
+
+
+
+
+

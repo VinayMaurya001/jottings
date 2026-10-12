@@ -1,0 +1,21 @@
+
+
+
+
+
+Ways to use Bootstrap
+1)Download bootstrap files
+  use bootstrap.min.css & bootstrap.min.js
+  it work without internet too.
+2)Use CDN(Content Delivery Link) link
+
+
+
+IdE
+  VSCode
+  dremviewer
+editor	
+	Notepad++
+	brackets
+	sublime text
+	

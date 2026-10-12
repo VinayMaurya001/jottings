@@ -1,0 +1,62 @@
+Ways to style React with CSS
+  1)Inline style
+      let obj={color:"red",backgroundColor:"yellow"}
+      style={{obj}};
+            or
+      style={{color:"red",backgroundColor:"yellow"}}
+           or
+      style={{...obj1 , ...obj2}};
+  2)CSS stylesheet-external style
+      .myFont{
+        color:red;
+      }
+      .myFont2{
+        background-color:red;
+      }
+      <h1 className="myFont myFont2">Helloooooooo</h1>
+      CSS stylesheet(external style) are globally scoped.
+  3)CSS Module
+      Stylesheet1.module.css 
+          .heading{
+            background-color:red;
+          }
+      import Style from './Stylesheet1.module.css'
+      className={Style.heading}
+      CSS modules are locally scoped.
+      CSS module converted to different format in browser
+          Filename_className_hashCode
+
+
+    In Inline style, we can not use pseudo classes. Eg- :hover, :active, :visited etc.
+      But these are available in CSS stylesheet-external style  & CSS module both.
+
+
+
+How to add & use Bootstrap
+  Bootstrap is a free front-end framework.
+  Add CDN in public/index.html   
+
+
+
+
+ProfileCard.module.css
+  css conflict issue resolved
+
+
+npm install styled-components
+  ProfileCardStyled.js
+    const Bio = styled.div`
+            margin: 0 0 25px 0;
+            text-align:center;
+
+            ${
+              props =>props.age ? `
+              color:white;
+              `: '
+              color:blue;
+              background: transparent;
+              '
+            }
+
+            `;
+

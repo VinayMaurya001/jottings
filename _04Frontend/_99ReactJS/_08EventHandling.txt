@@ -1,0 +1,209 @@
+Events
+| Event           | Description       |
+| --------------- | ----------------- |
+| `onClick`       | Mouse click       |
+| `onDoubleClick` | Double click      |
+| `onChange`      | Input change      |
+| `onSubmit`      | Form submit       |
+| `onMouseEnter`  | Mouse hover       |
+| `onMouseLeave`  | Mouse out         |
+| `onKeyDown`     | Key press         |
+| `onFocus`       | Element focused   |
+| `onBlur`        | Element unfocused |
+   
+
+
+  1)
+    Example:
+      function BasicEvent() {
+        function handleClick() {
+          alert("Button clicked!");
+        }
+        return (
+          <div>
+            <h1>React Event Handling</h1>
+            <button onClick={handleClick}>Click Me</button>
+          </div>
+        );
+      }
+      export default BasicEvent;
+
+  2)
+    Event Object (event)
+    React gives you a SyntheticEvent.
+      function App() {
+        function handleInput(e) {
+          console.log(event.target.value);
+        }
+        return <input type="text" onChange={handleInput} />;
+      }
+
+  3)
+    To pass an argument to event handler, use an arrow function
+        import React from "react";
+        function App() {
+          const handleClick = (message) => {
+            alert(`You clicked the button! Message: ${message}`);
+            };
+          return (
+            <div>
+              <button onClick={() => handleClick("Hello React")}>
+                Click Me
+              </button>
+            </div>
+          );
+        }
+        export default App;
+
+      <button onClick={(event) => handleClick("Hello", event)}>Click Me</button>
+  4)
+  Form Submit Event
+      function App() {
+      function handleSubmit(e) {
+        e.preventDefault();      // prevents page reload
+        alert("Form submitted!");
+      }
+
+      return (
+        <form onSubmit={handleSubmit}>
+          <input type="text" />
+          <button>Submit</button>
+        </form>
+      );
+    }
+  5)
+  Event With State Update
+      import { useState } from "react";
+      function App() {
+        const [count, setCount] = useState(0);
+        function add() {
+            setCount(prevCount => prevCount +1);
+          }
+        return (
+          <>
+            <h1>{count}</h1>
+            <button onClick={add}>Add</button>
+          </>
+        );
+      }
+  6)
+    Passing methods/function as props
+      from parent component to child component
+      Child button will call a function that is defined in the Parent.
+          import Child from "./Child";
+          export default function App() {
+                function handleMessage() {
+                  alert("Hello from Parent!");
+                }
+                return (
+                  <div>
+                    <h1>Parent Component</h1>
+                    <Child onButtonClick={handleMessage} />
+                  </div>
+                );
+              }
+          export default function Child({ onButtonClick }) {
+                return (
+                  <div>
+                    <h2>Child Component</h2>
+                    <button onClick={onButtonClick}>Click Me</button>
+                  </div>
+                );
+              }
+  7)
+    Passing methods/function with argument  as props
+          function App() {
+                function greet(name) {
+                  alert("Hello " + name);
+                }
+
+                return <Child sendGreeting={greet} />;
+          }
+          export default function Child({ sendGreeting }) {
+                return (
+                  <button onClick={() => sendGreeting("Ranjan")}>
+                    Greet Parent
+                  </button>
+                );
+          }
+
+  8)Add Item From Child → Show List in Parent
+        import { useState } from "react";
+        import AddItem from "./components/AddItem";
+        export default function App() {
+            const [items, setItems] = useState([]);
+            const parentMessage = "Enter an item and click Add";
+
+            function handleAddItem(newItem) {
+              setItems([...items, newItem]);
+            }
+
+            return (
+              <div >
+                <AddItem instruction={parentMessage} onAdd={handleAddItem}/>
+                <ul>
+                  {items.map((item, i) => (<li key={i}>{item}</li>))}
+                </ul>
+              </div>
+            );
+        }
+
+        import { useState } from "react";
+        export default function AddItem({ instruction, onAdd }) {
+            const [input, setInput] = useState("");
+
+            function handleSubmit() {
+              if (input.trim() === "") return alert("Please enter something");
+              onAdd(input);      // sending data BACK TO PARENT
+              setInput("");      // clear input
+            }
+
+            return (
+              <div>
+                <p>{instruction}</p>
+                <input type="text" value={input} onChange={(e) => setInput(e.target.value)}/>
+                <button onClick={handleSubmit}>Add</button>
+              </div>
+            );
+          }
+  9)
+    to handle checkbox checked and update value
+    import { useState } from "react";
+      function App() {
+        const [checkedValue, setCheckedValue] = useState(false);
+        function handleChange(e) {
+          setCheckedValue(e.target.checked);
+        }
+        return (
+          <div>
+            <input  type="checkbox" checked={checkedValue}  onChange={handleChange}/>
+            <p>Checkbox is: {checkedValue ? "Checked" : "Not Checked"}</p>
+          </div>
+        );
+      }
+      export default App;
+
+
+
+
+
+
+Event Handling (User interaction)
+Function Communition(Component talking ot each other)
+Custom datapassing (sending specific information with our events)
+Professional Patterns
+
+
+
+
+  Binding Event Handlers
+    Inside constructor
+      this.HelloEvent=this.HelloEvent.bind(this);
+      performance benefits
+    In render method
+      onCLick={this.HelloEvent.bind(this)}
+    Using arrow function
+      HelloEvent =()=>{     }
+      Best way to bind
+    now this would not return as undefined.
+    Bind creates a new function that will have "this" set to the first parameter passed to bind() 

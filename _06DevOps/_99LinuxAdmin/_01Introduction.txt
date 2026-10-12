@@ -1,0 +1,122 @@
+
+
+
+Operating System
+  An operating system (OS) is system software that manages computer hardware and software resources, 
+    and provides common services for computer programs.
+
+
+Types of operating systems
+  Desktop OS- Window,macOS,Linux such as Ubuntu
+  Server OS- Window Servers, Linux distributions such as CentOS,RHEL
+  Mobile OS- Andoid, iOS, Windows Mobile
+  Embedded OS- Used in tv, automibles
+  Real time OS- Used in critical systems like aerospace, medical equipments, defense, home security 
+  
+
+Linux
+  A free and open source OS.
+  It is famous for security, stability & flexbility.
+  Linux is a multi-user, multi-tasking operating system. You can have many users logged into a system
+  simultaneously, each running many programs. It’s the kernel’s job to keep each process and user separate
+  and to regulate access to system hardware, including cpu, memory, disk and other I/O devices.
+
+History of Linux
+  Unix - By Ken Thompson & Dennis Ritchie at AT & T Bell labs in 1970 for multiuser & multitasking
+         It was not free.
+  GNU Project- Rechard Stallman started in  1983
+               Aim to create Unix like FREE OS.
+               Tolls & Utility developed but missing Kernel.
+  Linux- Linus Torvalds in 1991
+         Combined with utilities from GNU project.
+
+
+Unix vs Linux 
+  Unix is mostly used by Oracle/Sun, HP-UX, AIX
+
+Linux vs Window
+  Availability of source Code
+  Cost
+  User Interface
+    Linux has different desktop environment like GNOME,KDE & XFCE
+  Command line Interface
+    Linux- console
+    Window-command prompt & powershell
+  Software installation & package management
+    Linux- Software is generally installled using package managers like apt, yum, Pacman etc.
+    Window- Manuualy using standalone executables (.exe).
+  Security
+  System stability & performance
+    Windows is stable but slow down after sometime.
+     LINUX handles high server loads better than Windows and LINUX machines seldom require
+reboots while Windows is constantly needing them. Servers running on LINUX enjoy extremely high uptime and high availability/reliability
+  File system
+    Linux- ext4, XFS & Btrfs
+    Window-NTFS & FAT32
+
+
+Linux Distros (Linux distributions or flavours)
+  Debian
+  Ubuntu
+  Fedora
+  RHEL
+  CentOS
+  OpenSUSE
+  Linux Mint
+  Alpine Linux
+  Kali Linux
+
+
+Shell
+  The shell is a command interpreter; it takes each command and passes it to the operating
+  system kernel to be acted upon. It then displays the results of this operation on your
+  screen. 
+   Bourne shell (sh)
+   C shell (csh)
+   Korn shell (ksh)
+   TC Shell (tcsh)
+   Bourne Again Shell (bash)
+
+
+Utilities
+  o UNIX provides several hundred utility programs, often referred to as commands.
+  o Accomplish universal functions
+     editing
+     file maintenance
+     printing
+     sorting
+     programming support
+     online info etc.
+  o Modular: single functions can be grouped to perform more complex tasks
+
+  Kernel
+    At the lowest level, the kernel contains a hardware device driver for each kind of hardware it supports. 
+
+
+What is virtual memory?
+  Linux supports virtual memory, that is, using a disk as an extension of RAM so that the effective size of
+  usable memory grows correspondingly. The kernel will write the contents of a currently unused block of
+  memory to the hard disk so that the memory can be used for another purpose. When the original contents
+  are needed again, they are read back into memory. This is all made completely transparent to the user; 
+
+  The part of the hard disk that is used as virtual memory is called the swap space.
+  Computer science usually distinguishes between swapping(writing the whole process out to swap space) and paging (writing only fixed size parts, usually a few
+  kilobytes, at a time). Paging is usually more efficient, and that's what Linux does, but traditional Linux
+  terminology talks about swapping anyway. 
+
+
+
+Help Commands
+  •There are 3 types of help commands
+    •whatis command
+    •command –-help
+    •man command
+
+
+TAB Completion and Up Arrow
+  • Hitting TAB key completes the available commands, files or directories
+    • chm TAB
+        chm TABTAB 
+    • ls j<TAB>
+    • cd Des<TAB>
+  • Hitting up arrow key on the keyboard returns the last command ran.

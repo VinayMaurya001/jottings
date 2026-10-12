@@ -1,0 +1,41 @@
+Alerts
+  Basic alert-* Contextual Classes:
+
+    Class Name	    Description
+    alert-primary	  For primary action-related messages
+    alert-secondary	For secondary or less important
+    alert-success	  For success messages
+    alert-danger	  For error or danger alerts
+    alert-warning	  For warnings or caution
+    alert-info	    For informative messages
+    alert-light	    For light background alert
+    alert-dark	    For dark background alert
+
+  Optional Alert Features:
+      alert-dismissible: Makes alert dismissable.
+      fade show: Used with dismissable to add fade animation.
+
+  Basic Syntax:
+      <div class="alert alert-success">This is a success alert!</div>
+  Closing alerts
+      .alert-dismissible
+      .btn-close
+      data-bs-dismiss="alert"
+
+      <div class="alert alert-warning alert-dismissible fade show">
+          <strong>Warning!</strong> You should check this out.
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+      Animated Alerts
+        .fade
+        .show
+
+  Alert Links
+    It is used to style links inside an alert 
+      so they match the alert’s context color and stand out with an underline and bold weight.
+      <div class="alert alert-success">
+        <strong>Well done!</strong> You successfully read this important message.
+        <a href="#" class="alert-link">Click here</a> to learn more.
+      </div>
+
+  

@@ -1,0 +1,38 @@
+Alignment Classes
+  Float Utilities
+    .clearfix
+      clear floats
+    .float-start	Float element to start
+    .float-end	Float element to end
+    .float-none	Remove any float
+  Responsive variants:
+      .float-sm-start, .float-md-end, etc.
+      <img src="..." class="float-md-end me-3" alt="…">
+  Center Alignment
+      .mx-auto
+        (adds margin-left & margin-right: auto)
+  Width
+      .w-*
+        .w-10
+        .w-100 (100%)
+      .mw-auto (mw for max width)
+      .mw-100  (mw for max width )
+  Height
+      .h-*
+        .h-10
+        .h-100 (100%)
+      .mh-auto
+      .mh-100 
+  Vertical Alignment
+      .align-*
+      .align-baseline
+      .align-top
+      .align-middle
+      .align-bottom
+      .align-text-top
+      only works on inline,inline-block,inline-table & table cell elements
+  Visibility
+    .visible
+    .invisible
+    these classes do not chnage the CSS display value.
+    They only add Visibility:visible or Visibility:hidden

@@ -1,0 +1,54 @@
+For Validations
+  Disable native tooltips by adding novalidate to your <form>.
+  Add either:
+    .needs-validation 
+      if you want to trigger validation after the user tries to submit, or
+    .was-validated 
+      if you prefer to show feedback immediately (e.g., on page load).  
+  Two ways to display messages
+    1)Text form
+      .invalid-feedback
+      .valid-feedback
+    2)Tool-tip form
+      .invalid-tooltip
+      .valid-tooltip
+  Note 
+    the use of required, type="email", minlength, etc. for constraint definitions 
+  pattern attribute (html attribute)
+
+
+JavaScript: “Decision” Logic
+    You need to decide when to apply .was-validated (which actually triggers the CSS styles for :valid/:invalid). The typical pattern is on form submit:
+    (() => {
+      'use strict'
+      // 1. Grab all forms you want to validate
+      const forms = document.querySelectorAll('.needs-validation')
+
+      Array.from(forms).forEach(form => {
+        form.addEventListener('submit', event => {
+          // 2. Ask the browser: is this form valid?
+          if (!form.checkValidity()) {
+            // ✋ Decision: If invalid, prevent submission and show feedback
+            event.preventDefault()
+            event.stopPropagation()
+          }
+          // 3. Always apply this class to toggle the CSS
+          form.classList.add('was-validated')
+        }, false)
+      })
+    })()
+    Decision Point A: form.checkValidity() returns false if any constraint (e.g. required, type, minlength) fails.
+    Decision Point B: If invalid, you preventDefault() to stop submission; otherwise, let it proceed.
+    Decision Point C: Adding .was-validated tells Bootstrap to style all form controls according to :valid / :invalid 
+    Bootstrap
+
+How It Works (Under the Hood)
+  :invalid & :valid pseudo‑classes apply only when the form (or control) has been validated.
+  Bootstrap scopes these styles to a parent .was-validated (or to individual .is-invalid / .is-valid classes if you prefer server‑side feedback).
+  You decide when to add .was-validated—usually right after the user clicks “Submit,” so you show errors only then, not on page load
+
+
+Tips & Variations
+  Server‑side validation: instead of .needs-validation, you can apply .is-invalid and .is-valid per control based on server response.
+  Tooltips: swap out .invalid-feedback for .invalid-tooltip inside a .position-relative container.
+  Resetting: to clear validation (e.g., after an Ajax submit), remove .was-validated from the form.

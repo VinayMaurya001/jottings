@@ -1,0 +1,35 @@
+
+AI tools by perl babu
+  https://drive.google.com/drive/folders/1qK_rp_c9Yzp4dF9krgSQ5UEom1Jfhliz
+
+
+
+20 AI tools
+
+Demo 1
+
+https://gamma.app/create
+	create a PPT, website, document,social
+
+https://aistudio.google.com/live
+	screen sharing and ask questions via text/audio/video
+	whatsup
+		/voice
+		/generate
+
+https://www.openai.fm/
+	text to audio
+
+ELI10- explain like I am 10 year old
+Act like 20 year AI engineer
+
+ATS- Application Tracking System
+
+
+Demo 2
+Create own GPT
+	DurgaGPT
+
+Perplexity pro for free
+
+can you create elevator pitch to introduce myself for 1 min

@@ -1,0 +1,19 @@
+Git 
+  Git is a version control system(VCS).
+  VCS is a tool that helps to track changes in files.
+
+  Git is 
+    popular
+    free  & open source.
+    fast & scalable
+
+  Git is the free and open source distributed version control system 
+    that's responsible for everything GitHub related that happens locally on your computer.
+
+
+GitHub  
+  It is a website that allows developers to store & manage their code using git.
+  https://githib.com
+
+
+

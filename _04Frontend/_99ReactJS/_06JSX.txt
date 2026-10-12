@@ -1,0 +1,66 @@
+JSX
+  It stands for JavaScript XML
+  It is an extention of JavaScript Language
+  It allows us to write HTML in React.
+  It makes easier to write and add HTML in React.
+
+
+Working with JSX in React
+  JSX allows us to write HTML elements in Javascript & place them in DOM without any createElement() and/or appendChild()
+  JSX converts HTML tags into React elements.
+  You are not required to use JSX but JSX makes it easier to write React applications.
+  JSX is an extention of the JavaScript language based on ES6 & is translated into regular JavaScript at runtime.
+
+
+Expressions in JSX  
+  With JSX we can write expression inside curly braces {}.
+  The expression can be a React variable or property or object or any other valid Javascript expression. 
+    JSX will execute the expression and return the result.
+
+
+One top level element
+  The HTMl code must be wrapped in one top level element.
+  So if we want to write two paragraphs, we must put them inside a parent element like a <div> element.
+  JSX will throw an error if the HTML is not correct or if the HTML misses a parent element.
+  Alternatively we can use a "fragment" to wrap multiple lines. 
+    This will prevent unnecessary adding extra nodes to the DOM.
+    A fragment looks like an empty HTML tag: <></>
+
+Element must be closed
+  JSX follows XML rules and therfore HTML elements must be properly closed.
+  JSX will throw error if the HTML is not properly closed.
+  Close empty elements with />.
+
+
+ATTRIBUTE class= className
+  The class attribute is a much used attribute in HTML 
+    but since JSX is rendered as JavaScript & 
+    the class keyword is a reserved keyword in JavaScript, we are not allowed to use in JSX.
+    Use attribute "className" instead.
+  "for" attribute is replaced with "htmlFor"
+  Conditions if statements
+    React supports if statements but not inside JSX.
+    To be able to use conditional elements in JSX, 
+      we should put the if statements outside of the JSX 
+      or we could use a ternary operators instead.
+
+
+Javascript calculation can be inside {age+1}
+
+{isOnSale && " Sale is live !"}
+{`Click to view {productName}`}
+
+{isOnSale ? (
+              <>
+                <h1>Welcome World!</h1>
+                <h1>Please wait for a minute.</h1>
+              </>
+            ):(
+                <h1>Bye World!</h1>
+              )
+}
+
+
+<div className={`movie ${getRatingId(movie.id)}`} />
+<div className={"movie " + getRatingId(movie.id)} />
+<div className={["movie", getRatingId(movie.id)].join(" ")} />

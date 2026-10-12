@@ -1,0 +1,21 @@
+Badges
+  In Bootstrap 5, badges are used to add small counts, labels, or status indicators 
+    to elements like buttons, headings, or navigation items.
+  <span class="badge bg-primary">New</span>
+  .badge
+  .bg-*
+  span tag
+  Badges scale to match the size of the parent element(if any)
+  Badge in a Button
+    <button type="button" class="btn btn-primary">
+      Notifications <span class="badge bg-light text-dark">4</span>
+    </button>
+  Pill Badge (Rounded)
+    <span class="badge rounded-pill bg-success">Approved</span>
+  Badge in Headings
+    <h1>Example heading <span class="badge bg-secondary">New</span></h1>
+  With Utility Classes
+    You can combine badges with utility classes 
+      like ms-1, me-2, text-uppercase, etc., to customize spacing and appearance.
+
+      

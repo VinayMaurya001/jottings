@@ -1,0 +1,63 @@
+Text Properties
+	text-align : left/right/center/start/end
+		work based on parent tag
+	text-decoration
+		text-decoration : underline / overline / line-through/none
+		text-decoration:none (on anchor tag)
+		text-decoration: red underline
+		text-decoration: red wave underline
+	text-tranform
+		text-tranform:uppercase
+	font-weight
+		font-weight : normal / bold / bolder / lighter
+		font-weight : 100-900
+  font-style:italic
+	line-height
+		line-height : 2px
+		line-height : 3
+		line-height : normal
+	text-transform
+		text-tranform : uppercase / lowercase / capitalize / none
+	letter-spacing:0.2rem
+	word-spacing:1em;
+	font-family
+		font-family : arial, roboto
+		*{
+			font-family:arial	
+		}
+		Font in CSS
+		Web Safe font
+			Web safe fonts are typefaces that come pre-installed as default fonts on the majority of computers and devices, regardless of operating system
+		Web font
+			https://fonts.google.com/
+			<link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
+				<style>
+						p{  font-family:'Ubuntu', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+			</style>
+			
+		Font stack
+			p{ 
+				font-family: �Franklin Gothic Medium�, �Aerial Narrow�, Aerial, sans-serif;
+			}
+
+		p{
+				font-family:'Arial Narrow', Arial, sans-serif;
+					font-size: 33px; /* 1/96th of an inch */
+			font-weight: bold;
+					font-style: italic;
+					line-height: 1.3em;/* times parent line height */ 
+			}
+
+
+
+font-weight: normal
+font-size : 16px
+font-family :Arial,sans-serif
+font: normal 16px Arial,sans-
+
+
+
+list-style:square/none;
+list-style-image: url("url")
+
+

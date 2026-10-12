@@ -1,0 +1,250 @@
+Transaction Isolation Levels
+  It defines, How much one transaction is allowed to see / not see the changes of another concurrent transaction.
+  It controls read consistency and concurrency.
+  Higher isolation = more safety
+  Lower isolation = more performance
+  @Transactional(isolation = Isolation.SERIALIZABLE, readOnly = true)
+  - It controls how concurrent transactions interact with each other and ensures data consistency.
+  - Isolation defines how much a transaction is protected from the effects of other concurrent transactions.
+  - It prevents anomalies like: dirty reads,non-repeatable reads, phantom reads
+
+4 Standard Isolation Levels
+    | Level                                    | Prevents             | Allows               |   Notes                    |
+    | ---------------------------------------- | -------------------- | -------------------- |----------------------------|
+    | **READ_UNCOMMITTED**                     | almost nothing       | Dirty reads,         |   Fastest but least safe   |
+                                                                        non-repeatable reads,|                            |
+                                                                        phantom reads        |                            |
+                                                                        Lost updates
+
+    | **READ_COMMITTED** (default for most DB) | dirty reads          | non-repeatable reads,|  Default in most databases |
+                                                                        phantom reads        |  (e.g., Oracle, PostgreSQL)|
+                                                                        Lost updates
+
+    | **REPEATABLE_READ**                      | dirty reads,         | phantom reads        |Ensures consistent row data |
+                                                 non-repeatable reads | Lost updates         |                            |
+
+
+    | **SERIALIZABLE**                         | dirty reads,         | nothing (slowest)    |Strictest,but lowest concurrency|
+                                                non-repeatable reads,
+                                                phantom reads
+                                                Lost updates
+
+The 4 Isolation Problems
+  1. Dirty Read
+  2. Non-Repeatable Read
+  3. Phantom Read
+  4. Lost Update
+      Two transactions update the same data, and one update overwrites the other.
+
+The 3 Read Problems
+  Dirty Read ❌
+    Read uncommitted data from another transaction.
+    When a transaction reads data that another transaction has modified but not committed yet, it’s called a dirty read. 
+    If the writer later rolls back, 
+      the reader has used data that never truly existed, leading to wrong decisions and inconsistent results.
+    Why dirty reads are harmful
+    - Inconsistency
+    - Breaks ACID isolation: 
+        Isolation is meant to prevent concurrent transactions from interfering; 
+        dirty reads violate that principle.
+  Non-Repeatable Read
+    Same query returns different result within the same transaction.
+    A non-repeatable read happens when a transaction reads the same row more than once and gets different values 
+    because another transaction modified and committed the row in between those reads. 
+    It violates the expectation that data remains stable within a single transaction’s view.
+    What causes non-repeatable reads
+    - Concurrent update and commit: Another transaction updates the row and commits before you re-read it.
+    - Row-level contention is allowed: The database doesn’t lock the read rows strongly enough to prevent others from changing them before you re-read.
+    - Isolation level too low: At isolation levels like READ COMMITTED, each read sees the latest committed data, so repeated reads can differ if someone commits in between.
+  Phantom Read
+    Same query returns different number of rows.
+    A phantom read happens when a transaction executes the same query multiple times and sees a different set of rows, 
+    not just different values within existing rows. 
+    The difference is caused by another concurrent transaction inserting or deleting rows that match the query’s predicate in between the reads.
+    What causes phantom reads
+    - Concurrent inserts or deletes: 
+       Another transaction adds or removes rows that satisfy your query condition while your transaction is still open.
+    - Predicate scope: 
+        Your query returns a set (e.g., “all orders over 10,000”), and the set membership changes mid-transaction.
+    - Isolation level too low: 
+        Levels like Read Committed and, in some systems, Repeatable Read, don’t fully lock the “range” of values, allowing new rows to appear.
+    Preventing phantom reads in practice
+    - Constrain the window of reads: Minimize the time between repeated queries to reduce exposure.
+    - Use Serializable isolation: 
+          Ensures the result set is stable across the transaction.
+    - If full serializability is too expensive, 
+        consider capturing the IDs from the first read and operating only on those IDs 
+        in the rest of the transaction to simulate a stable set.
+    - Materialize the set: Copy the IDs you intend to process into a temp table within the transaction and operate on that snapshot.
+    - Use range/predicate locks (DB-specific):
+       - SQL Server: Use SERIALIZABLE isolation or hints like WITH (HOLDLOCK) to lock the searched range.
+       - MySQL/InnoDB: Use SERIALIZABLE or locking reads (SELECT ... FOR UPDATE/LOCK IN SHARE MODE) with appropriate indexes; next-key locking helps prevent gap inserts.
+       - PostgreSQL: Use SERIALIZABLE to get predicate locking; plain Repeatable Read is often sufficient but Serializable is the formal guarantee.
+
+
+@Transactional(isolation = Isolation.READ_UNCOMMITTED)
+  Use case:
+    Almost no safe use case
+    Only used for:
+      log tables
+      analytics
+      when absolute maximum performance is needed
+@Transactional(isolation = Isolation.READ_COMMITTED)
+  Most commonly used
+  Use case:
+    Most real apps
+    Banking read operations
+    E-commerce product reads
+@Transactional(isolation = Isolation.REPEATABLE_READ)
+  ⭐ Ensures a READ value stays the same within a transaction
+  ⭐ Default in MySQL InnoDB
+      In MySQL/InnoDB, also prevents phantom using multi-versioning (MVCC)
+  Use case:
+    Workflows where same row must be consistent
+    Inventory checks
+    Banking account info
+@Transactional(isolation = Isolation.SERIALIZABLE)
+  Highest isolation, acts like transactions run one by one (logically).
+  ✔ Transactions run as if they were serial (one after another)
+  How it works:
+    Locks entire tables or ranges
+    Most expensive
+    Causes high contention & deadlocks
+  Use case:
+    Critical financial operations
+    Ledger updates
+    High-value banking transactions
+    Compliance-critical workflows
+@Transactional(isolation = Isolation.DEFAULT)
+  One More (from Spring): Isolation.DEFAULT
+  "Use the database's default isolation level."
+  Example:
+    MySQL → REPEATABLE_READ
+    Postgres → READ_COMMITTED
+
+
+
+Real Developer Insight
+🔵 1. Most enterprise apps use: READ_COMMITTED
+🔵 2. MySQL apps naturally use: REPEATABLE_READ (default)
+🔵 3. No one uses READ_UNCOMMITTED
+🔵 4. SERIALIZABLE only for ultra-critical financial operations.
+
+
+
+
+@Transactional(isolation = Isolation.SERIALIZABLE, readOnly = true) 
+  What readOnly = true does?
+  - Hint to the transaction manager: 
+    It tells Spring that the transaction will only perform read operations (SELECTs), not updates/inserts/deletes.
+  - Optimizations:
+    - Spring may skip dirty checking in JPA/Hibernate (no need to track entity changes).
+    - Some databases can optimize transaction handling (e.g., avoid row-level locks).
+  - Safety: 
+    If you accidentally try to modify data inside a readOnly transaction, 
+      Hibernate will not flush changes to the database.
+
+  ⚙️ Combined with Isolation.SERIALIZABLE
+    - Isolation.SERIALIZABLE ensures the highest isolation level: 
+      no dirty reads, no non-repeatable reads, no phantom reads. Transactions behave as if executed sequentially.
+    - If you try to save() or update() inside this method, Hibernate will ignore it (no flush).
+    - Adding readOnly = true means:
+      - You get serializable isolation guarantees for your queries.
+      - But you’re declaring that you won’t modify data in this transaction.
+      - Useful for reports, analytics, or critical queries where consistency is paramount.
+
+  ⚠️ Important Notes
+    - readOnly = true is not enforced at the database level in most cases — it’s mainly a Spring/Hibernate optimization.
+    - Some databases (like PostgreSQL) do support true read-only transactions, 
+      but Spring doesn’t automatically enable that unless you configure it explicitly.
+    - If you need strict DB-level enforcement, you can issue:
+      SET TRANSACTION READ ONLY; via custom configuration.
+    👉 In short: readOnly = true tells Spring/Hibernate “this transaction won’t change data,” so it optimizes accordingly. 
+      Combined with Isolation.SERIALIZABLE, you get the strongest consistency guarantees for read-only queries.
+    - JPA/Hibernate: readOnly = true = ORM-level optimization (no dirty checking, no flush).
+    - JDBC/Database: readOnly = true may enforce DB-level read-only transactions (depends on DB).
+    - Best practice: Use readOnly = true for query-only service methods to improve performance and avoid accidental writes.
+    
+  
+
+
+
+MVCC Snapshots
+  MVCC (Multi-Version Concurrency Control) is a concurrency mechanism 
+    where the database keeps multiple versions of a row so that:
+      Readers don’t block writers
+      Writers don’t block readers
+  When a transaction starts, it gets a snapshot:
+  A frozen view of the database at that moment.
+  This snapshot does not change, even if other transactions are updating rows.
+
+  MVCC allows multiple versions of a row to exist at the same time. 
+    When a transaction begins, it gets a snapshot of the database based on committed versions. 
+    This snapshot stays consistent throughout the transaction. 
+    Readers read older versions while writers create new versions, so readers and writers never block each other.
+
+  Why MVCC exists?
+    To solve the biggest concurrency problem:
+      How can transactions read consistent data without locking everything?
+    MVCC solves it by providing non-blocking, consistent reads.
+
+  What is an MVCC Snapshot?
+    An MVCC snapshot is the exact view of data that a transaction sees when it begins.
+      It picks a version of each row based on transaction IDs (XID)
+      It ignores rows modified after the transaction started
+      It reads rows that existed when the snapshot was taken, even if later changed or deleted
+
+  Rules for choosing row versions (simplified)
+    When reading a row, the transaction picks the version:
+      Row version must be committed before snapshot start
+      Row version should not be deleted before snapshot start
+      Uncommitted versions from other transactions are ignored
+    This ensures consistent, repeatable reads.
+
+  MVCC + Isolation Levels
+    | Isolation Level      | Snapshot Behavior                     |
+    | -------------------- | ------------------------------------- |
+    | **Read Uncommitted** | No snapshot, can see uncommitted data |
+    | **Read Committed**   | New snapshot on every query           |
+    | **Repeatable Read**  | One snapshot per transaction          |
+    | **Serializable**     | Snapshot + conflict detection         |
+
+  MVCC Benefits
+    ✔ Readers don’t block writers
+      Readers use old versions, so they don’t need locks.
+    ✔ Writers don’t block readers
+      Writers create new versions instead of overwriting existing ones.
+    ✔ High concurrency
+      Ideal for OLTP systems with many reads and writes.
+    ✔ Consistent reads
+      A transaction always sees a safe snapshot.
+
+  MVCC Drawbacks
+    ❌ More storage use
+    Multiple row versions are stored temporarily.
+    ❌ Vacuum / purge needed
+    To clean up old versions.
+
+  MVCC Issues: Phantom Reads & Write Skew
+
+  Write Skew (Dangerous MVCC Anomaly)
+    Two transactions read the same data (safe snapshot),
+    make decisions based on that snapshot,
+    but update different rows, leading to a violated constraint.
+
+    MVCC gives each transaction a snapshot that shows both doctors on duty.
+      The transactions update different rows, so no write-write conflict, so DB allows both commits.
+    
+    How to prevent Write Skew in Spring/Hibernate?
+      1)@Transactional(isolation = Isolation.SERIALIZABLE)
+      DB detects conflict → one transaction fails.
+      2)SELECT FOR UPDATE
+        Force row-level locking:
+            SELECT * FROM doctors WHERE on_duty = true FOR UPDATE;
+        Spring
+            @Lock(LockModeType.PESSIMISTIC_WRITE)
+            List<Doctor> findActiveDoctors();
+     3)Application-level constraint
+        if (countOnDuty() == 0)
+            throw new Error("At least 1 doctor must remain on duty");
+

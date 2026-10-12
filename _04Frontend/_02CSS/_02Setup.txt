@@ -1,0 +1,9 @@
+
+
+.myclass +tab - create a div with class myClass
+.myId +tab - create a div with id myId
+
+
+
+comment in css  
+  /*  */

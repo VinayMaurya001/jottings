@@ -1,0 +1,56 @@
+Flexbox
+Flexible Box Layout
+  It is a one-dimensional layout method for arranging items in rows or columns. 
+
+
+The Flex Model
+  flex container
+    display:flex
+  flex item
+  Axis
+    main axis
+    cross axis
+
+Flexbox Direction
+  It sets how flex items are placed in the flex container, along which axis and direction
+  flex-direction : row; (default)  (main axis ->row->left to right)
+  flex-direction : row-reverse;   (main axis ->row->right to left)
+  flex-direction : column;
+  flex-direction : column-reverse;
+
+
+Flex Properties for Flex Container
+  justify-content : alignment along the main axis.
+    flex-start / flex-end / centre / space-evenly /space-around/space-between
+  
+  flex-wrap : nowrap / wrap / wrap-reverse
+  align-items : alignment along the cross axis.
+  align-content : alignment of space between & around the content along cross-axis
+
+
+Flex Properties for Flex Item
+  align-self : 
+    alignment of individual along the cross axis.
+  flex-grow : 
+    how much a flex item will grow relative to the rest of the flex items if space is available
+  flex-shrink : 2
+    how much a flex item will shrink relative to the rest of the flex items if space is available
+
+  flex is shorthand for:
+      flex: flex-grow flex-shrink flex-basis;
+ 
+Example
+    Apply flex ratio
+    flex is shorthand for:
+      flex: flex-grow flex-shrink flex-basis;
+
+      main {
+        display: flex;
+        gap: 20px;
+      }
+      article {
+        flex: 3;
+      }
+      aside {
+        flex: 1;
+      }

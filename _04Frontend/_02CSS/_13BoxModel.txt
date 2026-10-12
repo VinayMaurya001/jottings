@@ -1,0 +1,157 @@
+Box Model
+	Margin
+	Border
+	Padding
+    Width-Height
+	Element
+		
+    Margin
+        margin-right
+        margin-left
+        margin-top
+        margin-bottom
+        Shorthand
+            margin: 50px;
+            margin: 1px 2px 3px 4px;
+            top | right | bottom | left -> clockwise
+    Border
+        Used to set an element's border
+        border-width : 2px;
+        border-style : solid / dotted / dashed
+        border-color : black;
+        Shorthand
+            border : 2px solid black;
+        border-radius
+            Used to round the corners of an element's outer border edge
+            border-radius : 10px;
+            border-radius : 50%;/*To create a circle*/
+    Padding
+        padding-top
+        padding-right
+        padding-bottom
+        padding-left
+        Shorthand
+            padding: 50px;
+            padding: 1px 2px 3px 4px;
+            top | right | bottom | left -> clockwise
+    Height
+        By default, it sets the content area height of the element
+        div {
+            height: 50px;
+        }
+    Width   
+        By default, it sets the content area width of the element
+        div {
+            width: 50px;
+        }
+
+
+
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-color: #e6cbf8;
+        }
+
+        .container{
+            background-color: rgb(231, 230, 241);
+            border: 3px solid rgb(64, 6, 119);
+
+            /* We can set margin/padding for  top, bottom, left and right like this */
+            /* padding-top: 79px;
+            padding-bottom: 79px;
+            padding-left: 34px; 
+            padding-right: 79px;*/
+
+            /* margin-top: 3px;
+            margin-bottom: 5px;
+            margin-left: 34px;
+            margin-right:5px ; */
+
+            /* margin = top right bottom left;  */
+            /* padding = top right bottom left;  */
+
+            /* padding: 23px 56px 6px 78px;   */
+            /* margin: 23px 56px 6px 78px;   */
+        
+            /* padding: y(top/bottom) x(left/right); */
+            /* margin: y(top/bottom) x(left/right); */
+            padding: 34px 19px;
+            margin: 14px 19px;
+            border-radius: 23px;
+            width: 533px;
+        }
+    </style>
+
+
+
+
+
+
+
+
+
+Display Property
+    display: inline / block / inline-block / none
+    block - 
+        Takes full space available in width.
+    inline - 
+        Takes only the space required by the element. (no margin/ padding)
+    inline-block - 
+        Similar to inline 
+            Like inline, but you can set width, height, margin, padding
+            but we can set margin & padding, width & height from top & buttom.
+            but we can set margin & padding, width & height from top & buttom.
+    none - 
+        To remove element from document flow.
+    	Hides the element completely
+    flex	
+        Makes the element a flex container for flexible layouts
+    grid	
+        Makes the element a grid container for 2D layouts
+    inline-flex	
+        Like flex, but behaves like an inline element
+    inline-grid	
+        Like grid, but behaves like an inline element
+    table, table-row, etc.	For table-like layouts
+
+Visibility
+    Note : When visibility is set to none, space for the element is reserved.
+    But for display set to none, no space is reserved or blocked for the element.
+    visibility: hidden/none;
+
+Alpha Channel
+    opacity (0 to 1) - 0 means invisible
+    RGBA
+        color: rgba(255, 0, 0, 1);
+        color: rgba(255, 0, 0, 1);
+
+This prevents layout calculation issues.
+    * {
+    box-sizing: border-box;
+    }
+
+
+
+
+
+
+
+display: block on <a>
+    By default:
+        <a> = inline element
+        Inline elements:
+            Do NOT respect vertical padding properly
+            Clickable area only around text
+    After:
+        display: block;
+        Now <a>:
+            Behaves like a block box
+            Padding applies fully
+            Clickable area becomes rectangular
+            UX improves significantly

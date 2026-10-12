@@ -1,0 +1,215 @@
+Transaction Propagation
+  Transaction propagation in Spring defines how transactional methods interact when one method calls another. 
+    It controls whether a new transaction is started, an existing one is joined, or the call runs outside of any transaction.
+  @Transactional(propagation = Propagation.X)
+
+Summary of all 7 Propagation Types
+| Propagation   | Behavior                                         |
+| ------------- | ------------------------------------------------ |
+| REQUIRED      | Join or create transaction                       |
+| REQUIRES_NEW  | Always new, suspend old                          |
+| SUPPORTS      | Join if exists, else none                        |
+| NOT_SUPPORTED | Suspend and run without                          |
+| MANDATORY     | Must have a transaction                          |
+| NEVER         | Must NOT have a transaction                      |
+| **NESTED**    | **Create savepoint inside existing transaction** |
+
+Why It Matters
+  - Consistency: Ensures related operations succeed or fail together.
+  - Flexibility: Allows independent commits (e.g., audit logs) even if the main transaction fails.
+  - Error Handling: Nested propagation lets you roll back part of a transaction without discarding everything.
+
+Most important Propagation types:
+      1️⃣ Propagation.REQUIRED (default)
+        If a transaction exists, use it; else create a new one.
+        If methodA OR methodB fails, entire transaction rolls back.
+        ✔ 99% of real-world cases use this
+      2️⃣ Propagation.REQUIRES_NEW
+        Always create a new transaction.
+        "I don’t care if a transaction is already running.
+        Pause it → start my own transaction → commit/rollback independently."
+        Exception in processMain() → Transaction A rolls back
+          BUT Transaction B stays committed
+        When to use REQUIRES_NEW
+        ✓ Use cases:
+            ✔ 1. Audit logging that must always save
+              Even if the parent transaction fails.
+            ✔ 2. Notification sending
+              Parent may fail, but notification must go.
+            ✔ 3. Retry logic
+              Each retry gets its own transaction.
+            ✔ 4. Saving partial data
+              Parent should not affect the child.
+        Overusing REQUIRES_NEW can:
+          reduce performance
+          break data consistency
+          increase database load
+          cause deadlocks if used incorrectly
+          Use it only when you truly need an independent transaction.
+      3️⃣ Propagation.SUPPORTS
+          If a transaction exists → join it.
+          If NO transaction exists → run without a transaction.
+          Example:
+            Logging or reading data
+            @Transactional(propagation = SUPPORTS)
+            public List<Product> listProducts() {
+                return repo.findAll(); // simple read
+            }
+            If someone calls this inside a transaction → it joins.
+            If someone calls normally → it runs without transaction.
+          📌 How SUPPORTS is used in real applications
+            ✔ 1. For read-only methods
+              You don't need transactions for simple read operations.
+            ✔ 2. For utility service methods
+              Methods that must behave the same inside or outside transactions.
+            ✔ 3. For optional transactions
+              When the method doesn’t CARE about transaction boundaries.
+          ❌ When NOT to use SUPPORTS
+              Avoid SUPPORTS for:
+              ❌ Save / update operations
+              ❌ Critical operations that require strict rollback
+              ❌ Business logic requiring consistency
+              Because if it's called without a transaction → risk of partial updates.
+      4️⃣ Propagation.NOT_SUPPORTED
+          If a transaction exists → suspend it.
+          Run the method without any transaction.
+          It never runs inside a transaction.
+          If caller has a transaction → it will be paused and later resumed.
+          Real Use Case
+            Use Case 1: Long non-critical tasks
+                Suppose methodB does:
+                  File reading/writing
+                  Calling an external API
+                  Sending email/SMS
+                  Heavy CPU work
+                  Report generation
+                You should not keep the database transaction open for these.
+                So NOT_SUPPORTED is perfect.
+            Use Case 2: Avoid locking the DB
+              If you do time-consuming operations inside a transaction:
+                locks stay open
+                DB connections are held
+                other transactions may get blocked
+              NOT_SUPPORTED ensures:
+                ✔ no locks
+                ✔ no DB connection usage
+                ✔ better performance
+            Use Case 3: Bypass isolation levels
+              Some tasks should NEVER run inside a transaction:
+              Like refrash cache
+          You cannot do ANY DB modifying operations in NOT_SUPPORTED
+            repository.save(entity);
+              It will run WITHOUT a transaction → leads to:
+                autocommit for every single statement
+                inconsistent data
+                partially written records if error occurs
+              NEVER use NOT_SUPPORTED for writes.
+      3️⃣ Propagation.MANDATORY
+        Must run inside a transaction; else error.
+        If a transaction exists → join it.
+        If NO transaction exists → throw an exception TransactionRequiredException.
+        It forces developers to call that method only inside a larger transaction.
+        This is useful when the logic must be part of a bigger transactional workflow.
+        📌 Real Use Cases of MANDATORY
+          ✔ 1. Child operations that must be part of parent transaction
+              For example:
+              createOrder()
+              addOrderItems()
+              calculateTotal()
+              updateInventory()
+              If addOrderItems() uses MANDATORY, you prevent accidental calling of that method without a transaction.
+          ✔ 2. Domain-driven design (DDD) services
+              Some domain rules must always be executed inside a transaction.
+              MANDATORY enforces this strictly.
+          ✔ 3. Preventing accidental non-transactional writes
+              Without MANDATORY:
+                Developers may call a write method directly → causing autocommit.
+              With MANDATORY:
+                ❌ If no transaction → method crashes immediately
+                ✔ Prevents partial updates
+              ✔ Ensures consistency
+      6️⃣ Propagation.Propagation.NEVER
+          If NO transaction exists → run normally (non-transactional).
+          If a transaction does exist → throw an exception IllegalTransactionStateException.
+          It is the opposite of MANDATORY.
+          NEVER does not start or suspend any transaction
+            It only checks:
+              "Is there an active transaction?"
+                Yes → ❌ error
+                No → ✔ run normally
+          Real Use Cases for Propagation.NEVER
+            ✔ 1. Long-running operations
+              When you MUST NOT hold DB locks:
+                File I/O
+                Sending large emails
+                Exporting Excel / PDF
+                Generating reports
+                Video processing
+                Image manipulation
+                External API calls
+              These should never run inside transactions because:
+                they hold locks
+                block other DB operations
+                cause timeouts
+            ✔ 2. Methods that simply should not be transactional
+              For example:
+                @Async
+                @Transactional(propagation = NEVER)
+                public void sendPushNotification() { ... }
+              Notifications should not be part of the DB transaction.
+            ✔ 3. Safety mechanism
+              Sometimes, developers want to forcefully prevent certain code from ever running with transactions.
+              Example:
+                You have legacy logic that misbehaves when wrapped in a transaction.
+              Using NEVER ensures:
+                ❌ accidental wrapping inside a transaction
+              ✔ safer execution
+      4️⃣ Propagation.NESTED
+        Creates a savepoint inside a transaction.
+          A savepoint in Spring Boot is a marker inside a transaction that lets you roll back part of the transaction without discarding the entire transaction. 
+          It acts like a checkpoint you can return to if something goes wrong, while still allowing the overall transaction to succeed later.
+        If a transaction exists → create a nested transaction inside it using a SAVEPOINT.
+        If no transaction exists → works like REQUIRED → it creates a new transaction.
+        "Start a sub-transaction inside the main transaction
+        but don’t commit independently like REQUIRES_NEW.
+        Instead, use a SAVEPOINT to allow partial rollbacks."
+        It is like:
+          ✔ A mini-transaction inside the main one
+          ✔ Can rollback only its part without rolling back the whole
+          ❌ Cannot commit independently
+        NESTED vs REQUIRES_NEW (Super Important)
+        ⭐ REQUIRES_NEW
+          Starts separate transaction
+          Main transaction is suspended
+          Independent commit/rollback
+        ⭐ NESTED
+          Starts a child transaction inside the existing one
+          Uses savepoints
+          If nested fails → rollback to savepoint
+          Parent continues
+          If parent fails → everything rolls back
+        📌 Both stay inside the same physical DB transaction.
+        Real Use Cases of NESTED
+        ✔ 1. Partial rollback within a workflow
+            E.g., Order processing:
+              save main order
+              try processing items
+              if one item fails → rollback only item logic
+              still keep the order
+        ✔ 2. Parent transaction must NOT fail
+              But child failures must be isolated.
+        ✔ 3. Advanced bulk operations
+            Example: import 1000 records
+              If one record fails:
+            Rollback nested for that record
+            Continue with others
+            Parent commit succeeds
+        Requirements & Limitations
+          🔸 NESTED needs JDBC Savepoints
+                Works only when:
+                  Database supports savepoints
+                  Spring PlatformTransactionManager = DataSourceTransactionManager
+                It does NOT work with:
+                  JPA + Hibernate (EntityManagerTransactionManager)
+                  JTA transactions (global transactions)
+                If JPA is used → NESTED behaves like REQUIRED.

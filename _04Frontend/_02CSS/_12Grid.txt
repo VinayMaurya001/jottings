@@ -1,0 +1,5 @@
+CSS Grid
+	Used to create Layout of page like using float,flex etc. 
+	Flexbox → 1 dimension (row OR column)
+	Grid → 2 dimensions (rows AND columns)
+	Grid is ideal for full page layout.

@@ -1,0 +1,58 @@
+File System Hierarchy Standard(FHS)
+
+/
+  This directory is called as the ‘root’ directory/parent directory.
+  It is at the top of the file system structure.
+  All other directories are placed under it.
+  eg: c:/ drive in windows
+
+/root
+  This is the default home directory of the root.
+  Note: In Linux / Unix the administrator is called as root.
+
+/home
+  It contains the home directories of all users (similar to ‘/users/username’ folder in Windows).
+  When any user logs in the current working directory by default is the users home directory.
+
+/boot
+  It also contains the files related for booting the OS such as the boot loader.
+  It contains the kernel, which is the core of the operating system.
+
+/sbin
+  sbin stands for system binary.
+  It contains essential system commands which can only be used by the superuser (root).
+  Example:- fdisk, dump, etc.
+
+/bin
+  bin stands for binary
+  It contains essential commands which are used by all users.
+  Example:- ping, cat, chmod, etc.
+
+/usr
+  usr stands for Unix system resources
+  It contains the programs and applications which are available for users (similar to program files in Windows).
+
+/opt
+  opt stands for optional
+  It generally contains the third party software's.
+  Example:- Open Office etc.
+
+/var
+  var stands for variable
+  It contains variable information, such as logs and print queues.
+
+/etc
+etc stands for et cetera
+Contains all the configuration files.
+
+/dev
+  dev stands for device
+  It contains information about all hardware devices
+
+
+/mnt
+mnt standards for mount it contains mounted directories information.
+/media
+  It is up to RHEL 6 default mount point for removable storage media  such as cdrom/dvd and pendrives, etc.
+/run
+It is from RHEL 7 default mount point for removable storage media  such as cdrom/dvd and pendrives, etc.

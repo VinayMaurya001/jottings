@@ -1,0 +1,55 @@
+
+Parts of speech
+  Parts of speech are words that have a standalone function.
+    The function could be to describe actions,
+      or to join clauses,to describe objects,to show their attributes like size, shape, taste or location.
+
+  Noun
+    What
+    Who 
+  Verb
+    What to do?
+  Adjective
+    Attribute of a noun or describe the noun
+  Adverb
+    Modifies a verb, an adjective or another adverb
+    How ?
+  Pronoun
+    To replace a noun
+    I, you, he, she, it, we, they, 
+    what, this, that, these, those
+    him
+  Preposition
+    A preposition is a word placed before a noun or pronoun to show its relationship with another word in the sentence.
+    in, on, of, at, to, under, over, before, after
+    at, in, on, by, with, for, from, to, of, about, over, under, after, before, between, during, into, onto, towards, near, beside, above, below, across, through, around, against
+  Conjunction
+    A conjunction is a word that joins words, phrases, or clauses in a sentence.    
+    and but
+
+
+Types of Pronouns (with list)
+  1. Personal Pronouns
+    Subjective: I, you, he, she, it, we, they
+    Objective: me, you, him, her, it, us, them
+  2. Possessive Pronouns
+    mine, yours, his, hers, its, ours, theirs
+  3. Reflexive Pronouns
+    myself, yourself, himself, herself, itself, ourselves, yourselves, themselves
+  4. Demonstrative Pronouns
+    this, that, these, those
+  5. Interrogative Pronouns
+    who, whom, whose, which, what
+  6. Relative Pronouns
+    who, whom, whose, which, that
+  7. Indefinite Pronouns
+    anyone, anybody, everyone, everybody, someone, somebody, no one, nobody,
+    each, either, neither, all, some, many, few, several, none, one, both, much, everything, anything, nothing
+  8. Reciprocal Pronouns
+    each other, one another
+  9. Distributive Pronouns
+    each, either, neither
+
+
+
+  

@@ -1,0 +1,17 @@
+Constructor in ReactJS
+  Constructor is a method
+  Constructor is a member of class
+  Constructor is used to initialize the Object's state
+  Constructor is automatically called when an object is created
+
+
+  Inheritance
+    Using extends keyword, child class inherit parent class.
+    Using super keyword, we can inherit the data from parent class to the child class.
+    constructor(){
+      super();
+    }
+
+  When we implement the constructor for a react component, 
+    we need to call super(props) method before any statement.
+    If we do not call super(props), this.props will be undefined in the constructor & can leads to bugs.

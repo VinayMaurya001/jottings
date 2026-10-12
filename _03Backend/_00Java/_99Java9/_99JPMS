@@ -1,0 +1,42 @@
+
+JPMS
+  Java Platform Mudule System
+
+  Accessibility in Java 1-8
+    public
+    protected
+    package
+    private
+
+  Accessibility in Java 9+
+    public to everyone
+          // module-info.java
+          module greetings {
+              exports com.example.greetings;
+          }
+    public to friend modules
+          exports com.example.greetings to app.module;
+    public only within a module
+          module internal.module {
+            // No exports
+          }
+    protected
+      Accessible within the same package and 
+      if exported, then accessible in subclasses in other module.
+    package-private(default)
+    private
+
+
+
+
+
+Key Keywords
+  exports -Makes a package accessible to other modules
+  requires -Declares dependency on another module
+  opens- Allows reflective access (e.g., for frameworks like Spring or JAXB)
+  uses/provides -Enables service loading via ServiceLoader
+  requires transitive -Re-exports a dependency to downstream modules
+
+
+
+

@@ -1,0 +1,183 @@
+1)
+CSS Basics
+http://www.csszengarden.com/
+
+selector{
+property:vale;
+}
+
+
+Inline
+	<h1 style="color:red;">Hiiiiiiii</h1>
+	Bad because
+		1)HTML & CSS mixup
+		2)In future if we want change, we have to change at every places
+Style tag
+	<style type="text/css">
+		body{
+			background-color: yellow;
+		}
+	</style>
+External file
+	<link rel="stylesheet" type="text/css" href="abc.css">
+	
+2)
+Colors in CSS
+CSS colors name(147 total)
+	https://colours.neilorangepeel.com/
+	body{
+		background-color: chocolate;
+	}
+Hexadecimal Colors
+	The reason that hexadecimal is used rather than using just decimal to name a color is that it gives us a lot more choices while keeping the names of recolors relatively short.
+	body{
+			background-color: #FFFF00;
+	}
+RGB colors
+	rgb(0, 179, 0)
+RGBA colors
+	A-alpha(transparency) channel with value 0 to 1
+	rgba(0, 179, 0,0.6)
+https://www.w3schools.com/colors/colors_picker.asp
+	hsl(120, 100%, 35%)
+https://imagecolorpicker.com/
+
+3)
+Background & Border
+	body{
+			background: #FFFF00;
+	}
+	body{
+			background: url(https://imgprod65.com/018.jpg);
+			background-repeat: no-repeat;
+			background-size: cover; //stretch on whole page
+	}	
+The background property being used to change the color of something.
+But we can also use the background property to change the background to be an image.
+
+Border
+	h1{
+			border-width: 5px;
+			border-style: solid;
+			border-color: blue;
+		}
+	h1{
+			border:5px solid red;
+			text-decoration:line-through;
+		}
+	
+
+4)
+Chrome Inspector
+View Page Source
+Inspect
+	Element tab
+		Style tab for css	
+	
+	
+5)
+CSS Selectors
+1)Element, elementName
+2)Id, #idname
+	ID can only appear on a page one time.
+	# sign an "octothorpe" (which can also be spelled "octothorp")
+3)Class, .className
+4)* selector: select everything on the page
+	*{
+			border:5px solid Green;
+		}
+5)Descendant Seletor
+	 It takes two or more tag names or two or more selectors and you chain them together.
+	 ul li a{}
+	 li .hello{}
+6)Adjacent Seletor
+	It allows us to select a sibling.
+	h4 +  ul{}
+7)Attribute Selector
+	a[href="https://www.google.com/"]{}
+8)nth of type
+	input:nth-of-type(2){
+			border:20px solid RED;
+		}
+9)Pseudo-selectors like hover
+	a:hover{}
+	input:checked{}
+	
+https://code.tutsplus.com/tutorials/the-30-css-selectors-you-must-memorize--net-16048
+
+Error driven development
+	where we write something that we know won't work and then we make it work afterwards.
+	
+6)
+Inheritance & Specificity
+Inheritance, where if we set a property on a parent it can also affect a child element.
+Specificity is this idea in the sense that we can have multiple styles targeting one element.
+	So then the SS has to decide which one wins. And in this case whatever style is closest to this element.
+	https://specificity.keegan.st/
+	https://www.w3.org/TR/selectors-3/#specificity
+		IDs
+		Classes, attributes and pseudo-classes
+		Elements and pseudo-elements
+	
+7)
+Text & fonts
+https://baconipsum.com/
+https://www.cssfontstack.com/
+	p{
+			font-family: Arial;
+			font-size: 35px;
+			font-size: 2.0em;
+			font-weight:normal;
+			font-weight:bold ;
+			font-weight:800;/*from 100 to 800*/
+			line-height: 1.5;
+			text-align: right;
+			text-decoration: underline;
+	}
+
+8)
+https://fonts.google.com/
+ <link href="https://fonts.googleapis.com/css?family=Caladea&display=swap" rel="stylesheet">
+
+9)
+The Box Model
+Content
+Padding
+Border
+Marging
+	p{
+			width: 500px;
+			width: 50%;
+			border: 2px solid blue;
+			padding:5px;
+			/*margin: 50px;
+			margin-top: 150px;*/
+			/*margin: 10px 500px 300px 40px;*//*top right bottom left*/
+			/*margin: 10px auto 10px auto;*/
+			margin: 10px auto ;/*top-bottom left-right*/
+
+		}c
+10)
+Tic Toc Toe Board
+Image Gallery
+	float property
+	ctrl+click & type multiple lines simultaneously
+	font-family: Raleway;
+		<link href='https://fonts.googleapis.com/css?family=Raleway:400,800' rel='stylesheet' type='text/css'>
+	img {
+	width: 30%;
+	float: left;
+	margin: 1.66%;
+	}
+	p {
+	font-family: Raleway;
+	margin-left: 1.66%;
+	font-size: 23px;
+	font-weight: 800;
+	text-transform: uppercase;
+	border-bottom: 2px solid #f1f1f1;
+	width: 30%;
+	padding-bottom: 20px;
+	}
+
+

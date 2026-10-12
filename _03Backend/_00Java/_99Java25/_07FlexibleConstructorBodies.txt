@@ -1,0 +1,409 @@
+Flexible Constructor Bodies
+Records
+Enums
+Nested classes
+
+Summary
+  In the body of a constructor, allow statements to appear before an explicit constructor invocation, i.e., super(...) or this(...). 
+  Such statements cannot reference the object under construction, 
+    but they can initialize its fields and perform other safe computations.
+  This change allows many constructors to be expressed more naturally. 
+  It also allows fields to be initialized before they become visible to other code in the class, 
+    such as methods called from a superclass constructor, thereby improving safety.
+
+Goals
+  Remove unnecessary restrictions on code in constructors, so that arguments can easily be validated before calling superclass constructors.
+  Provide additional guarantees that the state of a new object is fully initialized before any code can use it.
+  Reimagine the process of how constructors interact with each other to create a fully initialized object.
+
+Before Java 25
+  The constructors of a class are responsible for creating valid instances of the class. 
+    Typically, a constructor validates and transforms its arguments 
+    and then initializes the fields declared in its class to legitimate values. 
+    In the presence of subclassing, constructors of superclasses and subclasses share responsibility for creating valid instances.
+  The Java language ensures construction of valid instances by running constructors from the top down: 
+    A constructor in a superclass runs before a constructor in a subclass. 
+    To achieve this, the language requires the first statement in a constructor 
+    to be a constructor invocation, i.e., super(...) or this(...). 
+    If no such statement exists then the Java compiler inserts a superclass constructor, i.e., super().
+  Since the superclass constructor runs first, 
+    fields declared in the superclass are initialized before fields declared in the subclass. 
+    Thus the Person constructor runs in its entirety before the Employee constructor validates its arguments, 
+    which means that the Employee constructor can assume that 
+    the Person constructor has properly initialized the fields declared in Person.
+
+  Constructors are too restrictive
+    The top-down rule for constructors helps ensure that newly-constructed instances are valid, 
+      but it outlaws some familiar and reasonable programming patterns. 
+      Developers are often frustrated that they cannot write code in constructors that is perfectly safe.
+    Example:
+          Potentially unnecessary work of invoking the superclass constructor.
+          class Person {
+              ...
+              int age;
+              Person(..., int age) {
+                  if (age < 0)
+                      throw new IllegalArgumentException(...);
+                  ...
+                  this.age = age;
+              }
+          }
+          class Employee extends Person {
+              Employee(..., int age) {
+                  super(..., age);        // Potentially unnecessary work
+                  if (age < 18 || age > 67)
+                      throw new IllegalArgumentException(...);
+              }
+
+          }
+    Example:
+      It would be better to declare an Employee constructor that fails fast, 
+        by validating its argument before invoking the Person constructor. 
+        This is clearly safe, but since the constructor invocation must come first the only way to do this is 
+        to call an auxiliary method in-line, as part of the constructor invocation.
+          class Employee extends Person {
+              private static int verifyAge(int value) {
+                  if (age < 18 || age > 67)
+                      throw new IllegalArgumentException(...);
+                  return value;
+              }
+              Employee(..., int age) {
+                  super(..., verifyAge(age));
+              }
+          }
+    The requirement that the superclass constructor must come first causes trouble in other scenarios, too. 
+      For example, we might need to perform some non-trivial computation to prepare the arguments for a superclass constructor invocation. 
+      Or, we might need to prepare a complex value to be shared among several arguments of a superclass constructor invocation.  
+  Superclass constructors can violate the integrity of subclasses
+    The top-down rule ensures that a superclass constructor always runs before the subclass constructor, 
+      ensuring that the fields of the superclass are initialized properly. 
+      Unfortunately, the rule is not sufficient to ensure the integrity of the new instance as a whole. 
+      The superclass constructor can, indirectly, access fields of the subclass 
+      before the subclass constructor initializes them. 
+    Example:
+      Suppose the Employee class has an officeID field, 
+        and the constructor in Person calls a method which is overridden in Employee.
+          class Person {
+              ...
+              int age;
+              void show() {
+                  System.out.println("Age: " + this.age);
+              }
+              Person(..., int age) {
+                  if (age < 0)
+                      throw new IllegalArgumentException(...);
+                  ...
+                  this.age = age;
+                  show();
+              }
+          }
+          class Employee extends Person {
+              String officeID;
+              @Override
+              void show() {
+                  System.out.println("Age: " + this.age);
+                  System.out.println("Office: " + this.officeID);
+              }
+              Employee(..., int age, String officeID) {
+                  super(..., age);        // Potentially unnecessary work
+                  if (age < 18  || age > 67)
+                      throw new IllegalArgumentException(...);
+                  this.officeID = officeID;
+              }
+          }
+          What does new Employee(42, "CAM-FORA") print? 
+            You might expect it to print Age: 42, and perhaps additionally Office: CAM-FORA, 
+            but actually it prints Age: 42 and Office: null! 
+            This is because the Person constructor runs before the officeID field is initialized by the Employee constructor. 
+            The Person constructor calls the show method, 
+            causing the overriding show method in Employee to run, 
+            all before the Employee constructor initializes the officeID field to "CAM-FORA". 
+            As a result, the show method prints the default value of the officeID field, which is null.
+        This behavior violates the integrity of the Employee class, 
+          which requires that its fields not be accessed before they are initialized to valid states by its constructor. 
+          Even final fields in Employee can be accessed before they are initialized to their final values, 
+          thus the values of final fields can be observed to change!
+        This particular example is troublesome due to the fact that constructors can invoke overridable methods. 
+          While doing so is considered bad practice — 
+          Item 19 of Effective Java advises that "Constructors must not invoke overridable methods" —
+          it is not uncommon, and is a source of subtle real-world bugs and errors. 
+          But this is just one example of such behavior. 
+          For another example, there is nothing to stop a superclass constructor 
+          from passing the current instance to another method 
+          that accesses subclass fields before they are assigned values by the subclass constructor.
+        In sum, the top-down rule often limits the expressiveness of constructors. 
+          There is, moreover, little that a class can do to defend itself against violations of its integrity 
+            by its own superclasses or 
+            by other code. 
+            We need a solution to both problems.
+
+Java 25
+
+  Example: 
+      We can write our Employee constructor directly and more clearly to fail fast
+          class Employee extends Person {
+              String officeID;
+              Employee(..., int age, String officeID) {
+                  if (age < 18  || age > 67)
+                      // Now fails fast!
+                      throw new IllegalArgumentException(...);
+                  super(..., age);
+                  this.officeID = officeID;
+              }
+          }
+  Example:
+    Subclass constructors establish integrity by initializing their fields before invoking superclass constructors.
+      Now, new Employee(42, "CAM-FORA") prints Age: 42 and Office: CAM-FORA, as expected. 
+      The integrity of the Employee class is maintained.
+          class Employee extends Person {
+            String officeID;
+            Employee(..., int age, String officeID) {
+                if (age < 18  || age > 67)
+                    // Now fails fast!
+                    throw new IllegalArgumentException(...);
+                this.officeID = officeID;   // Initialize before calling superclass constructor!
+                super(..., age);
+            }
+          }
+  Dropping the top-down rule represents a new semantic model for constructor bodies. 
+    A constructor body now has two distinct phases: 
+      The prologue is the code before the invocation of the next constructor, and 
+      the epilogue is the code after that invocation.
+    To illustrate, consider this class hierarchy:
+        class Object {
+            Object() {
+                // Object constructor body
+            }
+        }
+        class A extends Object {
+            A() {
+                super();
+                // A constructor body
+            }
+        }
+        class B extends A {
+            B() {
+                super();
+                // B constructor body
+            }
+        }
+        class C extends B {
+            C() {
+                super();
+                // C constructor body
+            }
+        }
+        class D extends C {
+            D() {
+                super();
+                // D constructor body
+            }
+        }
+        Currently, when creating a new instance of class D, via new D(), 
+          the invocations of the constructors and the executions of their bodies flow like this:
+              D
+              --> C
+                  --> B
+                      --> A
+                          --> Object constructor body
+                      --> A constructor body
+                  --> B constructor body
+              --> C constructor body
+              D constructor body
+          That is, the constructors are invoked bottom-up, starting at the bottom of the hierarchy, 
+            but the constructor bodies run top-down, 
+            starting at the top of the hierarchy with the class Object and moving down, one by one, through the subclasses.
+
+    When constructor bodies have both a prologue and an epilogue, 
+      we can generalize the class declarations:
+
+        class Object {
+            Object() {
+                // Object constructor body
+            }
+        }
+        class A extends Object {
+            A() {
+                // A prologue
+                super();
+                // A epilogue
+            }
+        }
+        class B extends A {
+            B() {
+                // B prologue
+                super();
+                // B epilogue
+            }
+        }
+        class C extends B {
+            C() {
+                // C prologue
+                super();
+                // C epilogue
+            }
+        }
+        class D extends C {
+            D() {
+                // D prologue
+                super();
+                // D epilogue
+            }
+        }
+        The invocations of the constructors and the executions of the prologues and epilogues flow like this:
+              D prologue
+              --> C prologue
+                  --> B prologue
+                      --> A prologue
+                          --> Object constructor body
+                      --> A epilogue
+                  --> B epilogue
+              --> C epilogue
+              D epilogue
+        That is, the prologues run bottom-up and then the epilogues run top-down. 
+        We can create valid instances by writing prologues which ensure, from the bottom up, 
+        that the fields of each subclass are assigned valid values. 
+        That, in turn, enables us to write epilogues secure in the knowledge that 
+        the state which they observe is valid, so they can freely reference the instance under construction.
+
+  Syntax
+    We revise the grammar of constructor bodies to allow statements before explicit constructor invocations; that is, from:
+        ConstructorBody:
+              { [ExplicitConstructorInvocation] [BlockStatements] }
+              to:
+        ConstructorBody:
+            { [BlockStatements] ExplicitConstructorInvocation [BlockStatements] }
+        
+         
+    An ExplicitConstructorInvocation is either a superclass constructor invocation, i.e., super(...), or 
+      an alternate constructor invocation, i.e., this(...).
+
+    The statements that appear before an explicit constructor invocation constitute the prologue of the constructor body.
+    The statements that appear after an explicit constructor invocation constitute the epilogue of the constructor body.
+
+    A constructor body need not contain an explicit constructor invocation.   
+      In that case the prologue is empty, 
+      an invocation of the constructor of the direct superclass that takes no arguments, i.e., super(), 
+      is considered to implicitly appear at the beginning of the constructor body, 
+      and all of the statements in the constructor body constitute the epilogue.
+
+    A return statement is permitted in the epilogue of a constructor body, 
+      but it must not include an expression. 
+      That is, return is permitted but return e is not. 
+      It is a compile-time error for a return statement to appear in the prologue of a constructor body.
+
+    Throwing an exception in the prologue or epilogue of a constructor body is permitted. 
+      Throwing an exception in the prologue will be typical in fail-fast scenarios.
+
+
+Early construction contexts
+  Currently, code that appears in the argument list of an explicit constructor invocation 
+    is said to appear in a static context. 
+    This means that the arguments to the explicit constructor invocation are treated 
+    as if they were code in a static method, 
+    in which no instance is available. 
+    The technical restrictions of a static context are stronger than necessary, however, 
+    and they prevent code that is useful and safe from appearing as constructor arguments.
+
+Rather than revise the concept of a static context, 
+  we introduce the concept of an early construction context that covers both 
+  the argument list of an explicit constructor invocation and 
+  any statements that appear before it in the constructor body, i.e., in the prologue. 
+  Code in an early construction context must not use the instance under construction, 
+    except to initialize fields that do not have their own initializers.
+
+In other words, code in an early construction context must not use this, 
+  either explicitly or implicitly, 
+  to refer to the current instance or access fields or invoke methods of the current instance. 
+  The only exception to this rule is that such code may use 
+  simple assignment statements to fields declared in the same class, 
+  provided that the declarations of those fields do not have initializers.
+
+For example:
+      class X {
+          int i;
+          String s = "hello";
+          X() {
+
+              System.out.print(this);  // Error - explicitly refers to the current instance
+
+              var x = this.i;          // Error - explicitly refers to field of the current instance
+              this.hashCode();         // Error - explicitly refers to method of the current instance
+
+              var y = i;               // Error - implicitly refers to field of the current instance
+              hashCode();              // Error - implicitly refers to method of the current instance
+
+              i = 42;                  // OK - assignment to an uninitialized declared field
+              this.i = 42;             // OK - assignment to an uninitialized declared field
+              i = 42;                  // OK - assignment to an uninitialized declared field
+              this.i = 42;             // OK - assignment to an uninitialized declared field
+
+              s = "goodbye";           // Error - assignment to an initialized declared field
+              super();
+          }
+      }
+A further restriction is that code in an early construction context must not use super to access fields or invoke methods of the superclass:
+      class Y {
+          int i;
+          void m() { ... }
+      }
+      class Z extends Y {
+          Z() {
+              var x = super.i;         // Error
+              super.m();               // Error
+              super();
+          }
+      }
+
+Records
+  Constructors of record classes are already subject to more restrictions than constructors of normal classes. In particular,
+    Canonical record constructors must not contain an explicit constructor invocation, and
+    Non-canonical record constructors must contain an alternate constructor invocation, i.e., this(...), and not a superclass constructor invocation, i.e., super(...).
+  These restrictions remain. 
+  Otherwise, record constructors benefit from the changes described above, 
+    primarily because non-canonical record constructors may now contain statements before the alternate constructor invocation.
+
+Enums
+  Constructors of enum classes may contain alternate constructor invocations, 
+  but not superclass constructor invocations. Just like record classes, 
+  enum classes benefit from the changes described above, 
+  primarily because their constructors may now contain statements before the alternate constructor invocation.
+
+
+
+Nested classes
+    class Outer {
+
+        int i;
+
+        void hello() { System.out.println("Hello"); }
+
+        class Inner {
+
+            int j;
+
+            Inner() {
+                var x = i;             // OK - implicitly refers to field of enclosing instance
+                var y = Outer.this.i;  // OK - explicitly refers to field of enclosing instance
+                hello();               // OK - implicitly refers to method of enclosing instance
+                Outer.this.hello();    // OK - explicitly refers to method of enclosing instance
+                super();
+            }
+
+        }
+
+    }
+  By contrast, in the constructor of Outer shown below, code in the early construction context cannot instantiate the Inner class with new Inner(). This expression is really this.new Inner(), meaning that it uses the current instance of Outer as the enclosing instance for the Inner instance. Per the earlier rule, code in an early construction context must not use this, either explicitly or implicitly, to refer to the current instance.
+
+        class Outer {
+
+            class Inner {}
+
+            Outer() {
+                var x = new Inner();       // Error - implicitly refers to the current instance of Outer
+                var y = this.new Inner();  // Error - explicitly refers to the current instance of Outer
+                super();
+            }
+
+        }
+

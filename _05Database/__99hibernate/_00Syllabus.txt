@@ -1,2 +1,14 @@
 Hibernate Association Mappings
 	https://www.baeldung.com/jpa-hibernate-associations
+
+
+
+SET foreign_key_checks = 1;
+
+
+
+
+However, if you need absolute 0% of collision, you could do this instead
+• generate random UUID
+• query your db and see if UUID has been used by your app
+• if so, then repeat previous two steps until no duplicates found

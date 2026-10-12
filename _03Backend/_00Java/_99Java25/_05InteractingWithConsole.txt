@@ -1,0 +1,18 @@
+Interacting with the console
+we add a new class, java.lang.IO, which declares five static methods:
+  public static void print(Object obj);
+  public static void println(Object obj);
+  public static void println();
+  public static String readln(String prompt);
+  public static String readln();
+
+  void main() {
+      IO.println("Hello, World!");
+  }
+  void main() {
+      String name = IO.readln("Please enter your name: ");
+      IO.print("Pleased to meet you, ");
+      IO.println(name);
+  }
+
+  Since the IO class resides in the java.lang package, it can be used without an import in any Java program.

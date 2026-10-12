@@ -1,0 +1,281 @@
+View in a Database
+  A View is a virtual table created from a SQL query.
+    It looks like a table
+    You can run SELECT queries on it
+    But the data is not stored separately
+    It pulls data from other tables when you access it
+  A view does NOT store data (usually,Materialized views need storage and refresh logic).
+  It only stores the SQL query.
+  Table
+      id | name   | department | salary
+      ---------------------------------
+      1  | John   | IT         | 50000
+      2  | Lucy   | HR         | 45000
+      3  | Sam    | IT         | 60000
+  Create a view of only IT employees:
+    CREATE VIEW it_emp AS SELECT id, name, salary FROM employees WHERE department = 'IT';
+  Now you can use this like a table:
+    SELECT * FROM it_emp;
+
+
+
+Types of Views
+    1) Simple View
+      Created from one table.
+      CREATE VIEW basic_view AS SELECT id, name FROM employees;
+    2) Complex View
+      Created using:
+        multiple tables
+        joins
+        group by
+        functions
+      CREATE VIEW dept_salary AS
+        SELECT department, AVG(salary) AS avg_salary FROM employees  GROUP BY department;
+    3) Updatable View
+      Views where you can INSERT, UPDATE, or DELETE data.
+      An updatable view is a database view through which you can:
+        INSERT
+        UPDATE
+        DELETE
+        And those changes apply to the base table.
+      A view through which you can modify data in the underlying table.
+      CREATE VIEW emp_basic AS
+        SELECT id, name, salary
+        FROM employees;
+      UPDATE emp_basic 
+          SET salary = 90000
+          WHERE id = 2;
+        This updates employees.salary
+        View automatically reflects the updated value
+      INSERT INTO emp_basic(id, name, salary) VALUES(10, 'Akash', 55000);
+      DELETE FROM emp_basic WHERE id = 3;
+      RULES for Updatable Views
+      A view is updatable only when:
+        ✔ Rule 1: View contains data from a single table
+            No joins.
+        ✔ Rule 2: View must include the primary key of the base table
+            If the PK is missing, DB may not know which row to update.
+          Rule 3: No aggregations
+            These cause the view to become NON-updatable:
+              SUM()
+              COUNT()
+              AVG()
+              MIN()
+              MAX()
+          Rule 4: No DISTINCT
+              CREATE VIEW distinct_depts AS
+                SELECT DISTINCT dept FROM employees;
+          Rule 5: No GROUP BY, HAVING
+        ✔ Rule 6: No UNION / UNION ALL
+        ✔ Rule 7: No subqueries in SELECT list that block updates
+
+    4) Non-Updatable View
+      When a view contains:
+        joins
+        group by
+        aggregates (SUM, AVG)
+        distinct
+        union
+      Then you CANNOT update through the view.
+        CREATE VIEW total_salary AS SELECT department, SUM(salary) FROM employees GROUP BY department;
+        This view cannot be updated.
+
+
+
+Advantages of Views
+  ✔ 1. Simplify complex SQL
+    No need to write large queries repeatedly.
+  ✔ 2. Security
+    Hide sensitive columns:
+    CREATE VIEW emp_public AS SELECT name, department FROM employees;
+    Users accessing view do not see salary.
+  ✔ 3. Consistency
+    Single source for calculated data.
+  ✔ 4. Logical data abstraction
+    Change table structure without affecting view queries.
+  
+    
+Disadvantages of Views
+  ❌ 1. Performance overhead
+      Every time the view is executed, SQL runs again.
+  ❌ 2. Difficult to update
+      Not all views are updatable.
+  ❌ 3. Materialized views need storage and refresh logic.
+
+
+
+Examples
+  1)View with Join
+  CREATE VIEW employee_department AS 
+    SELECT e.id, e.name, d.dept_name
+    FROM employees e JOIN departments d ON e.department = d.dept_id;
+  2)Add Calculated Columns
+  CREATE VIEW employee_tax AS
+    SELECT name, salary, salary * 0.1 AS tax FROM employees;
+  3)How to Update or Drop View
+    Update a View:
+      CREATE OR REPLACE VIEW it_emp AS
+      SELECT id, name, salary
+      FROM employees
+      WHERE department = 'IT' AND salary > 55000;
+    Drop a view:
+      DROP VIEW it_emp;
+    Insert through the view
+      INSERT INTO emp_basic(id, name, salary) VALUES(10, 'Akash', 55000);
+    Delete through the view
+      DELETE FROM emp_basic WHERE id = 3;
+    A simple view is fully updatable
+      No special conditions required
+
+Updatable Views in MySQL, PostgreSQL, Oracle
+  ✔ MySQL
+      Supports simple updatable views.
+      Some complex views can be partially updatable.
+      Has WITH CHECK OPTION (important).
+  ✔ PostgreSQL
+      Supports updatable views through INSTEAD OF triggers.
+      Without triggers → only simple views are updatable.
+  ✔ Oracle
+      Very powerful view updating.
+      Supports updatable complex views using INSTEAD OF triggers.
+
+WITH CHECK OPTION (VERY IMPORTANT)
+  This ensures insert/update must satisfy the view condition. 
+  CREATE VIEW it_emp AS
+    SELECT id, name, dept FROM employees WHERE dept = 'IT' WITH CHECK OPTION;
+  Insert allowed
+    INSERT INTO it_emp VALUES(10, 'Harry', 'IT');
+  Insert not allowed
+    INSERT INTO it_emp VALUES(11, 'Bob', 'HR');
+    Cannot insert a row that does not satisfy view condition
+  Update NOT allowed
+    UPDATE it_emp SET dept='HR' WHERE id=2;
+    Also throws error — because after update, the row would disappear from the view.
+
+Semi-Updatable View (Columns limited)
+    A view may be updatable but only some columns can be updated.
+    CREATE VIEW emp_view AS SELECT id, name, salary, dept FROM employees;
+    But if table has
+      id (PK)
+      name
+      salary
+      dept
+      created_at (auto timestamp)
+    You cannot update created_at through the view if it’s not included.
+
+Updatable views using INSTEAD OF Triggers (Advanced)
+  Example (PostgreSQL/Oracle):
+    CREATE OR REPLACE VIEW emp_dept AS SELECT e.id, e.name, d.dept_name FROM employees e JOIN departments d ON e.dept = d.id;
+  Then create a trigger:
+    CREATE TRIGGER emp_dept_update
+      INSTEAD OF UPDATE ON emp_dept
+      FOR EACH ROW
+      BEGIN
+          UPDATE employees
+          SET name = :NEW.name
+          WHERE id = :OLD.id;
+      END;
+      This makes the view updatable even with joins.
+
+Full Summary (Easy to Remember)
+    | Feature                    | Updatable?   | Notes                            |
+    | -------------------------- | ------------ | -------------------------------- |
+    | Simple SELECT from 1 table | ✔ Yes        | Must include PK                  |
+    | SELECT with conditions     | ✔ Yes        | But use CHECK OPTION to restrict |
+    | Joins                      | ❌ No        | Unless using INSTEAD OF triggers |
+    | Aggregations               | ❌ No        | SUM, AVG, GROUP BY               |
+    | DISTINCT                   | ❌ No        |                                  |
+    | UNION                      | ❌ No        |                                  |
+    | Materialized View          | ❌ Usually No| Refreshed manually               |
+
+
+
+Materialized View (Important)
+  Materialized Views store data physically.
+  ✔ They are used for performance.
+  ✔ Available in Oracle & PostgreSQL 9+.
+  ❌ Not available by default in MySQL.
+  CREATE MATERIALIZED VIEW monthly_sales AS
+    SELECT month, SUM(amount) FROM sales GROUP BY month;
+  Materialized views need refreshing:
+    REFRESH MATERIALIZED VIEW monthly_sales;
+    The MV does not automatically stay in sync; you must refresh it.
+  Why do we need Materialized Views?
+    1. Speed up heavy queries
+        An MV stores the precomputed result → extremely fast.
+    2. Reduce load on base tables
+    3. Data Warehousing
+      ETL → Materialized Views → Reporting Tools
+    4. Cached reporting
+        Example:
+          Daily sales summary
+          Monthly order statistics
+          Top 10 products sold
+  4. Refresh Strategies (VERY IMPORTANT)
+      Materialized views become outdated.
+      You must refresh them.
+      A) Complete Refresh
+        Recomputes the entire MV from scratch.
+        REFRESH MATERIALIZED VIEW monthly_sales_mv;
+        When to use:
+            Small data sets
+            When incremental refresh not possible
+        Disadvantage:
+            Slow for large data
+            MV locked during refresh (PostgreSQL unless using CONCURRENTLY)
+      B) Fast Refresh / Incremental Refresh
+        Only changes new / updated / deleted rows.  
+        Oracle has the best implementation.
+        Requires:
+          Materialized view logs
+          Primary keys on base tables
+        CREATE MATERIALIZED VIEW LOG ON sales WITH PRIMARY KEY, ROWID;
+        CREATE MATERIALIZED VIEW sales_mv REFRESH FAST AS  SELECT * FROM sales;
+        EXEC DBMS_MVIEW.REFRESH('SALES_MV','F');
+      C) Refresh On Commit
+        Materialized view refreshes each time the base table commits changes.
+        CREATE MATERIALIZED VIEW emp_mv
+          REFRESH FAST ON COMMIT
+          AS 
+          SELECT id, department, SUM(salary)
+          FROM employees
+          GROUP BY id, department;
+        Pros:
+            MV always up-to-date
+            Best for transactional systems (OLTP)
+        Cons:
+            Slows down commits
+            Requires logs & constraints
+
+      D) Refresh On Schedule
+          START WITH SYSDATE
+            NEXT SYSDATE + 1;   -- daily refresh
+          Or custom intervals:
+            Hourly
+            Every 5 minutes
+            Midnight
+      E)PostgreSQL Special Option: CONCURRENTLY
+        REFRESH MATERIALIZED VIEW CONCURRENTLY monthly_sales_mv;
+        ✔ MV stays available during refresh
+        ✔ No long blocking
+        ❌ Requires a unique index
+      Materialized View Logs (Oracle)
+        MV logs track changes for fast refresh.
+        CREATE MATERIALIZED VIEW LOG ON employees WITH PRIMARY KEY, ROWID, SEQUENCE;
+        Stores:
+          Inserted rows
+          Updated OLD and NEW values
+          Deleted rows
+        This allows incremental refresh.
+      When Materialized Views CANNOT Fast Refresh
+        MV cannot use fast refresh if:
+          Missing primary key
+          Query contains:
+            DISTINCT
+            Aggregations (unless PK exists)
+            UNION
+            NOT EXISTS
+            Complex joins
+            CONNECT BY
+          No MV log
+          Oracle decides query is too complex

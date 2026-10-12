@@ -1,0 +1,88 @@
+VI editor has three modes of operations.
+  Command Mode
+  Insert Mode
+  Ex Mode (Extended Command Mode)
+
+To Go to Insert mode from command mode
+  i   		-  Inserts the text at the current cursor position
+  I   		-  Inserts the text in beginning of a line
+  a  		-  Adds the text after the current cursor position 
+  A  		-  Adds the text at the end of a line
+  o 		-  Inserts the text one line below current cursor position
+  O 		-  Inserts the text one line above current cursor position
+
+EX mode
+  :q		-  Quit without saving 
+  :q!   		-  Quit forcefully without saving 
+  :w  		-  Write (save)
+  :wq  		-  write and quit
+  :wq!		-  Write and quit forcefully 
+  :se nu	-  Sets line numbers 
+  :se nonu	-  Removes line numbers 
+  :84  		-  The cursor goes to line 84
+  1,$s/old name/new name  - Replace the word name
+
+Command Mode
+  dd   			-  Deletes a line
+  ndd   		-  Deletes ‘n’ lines
+  yy  			-  Copies a line
+  nyy  			-  Copies ‘n’ lines
+  p		 	 -  Put (pastes the deleted or copied text)
+  u			 -  Undo (you can undo 1000 times)
+  Ctrl+r		 -  Redo
+  G			 - Moves the cursor to the last line of the file
+  /<word to find>	-  Finds a word (press n for next)
+
+To create a file using vi
+  syn: vi <filename>
+  eg: #vi m1
+  To create a file using vim
+  syn: vim <filename>
+  eg: #vim m2
+  To Create or open multiple files
+  syn: vim -o <filename> <filename>
+  eg: #vim -o m1 m2
+
+Advantages of VIM
+  1. using vim we can open multiple files at a time:
+  syn:vim -o <filename> <filename>
+  eg: #vim -o f1 f2
+  To switch files
+  ctrl+ww
+
+  2.We can check content of configuration files in colors
+    syn: vim <configuration file>
+    eg: #vim /etc/passwd
+
+3.We can encrypt a file by assigning password
+  X is used to assign password
+  change password and remove password from extended mode.
+    example
+    To assign password
+    #vim myfile
+    :X
+    New Encryption Key:xxxx
+    Retype same Encryption key:xxxx
+    Esc:wq
+    Verify:
+    #cat myfile
+
+  To change password
+    #vim myfile
+    Encryption key:xxxx
+    :X
+    New Encryption Key:xxxxx
+    Retpe same Encrytption Key:xxxxxx
+    Esc:wq
+    Verify:
+    #cat myfile
+  To Remove Password
+    #vim myfile
+    Encryption key:xxxxxx
+    :X
+    New Encryption Key:(Press Enter button)
+    Retype EncryptionKey:Press enter
+    Esc:wq
+    To Verify:
+    #cat myfile
+    #vim myfile

@@ -1,0 +1,46 @@
+To copy a file to Directory
+  syn: cp <filename> <Dirname>
+  eg: #cp f1 dir1
+
+To copy a Directory to directory
+  syn: cp -rvf <sourcedir Name> <Destination Dirname>
+  eg: #cp -rvf dir2 dir1
+
+To copy a Directory to directory along Ywith permissions
+  syn: cp -rvp <S dirname> <D dirname>
+  eg: #cp -rvp dir1 mydir
+
+
+
+To move a file to Dir
+  syn: mv <filename> <Dirname>
+  eg: #mv f2 dir2
+ 
+To move a Dir to Dir
+  syn: mv <S Dirname> <D dirname>
+  eg: #mv dir3 dir1
+
+
+To Rename
+  To rename a file
+  syn: mv <oldfilename> <Newfilename>
+  eg: #mv f3 m1
+
+To Rename a Dir
+  syn: mv <old Dirname> <New Dirname>
+  eg: #mv dir1 d1
+
+To Delete a file
+  syn1: rm <filename>
+  eg: #rm f1
+
+  syn2: rm -f <filename>
+  eg: #rm -f f2
+
+To Delete a empty Directory
+  syn: rmdir <dirname>
+  eg: #rmdir dir2
+
+To Delete a Dir with content
+  syn: rm -rf <dirname>
+  eg: #rm -rf d1

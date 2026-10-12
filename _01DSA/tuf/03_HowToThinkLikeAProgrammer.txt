@@ -1,0 +1,168 @@
+How To Think Like A Programmer
+		1. Knowing syntax does not design a solution
+				Syntax helps us express a solution; logical thinking helps us create one.
+		2. Work through a problem before writing code
+		3. Read every problem like a contract
+				Input: what is given?
+				Output: what must be produced?
+				Rules: what determines the result?
+				Constraints: which inputs are allowed?
+				Edge cases: where might the behaviour change?
+		5. Computational thinking makes a problem manageable
+					Make the problem solvable
+						1. Decomposition
+								Break a large problem into smaller parts that you can understand and solve. 
+								Instead of asking only, “How do I build the entire system?”, ask, “Which smaller responsibility can I handle first?”
+						2. Pattern Recognition-notice reusable logic
+								Look for relationships you have seen before. 
+									Voting eligibility under a stated rule, exam eligibility, free-delivery eligibility and checking whether a balance is sufficient all have a similar shape.
+								The stories differ, and their conditions differ, but recognising the common structure helps you reason about them. 
+								DSA problems involving consecutive days, ranges of transactions or portions of text may also share logical patterns.
+								A familiar pattern is a starting point. 
+									Verify its assumptions and adapt it to the actual requirement.
+						3. Abstraction: keep the relevant details
+								Focus on the information needed for the current task and hide unnecessary implementation detail.
+								For example, if your chosen language or library supplies a suitable data structure, 
+									you may use its defined operations without implementing its internals from scratch. 
+									You must still understand what those operations do and any relevant limitations.
+								Hidden details still exist. 
+									Abstraction chooses the appropriate level of detail; 
+									it does not remove a rule that changes the correct answer. 
+									Ignoring the subject-wise pass requirement would be a mistake, not a useful abstraction.
+						4. Algorithmic Thinking: connect the parts in order
+								Arrange the operations and decisions into a valid process. 
+									Ask what happens first, which step depends on an earlier result, where a choice is needed, what repeats, and when the process stops.
+								The smaller parts must combine into a solution that satisfies the original requirement. 
+									A collection of individually useful operations is not enough if they run in the wrong order.
+
+						Example-Decompose a food-delivery app
+							We can divide that goal into responsibilities:
+								Accounts: sign-up, login, names and addresses.
+								Restaurant search: finding suitable restaurants.
+								Menus: showing dishes and their details.
+								Cart: storing selected items and coupon choices.
+								Pricing: calculating discounts, taxes, fees and the payable total.
+								Payment: requesting and handling payment.
+								Restaurant confirmation: sending and managing the restaurant’s order response.
+								Delivery: assigning and managing delivery work.
+								Tracking: showing the order’s progress.
+
+		6.One problem can have several correct algorithms
+			Suppose we need to find Aman among 1,000 names. There is more than one possible method.
+			Method A: linear search
+				The method is straightforward because it does not rely on a special ordering property.
+			Method B: repeatedly eliminate half
+
+			Correctness asks whether the method produces the required result for every valid input under its assumptions. 
+				Efficiency asks how much work, time or other resources it uses.
+			
+			Both search methods can be correct, but they do different amounts of work. 
+				With a sorted, directly accessible list, binary search needs far fewer name comparisons in the worst case than checking every entry.
+				However, the sorted order is a requirement for this method. 
+				On an arbitrary unsorted list, the comparison with the middle entry cannot justify discarding half. 
+				Sorting the data first also involves work, so the overall choice depends on the situation.
+
+
+		7.Common beginner mistakes and better habits
+			Starting to code immediately
+				Reading the story is not the same as understanding its contract. First identify the inputs, required outputs, rules and boundaries. Work through your proposed steps on paper before translating them into code.
+
+			Testing only the supplied examples
+				Samples are useful, but they cover only particular instances. After checking them, create your own cases. Test equality, boundaries, zero and allowed negative values where relevant.
+				Try to find an input that breaks your reasoning. The marks example shows why tests near 40 reveal mistakes that ordinary high marks may hide.
+
+			Treating abstraction as permission to drop a difficult rule
+				Using an existing data structure can hide implementation work. Removing a condition that affects the answer changes the problem. Keep every correctness requirement, even if it is inconvenient.
+
+			Treating a pattern as a ready-made answer
+				Knowing a pattern does not guarantee a solution. Understand the underlying topic, check the pattern’s conditions and limitations, and decide how it applies to this problem. Similar stories can require different boundaries or extra steps.
+
+			Believing there is only one correct algorithm
+				There may be several. Compare their assumptions, clarity and amount of work, as we did with the two search methods.
+
+			Expecting the computer to understand intention
+				“I meant it to handle this case” does not create the missing behaviour. The computer executes the logic you expressed. If a case matters, account for it explicitly.
+
+		8. Explain your assumptions and test your reasoning
+			In an interview or a discussion about a solution, start by stating the inputs, 
+				expected output and any assumptions. 
+				If a requirement is unclear, confirm it instead of silently choosing the version that is easiest to solve.
+			You can discuss your reasoning while you work. 
+				The aim is to avoid rushing into code before understanding the problem, 
+				rather than waiting for impossible certainty or hiding the thinking process.
+
+		9.What makes a useful algorithm?
+			For a defined problem, check these properties:
+			Property					Question to ask
+			Defined input			What information does the algorithm receive, and what values are allowed?
+			Defined output		What result must it produce?
+			Unambiguous steps	Is each operation clear enough to follow precisely?
+			Termination				Does it finish after a finite amount of work for every valid input?
+			Correctness				Does it satisfy the requirement for every valid input?
+			Effective steps		Can each operation actually be carried out using the available operations?
+
+		10.Dependencies determine the order
+			This is algorithmic thinking in practice: 
+				identify the dependencies, 
+				decisions, 
+				repetitions and 
+				stopping conditions before writing code.
+
+		11 Example:
+			Find the largest of three numbers
+				Task: read three numbers and display their largest value. Unlike our earlier comparison task, this task asks for a value and does not require a separate message for ties.
+				A first attempt might compare every pair using strict > conditions. For example, it might choose a if a > b and a > c, choose b if b > a and b > c, and otherwise choose c.
+				That version fails for (7, 7, 2): neither of its first two conditions is true, so it incorrectly chooses 2. Equality needs careful handling.
+
+				A simpler model is a current champion:
+					Let a be the champion.
+					Compare b with the champion; replace the champion if b is larger.
+					Compare c with the current champion; replace it if c is larger.
+					Display the final champion.
+					READ a, b, c
+					SET largest = a
+
+					IF b > largest
+							SET largest = b
+					END IF
+
+					IF c > largest
+							SET largest = c
+					END IF
+
+					DISPLAY largest
+
+					SET largest = a stores the value of a as our current best answer. Each later assignment updates that answer when a larger value appears.
+
+
+			12.Dry-run the algorithm
+				Explain why the champion method works
+				After initialisation, largest is the largest of the values considered so far: only a. After checking b, it is the largest of a and b. After checking c, it is the largest of all three.
+				The same statement remains true after every comparison: the champion is the largest value seen so far. Once every input has been considered, that statement establishes the required result.
+				This explanation goes beyond individual examples. It connects what each step preserves to what the final answer must mean.
+
+Revision and self-explanation
+Key Term								Meaning
+Problem									A defined task or desired result
+Problem instance				One particular set of inputs for a problem
+Input										Information given to a solution
+Output									The result the solution must produce
+Model										A useful representation of the information involved
+Rule										A condition that determines the required behaviour
+Constraint							A limit or condition on valid inputs
+Edge case								A valid boundary or other case needing special consideration
+Computational thinking	Organising a problem so its solution can be carried out precisely
+Decomposition						Breaking a large task into manageable parts
+Pattern recognition			Recognising reusable similarities in logic
+Abstraction							Focusing on relevant details and hiding unnecessary complexity
+Algorithmic thinking		Arranging operations and decisions in a valid order
+Algorithm								A finite sequence of clear steps for solving a defined problem
+Pseudocode							A language-independent description of an algorithm’s steps
+Dry run									Manually following steps while tracking values
+Correctness							Producing the required output for every valid input
+Efficiency							The work, time or other resources a solution uses
+
+
+
+
+

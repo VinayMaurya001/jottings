@@ -1,0 +1,15 @@
+Moved all <style> content from inside the <head> of the HTML into an external CSS file named style.css.
+
+❓Why This Refactor Is Important:
+Separation of Concerns
+Keeps structure (HTML) and styling (CSS) separate — easier to maintain and scale.
+
+Better Reusability
+You can now use style.css across multiple pages without duplicating styles.
+
+Improved Readability
+Your HTML is much cleaner and easier to read.
+
+Browser Optimization
+Browsers can cache the CSS file, improving load times on repeat visits.
+

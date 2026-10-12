@@ -1,0 +1,33 @@
+
+Basic tables
+  A basic bootstrap 5 table has a light padding & horizontal dividers.
+  .table
+  .table-borderless
+  .table-bordered
+  .table-striped
+    add zebra stripes
+
+  .table-hover
+  .table-dark
+  these classes we can apply on table header also.
+
+
+  .table-sm
+    makes table smaller by cutting cell padding in half.
+
+  .table-responsive
+    add a scrollbar to the table when needed(when it is too big horizontally)
+     <div class="table-responsive">
+      <table class="table"></table>
+    </div>
+    .table-responsive-sm/md/lg/xl/xxl
+
+
+  We can apply color classes on rows as well as whole table.
+
+
+
+
+
+
+

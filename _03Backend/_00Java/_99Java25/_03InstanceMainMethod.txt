@@ -1,0 +1,113 @@
+
+Instance Main Methods
+  Now in  Java 25, You no longer need public static void main(String[] args) for simple programs. 
+  You can write main without static, public, or even the String[] args if you don’t need them.  
+
+  class Test{
+     void main() {
+        System.out.println("Hello, World!");
+        System.out.println("This is testing file");
+      }
+  }
+
+  Java application launch follows a strict sequence to find a valid main method. 
+    The launcher's selection process is as follows:
+    1.Priority to Standard Main: 
+      The JVM first looks for a traditional public static void main(String[] args) method, 
+        which is the most common entry point.
+    2.Fallback to Parameterless Main: 
+      If the standard method isn't found, 
+        it checks for a public static void main() method (with no parameters).
+    3. Instance Main Method Handling: 
+      If only a non-static (instance) main method exists, the JVM must instantiate the class. 
+      This requires the class to have a public, no-argument constructor. 
+      The launcher creates an instance using this constructor and then calls the instance's main method.
+    4. Error Condition: 
+      If no valid main method is found, or if an instance main exists without a required constructor, 
+        the launcher throws an error and terminates.
+
+Rules / How It Works
+  Some details and constraints:
+    If a class has a main with String[] args or if there’s a static main(...), those forms still work. The new rules add options, don’t replace old ones. 
+    For instance (non-static) main methods: the class must have a non-private no-arg constructor. If there's no suitable constructor, compilation / launching fails.
+
+
+public static void main(String[] args) 
+public        void main(String[] args)
+public static void main()
+public        void main()
+              void main()
+
+
+The launcher starts the Java Virtual Machine and then chooses and invokes a main method of the specified class:
+  1)
+    If the class declares or inherits a main method with a String[] parameter then the launcher chooses that method.
+    Otherwise, if the class declares or inherits a main method with no parameters then the launcher chooses that method.
+    Otherwise, the launcher reports an error and terminates.
+  2)
+    If the chosen method is static then the launcher invokes it.
+    Otherwise, the chosen method is an instance main method. 
+    The class must have a non-private constructor with no parameters. 
+    The launcher invokes that constructor and then invokes the chosen main method of the resulting object. 
+    If there is no such constructor then the launcher reports an error and terminates.
+  Any main method that can be chosen and invoked under this protocol is known as a launchable main method. 
+  For example, the HelloWorld class has one launchable main method, namely void main().
+
+Launchable main method
+  step 1)Choose the method
+
+  step 2)Invoke the method
+
+
+
+Examples:
+
+
+
+When you run java MyClass, the launcher must decide which main method to call.
+Think of it as 2 big steps:
+  Step 1️⃣: Choose the main method
+        The launcher looks inside your class in this order:
+        1)If there’s a main(String[] args) → choose that.
+        2)Else if there’s a main() with no parameters → choose that.
+        3)Else → Error! (no valid main found).
+        👉 So:
+        Priority = main(String[] args) > main() no-args > error.
+  Step 2️⃣: Invoke the main method
+    Now the chosen main suppose to be executed:
+    If static → run it directly. ✅
+    If instance (non-static) →
+      Case 1:
+        Because main is instance methos. The JVM must instantiate the class to call instance method. 
+          This requires the class to have a non-private, no-argument constructor. 
+        Launcher creates an object using that constructor.
+        Then it calls main() on that object.
+      Case 2: If no valid constructor → Error!
+
+📌 Definition
+A launchable main method = any main that can be chosen (Step 1) and invoked (Step 2) successfully.
+
+🖊️ Example
+// Compact style
+class HelloWorld {
+    void main() {   // instance main (launchable)
+        System.out.println("Hello, World!");
+    }
+}
+
+
+✔️ Here:
+
+No String[] args → so main() is chosen.
+
+It’s instance → default constructor exists → object created → method invoked.
+
+🧠 Easy Way to Remember
+
+👉 “Pick then Kick” rule:
+
+Pick the right main (args one first, else no-arg).
+
+Kick it off (static = run, instance = new object then run).
+
+Would you like me to also make a diagram / flowchart of this “Pick then Kick” process so it’s even easier to recall visually?

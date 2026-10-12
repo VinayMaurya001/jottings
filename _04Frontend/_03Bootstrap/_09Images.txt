@@ -1,0 +1,67 @@
+Images classes
+
+.rounded
+.rounded-top
+.rounded-circle
+
+
+
+align images  
+  .float-start
+  .float-end
+  to center image
+    .mx-auto & .d-block
+    (in css margin:auto & display:block) 
+
+
+Respoonsive image 
+    .img-fluid
+      max-width:100% & height:auto
+    .img-thumbnail
+      shapes the images to a thumbnail(bordered) & make image responsive
+
+
+Example:
+  <img src="../amazon-clone/images/box1_image.jpg" class="gallery-img img-fluid rounded img-thumbnail" alt="Image 1">
+    .my-gallery-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.001s ease;
+    }
+
+    .my-gallery-img:hover {
+      transform: scale(1.3);
+      z-index: 1;
+      position: relative;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+
+  Responsive Float Image with Text
+    Bootstrap 5 provides several ways to create layouts with floated images alongside text. 
+    Here are the best approaches: 
+    Method 1: Using Flexbox Grid System (Recommended)
+      <div class="row">
+          <div class="col-md-4">
+            <img src="../amazon-clone/images/box1_image.jpg" class="img-fluid">
+          </div>
+          <div class="col-md-8">
+          <p>lorem*10    </p> 
+          </div>
+      </div>
+    Method 2: Using Float Utility Classes
+      <div class="clearfix">
+        <img src="../amazon-clone/images/box1_image.jpg" class="img-fluid float-start" style="max-width: 300px;">
+        <p>  lorem*100  </p>
+      </div>
+    Method 3: Alternative Side-by-Side Layout
+      <div class="d-flex flex-column flex-md-row gap-3">
+          <div class="flex-shrink-0">
+            <img src="../amazon-clone/images/box1_image.jpg" class="img-fluid" style="max-width: 250px;">
+          </div>
+          <div class="flex-grow-1">
+            <h3>Heading Text</h3>
+            <p>lorem*100</p>
+          </div>
+        </div>

@@ -1,0 +1,15 @@
+Compact Source Files and Instance Main
+  Instance main methods
+  Compact source files
+  New IO class in java.lang
+  
+
+Aim: 
+  Let Java programs — especially small ones / beginners’ code / script-like code — be written with far less boilerplate.
+
+Motivation
+    Some of the reasons behind this feature:
+    Beginners often get confused / frustrated by the verbosity of even a simple “Hello, World” program: needing public class, public static void main(String[] args), etc. 
+    The idea is to let small programs or scripts be written in a simpler way, without having to immediately learn about classes, packages, or static modifiers. 
+    Also helps developers writing quick command-line tools or prototypes: less ceremony means faster iteration. 
+

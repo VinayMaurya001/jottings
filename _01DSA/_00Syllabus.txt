@@ -1,0 +1,12 @@
+Resources(Chatgpt)
+  TUF 
+    Grokking algorithms by Aditya Y. Bhargava Hard book
+    bytebytego.com
+  leetcode
+  https://www.interviewbit.com/
+  https://neetcode.io/courses
+  https://www.designgurus.io/course/grokking-the-coding-interview
+  Cracking the Coding Interview by Gyale Laakmann McDowell Hard book
+
+
+

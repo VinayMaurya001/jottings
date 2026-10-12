@@ -1,0 +1,22 @@
+Progress Bar
+  A Progress Bar is super easy to use for showing task completion, loading states, or metrics.
+  Basic Progress Bar
+    .progress
+    .progress-bar
+    style="width: 50%;" 
+    <div class="progress">
+      <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="50"
+          aria-valuemin="0" aria-valuemax="100">
+        50%
+      </div>
+    </div>
+  .progress-bar-striped
+  .progress-bar-animated
+  Multiple progress bar
+    <div class="progress">
+      <div class="progress-bar bg-success" style="width: 40%"></div>
+      <div class="progress-bar bg-warning" style="width: 30%"></div>
+      <div class="progress-bar bg-danger" style="width: 30%"></div>
+    </div>
+
+

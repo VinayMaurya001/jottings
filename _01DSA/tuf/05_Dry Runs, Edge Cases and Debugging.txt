@@ -1,0 +1,164 @@
+Dry Runs, Edge Cases and Debugging
+	A dry run is the manual execution of an algorithm using selected input while recording how important values and decisions change.
+	The word “dry” means the program is not actually running on a computer. We are simulating its execution on paper or mentally.
+
+1. Debugging begins with the first mismatch
+2. Use a trace table to record state
+		A trace table records state over time.
+3. Expected state versus actual state
+4. Three broad error families
+		i) Syntax error
+				A syntax error violates the grammar of a programming language.
+		ii)Runtime error
+				A runtime error occurs after execution begins, when an operation cannot continue normally.
+		iii)Logical error
+				A logical error allows execution to continue but produces incorrect behaviour.
+				Logical errors are often the hardest because the system may not crash. 
+					It may confidently produce a believable but incorrect result.
+		An error location is a clue, not a verdict
+			Read the complete message and inspect the surrounding structure; 
+				the exact diagnostic depends on the tool.
+			Some execution problems can also be detected before running. 
+				Calling something a runtime error describes when the failure occurs; 
+				it does not mean every such defect is impossible to predict. 
+				Behaviour such as division by zero or invalid access depends on the language and operation.
+5. Edge case, invalid input and exceptional situation
+		These ideas are often mixed together.
+			Normal case
+				A common valid input, such as age 25 under a simplified voting-eligibility rule.
+			Edge case
+				A valid input near a boundary or special structural condition, such as age 18 when eligibility begins at 18.
+			Invalid input
+				Data outside the allowed contract, such as age -5 if the system accepts only non-negative ages.
+			Exceptional situation
+				An event that may be valid in the real environment but prevents the normal flow, such as a network failure during payment.				
+
+		The required response differs:
+				an edge case must produce the correct normal result;
+				invalid input may be rejected or requested again;
+				an exceptional situation may need recovery, retry or a clear failure response.
+6. Design tests that reveal mistakes
+		Random tests have value, but deliberate tests are more educational.
+		For a condition marks >= 40, test:
+			39: just below the boundary;
+			40: exactly on the boundary;
+			41: just above the boundary.
+			This trio reveals whether > and >= have been confused.
+		Useful beginner test categories
+			Typical case
+				A normal input that exercises the expected route.
+			Boundary pair
+				Values on both sides of a rule change.
+			Equality or duplicate case
+				Useful in comparisons such as largest values.
+			Zero
+				Important for counts, products, division and loops.
+			Negative value
+				Use when allowed, and validate when forbidden.
+			Smallest meaningful input
+				Often reveals initialization mistakes.
+			Invalid input
+				Confirms the program does not treat nonsense data as a normal case.
+			Path coverage
+				Choose inputs so every branch is taken at least once.
+7. A disciplined debugging workflow
+		Step 1: Reproduce the failure
+			Find a specific input that reliably produces an incorrect result. 
+			“Sometimes it fails” is not yet a useful debugging case.
+		Step 2: Write the expected result manually
+			If we do not know the correct answer, we cannot identify divergence.
+		Step 3: Reduce the input
+			Prefer the smallest case that still fails. A failure on 1,000 values is difficult to inspect; a failure on three values may reveal the same root cause.
+		Step 4: Trace relevant state
+			Record variables, conditions and chosen branches.
+		Step 5: Find the first divergence
+			Do not focus only on the final wrong answer. Locate the earliest state that differs from expectation.
+		Step 6: Explain the cause before changing it
+			Say, “The product remains zero because multiplication starts from zero,” 
+			 rather than “Changing it to one seems to work.”
+		Step 7: Make the smallest correct fix
+			Avoid rewriting unrelated logic while investigating one cause.
+		Step 8: Retest
+			Run:
+			the failing input;
+			one or more inputs that previously passed; and
+			nearby edge cases.
+			A correction can solve one case and accidentally break another.
+			A regression is previously working behaviour broken by a later change. 
+				Retesting successful cases protects against this.
+8. Practise on more bug investigations
+		Only testing “comfortable middle values” is weak. 
+		Boundary values reveal inclusive-versus-exclusive mistakes.
+9. Invariants: truth that survives every step
+	An invariant is a statement that remains true at a particular point throughout a repeated process.
+	Invariants give intermediatestate a meaning
+	An invariant helps answer two questions:
+		Why is the intermediate state meaningful?
+		Why does termination produce the correct final result?
+10. Common debugging misconceptions
+			“Debugging begins after code is written.”
+			Incorrect. Requirements, algorithms, flowcharts and pseudocode can all contain bugs.
+
+			“If the program does not crash, it is correct.”
+			Logical errors often produce normal-looking output.
+
+			“More test cases always means better testing.”
+			Ten repetitive inputs may reveal less than three carefully selected boundary inputs.
+
+			“An edge case is invalid.”
+			An edge case is usually valid but unusual. Invalid data violates the contract.
+
+			“Fix the line highlighted by the error message.”
+			The highlighted line may be where a symptom is detected, not where the bad state began.
+
+			“Changing several things is faster.”
+			Then it becomes unclear which change fixed the cause or introduced a new bug.
+
+			“A passing sample proves the algorithm.”
+			It proves only that this input did not expose a failure.
+
+			“The computer randomly behaves differently.”
+			Unexpected behaviour has causes: state, input, environment, concurrency or undefined operations. At this level, begin by making the input and steps reproducible.
+11. Practical debugging habits for the language tracks
+		When real code begins, preserve the same reasoning:
+			Read the complete error message.
+			Reproduce the smallest failure.
+			Print or inspect relevant variable values.
+			Use a debugger to pause and step through execution when introduced.
+			Change one hypothesis at a time.
+			Keep successful test cases and run them again after a fix.
+			Name values and steps clearly enough that the logic can be followed.
+			Tools assist investigation. 
+				They do not replace understanding the expected state.
+12. Key terms
+		Term	Meaning
+		Bug	Defect causing incorrect or unexpected behaviour
+		Debugging	Systematic process of finding and correcting a defect
+		Dry run	Manual simulation of an algorithm
+		Trace table	Table recording relevant state over steps or iterations
+		Expected state	What should be true at a point in execution
+		Actual state	What the current algorithm actually produces
+		Syntax error	Violation of programming-language grammar
+		Runtime error	Failure encountered during execution
+		Logical error	Executing instructions that produce the wrong behaviour
+		Edge case	Valid input near a boundary or unusual condition
+		Invalid input	Data outside the allowed contract
+		Regression	Previously working behaviour broken by a later change
+		Invariant	Property that remains true at a defined point through repetition
+		Off-by-one error	Boundary mistake that performs one too many or too few steps
+		
+		
+Final takeaway
+	Debugging is not “try something and run again.” It is:
+		Reproduce → Predict → Trace → Find first divergence 
+			→ Explain cause → Make focused fix → Retest
+	Once a learner can break their own logic deliberately, 
+		mistakes stop feeling mysterious. 
+		They become evidence.
+
+
+
+		Additive Identity
+				Adding 0 leaves a total unchanged.
+			Multiplicative Identity
+				Multiply 0 leaves a result unchanged.

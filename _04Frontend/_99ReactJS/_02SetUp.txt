@@ -1,0 +1,33 @@
+
+
+node -v
+npm -v
+
+
+npm install -g create-react-app
+create-react-app --version
+mkdir reactApplications
+cd reactApplications
+create-react-app firstApp
+dir
+cd firstApp
+npm start
+http://localhost:3000/
+
+
+
+How npx works internally
+  npx checks if create-react-app exists locally
+  If not → npx downloads it temporarily
+  Runs it
+  Deletes the temporary folder afterward
+  So you don’t need to install anything globally.
+
+
+npx create-react-app portfolio-card-project
+  ✔ Correct and recommended way
+  ✔ Uses the latest version of Create React App (CRA) directly from npm without installing globally
+  ✔ Creates the project folder automatically
+  ✔ Works even if CRA is not installed on your system
+
+npm start

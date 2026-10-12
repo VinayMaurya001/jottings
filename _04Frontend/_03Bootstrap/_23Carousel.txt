@@ -1,0 +1,21 @@
+Carousel / Image Slider
+  .carousel & .slide on the outer wrapper
+    data-bs-ride="carousel" to start cycling automatically
+  .carousel-indicators with <button>s to jump to slides
+    data-bs-target="#myCarousel" data-bs-slide-to="2"
+  .carousel-inner 
+    .carousel-item
+    .carousel-caption
+  .active marks the starting slide
+  Controls: .carousel-control-prev / .carousel-control-next
+  .carousel-dark
+  .carousel-fade
+    for a fade transition
+  data-bs-interval="2000"
+
+
+
+Responsive Considerations
+  Images: use .img-fluid or responsive srcset for varying screen sizes.
+  Captions: wrapped in .carousel-caption; hide on small screens with .d-none d-md-block.
+  Controls/Indicators: always keyboard-accessible and screen-reader friendly.

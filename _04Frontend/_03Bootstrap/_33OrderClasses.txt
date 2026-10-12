@@ -1,0 +1,28 @@
+Order Classes 
+  Bootstrap 5 provides powerful order classes 
+    that allow you to control the visual order of your grid columns 
+    independently of their HTML source order. 
+    This is especially useful for responsive layouts 
+      where you need to rearrange content at different breakpoints.
+
+  Basic Order Classes
+    The order classes follow this pattern: order-{breakpoint}-{value}
+    Breakpoints:
+      No prefix (xs) - applies to all screen sizes
+      sm - ≥576px
+      md - ≥768px
+      lg - ≥992px
+      xl - ≥1200px
+      xxl - ≥1400px
+    Values:
+      first - order of -1
+      0 - natural order (default)
+      1 through 5 - higher numbers come later
+      last - order of 6
+    Important Notes
+      Flexbox Basis: Order classes work because Bootstrap's grid uses Flexbox
+      Source Order vs Visual Order: Screen readers will still follow DOM order
+      No Negative Values: Only positive integers and special keywords
+      Combining with Columns: Works with all column size classes (col-*)
+
+      

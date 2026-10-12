@@ -1,0 +1,38 @@
+
+Download python and install and set PATH
+
+Verify Python 
+  python --version\
+    py --version
+  pip --version
+
+
+IDE
+  VS Code
+    install extensions
+        Python
+        Jupyter
+  PyCharm 
+
+
+hello.py
+  print(".py is the standard file extension for a Python source-code file.")
+
+Run:
+  python hello.py
+
+
+
+
+ 
+
+How Python executes   
+    hello.py
+      ↓
+    Python interpreter
+      ↓
+    Program executes
+
+    Python interpreter = program that understands Python code and executes it.
+    Later we'll discuss Python bytecode, CPython, interpreter implementation, GIL, etc.
+

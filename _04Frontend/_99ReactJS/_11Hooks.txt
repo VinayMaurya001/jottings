@@ -1,0 +1,216 @@
+Hooks
+ It allows you to use state and other react features without writing a class.
+ It allows function components to have access to state.
+ Hooks are basically functions
+ Hooks allows us to "hook" into React features
+
+Hooks rules
+  Hooks can only be called 
+    inside react function components.
+    at the top level of a component
+  We should not call hooks 
+    inside loops, conditions or nested functions. 
+    from Javascript functions
+  Hooks cannot be conditional.
+  React relies on the order in which Hooks are called.
+  Hooks are not used for class based components.
+
+
+Custom hooks  
+  If we have stateful logic that needs to be reused in several componens, we can build our own Custom hooks.
+
+
+
+
+
+Hooks
+  useState
+  useEffect
+  useContext
+  useRef
+  useReducer
+  useCallback
+  useMemo
+  Custom Hooks
+
+
+
+useState hook
+  useState()
+    -functional component for setting & retrieving state
+    -It allows us to track  state in a functional component
+    State generally refers to a data or properties that need to be tracked  in an application.
+
+  Way 1
+    myArray  <- useState("Rohan")
+    myArray[0] -> Rohan
+    myArray[1] ->Updated Value   <-   function
+                Aryan,Rohan
+  Way 2
+    Destructuring
+    [name, updateName] =useState("Rohan")
+    name -> Rohan
+    updateName at myArray[1]("Aryan") -> Updated Value 
+                                         Aryan, Rohan
+  Way 3
+    [name, setName] =useState("Rohan")
+    name -> Rohan
+    Submit button  -> setName  -> Aryan
+        name ->Aryan
+
+  import {useState} from 'react'
+  function FavouriteCOlor(){
+     const[ color, setColor] =useState("Red");
+  }
+  We must not update value directly like color="Blue"
+
+  The useState Hooks can be used  to keep track of 
+     strings, numbers, booleans, arrays and objects, or any combinations of these.
+  We could create multiple useState hooks to track individual values.
+
+  When to use useState Hooks 
+    If you write a function component  & then you want to add some state to it, 
+      previously we did by converting it to a class.
+     But now we can do it by using a Hook inside  the exisitng function component.
+
+
+  UseState hook with objects
+
+  UseState hook with arrays
+
+  Using state with class & functional component
+
+
+
+useEffect hook
+  it runs each time when component is rendered/updated
+  conditionally run useEffect
+
+
+useContext Hook
+  It is a way to manage state globally.
+  Using this we can avoid prop drilling.
+
+
+
+useMemo Hook
+  useMemo is a React Hook that memoizes (caches) the result of a function.
+  It prevents expensive calculations from re-running on every render(React re-renders the component whenever state or props change)
+  const memoValue = useMemo(() => {
+    // expensive work
+    return result;
+  }, [dependencies]);
+  React will run the function once.
+  Next render → React returns the cached value (memoized value), unless dependencies change.
+  If a dependency changes → React recalculates the value.
+  useMemo itself has overhead — use only when helpful.
+
+
+  useCallback hook
+    useCallback is a React Hook that memoizes a function.
+    const memoizedFn = useCallback(() => {
+      //  function logic
+    }, [dependencies]);
+
+    useCallback memoizes a function so it doesn’t get recreated on every render.
+    It returns the same function reference until the dependencies change, 
+    which helps prevent unnecessary re-renders in child components.
+
+    Why memoize a function?
+      Because functions in JavaScript are recreated on every render.
+      React components re-render → new function created → children may re-render unnecessarily.
+      useCallback prevents this by keeping the same function reference across renders,
+      unless dependencies change.
+
+    What useCallback Actually Does
+      It tells React:
+      “Don’t recreate this function unless the dependencies change.”
+      So React will reuse the same function reference.
+
+    Example:
+      const [count, setCount] = useState(0);
+      const handleIncrement = useCallback(() => {
+        setCount(count + 1);
+      }, [count]);
+
+    Example:
+      Preventing unnecessary re-render in child components
+        function Parent() {
+            const [count, setCount] = useState(0);
+            const handleClick = useCallback(() => {
+              console.log("child clicked");
+            }, []);
+
+            return (
+              <>
+                <button onClick={() => setCount(count + 1)}>Increment</button>
+                <Child onClick={handleClick} />
+              </>
+            );
+        }
+        //With useCallback,Child renders ONLY once because the onClick reference never changes.
+        const Child = React.memo(function Child({ onClick }) {
+          console.log("Child render");
+          return <button onClick={onClick}>Click Child</button>;
+        });
+
+  React.memo? (Component Level Memoization)
+    React.memo is a Higher Order Component (HOC).
+    It prevents a functional component from re-rendering if its props are the same as last time.
+    Example:
+      const Child = React.memo(function Child({ value }) {
+          console.log("Child rendered");
+          return <div>{value}</div>;
+        });
+      If the parent re-renders but value did not change, React skips rendering Child.
+      React.memo prevents child component re-render
+
+
+
+  Why do React.memo and useCallback usually work together?
+    React.memo prevents child re-render unless props change
+    But function props always change on re-render
+    So useCallback stabilizes the function reference
+    This combination improves performance.
+
+  React.memo vs useMemo
+    | Hook           | Purpose               | Memoizes                       | Prevents                                    |
+    | -------------- | --------------------- | ------------------------------ | ------------------------------------------- |
+    | **React.memo** | Wraps a **component** | Last rendered **output (JSX)** | **Component re-render** when props are same |
+    | **useMemo**    | Wraps a **value**     | Result of a **function**       | **Expensive calculations** on re-render     |
+
+    | Action            | useMemo                        | React.memo                       |
+    | ----------------- | ------------------------------ | -------------------------------- |
+    | Parent re-renders | Prevents expensive calculation | Prevents Child render            |
+    | `count` changes   | Recalculates expensive value   | Child re-renders due to new prop |
+    | `count` same      | No recalculation               | No child render                  |
+
+    React.memo optimizes rendering. useMemo optimizes computation.
+
+
+
+React form & form handling
+  Types of form input
+    1. Controlled component (usually we us this)
+    2. Uncontrolled component
+
+
+Controlled component in react form
+
+    What is e.preventDefault()?
+      In HTML, when you submit a form, the default behavior is to reload the page.
+      In React (or JavaScript), e.preventDefault() is used to stop that default behavior.
+      This allows you to handle the form submission with your own logic (like saving data to state, sending an API request, etc.).
+
+      Why it’s important in React? 
+        React is a Single Page Application (SPA).
+        Reloading the page would clear your app’s state.
+        By using e.preventDefault(), you stop the reload and let React handle the form data smoothly.
+
+        e.preventDefault() in a React form prevents page reload and lets you run your own submit logic (API calls, validation, state update, etc.).
+
+Controlled component with fun component & useState hook
+
+Handling multiple input in form
+
+

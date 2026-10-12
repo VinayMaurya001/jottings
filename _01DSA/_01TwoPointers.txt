@@ -1,0 +1,138 @@
+
+Introduction to Two Pointers
+  A two-pointer pattern refers to an algorithm that utilizes two pointers. 
+  A pointer is a variable that represents an index or position within a data structure, like an array or linked list.
+
+
+
+
+Introducing a second pointer opens a new world of possibilities. 
+  Most importantly, we can now make comparisons. 
+    With pointers at two different positions, 
+    we can compare the elements at those positions and make decisions based on the comparison:
+  In many cases, such comparisons are made using two nested for-loops, which takes O(n^2) time, 
+    where n denotes the length of the data structure. 
+    In the code snippet below, i and j are two pointers used to compare every two elements of an array:
+      for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
+          compare(nums[i], nums[j])
+        }
+      }
+  Often, this approach does not take advantage of predictable dynamics that might exist in a data structure. 
+    An example of a data structure with predictable dynamics is a sorted array: 
+    when we move a pointer in a sorted array, 
+    we can predict whether the value being moved to is greater or smaller. 
+    For example, moving a pointer to the right in an ascending array guarantees we're moving to a value greater than or equal to the current one.
+  Data structures with predictable dynamics let us move pointers in a logical way. 
+    Taking advantage of this predictability can lead to improved time and space complexity.
+
+
+Two-pointer Strategies
+  Two-pointer algorithms usually take only O(n) time by eliminating the need for nested for-loops. 
+  There are three main strategies for using two pointers.
+  !)Inward traversal
+    This approach has pointers starting at opposite ends of the data structure and moving inward toward each other.
+    Example-
+      Pair Sum - Sorted
+      Triplet Sum
+      Largest Container
+      Is Palindrome Valid
+  2)Unidirectional traversal
+    In this approach, both pointers start at the same end of the data structure (usually the beginning) 
+      and move in the same direction.
+    Example-Shift Zeros to the End
+  3)Staged traversal
+    In this approach, we traverse with one pointer, 
+      and when it lands on an element that meets a certain condition, we traverse with the second pointer.
+    Example- Next Lexicographical Sequence
+  The two-pointer pattern is very versatile and, consequently, quite broad. 
+    As such, we want to cover more specialized variants of this algorithm in separate chapters, 
+      such as Fast and Slow Pointers and Sliding Windows.
+
+
+
+
+
+When To Use Two Pointers?
+  A two-pointer algorithm usually requires a linear data structure, such as an array or linked list. 
+  Otherwise, an indication that a problem can be solved using the two-pointer algorithm, 
+    is when the input follows a predictable dynamic, such as a sorted array.
+    Another potential indicator that a problem can be solved using two pointers is 
+      if the problem asks for a pair of values or a result that can be generated from two values
+
+
+Real-world Example
+  Garbage collection algorithms
+
+
+Pair Sum - Sorted
+  Given an array of integers sorted in ascending order and a target value, 
+    return the indexes of any pair of numbers in the array that sum to the target. 
+    The order of the indexes in the result doesn't matter. 
+    If no pair is found, return an empty array.
+
+  Two-pointer = optimized for unique / non-overlapping pairs
+            Space complexity: We only allocated a constant number of variables, so the space complexity is O(1)
+  Brute force = required when ALL combinations matter
+        Return ALL pairs (unsorted, allows duplicates) using hashmap
+  This is a classic trade-off between completeness vs performance
+
+Interview Tip
+  Tip: Consider all information provided.
+  When interviewers pose a problem, 
+    they sometimes provide only the minimum amount of information required for you to start solving it. 
+    Consequently, it’s crucial to thoroughly evaluate all that information to determine 
+    which details are essential for solving the problem efficiently. 
+    In this problem, the key to arriving at the optimal solution is recognizing that the input is sorted.
+
+
+
+
+Triplet Sum
+  Given an array of integers, return all triplets [a, b, c] such that a + b + c = 0 . 
+    The solution must not contain duplicate triplets (e.g., [1, 2, 3] and [2, 3, 1] are considered duplicates). 
+    If no such triplets are found, return an empty array.
+  Each triplet can be arranged in any order, and the output can be returned in any order.
+  Example:
+    Input: nums = [0, -1, 2, -3, 1]
+    Output: [[-3, 1, 2], [-1, 0, 1]]
+
+  Implementation Logic:
+    1. Sort the array.
+    2. Iterate through the array with pointer 'i'.
+    3. For each 'i', use two pointers (left = i+1, right = n-1) to find pairs that sum to -nums[i].
+    4. To avoid duplicates: 
+       - Skip nums[i] if it's the same as nums[i-1].
+       - After finding a valid triplet, move 'left' and 'right' past any identical values.
+
+
+Fast and Slow Pointers (The Tortoise and Hare)
+  A variation where pointers move at different speeds. 
+  Commonly used for:
+    - Detecting cycles in linked lists.
+    - Finding the middle of a linked list.
+  
+  Example - Middle of Linked List:
+    - 'slow' moves 1 step.
+    - 'fast' moves 2 steps.
+    - When 'fast' reaches the end, 'slow' is exactly at the middle.
+
+
+Summary Table
+---------------------------------------------------------------------------
+| Strategy        | Pointer Starting Positions | Movement Condition        |
+|-----------------|----------------------------|---------------------------|
+| Inward          | Start and End              | Based on Sum/Symmetry     |
+| Unidirectional  | Both at Start              | One 'Writer', one 'Reader'|
+| Fast/Slow       | Both at Start              | Constant Speed Ratio      |
+---------------------------------------------------------------------------
+
+Common Pitfalls:
+  1. Forgetting to sort: Two pointers (inward) almost always requires a sorted input.
+  2. Off-by-one errors: Be careful with 'while (left < right)' vs 'while (left <= right)'.
+  3. Duplicate handling: In problems like Triplet Sum, simply using a Set for results is 
+     less efficient than manually skipping duplicates with 'while' loops.
+
+Time Complexity: Usually O(n) (or O(n log n) if sorting is required).
+Space Complexity: Usually O(1) (excluding the space needed for the output).
+    

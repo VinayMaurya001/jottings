@@ -1,0 +1,79 @@
+Basic Commands
+  
+To login as Superuser vis GUI
+  click on others
+  enter username:root
+  enter pwd:xxxxxx
+  login
+
+To login from GUI to CLI and CLI to GUI
+  Fixed keys
+    Ctrl+Alt+F1       GUI
+    Ctrl+Alt+F2 F3 F4 CLI
+    Ctrl +altF5 GUI/CLI
+  not fixed
+    Ctrl+ALT+ F6 CLI
+    ctrl+alt+F7 F8 GUI
+To login
+  GUI to CLI #chvt 2
+  CLI to GUI #chvt 1
+  
+
+Difference Between GUI mode and CLI mode
+  Using GUI mode we can access multiple terminals
+    Using ClI mode we can access single terminal
+  
+Terminal: Its is used to execute cmds
+  In GUI right click on Desktop Select Open in Terminal
+
+
+[root              @Durgasoft     Desktop]#
+[Type of user       Hostname     Current working Directory]
+ Super/Normaluser
+
+~ Running user Home Directory
+# Super user
+$ Normal user
+
+zoom in
+  ctrl+shift++++ 
+zoom out
+  ctrl-- 
+
+To open New tab
+  ctrl+shift+t
+To close tab
+  ctrl+shift+w
+To open new terminal
+  ctrl+shift+n
+To close terminal
+  ctrl+shift+q
+  or
+  #exit
+
+To check cal
+  #cal
+To check particular cal
+  syn: cal <year>
+  eg: #cal 2023
+To clear screen
+  ctrl+l
+   or
+  #clear
+
+To check Loging user
+  #whoami
+To check user login detail
+  #who am i
+To check History
+  #history
+To Clear History
+  #history -c
+To open calculator
+  #gcalctool
+
+
+To shutdown
+  #init 0
+To Restart
+  #init 6

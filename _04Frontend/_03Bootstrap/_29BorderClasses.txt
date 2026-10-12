@@ -1,0 +1,46 @@
+Border classes
+  Border Width
+    Use .border-{n} to adjust the thickness:
+      <div class="border border-1 p-2 mb-2">.border-1 (0.25rem)</div>
+      <div class="border border-2 p-2 mb-2">.border-2 (0.5rem)</div>
+      <div class="border border-3 p-2 mb-2">.border-3 (0.75rem)</div>
+      <div class="border border-4 p-2 mb-2">.border-4 (1rem)</div>
+      <div class="border border-5 p-2 mb-2">.border-5 (1.25rem)</div>
+  Side‑specific Borders
+    All sides: .border
+    Single side:
+      .border-top
+      .border-end
+      .border-bottom
+      .border-start
+  Border Visibility
+    .border
+      Adds a 1px border on all sides.
+    .border-0
+      Removes all borders.
+    Side‑specific removal
+      .border-top-0
+      .border-end-0
+      .border-bottom-0
+      .border-start-0
+  Border Colors
+    Contextual color classes match your theme:
+      <div class="border border-primary p-2 mb-2">.border-primary</div>
+  Border Radius (Corners)
+    All corners rounded: 
+      .rounded
+      .rounded-1
+      .rounded-2
+      .rounded-3
+    No rounding: .rounded-0
+    Specific corners:
+      .rounded-top
+      .rounded-end
+      .rounded-bottom
+      .rounded-start
+    Pill shape: .rounded-pill (also with width w-50)
+    Circle (for equal‑width elements): .rounded-circle (also with width w-50)
+  Responsive & RTL‑aware
+    All border classes support responsive prefixes:
+    <div class="border border-sm-0">No borders on ≥576px</div>
+    <div class="border-top border-md-top-0">Top border off on ≥768px</div>

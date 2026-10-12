@@ -1,0 +1,76 @@
+Bootstrap 5 default settings
+  font-size:1 rem(16px by default);
+  line-height: 1.rem;
+  all <p> element have margin-top:0px & margin-buttom:1rem(16px by default)
+
+
+  <h1> to <h6>
+    Bootstrap styles <h1> to <h6> with a bolder font-weight & a responsive font-size.
+    Bootstrap has classes also from h1 to h6 in addition to tag h1 to h6.
+      <p class="h1">Hello World</p>
+  
+  Display heading
+    similar to h1 to h6
+    .display-1 to.display-6
+    larger font-size & lighter font-weight
+
+  <small>
+    similar to <p>
+  <mark>
+    My name is <mark>Khan<mark>
+  <abbr>
+    <abbr title="Hypertext Markup Langugae">HTML</abbr>
+  <blockquote>
+    <blockquote class="blockquote">Honesty is the bead policy</blockquote>
+  <div class="blockquote-footer">Unknown</div>
+
+  Definition list
+  <dl>
+    <dt>CPU</dt>
+    <dd>Central Processing Unit</dd>
+    <dt>Mouse</dt>
+    <dd>It is an input device</dd>
+  </dl>
+
+  <pre>
+    <code>
+      public statuc void main(){
+        system.out.println("Hello World!");  
+      }
+    </code>
+  </pre>
+
+  <p><kbd>ctr+s</kbd>shortcut to save</p>
+
+  .lead
+    <p class="lead">My name is Khan</p>
+
+  .text-start
+  .text-end
+  .text-center
+    .align-middle
+    .align-top
+    .align-buttom
+    .align-baseline
+
+
+  .text-break
+    to wrap text in container
+    no horizontal scroll
+
+  .text-decoration-none
+    for <a> tag
+
+  .text-lowercase
+  .text-uppercase
+  .text-capitalize
+
+  .list-unstyled
+  .list-inline
+    .list-inline-item 
+    for nav bar
+
+
+    
+
+  

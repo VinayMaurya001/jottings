@@ -1,0 +1,70 @@
+Basic Collapse (non-accordion style)
+  You can trigger collapse using a button or a tag 
+    with data-bs-toggle="collapse" and href/data-bs-target.
+  .collapse
+    id="simpleCollapse"
+  data-bs-toggle="collapse" 
+    data-bs-target="#simpleCollapse"
+    href="#simpleCollapse" (if <a> tag) 
+      <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample">
+        Toggle Content
+      </button>
+      <p>
+        <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample">
+          Toggle Content
+        </a>
+      </p>
+      <div class="collapse" id="collapseExample">
+          This is a simple collapsible content.
+      </div>
+  .show
+
+
+Accordion (Grouped Collapse)
+  The Accordion is used when you want only one section open at a time (like FAQs).
+  data-bs-parent="#accordionExample" ensures only one item stays open at a time.
+  .accordion
+    id="accordionExample"
+  .accordion-item
+    .accordion-header
+      .accordion-button
+      data-bs-toggle="collapse"
+      data-bs-target="#collapseOne"
+    id="collapseOne" 
+      class="accordion-collapse collapse show"
+      data-bs-parent="#accordionExample"
+
+    <div class="accordion" id="accordionExample">
+      <!-- Item 1 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Accordion Item #1
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show"
+            aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            This is the content of the first accordion item.
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Accordion Item #2
+          </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse"
+            aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            This is the content of the second accordion item.
+          </div>
+        </div>
+      </div>
+    </div>
+

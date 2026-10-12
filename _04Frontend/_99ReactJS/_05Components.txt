@@ -1,0 +1,280 @@
+Components
+  Functional Component
+    It as simply a Javascript function
+    App.js
+      <Greet/>
+    Greet.js
+        // function Greet(){
+        //   return <h1>Hello World!</h1>
+        // }
+        // const Greet=function(){
+        //   return <h1>Hello World!</h1>
+        // }
+        const Greet=()=>{
+          return <h1>Hello World!</h1>   // it must return a single tag max
+        }
+        export default Greet
+  Class Component
+    These components are simple classes( made up of multiple functions that add functionality to the application)
+    All class based components are child classes for the Component class of ReactJS
+    The class must implement a render() member function 
+      which returns a React component to be rendered, 
+        similar to a return value of a functional component
+    App.js
+      <Welcome/>
+    Welcome.js
+        import React, {Component} from 'react'
+        class Welcome extends Component{
+
+          render(){
+            return <h1>Welcome World!</h1>
+          }
+
+        }
+        export default Welcome;
+
+
+
+Props with Functional Component
+  Props stands for properties.
+  Props are arguments passed into React Components.
+  Props are passed to components via HTML attributes.
+  React props are like function arguments in JavaScript & attribute in HTML.
+  To send props into a components use the same syntax as HTML attributes.
+  Props let you pass data from a parent component to a child component.
+  Props are read-only (immutable inside the child). Child cannot modify props directly.
+  Unidirectional flow – Data flows from parent → child.
+  If we have a variable to send and not a string , we just put the name inside curly braces.
+  Props can be:
+    Strings, numbers, booleans
+    Objects, arrays
+    Functions
+    Even JSX (children)
+  Props make components reusable and dynamic by allowing you to pass data and behavior from parent to child.
+
+  Example 1: Passing Props
+      function Welcome(props) {
+        return <h1>Hello, {props.name}!</h1>;
+      }
+
+      // Usage
+      function App() {
+        return (
+          <div>
+            <Welcome name="Vinay" />
+            <Welcome name="Ranjan" />
+          </div>
+        );
+      }
+      Here:
+        App is the parent.
+        Welcome is the child.
+        The prop name is passed with different values.
+  Example 2: Destructuring Props
+      function Welcome({ name,price, age=18 , salesPrice= price}) {
+        return <h2>{name} is {age} years old.</h2>;
+      }
+
+      function App() {
+        return <Welcome name="Vinay" age={35} />;
+      }
+  Example 3: Passing Functions as Props
+      function Button({ handleClick }) {
+        return <button onClick={handleClick}>My Button</button>;
+      }
+      function App() {
+        const handleClick = () => alert("Button clicked!");
+        return <Button onClick={handleClick} />;
+      }
+      This is how child components can call back to the parent.
+  Example 4:Spread Operator (...) when passing props
+      const user = {
+          name: "Ranjan",
+          age: 35,
+          city: "India"
+        };
+      <UserCard {...user} />
+      Here ...user automatically expands to: 
+        <UserCard name="Ranjan" age={35} city="India" />
+      function UserCard({ name, age, city }) {
+          return (
+            <>
+              <h2>{name}</h2>
+              <p>Age: {age}</p>
+              <p>City: {city}</p>
+            </>
+          );
+        }
+
+  Example 5:Passing props that are arrays or objects
+        const skills = ["Java", "React", "AWS"];
+        <Profile skills={skills} />
+        <Profile skills={[...skills]} />
+              It creates a new copy of the array
+        function Profile({ skills }) {
+            return (
+              <ul>
+                {skills.map((s, i) => (
+                  <li key={i}>{s}</li>
+                ))}
+              </ul>
+            );
+          }
+
+        We can rewrite it like below too:
+            const skills = ["Java", "React", "AWS"];
+            {skills.map((skill, i) => (
+              <Profile key={i} {...{ skill }} />
+            ))}
+            function Profile({ skill }) {
+             return <li>{skill}</li>;
+            }
+
+
+
+
+
+What is props.children?
+  props.children is a special prop automatically passed to every component.
+  It represents the content placed between the opening and closing tags of a component.
+  It allows you to create wrapper or layout components.
+  props.children is React’s way of letting you make reusable wrapper components 
+    where the parent decides what goes inside.
+  Example 1: Basic Usage
+        function Card(props) {
+          return (
+            <div style={{ border: "1px solid black", padding: "10px", margin: "10px" }}>
+              {props.children}
+            </div>
+          );
+        }
+        function App() {
+          return (
+            <div>
+              <Card>
+                <h2>Hello World</h2>
+                <p>This content is inside the Card.</p>
+              </Card>
+
+              <Card>
+                <button>Click Me</button>
+              </Card>
+            </div>
+          );
+        }
+        Here:
+        Card doesn’t know what children will come.
+        Whatever is placed inside <Card> ... </Card> gets rendered at {props.children}.
+    Example 2: Layout Component
+        function Layout({ children }) {
+          return (
+            <div>
+              <header>Header Area</header>
+              <main>{children}</main>
+              <footer>Footer Area</footer>
+            </div>
+          );
+        }
+        function App() {
+          return (
+            <Layout>
+              <h1>Welcome to my website!</h1>
+              <p>This is the home page content.</p>
+            </Layout>
+          );
+        }
+      Here, children here becomes the main page content, while header/footer stay fixed.
+  Example 3: Passing Multiple Children
+      function Wrapper({ children }) {
+        return <div className="wrapper">{children}</div>;
+      }
+
+      function App() {
+        return (
+          <Wrapper>
+            <h1>First Child</h1>
+            <p>Second Child</p>
+            <button>Third Child</button>
+          </Wrapper>
+        );
+      }
+      All three elements (h1, p, button) are bundled into props.children.
+  Since you don’t always know if children is a single element or an array, React provides utilities:
+    1. React.Children.map
+    {React.Children.map(children, (child, index) => (
+        <div key={index} style={{ border: "1px solid gray", margin: "5px" }}>
+          {child}
+        </div>
+      ))}
+    2. React.Children.count
+        function Counter({ children }) {
+        return <p>Total children: {React.Children.count(children)}</p>;
+      }
+
+
+
+Props with Class Component
+      this.props
+
+
+
+
+
+State in ReactJS
+  State is data that a component manages internally.
+  Unlike props (which are inputs from a parent), state belongs to the component itself.
+  A state cam be modified based on user action or network changes.
+  When state changes, React re-renders the component to reflect the new data.
+
+  State in class component
+    this.state ={
+      name:"Vinay";
+    }
+    Ways to initialize state
+      With Constructor
+            this.state ={
+              name:"Vinay";
+            }
+      without Constructor
+              state ={
+               name:"Vinay";
+              }
+  State in functional component
+    we use useState hooks.
+    React provides the useState hook for managing state in functional components.
+    Rules of State
+      Immutable → Never modify state directly (e.g., ❌ count++).
+        Always use setter function (setCount(count + 1)).
+      Asynchronous → Updates may be batched. Use the function form if new state depends on old state:
+          setCount(prev => prev + 1);
+      Triggers Re-render → Changing state refreshes the component UI.
+      Today, most React apps use functional components + useState hook, 
+        but this.state is still important for understanding legacy codebases.
+     Example:
+            import { useState } from "react";
+            function Counter() {
+              // count = current state value
+              // setCount = function to update state
+              const [count, setCount] = useState(0);
+              return (
+                <div>
+                  <p>Count: {count}</p>
+                  <button onClick={() => setCount(count + 1)}>Increase</button>
+                </div>
+              );
+            }
+            useState(0) initializes state with 0.
+            count holds the current value.
+            setCount updates the value → triggers re-render.
+
+  The setState() method 
+    This enqueues all of the updates made to the component state & 
+    instructs React to re-render the component & its children with the updated state.
+
+
+
+
+
+
+What is destructuring?
+  const [std1,std2,std3] =students;

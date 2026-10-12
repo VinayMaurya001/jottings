@@ -1,0 +1,14 @@
+Scrollspy
+  To hook up Scrollspy in Bootstrap 5 so your navbar highlights the active section as you scroll, 
+    you need two pieces:
+      1)Markup on the scrolling container (often <body> or a specific <div>) with
+        data-bs-spy="scroll"
+        data-bs-target pointing to your navbar’s selector
+        data-bs-offset to control when an item becomes active
+        tabindex="0" to make it focusable 
+      2)A nav with links whose href (or data-bs-target) matches the IDs of your page sections.
+      3)Recommendation
+          body{
+              position:relative;
+          }
+  

@@ -1,0 +1,26 @@
+
+Containers
+  .container
+  .container-{breakpoint}
+  .container-fluid
+    width:100% on all Breakpoints
+
+
+Bootstrap 5 Container Widths
+  Container Type	ExtraSmall(<576)	Sm(≥576)	Md(≥768)	Lg(≥992)	XL(≥1200)	XXL(≥1400)
+  .container	    100%	            540px	    720px	    960px	    1140px	  1320px
+  .container-sm	  100%	            540px	    720px	    960px	    1140px	  1320px
+  .container-md	  100%	            100%	    720px	    960px	    1140px  	1320px
+  .container-lg	  100%	            100%	    100%	    960px	    1140px	  1320px
+  .container-xl	  100%	            100%	    100%	    100%	    1140px  	1320px
+  .container-xxl	100%	            100%	    100%	    100%	    100%	    1320px
+  .container-fluid 100%	            100%	    100%	    100%	    100%      100%
+
+
+
+Section	        Recommended Container
+Header/Hero	    container-fluid
+AboutMe/Skills	container
+Projects	      container
+Contact Form	  container
+Footer        	container-fluid

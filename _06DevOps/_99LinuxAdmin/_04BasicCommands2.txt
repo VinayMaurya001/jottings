@@ -1,0 +1,90 @@
+Basic Commands Session2
+
+
+To check Current working Directory
+  #pwd
+
+List commands
+  To check List of files and Directory
+    #ls
+
+  To check long list of files and Directories
+    #ll
+    or
+    #ls -l
+
+  ls -a
+    List all files and directories, including hidden ones.
+
+  To Check particular File
+    syn:ls -l <filename>
+    eg: #ls -l myfile
+
+  To check particular Directory
+    syn: ls -ld <Dirname>
+    eg: #ls -ld mydir
+
+  To check particular Directory Tree structure
+    syn: ls -R <Dirname>
+    eg: #ls -R durgasoft
+
+
+
+Creating files with CAT
+  To create a new file
+  syn: cat > <filename>
+  eg: #cat > myfile
+
+  Hi,Hello.
+  ctrl+d(To save and Exit)
+
+  To Check Content
+  syn: cat <filename>
+  eg: #cat myfile
+
+  To Append Data (Adding new lines to old file)
+  syn: cat >> <filename>
+  eg: #cat >> myfile
+    This is my linux class.
+    ctrl+d
+
+
+Creating Files with Toouch
+  To Create a file
+    syn: touch <filename>
+    eg: #touch f1
+  To create Multiple files
+    syn: touch <filename> <filename> <filename>
+    eg: #touch f2 f3 f4
+  To Define the range of files
+    syn: touch <filename>{definerange}
+    eg: #touch redhat{1..10}
+  
+Creating Directory
+  To create a directory
+    syn: mkdir <dirname>
+    eg: #mkdir mydir
+  To create multiple Dir
+    syn: mkdir <dirname> <dirname> <dirname>
+    eg: #mkdir d1 d2 d3 
+  To define range
+    syn: mkdir <dirname>{definerange}
+    eg:#mkdir linux{1..10}
+  To create a Dir with sub directories
+    syn: mkdir -p <dirname>/<dirname>/<dirname>
+    eg: #mkdir -p durgasoft/linux/ccna/mcse
+
+
+
+Navigation of Directories
+  To change Dir
+    #cd
+  To go one step back
+    #cd ..
+  To go to steps back
+    #cd ../..
+  To go to homedirectory
+    #cd
+  To go to last working dir
+    #cd -
+

@@ -1,0 +1,48 @@
+
+Alpha, beta and stable software 
+At least in alpha release is usually the first release and you're basically telling everyone this is very buggy potentially, things are very liable to change.
+And it's the very early stages of of iteration and then eventually you get to a point.
+
+It depends on the team the project all sorts of things where you deem it as beta which is usually a
+little more polished.
+You're not making many breaking changes or as many breaking changes.
+
+And then eventually you get to a point where it's done enough and you're not going to do some massive
+alterations you might be tweaking performance things behind the scenes.
+Reorganizing code at that point.
+It would be released as a stable release.
+
+So Alpha and Beta come with the expectation of at any point things could change here.
+Old version might not work.
+Your code was written with the old version might not work with the new version but once you had a stable release.
+Most people expect that things are going to be stable.
+Are not going to have to rewrite a bunch of stuff when you release 4.1 anyway.
+If we go back we can see even as recent as Beta 3 which was just a few a few months but less than a
+month a few days before 4.00 came out.
+
+The stable release there were breaking changes and that means that if you are using the previous version
+beta to that your code some of it at least wouldn't work anymore anyway.
+
+Keep going down we can see Beta 2 original beta and then before that we're an alpha so alpha 6 Alpha5.
+Keep going back eventually for three.
+And they were actually releasing stable versions of 3 at the same time as they were working on for Alpha.
+Keep going back for point 0.00 Alpha 2 and then we get to the original Alpha.
+Almost there.
+Here we are.
+August 19th 2015.
+So they announced it sometime around then released the alpha four point 0.00 Alpha and that was in 2015
+in August.
+It took all the way until January of 2018 for the first real release.
+That was not liable to have breaking changes to have massive overhauls at any point to be released.
+It took quite a long time but it's also understandable when we think about how large a project bootstrap
+is how many constituencies there are and the fact that there's there's a lot of need and need to be
+balanced anyway.
+
+
+https://github.com/twbs/bootstrap/releases
+https://getbootstrap.com/docs/4.0/getting-started/introduction/
+
+
+
+fluxbox
+cards

@@ -1,0 +1,46 @@
+Navbar
+  .navbar 
+  .navbar-expand.*
+  <ul> or <div>
+    .navbar-nav
+  <li>
+    .navbar-item
+    <a>
+      .nav-link
+  Vertical nav bar
+    remove .navbar-expand.*
+  Centered Navbar
+  .justify-content-center
+  Colored Navbar
+    .bg.*
+    .navbar-light
+    .navbar-dark
+  .active
+  .disabled
+  Brand/Logo
+    .navbar-brand with text
+    .navbar-brand with image
+  .navbar-text
+  Navbar with toggle button
+    .navbar-toggler
+      data-bs-toggle="collapse" 
+      data-bs-target="#myNavbarNav"
+      .navbar-toggler-icon
+    .collapse
+      .navbar-collapse
+    remove .navbar-expand-md
+      to always hide navbar links & disply the toggler button
+  Navbar with dropdown
+    .dropdown
+      .dropdown-toggle
+      role="button"
+      data-bas-toggle="dropdown"
+      .dropdown-menu
+      .dropdown-item
+  Navbar forms & buttons
+    .form-control
+    .d-flex
+  Fixed Navigation bar
+    .fixed-top
+      .sticky-top
+    .fixed-button

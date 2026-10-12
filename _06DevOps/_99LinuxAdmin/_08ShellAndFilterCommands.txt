@@ -1,0 +1,90 @@
+Shell Commands/Filter commands
+  used to check content of a file as per our requirment
+less and more:
+  This cmds are used to check content of a file line by line or page by page
+  use up and down arrows to move line by line
+  press d to previous page
+  press b to next page
+  press v to edit(only in less cmd)
+  press q to exit
+  we can also we spacebar for next page in more cmd
+  less:
+  syn: less <filename>
+  eg: #less /etc/passwd
+          or
+      #less myfile
+  more: 
+  syn: more <filename>
+  eg: #more /etc/passwd
+          or
+      #more myfile
+
+  Head and Tail
+  head: it displays top 10 lines from a file
+  syn: head <filename>
+  eg: #head /etc/passwd
+          or
+      #head myfile
+
+  tail: It display Bottom 10line from a file
+  syn: tail <filename>
+  eg: #tail /etc/passwd
+    or
+    #tail myfile
+  To check specific number of line from top
+  head option -n
+  syn: head -n <filename>
+  eg: #head -15 /etc/passwd
+            or
+      #head -5 myfile
+  To check specific number of line from bottom
+  tail option -n
+  syn:tail -n <filename>
+  eg: #tail -20 /etc/passwd
+            or
+    #tail -2 myfile
+
+  Grep:Global Regular Expression Print
+  This is used to pick a particular line by using a word
+  To Pick a particular line from a file
+  syn: grep <word> <filename>
+  eg: #grep linux myfile
+
+  To avoid case sensitive and Display output
+  syn: grep -i <word> <filename>
+  eg:#grep -i linux myfile
+
+  To skip Particular line from a file
+  syn:grep -v <word> <filename>
+  eg:#grep -v kernel myfile
+
+  To avoid Case sensitive and Skip particular line
+  syn: grep -iv <word> <filename>
+  eg: #grep -iv linux myfile
+
+  To check output of multiple lines with words
+  syn: grep -E '<word>|<word>|<word>' <filename>
+  eg: #grep -E 'freedom|labs|session' myfile
+  SED:
+  To pick specified lines from a file
+  syn: sed -n '<StartingNum>,<EndNum>p' <filename>
+  eg: #sed -n '20,30p' /etc/passwd
+  To Pick a particular line using Number
+  syn: sed -n '<LineNum>'p <filename>
+  eg: #sed -n '20p' /etc/passwd
+
+  cat option -n
+  To check output of a file with numbers
+  syn: cat -n <filename>
+  eg: #cat -n myfile
+
+  SORT
+  To check content of a file in Alphabetical order
+  syn: sort <filename>
+  eg: #sort myfile
+
+  To check content of a file without Duplicate lines with Alphabetic order
+  syn: sort -u <filename>
+  eg:#sort -u myfile
+
+

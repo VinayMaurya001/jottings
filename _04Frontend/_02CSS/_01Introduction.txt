@@ -1,0 +1,21 @@
+Cascading Style Sheets(CSS)
+
+
+
+
+
+
+
+
+
+
+*- aisterisk
+& - ampersand
+
+
+
+*,
+*:: before
+*::after{
+  box-sizing:border-box;
+}

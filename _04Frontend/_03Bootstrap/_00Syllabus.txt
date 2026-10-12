@@ -1,0 +1,15 @@
+
+
+
+
+Resources
+	1)Youtube Programentor
+		https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/pattern
+		https://www.youtube.com/playlist?list=PLp_RsiLZjwQTJVmCQKwlBq7Xukwq2PK1c
+	2)https://www.udemy.com/course/the-complete-bootstrap-5-course-for-beginners-step-by-step/
+	3)https://www.udemy.com/course/bootstrap-essential-training-with-projects/
+	4)https://www.udemy.com/course/bootstrap-from-scratch/
+
+
+Wordpress with Bootstrap
+	https://www.udemy.com/course/bootstrap-to-wordpress/learn/lecture/1645990#overview

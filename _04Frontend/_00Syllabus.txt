@@ -1,0 +1,162 @@
+html
+CSS
+Bootstrap
+JavaScript
+TypeScript
+Angular
+ReactJs
+	NextJS	
+
+youtube
+	programentor
+	
+Section - Topic
+Section 1: Introduction to this Course
+Section 2: Introduction to Front End Development
+Section 3: Introduction to HTML
+Section 4: Intermediate HTML
+Section 5: Introduction to CSS
+Section 6: Intermediate CSS
+Section 7: Bootstrap (3)
+Section 8: Bootstrap 4!
+Section 9: Bootstrap 4: Flexbox and Layout
+Section 10: Introduction to JavaScript
+Section 11: Javascript Basics: Control Flow
+Section 12: Javascript Basics: Functions
+Section 13: Javascript Basics: Arrays
+Section 14: Javascript Basics: Objects
+Section 15: DOM Manipulation
+Section 16: Advanced DOM Manipulation
+Section 17: Color Game Project
+Section 18: Intro to jQuery
+Section 19: Advanced jQuery
+Section 20: Todo List Projects
+Section 21: OPTIONAL Project: Patatap Clone
+Section 22: Backend Basics
+Section 23: The Command Line
+Section 24: Node JS
+Section 25: Server Side Frameworks
+Section 26: Intermediate Express
+Section 27: Working With API's
+Section 28: YelpCamp: Basics
+Section 29: Databases
+Section 30: YelpCamp: Data Persistence
+Section 31: RESTful Routing
+Section 32: Data Associations
+Section 33: YelpCamp: Comments
+Section 34: Authentication
+Section 35: YelpCamp: Adding Authentication
+Section 36: YelpCamp: Cleaning Up
+Section 37: YelpCamp: Update and Destroy
+Section 38: YelpCamp: UI Improvements
+Section 39: Git and Github
+Section 40: Deploying
+Section 41: JavaScript: The Tricky Stuff
+
+
+HTML5
+
+CSS3
+
+JavaScript
+
+Bootstrap 4
+
+SemanticUI
+
+DOM Manipulation
+
+jQuery
+
+Unix(Command Line) Commands
+
+NodeJS
+
+NPM
+
+ExpressJS
+
+REST
+
+MongoDB
+
+Database Associations
+
+Authentication
+
+PassportJS
+
+Authorization
+
+
+
+
+Lectures
+
+Code-Alongs
+
+Projects
+
+Exercises
+
+Research Assignments
+
+Slides
+
+Downloads
+
+Readings
+
+
+
+You can share your code with us in a Q&A thread by using the {...} code block button (first write your code, select it, then press the button).
+
+Here are some easy ways to share your code with us (and for us to share any tweaks or solutions that we find, in return):
+Codepen
+	https://codepen.io/
+JS Bin
+	https://jsbin.com/?html,output
+Github Gists
+	https://gist.github.com/
+GoormIDE (once you get to the backend section of the course)
+They all work great to share code.
+
+Another important resource that we highly recommend is a screenshot sharing app called Gyazo.  
+If you're trying to show us how something looks in your browser or on your machine, it really helps us to see a screenshot.  
+Gyazo lets you take a screenshot and then it automatically uploads it for you.  
+It's really fast, and I actually used it for some of the screenshots I made in this course. 
+Udemy also allows you to upload screenshots from your computer via the image button (to the left of the code block button).
+https://gyazo.com/download
+
+If you need help right away then head over to our course Facebook Group and Discord Channels, where students are hanging out around the clock and are happy to help! 
+The Discord server has a #wdb-codetalk channel specifically for asking questions.
+https://www.facebook.com/groups/2100745003324401/
+https://discordapp.com/invite/CUga7jX
+
+
+https://www.youtube.com/c/ColtSteeleCode
+
+
+
+Here are a few different ways I hope you can participate:
+ In the chatrooms
+ 	https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/4153098#questions
+Introduce yourself
+Post your own solutions to projects and exercises
+Share links to helpful articles and tutorials
+Share your own blog posts (shoutout to Jamal Yusef for some great content)
+Share your personal projects
+Make people laugh
+In the Q&A
+Ask questions
+Help answer other students’ questions
+Share feedback on individual lessons, sections, and the course in general
+
+Lecture Notes
+
+Short Notes
+The Web Developer Bootcamp Outline [BA] - 2018-05-29.docs
+The Web Developer Bootcamp Outline [BA] - 2018-05-29.pdf
+
+
+http://validator.w3.org/

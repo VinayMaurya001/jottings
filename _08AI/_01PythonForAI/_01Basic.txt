@@ -1,0 +1,18 @@
+
+Python doesn't require semicolons
+  Python uses indentation as part of its syntax, which will become very important.
+  Java → ;
+    Python → newline
+  age = 30
+  if age >= 18:
+    print("Adult")
+
+Python comments
+  # This is a comment
+
+Python is case-sensitive
+Python determines the type from the value.
+
+Each print() creates a new line.
+  Want them on the same line?
+    print(name, end="")               nnnnnnnnnnmnnnnnnnnnnnnnn             nnnnnnnnnnnnnnn                                        mmmmmmmmmmmmmmmmmmmmm

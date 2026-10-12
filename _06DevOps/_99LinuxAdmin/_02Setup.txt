@@ -1,0 +1,40 @@
+
+
+Virtualization Software
+  1)Oracle Virtualbox
+      Settings>Network>Attached to -NAT to Bridge Network
+      Create Virtual Machine
+        A virtual machine is mainly used to run  a OS like Linux, Window etc.
+      Download iso image for OS and install it in virtual machine
+  2)VMWare player
+  3)UTM for MacOS
+
+Different ways to install OS  
+  1)Via CD/DVD
+  2)via ISO image
+  3)Via Network Boot
+      Basically, you tell your computer to go to a specific IP and a specific folder that is being shared by a shared server.
+      That could be either NFS server or a Samba server that attaches that file.
+      You give an IP address and then you do the network boot.
+
+
+CentOS vs CentOS Stream
+  Before feb 2021
+    Fedora> RHEL > CentOS 7
+  After Feb 2021
+    Fedore> CentOS 8/9/10 Stream >RHEL
+
+
+Check Linux system is connected to internet
+  nmcli device status
+  ip a
+  ip route
+  nslookup google.com
+  sudo systemctl restart NetworkManager
+    systemctl status NetworkManager
+
+
+Take a snapshot of VM to restore 
+
+
+Virtual Machine Management

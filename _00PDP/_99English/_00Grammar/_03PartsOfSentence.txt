@@ -1,0 +1,17 @@
+
+Part of speech vs Parts of sentence
+  Part of speech
+    question?
+  Parts of sentence
+    behaviour in sentence
+
+Parts of sentence
+  Parts of sentence is a role of a word in a sentance
+  subject
+    main person or thing
+    do the action
+  predicate
+    action that subject is doing
+  object  
+    receives the action
+  

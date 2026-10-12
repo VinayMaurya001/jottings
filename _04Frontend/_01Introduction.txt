@@ -1,0 +1,26 @@
+Introduction to FrontEnd Development
+1)Sublimetext3 editor
+			You can use Sublime Text 3 instead of 2. 
+				This will make it to where the HTML5 <!DOCTYPE html>  is included in your HTML boilerplate snippet.
+			Also, when you're using the html + tab tab completion shortcut, be sure that the file's syntax is set to HTML. 
+			It should say "HTML" in the lower right corner of the window. 
+			If it says "Plain Text" then you'll need to click it and change it to "HTML" before the tab completions for HTML tags will work properly.
+			
+2)To view source of web page
+	Command+Option+U or Ctrl+U
+	select View > Developer > View Source
+	https://www.youtube.com/watch?v=qEdv_pem-JM
+	
+3)
+https://codepen.io/Colt/pen/WQQVvE
+If htmL is the nouns, CSs is the adjectives then javascript is the verbs or the actions on a page.
+You use javascript to make it interactive.
+
+4)
+http://abacus.bates.edu/~ganderso/biology/resources/writing/HTWsections.html
+http://webdev.slides.com/coltsteele/deck-7-50#/13
+
+MDN
+	Mozilla Developer Network
+	Very good resource for Html, CSS, js
+	https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML	

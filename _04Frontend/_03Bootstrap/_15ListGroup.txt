@@ -1,0 +1,46 @@
+List Group
+  In Bootstrap 5, a List Group is a flexible component used to display a series of items, often as a list. 
+    It's great for menus, itemized data, and navigation.
+  1. Basic List Group
+    <ul class="list-group">
+      <li class="list-group-item">First item</li>
+      <li class="list-group-item">Second item</li>
+      <li class="list-group-item">Third item</li>
+    </ul>
+  2. List Group with Contextual Colors
+    .list-group-item-*
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-primary">Primary</li>
+      <li class="list-group-item list-group-item-success">Success</li>
+      <li class="list-group-item list-group-item-danger">Danger</li>
+    </ul>
+  3. List Group with Active/Disabled Items
+    .active
+    .disabled
+    <ul class="list-group">
+      <li class="list-group-item active" aria-current="true">Active item</li>
+      <li class="list-group-item">Normal item</li>
+      <li class="list-group-item disabled" aria-disabled="true">Disabled item</li>
+    </ul>
+  4. List Group as Links (Interactive)
+    on <a> tag inside <div>
+    <div class="list-group">
+      <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+        Active link
+      </a>
+      <a href="#" class="list-group-item list-group-item-action">Link item</a>
+      <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">Disabled link</a>
+    </div>
+  5. List Group with Badges
+    <ul class="list-group">
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        Messages
+        <span class="badge bg-primary rounded-pill">4</span>
+      </li>
+    </ul>
+  6.Flush or remove borders
+    .list-group-flush
+  7.Numbered list groups
+    .list-group-numbered
+  8. Horizontal list group
+    .list-group-horizontal

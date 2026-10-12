@@ -1,0 +1,9 @@
+What is react?
+
+Why React?
+
+Declarative vs Imperative style
+
+Component Architecture
+
+One way data flow

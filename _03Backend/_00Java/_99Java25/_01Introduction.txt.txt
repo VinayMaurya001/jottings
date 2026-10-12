@@ -1,0 +1,39 @@
+
+JDK 25, released September 16, 2025
+Java 25 is a Long-Term Support (LTS) release.  (support at least 8 years)
+
+
+Features
+    Standard
+      503:	Remove the 32-bit x86 Port
+      506:	Scoped Values
+      510:	Key Derivation Function API
+      511:	Module Import Declarations
+      512:	Compact Source Files and Instance Main Methods
+      513:	Flexible Constructor Bodies
+      514:	Ahead-of-Time Command-Line Ergonomics
+      515:	Ahead-of-Time Method Profiling
+      518:	JFR Cooperative Sampling
+      519:	Compact Object Headers
+      520:	JFR Method Timing & Tracing
+      521:	Generational Shenandoah
+    Preview
+      470:	PEM Encodings of Cryptographic Objects (Preview)
+      502:	Stable Values (Preview)
+      505:	Structured Concurrency (Fifth Preview)
+      507:	Primitive Types in Patterns, instanceof, and switch (Third Preview)
+    Incubator 
+      508:	Vector API (Tenth Incubator)
+    Experimental
+      509:	JFR CPU-Time Profiling (Experimental)
+
+
+
+Difference from other types
+  Standard JEP → Fully supported, stable, production-ready.
+  Preview JEP → Fully specified language/API feature, but released in “trial mode” to collect developer feedback before standardization. Enabled with --enable-preview.
+  Incubator JEP → Introduces a new API in a special incubator module (jdk.incubator.*). It’s experimental but more structured than VM options.
+  Experimental JEP → Mostly VM/GC/JFR/low-level features. No guarantee of future support; may be highly unstable.
+                      Must be turned on using special JVM flags (e.g., --XX:+UnlockExperimentalVMOptions).
+                      Is meant only for testing, research, and feedback, not for production use.
+

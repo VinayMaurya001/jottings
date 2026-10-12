@@ -1,0 +1,22 @@
+OffCanvas
+  OffCanvas  is similar to modals, except that is often used as a sidebar navigation menu.
+  Bootstrap 5’s Offcanvas component lets you create hidden side panels (or top/bottom drawers) that slide into view. 
+    It’s great for navigation, filters, or any sidebar content. 
+  Basic Markup & Trigger
+    .offcanvas 
+      .offcanvas-start slides in from the left.
+      .offcanvas-header
+      .offcanvas-title
+      .offcanvas-body
+    The trigger uses data-bs-toggle="offcanvas" and 
+      data-bs-target="#offcanvasExample" on <button> or
+        href="#offcanvasExample" on  <a> tag.
+    Offcanvas must have tabindex="-1" so it can be focused for accessibility.
+  Positions
+    .offcanvas-start
+    .offcanvas-end
+    .offcanvas-top
+    .offcanvas-bottom
+  Options & Attributes
+    data-bs-scroll="true" → allow body scrolling while offcanvas is open.
+    data-bs-backdrop="false" → disable the backdrop overlay.

@@ -1,0 +1,178 @@
+Html : 
+	Html is a web technology we can use to design web pages. 
+	It stands for hypertext markup language.
+	Html file extension should be .htm/.html
+
+Html elements 
+	Html provides many elements to display controls on browser.
+	  Ex: input,img,div,....
+	Every element we should enclosed with angle brackets <> , We can callit as tag
+	  <img>,<input>
+	Every element is providing many properties we can call as attributes.
+	   Ex: src,type,....
+
+	<marquee scrollamount="40" direction="down" style="height:100px" behaviour="alternate">Scroll the value</marquee>
+
+Types of Html elements:
+1) Container (container can hold other elements)
+	Containers we can use to hold multiple controls as a group.
+	All containers are pair combination
+	a)Block level elements:
+		These elements can occupy width of complete screen width.
+        Ex : div , table, p,...
+	b)Inline elements
+		These elements dont occupy complete screen width.
+		Ex: span,a,....
+2) Non-container (container can not hold other elements)
+   We can use to receive some data / instructions from user
+   		<textarea cols="30" rows="10">
+   			<img src="apple.jpg"/>
+		</textarea>
+   All non containers are inline elements.
+   Non containers are pair or non-pair tags
+
+Few elements: 
+	To display input controls like textbox button. Type is the property to specify the type of control
+	<input type="text" placeholder="Username" dir="rtl"/>
+	<input type="button" value="Click" />
+	<input type="radio" name="gen"/>Male
+	<input type="radio" name="gen"/>Female
+	<input type="checkbox"  />
+	<input type="file" />
+	<select>
+		<option>Angular</option>
+		<option>Typescript</option>
+	</select>
+	<textarea cols="30" rows="10">
+	</textarea>
+	<h1>Heading</h1>
+	<h6>Heading</h6>
+	<a href="http://google.com">
+		<img src="mango.jpg" width="10px" />
+	</a>
+	<table border="1">
+		<thead>
+			<th>Ser No</th>
+			<th>Username</th>
+		</thead>
+		<tr>
+		    <td>100</td>
+			<td>Scott</td>
+		</tr>
+		<tr>
+		   <td>200</td>
+		   <td>Amith</td>
+		</tr>
+	</table>
+
+
+
+
+	
+5)
+html+tab in sublimetext
+tagname+tab to create any tag element
+lorem+tab
+<!--Comment --> : command+slash
+Title Tag
+	It's going to determine the name or the text that goes in our tab appear.
+	And it's also important for search engines and for other pages when other pages linked to your site
+    or when you go to Google.
+
+6)
+Basic Tags
+https://developer.mozilla.org/en-US/docs/Web/HTML/Element
+Block level elements means that element gets its own line.
+Inline elements
+https://www.lipsum.com/
+
+Semantic markup
+	<strong> is better than <b>
+	<em> better than <i>. Em stands for emphasis
+	
+List
+	Ordered List <ol></ol>
+	Unordered List <ul></ul>
+	Nested List
+	
+<div> & <span> : Block level & inline generic container
+
+7)
+Attributes: 
+	Additional info about tag
+	It is key-value pair
+	MDN reference: https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes
+	Any attribute works on very few elements.
+	
+Two types of URLs:
+1)Relative path
+2)Absolute path	
+
+8)
+Table & Forms
+Table
+<table>
+	<thead>
+		<tr>
+			<th></th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td></td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
+Use <thead> & <tbody> for screen reader.
+
+Form
+<form action="" method="">
+	<input type="text" name="">
+	<input type="date" name="">
+	<input type="color" name="">
+	<input type="checkbox" name="">
+	<input type="file" name="">
+	<input type="radio" name="gender" value="male">
+	<input type="radio" name="gender" value="female">
+	<input type="email" name="">
+	<input type="password" name="">
+	<select name="color">
+		<option value="RED">Red</option>
+		<option value="GREEN">Green</option>
+		<option value="BLUE">Blue</option>
+	</select>
+	<textarea rows="10" cols="15">Comment</textarea>
+	
+	<input type="submit" name="vsdv">
+	<button>Sumbit</button>
+</form>
+
+In GET request we see query string in URL.
+
+
+9)
+Label
+The reason that we use label rather than just a paragraph or some plain text is that labels are really
+important for making our site accessible.
+So if someone is visually impaired or blind and they're accessing our forum trying to sign up their
+screen reader software that they're using is going to look for label tags and it's going to use those
+labels to know what each part of the form corresponds to.
+So it's really important.
+It's also a nice way just to add a little caption as you can see here explaining what each part of the
+form is used for.
+	<label>User Name
+		<input type="text" name="abc" required>
+	</label>
+	<label for="birthdate">Date	</label>
+	<input type="date" name="" id=birthdate">
+
+Lastly, the way Colt has labeled the birthday inputs is semantically incorrect. 
+Please see here for a valid method of grouping multiple inputs, with labels, so they'll pass w3 validation.
+
+
+10)
+Meanwhile, some of you may have found the minlength and maxlength attributes to use for the input validation. 
+This method has less browser support than the pattern attribute.
+http://validator.w3.org/

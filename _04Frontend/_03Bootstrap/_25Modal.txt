@@ -1,0 +1,38 @@
+Modal
+  A dialog box or popup window on top of the current page
+  .modal + .fade: 
+    hidden by default and fades in  
+  .modal-dialog → .modal-content with header/title/body/footer
+    data-bs-dismiss="modal"
+  data-bs-toggle="modal", data-bs-target="#id": 
+    links trigger to modal
+  We can open a particular model with the help of diffrent buttons
+  Add animation to modal
+    .fade
+  Static Backdrop & Keyboard Control
+    Prevent closing by clicking outside or pressing Esc:
+    data-bs-backdrop="static": 
+      disables click‑outside close 
+    data-bs-keyboard="false": 
+      disables Esc key close
+  Sizes
+    <div class="modal-dialog modal-sm">    <!-- Small -->
+    <div class="modal-dialog modal-lg">    <!-- Large -->
+    <div class="modal-dialog modal-xl">    <!-- Extra‑large -->
+    Full screen modal 
+      .modal-fullscreen
+      .modal-fullscreen-*-down
+  Vertically Centered
+    div class="modal-dialog modal-dialog-centered">
+  Scrollable Body
+    <div class="modal-dialog modal-dialog-scrollable">
+
+
+
+
+
+The tabindex attribute controls an element’s focus behavior:
+  tabindex="0"
+    Puts the element into the natural tab order (in document order), so you can focus it by pressing Tab.
+  tabindex="-1"
+    Removes the element from the Tab sequence (you won’t land on it by pressing Tab), but it can still be focused programmatically (e.g. via JavaScript’s .focus()).

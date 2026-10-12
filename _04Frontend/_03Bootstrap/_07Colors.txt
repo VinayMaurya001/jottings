@@ -1,0 +1,30 @@
+Colors
+
+Background Colors 
+  .bg-primary
+  .bg-success
+  .bg-info
+  .bg-warning
+  .bg-danger
+  .bg-secondary
+  .bg-dark
+  .bg-light
+
+Text Colors
+  .text-primary
+  .text-success
+  .text-info
+  .text-warning
+  .text-danger
+  .text-secondary
+  .text-dark
+  .text-light
+  .text-muted
+  .text-white
+    We can add 50% opacity with the .text-black-50 or .text-white-50 classes
+  .text-black
+    We can add 50% opacity with the .text-black-50 or .text-white-50 classes
+  .text-body
+    default body color/often black 
+
+We can add 50% opacity or white text with the .text-black-50 or .text-white-50 classes

@@ -1,0 +1,38 @@
+Offset Classes
+  Bootstrap 5 provides offset classes to push columns to the right within the grid system. 
+    These classes are useful when you need to create asymmetrical layouts or center columns without using margins.
+  Offset classes provide a clean way to control column positioning without resorting 
+    to custom CSS or margin utilities, maintaining the integrity of Bootstrap's grid system.
+  Basic Offset Classes
+    offset-{breakpoint}-{columns}
+    Breakpoints:
+      No prefix (xs) - applies to all screen sizes
+      sm - ≥576px
+      md - ≥768px
+      lg - ≥992px
+      xl - ≥1200px
+      xxl - ≥1400px
+    Column Count:
+      1 through 11 - number of columns to Offset
+  Important Notes
+    Offset Limitations:
+      The total of column size + offset cannot exceed 12
+      Example: col-md-9 offset-md-4 would be invalid (9 + 4 = 13 > 12)
+    No Negative Offsets:
+      Bootstrap doesn't provide negative offset classes
+      For leftward positioning, use margin utilities instead
+    Reset Offsets:
+      Use offset-0 to remove offsets at specific breakpoints
+      <div class="col offset-md-3 offset-lg-0">
+        <!-- Offset on medium screens, removed on large screens -->
+      </div>
+  Practical Use Cases
+    1.Form Layouts
+    2.Asymmetrical Layouts:
+    3.Responsive Image Gallery:
+
+
+
+
+
+

@@ -1,0 +1,46 @@
+Popover
+  Popovers are small overlay content containers—like tooltips 
+    but can hold more content (title, body, even HTML). 
+    Under the hood they’re built on Popper.js for positioning. 
+
+  bootstrap.bundle.min.js or popper.min.js
+  data-bs-toggle="popover" — activates popover
+  title="…" — popover header (optional)
+  data-bs-content="…" — popover body
+  Can also use data-bs-html="true" to allow HTML in data-bs-content.
+  
+  <button
+    type="button"
+    class="btn btn-secondary"
+    data-bs-toggle="popover"
+    title="Popover title"
+    data-bs-content="And here’s some amazing content. It’s very engaging. Right?">
+    Click to toggle popover
+  </button>
+
+  Initialize via JavaScript
+    By default data-attributes won’t auto‑init. You have two options:
+    A. Auto‑init All on Page
+      document.querySelectorAll('[data-bs-toggle="popover"]')
+        .forEach(el => new bootstrap.Popover(el))
+    B. Single Element
+      var popEl = document.getElementById('myPopoverBtn')
+      var pop = new bootstrap.Popover(popEl, {
+        title: 'Custom Title',
+        content: 'Custom content text',
+        trigger: 'hover focus' // see triggers below
+      })
+
+  Closing popover
+    trigger: 'click' (default)
+    trigger: 'hover'
+    trigger: 'focus'
+    trigger: 'manual' (you call pop.show() / pop.hide())
+    You can combine, e.g. trigger: 'hover focus'.
+
+  Popup on disabled Element
+    <div  popover attributes>
+      <button disabled/>
+    </div>
+  Positioning popover 
+    data-bs-placement="top/bottom/left/right"  (by default is right)

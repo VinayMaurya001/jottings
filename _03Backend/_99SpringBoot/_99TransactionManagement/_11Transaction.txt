@@ -1,0 +1,132 @@
+Transaction
+  A transaction is a unit of work that must either:
+    ✔ complete fully
+    or
+    ❌ not happen at all
+  Example:
+    Transfer money from Account A to B:
+      Deduct ₹100 from A
+      Add ₹100 to B
+    If step 2 fails → step 1 must ALSO revert. (Otherwise money disappears.)
+
+
+ACID Properties of a Transaction
+  | Property            | Meaning                                     |
+  | ------------------- | ------------------------------------------- |
+  | **A – Atomicity**   | All operations succeed or none.             |
+  | **C – Consistency** | Data must remain valid.                     |
+  | **I – Isolation**   | Operations shouldn't affect each other.     |
+  | **D – Durability**  | Once committed, change stays even on crash.Committed data never disappears |
+  Spring enforces ACID with the help of database transactions.
+
+Spring Boot Transaction Management Core: @Transactional
+  This annotation tells Spring:
+    “Wrap this method inside a database transaction.”
+  Example
+    @Service
+    public class UserService {
+        @Transactional
+        public void createUser(User user) {
+            userRepository.save(user);
+            emailService.sendEmail(user); // if this fails → database rollback
+        }
+    }
+    If an exception occurs → Spring rolls back the DB changes.
+
+  How Does @Transactional Work Internally?
+    Spring creates a proxy around the method.
+    When the method starts → proxy starts a DB transaction.
+    If the method ends normally → proxy commits.
+    If the method throws RuntimeException → proxy rolls back.
+
+  Default Transaction Behavior in Spring
+      | Behavior        | Default            |
+      | --------------- | ------------------ |
+      | Propagation     | REQUIRED           |
+      | Isolation       | DEFAULT            |
+      | Rollback For    | RuntimeException   |
+      | No Rollback For | Checked exceptions |
+      | Read-only       | false              |
+
+  To force rollback:
+    @Transactional(rollbackFor = Exception.class)
+    In spring boot, by default, Transactions roll back only for RuntimeException.
+
+
+
+  Common Mistakes Beginners Make
+    ✔ 1. Calling @Transactional method from same class → DOES NOT WORK
+            public void outer() {
+              inner(); // @Transactional DOES NOT APPLY
+            }
+            Spring proxy is bypassed.
+    ✔ 2. Putting @Transactional on private methods → DOES NOT WORK
+          Only public methods work reliably.
+    ✔ 3. Using @Transactional on controller → BAD PRACTICE
+          Always use it on service layer.
+
+
+
+  @Transactional in Spring ensures:
+      Atomicity → rollback on failure
+      Consistency → invalid data is not saved
+      Isolation → each transaction sees the database as if it is alone.
+      Durability → database ensures committed data stays
+    
+
+
+    Durability
+      Once the transaction commits:
+        ✔ Power loss
+        ✔ Server crash
+        ✔ DB restart
+      Data must stay.
+
+      ✔ How databases ensure durability:
+        Write-Ahead Logging (WAL)
+        Disk flush
+        Checkpointing
+        This ensures once data is committed → it will survive crashes.
+
+      ✔ Spring Boot perspective
+        Spring calls the database COMMIT.
+        After that, Spring cannot lose the data because the database guarantees durability.
+
+    Consistency (Data Remains Valid)
+        Ensures data always follows rules/constraints.
+        Spring + DB ensure consistency:
+          Database constraints (FK, NOT NULL, UNIQUE)
+          Spring validation
+          JPA constraints (@NotNull, @Size, etc.)
+
+
+@Transactional(readOnly = true)
+  SET TRANSACTION READ ONLY;
+  A read-only transaction is a database transaction that does not modify data.
+  It guarantees that no inserts, updates, or deletes can occur within that transaction.
+  ✅ Read-only + MVCC
+  ✅ Read-only transactions in distributed systems (Saga, 2PC)
+
+
+
+
+
+
+
+
+
+
+
+
+ACID
+Savepoints
+common pitfalls
+Lazy loading + transaction
+Best practices
+@Transactional pitfalls
+interview questions
+Real project scenarios
+Transaction Best Practices for Spring Boot
+Rollback rules (rollbackFor, noRollbackFor)
+Checked vs unchecked exception behavior
+Spring @Transactional + propagation + isolation real project example

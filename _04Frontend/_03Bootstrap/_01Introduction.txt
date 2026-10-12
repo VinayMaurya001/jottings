@@ -1,0 +1,47 @@
+framework	contains 2 things:
+	1)Set of rules
+	2)Built in library
+
+Bootstrap
+	Popular HTML, CSS & JavaScript framework
+	Completely free
+	Highly Customizable
+	Responsive grid system
+	Responsive media items
+	Build-in components
+	Can be extended
+	Optional JavaScript plugins
+	We dont need to use @MediaQueries
+
+New in Bootstrap 5
+	jQuery removed
+	Switched to Vanilla JavaScript
+	Custom font-sizes
+	support all major browser & platform
+	Dropped support for IE10, IE11
+	Change in Gutter width
+	New Icon library
+	new components, faster stylesheet & more responsiveness
+	Bootstrap 3 & 4is still supported by the team for critical bugfixes & documentation changes 
+		& it is practically safe to use them. However new features will not be added to them.
+
+Advantage of Bootstrap
+	easy to use
+	Responsive
+	mobile-first approach
+	browser compatibility
+
+Bootstrap Versions
+	Bootstrap   -2012
+	Bootstrap 3  -2013
+	Bootstrap 4  -2018
+	Bootstrap5 -May 2021
+
+
+
+
+
+Bootstrap 5 uses JavaScript for different components(like modals,tooltips,popovers etc).
+	However, if you just use the CSS part of Bootstrap, you don't need them.
+
+

@@ -1,0 +1,82 @@
+Compact source files
+  In the Java language, every class resides in a package and every package resides in a module. 
+    Modules and packages provide namespacing and encapsulation for classes,   
+    but small programs that consist of just a few classes do not need these concepts. 
+    Accordingly, developers can omit package and module declarations, 
+    and their classes will reside in an unnamed package of an unnamed module.
+  Classes provide namespacing and encapsulation for fields and methods, 
+    but small programs that consist of just a few fields and methods do not need these concepts.
+  Henceforth, if the Java compiler encounters a source file with fields and 
+    methods that are not enclosed in a class declaration, 
+    it will consider the source file to implicitly declare a class whose members are the unenclosed fields and methods. 
+    Such a source file is called a compact source file.
+  With this change, we can write Hello, World! as a compact source file:
+    void main() {
+      System.out.println("Hello, World!");
+    }
+  The implicitly declared class of a compact source file
+    Is a final top-level class in the unnamed package;
+    Extends java.lang.Object and does not implement any interfaces;
+    Has a default constructor with no parameters, and no other constructors;
+    Has, as its members, the fields and methods in the compact source file; and
+    Must have a launchable main method; if it does not, a compile-time error is reported.
+    You can use the this keyword inside the file to refer to the current instance.
+  Since the fields and methods declared in a compact source file are interpreted as members of the implicitly declared class, 
+    we can write Hello, World! by calling a method declared nearby:
+        String greeting() { return "Hello, World!"; }
+        void main() {
+            System.out.println(greeting());
+        }
+    or by accessing a field:
+        String greeting = "Hello, World!";
+        void main() {
+            System.out.println(greeting);
+        }
+  A compact source file declares a class implicitly, 
+    so the class does not have a name that can be used in source code. 
+    The Java compiler generates a class name when compiling a compact source file, 
+    but that name is implementation-specific and 
+    should not be relied upon in any source code — not even source code in the compact source file itself.
+  we can run a compact source file directly with the source-code launcher, 
+    or we can compile it explicitly and then run it.
+    Assuming this program is in the file HelloWorld.java, we can run it directly with the source-code launcher:
+          $ java HelloWorld.java
+        Alternatively, we can compile it explicitly and then run it:
+          $ javac HelloWorld.java
+          $ java HelloWorld
+  The javadoc tool can generate documentation from a compact source file, 
+    even though the implicitly declared class should not be referenced by other classes and 
+    thus cannot be used to define an API. 
+    Documenting the members of the implicitly declared class may be useful for beginners learning about javadoc, and 
+    for experienced developers prototyping code intended to be used in larger programs.
+
+
+  Automatic import of the java.base module
+    import module java.base;
+    appears at the start of every compact source file.
+    It automatically importing all 54 packages from the java.base module into compact source files
+    The public top-level classes/interfaces in packages exported by java.base 
+      are automatically available in compact source files, as if they are imported. 
+      This reduces the necessity to write import java.util.List etc., for commonly used classes.
+  This compact source file:
+      void main() {
+          var authors = List.of("James", "Bill", "Guy", "Alex", "Dan", "Gavin");
+          for (var name : authors) {
+              IO.println(name + ": " + name.length());
+          }
+      }
+      can be evolved into an ordinary source file that declares a single class:
+
+      import module java.base;
+      class NameLengths {
+          void main() {
+              var authors = List.of("James", "Bill", "Guy", "Alex", "Dan", "Gavin");
+              for (var name : authors) {
+                  IO.println(name + ": " + name.length());
+              }
+          }
+      }
+      The main method does not change in any way. 
+      Thus turning a small program into a class that can serve as a component in a larger program is always straightforward.
+
+

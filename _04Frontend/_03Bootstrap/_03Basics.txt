@@ -1,0 +1,37 @@
+
+Layout in Bootstrap
+
+Breakpoints
+  Media Queries
+  Breakpoints are media Queries
+  Building block of RWD(Responsive Web Design)
+  Mobile first
+
+  className   Breakpoint        Dimensions(px)
+  None        ExtraSmall        <576
+  sm          Small             >=576
+  md          Medium            >=768
+  lg          Large             >-992
+  xl          ExtraLarge        >=1200
+  xxl         ExtraExtraLarge   >=1400
+
+
+
+
+
+
+
+
+
+
+
+
+
+Close icon
+  .btn-close
+
+Shadows
+  .shadows-None
+  .shadows-sm
+  .shadows
+  .shadows-lg

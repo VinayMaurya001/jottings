@@ -1,0 +1,139 @@
+Buttons
+  .btn
+
+  Contextual classess
+    .btn-success
+    .btn-info
+    .btn-warning
+    .btn-danger
+    .btn-primary
+    .btn-secondary
+    .btn-light
+    .btn-dark
+
+  Outline/Bordered Buttons
+    Bootstrap's outline buttons (aka bordered buttons) are a stylish alternative to solid buttons. 
+      They have only a border and text color, no background — great for secondary actions or minimal design.
+      They have hover effect.
+    Available btn-outline-* Variants:
+      Class	                Description
+      btn-outline-primary	  Blue border & text
+      btn-outline-secondary	Gray border & text
+      btn-outline-success	  Green border & text
+      btn-outline-danger	  Red border & text
+      btn-outline-warning	  Yellow border & text
+      btn-outline-info	    Teal border & text
+      btn-outline-light	    White border & text (on dark bg)
+      btn-outline-dark	    Dark gray border & text
+
+  A button classes can be used on <a>, <button> or <input> element.
+
+  Button sizes
+    .btn-sm 
+    .btn-lg 
+
+  Block level button
+    It spans the entire width of parent element
+    w-100  
+
+
+    Make buttons block-level only on smaller screens:
+      <button class="btn btn-info w-100 w-md-auto">Responsive Button</button>
+      w-100: Full width on mobile.
+      w-md-auto: Auto width on medium and up.
+
+    Using .d-grid
+      <div class="d-grid gap-2">
+        <button class="btn btn-primary">Button 1</button>
+        <button class="btn btn-secondary">Button 2</button>
+      </div>
+      gap-2: Adds space between rows (or columns if horizontal layout).
+    .btn-block
+      This was removed in Bootstrap 5, and replaced with w-100 for more consistent sizing across all components.
+
+
+  Active & disabled button
+    Active Button (.active)
+      Adds a pressed/selected appearance. Often used in toggle buttons or navs.
+      <button type="button" class="btn btn-primary active" aria-pressed="true">
+        Active Button
+      </button>
+      aria-pressed="true" improves accessibility for screen readers.
+      Visually looks pressed/highlighted.
+    Disabled Button (.disabled or disabled attribute)
+      For <button> elements:
+        Used to deactivate a button — user cannot click it.
+        <button type="button" class="btn btn-secondary" disabled>
+          Disabled Button
+        </button>
+        disabled attribute is enough.It removes pointer events and dims the look.
+      For <a> tags styled as buttons:
+        <a href="#" class="btn btn-danger disabled" tabindex="-1" aria-disabled="true">
+          Disabled Link Button
+        </a>
+        Use .disabled (because a doesn’t support disabled attribute)
+        tabindex="-1" prevents focus
+        aria-disabled="true" for accessibility
+
+  Rounded buttons
+    .rounded-pill
+    <button class="btn btn-primary rounded-pill">Click Me</button>
+
+
+Why we use # in <a> tags:
+  <a href="#">Click me</a>
+  The # refers to the top of the page or a placeholder.
+  It doesn’t link to any external URL or page.
+  It’s often used temporarily when:
+    The real link isn’t available yet.
+    You're creating a dummy link (e.g., in a prototype).
+    You want to trigger some JavaScript instead of navigating.
+      <a href="#" onclick="alert('You clicked!')">Click Me</a>
+      If you use href="#" without preventing default behavior, it might:Scroll to the top of the page.
+        <a href="#" onclick="event.preventDefault(); myFunction();">Click</a>
+
+
+
+
+
+
+Button Group
+  In Bootstrap, a button group is created using the .btn-group class. 
+    Bootstrap makes it super easy to align buttons together with consistent spacing and behavior.
+  We can group <a>,button, input,checkbox, radiobox etc. also.
+  Button groups are inline by default.
+  Basic Horizontal Button Group
+    .btn-group
+    btn-group-sm
+    btn-group-lg
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <button type="button" class="btn btn-primary">Left</button>
+      <button type="button" class="btn btn-primary">Middle</button>
+      <button type="button" class="btn btn-primary">Right</button>
+    </div>
+  Vertical Button Group
+    .btn-group-vertical
+  Button Toolbar (Multiple Groups Together)
+    .btn-toolbar
+  Button Group with Toggle (Checkbox/Radio)
+    <!-- Checkbox Toggle -->
+    <div class="btn-group" role="group" aria-label="Checkbox toggle button group">
+      <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+      <label class="btn btn-outline-primary" for="btncheck1">Check 1</label>
+
+      <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+      <label class="btn btn-outline-primary" for="btncheck2">Check 2</label>
+    </div>
+
+    <!-- Radio Toggle -->
+    <div class="btn-group" role="group" aria-label="Radio toggle button group">
+      <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" checked>
+      <label class="btn btn-outline-secondary" for="option1">Option 1</label>
+
+      <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
+      <label class="btn btn-outline-secondary" for="option2">Option 2</label>
+    </div>
+
+
+
+

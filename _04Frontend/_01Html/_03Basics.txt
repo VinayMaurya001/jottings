@@ -1,0 +1,75 @@
+
+Attribute value can be written inside single or double quote.
+Html is case in-sensitive language.
+
+h1 to h6 tag we used to show the most/least importance(To make SEO friendly ). 
+If we want bigger/smaller size, we should use font-size.
+
+
+Absolute and relation url/path
+
+! +tab - for sample html 
+Lorem  - for sample paragraph
+
+
+tag 
+  semantic tag
+    header,main, footer
+    seo friendly
+    recommneded way
+    good user experience for screen reader, visually impaired
+  non-semantic tag
+    div, span
+    seo friendly
+
+
+Layout
+  header,
+  main, 
+    section,
+    section
+    article
+    aside (this is an add)
+  footer
+
+
+div
+  Block Element (takes full width)
+
+span
+  Inline element
+  Inline Element (takes width as per size)
+
+
+
+  table
+    thead
+      caption
+      tr
+        th colspan="2"
+    tbody
+      tr
+        td
+
+
+Attribute	What It Does	                Use Case Example
+colspan	  Merge columns (horizontally)	colspan="2" → spans 2 columns
+rowspan	  Merge rows (vertically)	      rowspan="3" → spans 3 rows
+
+
+form action=""
+  label for=""
+    input
+
+iframe
+  website inside website
+  <iframe src="">
+
+
+<video src="myVid.mp4"> My Video </video>
+Attributes
+- controls
+- height
+- width
+- loop
+- autoplay

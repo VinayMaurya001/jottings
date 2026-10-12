@@ -1,0 +1,197 @@
+Tokens
+access_token: Short-lived token to access protected APIs.
+
+refresh_token: Used to get new access tokens when old ones expire.
+
+id_token (OpenID Connect): Contains user identity info (JWT).
+
+Popular Grant Types
+Grant Type	Used For
+Authorization Code	Web apps (secure, uses backend)
+Client Credentials	Machine-to-machine apps
+Password (legacy)	Trusted apps only (not recommended)
+Implicit (legacy)	Browser-only apps (deprecated)
+Device Code	Devices without browser (TV, IoT)
+
+
+Key Differences: OAuth2 vs OpenID Connect (OIDC)
+OAuth2 = Authorization
+OIDC = OAuth2 + Identity Layer → adds id_token (JWT) with user info
+
+
+Want a Full Example?
+Let me know:
+Which OAuth2 provider? (Google, GitHub, Auth0, Keycloak…)
+Do you want Spring Boot to handle login OR Angular to do it (PKCE)?
+Should we set up token refresh as well?
+I can give you a complete working starter project accordingly.
+
+Additional Resources
+Technology Website
+OAuth 2 www.oauth.net
+OpenID Connect www.openid.net/connect
+JWT www.jwt.io
+
+
+What is an Authorization Server?
+• A server that generates tokens: OAuth 2 or OpenID Connect
+• Define access policies for a given application / protected resource
+• Can also serve as Identity Provider using OpenID Connect
+
+
+Okta
+• Okta.com provides a cloud based authorization server + platform
+• Supports industry standards: OAuth 2, OpenID Connect, JWT ...
+Authentication
+- Login widgets
+- Social login
+- ...
+Authorization
+- Role-based access
+- API access policies
+- ...
+User Management
+- Admin panel
+- Policy assignment
+- ...
+Free Developer Account
+- No credit card required
+- Supports 1,000 users
+
+Okta
+- Sign-In Widget
+- Authentication
+- Authorization
+- User Management
+
+
+Okta - Angular and Java
+• Developing code with OAuth 2, OpenID Connect and JWT
+• Low-level boilerplate coding
+• Okta provides SDKs for Angular, Java etc ...
+• SDK is a high-level of abstraction ... helps to accelerate dev process
+• Includes Login / Sign-In widgets ... can customize look+feel
+
+
+
+
+Security Principles
+Authorization Code is exchanged only via backend — avoids leaking tokens in browser.
+Access Token is stored securely on backend or frontend (with proper PKCE).
+Refresh Token (if issued) stays only on backend or secure cookie.
+
+
+
+ Common Authentication Types
+Type	Description
+1. Basic Authentication	Username + password sent as Base64 in HTTP headers
+2. Token-Based Authentication	Client logs in, gets a token (e.g. JWT), uses it in future requests
+3. OAuth2 / OpenID Connect	Delegated login via Authorization Server (e.g. Google, Keycloak)
+4. API Key	A secret key passed in headers or query params
+5. Session-Based Auth	Server creates a session ID stored in browser cookies
+6. Multi-Factor Auth (MFA)	Combines password + OTP or biometric
+7. Certificate-Based Auth	Uses client SSL/TLS certificates
+8. SAML (for enterprise SSO)	XML-based authentication/SSO protocol
+9. Biometric Auth	Face ID, fingerprint, etc.
+10. Social Login	Login with Google, Facebook, etc. (OAuth2-based)
+
+Common Authentication Types Between Microservices
+Auth Type	Description
+1. JWT (OAuth2 Access Tokens)	Most popular. Each request carries a signed JWT (Bearer Token).
+2. mTLS (Mutual TLS)	Both client and server present certificates; very secure.
+3. API Keys	Simple, but less secure; used for internal services.
+4. Basic Auth	Username/password (base64) — mostly deprecated.
+5. Service Mesh Auth (e.g., Istio + Envoy)	Handles identity and encryption transparently via sidecars.
+6. SPIFFE/SPIRE	Identity framework for workload authentication in microservices.
+7. OPA (Open Policy Agent)	Often used for authZ, but can verify tokens too.
+
+
+Most Used in Web Apps
+Stack	Typical Auth
+Angular + Spring Boot	Token-based (JWT), OAuth2 with PKCE
+Mobile Apps	OAuth2 + PKCE
+Microservices	OAuth2, JWT, mTLS, or API Keys
+Enterprises	SAML or OpenID Connect
+Public APIs	API Keys or OAuth2
+
+
+SHA-256 is fast, which makes it bad for password hashing (because attackers can brute-force fast).
+✅ Use bcrypt, scrypt, or argon2 for passwords.
+
+
+This is exactly how a frontend app prepares for OAuth2 Authorization Code flow with PKCE.
+code_verifier stays private
+code_challenge is sent to the auth server
+During token exchange, the app sends back the code_verifier
+Auth server hashes it and compares with original code_challenge
+This ensures that only the app that started the flow can finish it. 🔒
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Authentication between microserives
+✅ Most Common Setup (Real-world microservice apps):
+🔐 JWT-Based Auth (Token Propagation)
+User logs in to gateway (via OAuth2 / Identity Provider).
+Gateway generates a JWT access token.
+JWT is forwarded to downstream services.
+Each service:
+  Validates the token (using public key or JWKS)
+  Extracts user/service identity
+  Enforces scopes or roles
+Pros: Stateless, decoupled, scalable
+Cons: Token validation logic needed in each service (or via shared lib/filter)
+
+🔒 mTLS for Service Identity
+Each service has a certificate signed by a trusted CA
+TLS is established both ways → authenticates both sides
+Used in service meshes like Istio, Linkerd, etc.
+Pros: Very strong identity/auth
+Cons: Operationally complex (cert rotation, setup)
+
+✅ Hybrid (Best Practice Today)
+Layer	Auth Method
+Gateway → Service	JWT (with scopes/claims)
+Service → Service	JWT (propagation) or mTLS (for identity)
+Zero-trust style	Add mTLS + per-call auth checks (OPA, scopes)
+🔁 Token Propagation Pattern
+text
+Copy
+Edit
+[ User ]
+   |
+   v
+[ API Gateway ] ---> [ Service A ] ---> [ Service B ]
+     |                   |                   |
+     |--- JWT Token ---> |--- Token Propagate |
+Services extract user/service identity from JWT.
+
+📦 Example Tech Stack
+Tech	Role
+Keycloak / Auth0	Auth provider (OAuth2, OpenID)
+Spring Boot / Quarkus	Microservice framework
+Spring Security / Micronaut Security	Token validation
+Istio / Linkerd	mTLS, service mesh auth
+OPA + Envoy	Fine-grained policy enforcement
+
+Want Code?
+I can show:
+🧪 How to verify JWT in a Spring Boot microservice
+🔄 How to forward tokens between services
+🔐 How to enable mTLS with self-signed certs
+Let me know what stack you're working with — Spring Boot? Node.js? Kubernetes involved?
+
+
+OAuth 2 www.oauth.net
+OpenID Connect www.openid.net/connect
+JWT www.jwt.io

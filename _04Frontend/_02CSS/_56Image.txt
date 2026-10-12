@@ -1,0 +1,15 @@
+
+
+
+background-image : url("image.jpeg");
+background-size : cover / contain / auto(default)
+background-size :cover
+
+
+background-size :contain
+background-repeat:no-repeat
+
+
+
+unplash.com 
+  copyright free images

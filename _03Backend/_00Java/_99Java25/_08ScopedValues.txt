@@ -1,0 +1,22 @@
+Scoped Values
+
+Summary
+  Introduce scoped values, which enable a method to share immutable data 
+  both with its callees within a thread, and with child threads. 
+  Scoped values are easier to reason about than thread-local variables. 
+  They also have lower space and time costs, 
+  especially when used together with virtual threads (JEP 444) and structured concurrency (JEP 505).
+
+Goals
+  Ease of use — It should be easy to reason about dataflow.
+  Comprehensibility — The lifetime of shared data should be apparent from the syntactic structure of code.
+  Robustness — Data shared by a caller should be retrievable only by legitimate callees.
+  Performance — Data should be efficiently sharable across a large number of threads.
+
+Non-Goals
+  It is not a goal to change the Java programming language.
+  It is not a goal to require migration away from thread-local variables, 
+  or to deprecate the existing ThreadLocal API.
+
+
+

@@ -1,0 +1,127 @@
+Forms
+  .form-control
+  .form-label
+  Form row/grid(inline forms)
+    .row
+    .col
+  Form control size 
+    .form-control-sm
+    .form-control-lg
+  Disabled & readonly
+    disabled attribute(html attribute)
+    readonly(html attribute)
+  Plain text input
+    .form-control-plaintext
+  Color picker
+    .form-control-color
+
+  Select menu(dropdown) of form
+    .form-select
+      .form-select-sm
+      .form-select-lg
+    multiple attribute for multiple selection(html attribute)
+    disabled attribute(html attribute)
+  Data list
+    A list of pre-defined options for an input element
+    .form-control
+        <label for="framework" class="form-label">Choose a framework:</label>
+        <input class="form-control" list="frameworks" id="framework" placeholder="Type to search...">
+        <datalist id="frameworks">
+          <option value="Angular">
+          <option value="React">
+          <option value="Vue">
+          <option value="Svelte">
+          <option value="Spring Boot">
+        </datalist>
+  Checkbox  
+    .form-check
+      .form-check-input
+      .form-check-label 
+    checked attribute to be checked by default(html attribute) 
+  Radio button
+    .form-check
+      .form-check-input
+      .form-check-label 
+  Toggle switch
+    .form-check
+      .form-check-input
+      .form-check-label 
+    .form-switch
+    checked attribute
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+      <label class="form-check-label" for="flexSwitchCheckDefault">Enable notifications</label>
+    </div>
+  Range
+    .form-range
+      <label for="customRange1" class="form-label">Example Range</label>
+      <input type="range" class="form-range" id="customRange1" step=10>
+    step attribute
+      By default , the interval between the range number is 1.
+      We can change it using step attribute
+    min & max
+      min -0 by default
+      max -100 by default
+      min="0" attribute
+      max="6" attribute
+  
+  Input groups
+    .input-group 
+      this class is a container to inhance an input 
+        by adding an icon, text or a button 
+        in front or behind the input field as a "Help Text"
+      .input-group-sm
+      .input-group-lg
+    .input-group-text
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">@</span>
+        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+      </div>
+      We can Appending Text also
+    With Button Add‑on
+        <div class="input-group mb-3">
+          <button class="btn btn-outline-secondary" type="button" id="button-addon1">Button</button>
+          <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+        </div>
+    Add multiple inputs or addons
+      <div class="input-group mb-3">
+        <span class="input-group-text">$</span>
+        <span class="input-group-text">0.00</span>
+        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+        <span class="input-group-text">.00</span>
+      </div>
+    With Checkboxes or Radios      
+      <div class="input-group mb-3">
+        <div class="input-group-text">
+         <input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
+        </div>
+        <input type="text" class="form-control" aria-label="Text input with checkbox">
+      </div>
+    With Dropdown
+      <div class="input-group mb-3">
+        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Action</button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Action 1</a></li>
+          <li><a class="dropdown-item" href="#">Action 2</a></li>
+        </ul>
+        <input type="text" class="form-control" aria-label="Text input with dropdown button">
+      </div>
+    With Custom file input
+      <div class="input-group mb-3">
+          <label class="input-group-text" for="inputGroupFile02">Upload</label>
+          <input
+            type="file"
+            class="form-control"
+            id="inputGroupFile02">
+        </div>
+    Floating label/Animated Labels
+      .form-floating
+      Wrap your <input>, <textarea>, or <select> in a .form-floating container.
+      Give the control an id and the <label> a matching for.
+      Include a non-empty placeholder (won’t be shown once the label floats).
+        <div class="form-floating mb-3">
+          <input type="email" class="form-control" id="floatingEmail" placeholder="name@example.com">
+          <label for="floatingEmail">Email address</label>
+        </div>
+      disabled & readonly attribute (html attribute)
+  

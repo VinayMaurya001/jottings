@@ -1,0 +1,5 @@
+Jumbotron
+  It was introduced in Bootstrap 3 as a big padded box for calling extra attention to some special content for information
+  It is no longer supported in Bootstrap 5.
+  But we can achieve the same effect using utilities classes.
+      Utility classes like p-*, bg-*, text-*, shadow, etc., you can build your own "jumbotron" easily without needing a special component.

@@ -1,0 +1,84 @@
+Grid
+  Bootstrap uses a 12-column grid.(Although we canuse less than 12 also but can not use more than 12)
+  Layouts are made using .container + .row + .col-* classes.
+  Grid classes are responsive and follow breakpoints.
+
+  row
+  col
+
+  Grid column classes
+    .col-
+    .col-sm
+    .col-md-
+    .col-lg-
+    .col-xl-
+    .col-xxl-
+
+  <div class="container">
+    <div class="row">
+      <div class="col-6 g-0">
+        <div class="bg-primary text-white p-3">Column</div>
+      </div>
+      <div class="col-3 gx-3">
+        <div class="bg-primary text-white p-3">Column</div>
+      </div>
+      <div class="col-3 gy-4">
+        <div class="bg-primary text-white p-3">Column</div> 
+      </div>
+    </div>
+  </div>
+ 
+  g-gap
+  p-padding
+
+
+
+Grid Class Prefix Table
+  Breakpoint	  Prefix	  Min Width	  Example Class
+  ExtraSmall	  (none)	  0px	        .col-12
+  Small	        sm	      ≥576px	    .col-sm-6
+  Medium	      md	      ≥768px     	.col-md-4
+  Large	        lg	      ≥992px    	.col-lg-3
+  ExtraLarge	  xl	      ≥1200px	    .col-xl-2
+  XXL	          xxl	      ≥1400px	    .col-xxl-1
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 col-md-4 col-lg-3">Column 1</div>
+      <div class="col-sm-6 col-md-4 col-lg-3">Column 2</div>
+      <div class="col-sm-6 col-md-4 col-lg-3">Column 3</div>
+      <div class="col-sm-6 col-md-12 col-lg-3">Column 4</div>
+    </div>
+  </div>
+ 
+
+
+
+Grid Option Summary
+  Feature	        Details
+  Grid system	    12-column based
+  Gutter spacing	Use .g-0 to .g-5 for horizontal and vertical spacing
+  Column width	  Auto by default (.col) or fixed (.col-6, etc.)
+  Responsive	    Prefix columns with breakpoints (.col-md-6, .col-lg-4, etc.)
+  Alignment	      Use .align-items-*, .justify-content-* for vertical/horizontal alignment
+  Offset columns	Use .offset-md-2 to shift columns right
+  Order columns	  Use .order-md-1 to change order responsively
+
+.d-grid
+  The .d-grid class in Bootstrap 5 enables the CSS Grid layout on an element — 
+    it’s a quick utility to turn any container into a grid without writing custom CSS. 
+    Super handy for laying out buttons, cards, or form controls in rows and columns.
+      <div class="d-grid">
+        <button class="btn btn-primary">Button 1</button>
+        <button class="btn btn-secondary">Button 2</button>
+      </div>
+      This stacks the buttons vertically by default (1 column grid).
+  Responsive Grid Button Example
+    <div class="d-grid d-md-block">
+      <button class="btn btn-success">Yes</button>
+      <button class="btn btn-danger">No</button>
+    </div>
+    On small screens: buttons stack vertically.
+    On medium+ screens: layout switches to inline-block (horizontal).
+
+

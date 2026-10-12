@@ -1,0 +1,24 @@
+Act as Experienced AI Trainer
+Provide 30-day action plan to learn Generative AI from basic to expert level day by day
+context: Beginner
+constraints: per day time availability is just 30 mins
+Output: table format
+
+Act as Company Owner
+Create action plan to start an AI based software company starts from scratch
+context: Zero technical knowledge
+First month he can spend only 5 mins per day, add 5 more minutes for every next month
+Provide action plan week by week.
+For every week wait for my confirmation
+
+
+Teach me Java loop with real life example , in funny way , entertaining
+
+
+From the prompt engineering concepts......... , 
+please generate 20 MCQs one by one . 
+After every question wait for my answer, 
+please validate my answer and provide explanation and 
+3 bullet points to know concept clearly. 
+And then ask next question4
+

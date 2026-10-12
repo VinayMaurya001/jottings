@@ -1,0 +1,50 @@
+
+How AI (LLM) Works – Fundamental Concept
+	AI does NOT:
+		Think
+		Understand
+		Reason like humans
+	AI works on:
+		Next-word prediction (probability-based model)
+
+
+
+Important implication:
+	AI generates answers based on:
+		Training data patterns
+		Prompt input
+	So:
+		Output = Function(Prompt + Patterns)
+
+
+Why Same Question Gives Different Answers
+	Reasons:
+		Slight change in wording → different interpretation
+		Context affects prediction
+		AI is non-deterministic (not fixed output)
+
+
+Hallucination
+	AI gives:
+		Incorrect
+		Fabricated	
+		Overconfident answers
+	Why it happens:
+		AI predicts → does NOT verify facts
+
+	How to reduce hallucination:
+		Give precise prompts
+		Add constraints
+		Ask for:
+			Sources
+			“If unsure, say I don’t know”
+
+
+
+Iterative Prompting
+	Ask initial prompt
+	Check output
+	Refine prompt
+	Add constraints
+	Repeat
+

@@ -1,0 +1,47 @@
+
+
+https://cocalc.com/
+
+
+
+Certifications
+  30-Day Roadmap for LPI Linux Essentials (010-160)
+    https://www.lpi.org/our-certifications/exam-010-objectives/
+https://www.youtube.com/playlist?list=PL78ppT-_wOmvlYSfyiLvkrsZTdQJ7A24L
+https://www.udemy.com/course/linux-essentials-010/learn/lecture/16300342#overview
+
+https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbkFRS2dCaHgtelVELWpVRmV2NUhVeGJYbzROQXxBQ3Jtc0ttYzlYZi1Xd1RPUWNoUjFsbnVtVWxyQ0laZ0p6SmtEczJNWDN5QVlnS2VRajlSUWtyeUU4bzVrY3VfcnBibFFnMGpJUTlpeUFhemVKZzNSM3NNeFM0ZzdEV2lsTmVMQVdhRmw4RlR1UzdoYi1wbUtNaw&q=https%3A%2F%2Flearning.lpi.org%2Fen%2Flearning-materials%2F010-160%2F4%2F4.3%2F4.3_01%2F&v=qlOMn5sPL84
+https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqa3V4eEJnZHpzVnF6YklVQTIxWXpBYXF6NzZLUXxBQ3Jtc0trS1ZJSTFQcm8wMFZiazMyMWRPZGduUHV6U2VFSEpxTENsdmZjX1hRSHB5S18ydDZmSWZGLXpxbmhQY0xPV1NPdWpTdVB2QU1Rc2g0VkNyWTdMblk1RERSb3NNSkwyeXk5QTV2c2tiTEtndlVsNTlVcw&q=https%3A%2F%2Fedu.anarcho-copy.org%2FGNU%2520Linux%2520-%2520Unix-Like%2FLPI%2520Linux%2520Essentials%2520Study%2520Guide%25203rd.pdf&v=qlOMn5sPL84
+
+    Free and Open Source Software, the various communities and licenses
+    Processes, programs and the components of an operating system
+    Computer hardware
+    System security, users/groups and file permissions for public and private directories
+    Make the system accessible and able to connect to other computers on a Local Area Network (LAN)
+    Open Source Applications in the workplace as they relate to closed source equivalents
+    File system browsers on a Linux Desktop
+    Where to go for help
+    Work on the command line and with files
+    Make and restore simple backups and archives
+    Use a basic command line editor
+    File compression
+    Create and run simple shell scripts
+
+
+
+
+Cert	Worth It for You?	Why
+  LPI Linux Essentials	
+    ❌ No	Too basic for your seniority
+  CompTIA Linux+	
+    ✅ Yes (optional)	Broad and beginner-friendly, decent value
+  LFCS	
+    ✅ Yes	Hands-on, cloud-aligned
+  Real Projects	
+    💯 Definitely	Demonstrates real experience in interviews
+
+
+Start with LPIC-1 or go directly to LFCS (if you're confident):
+  LPIC-1 – Learn real-world Linux admin (user mgmt, networking, syslog, bash scripting)
+  LFCS (Linux Foundation Certified Sysadmin) – More hands-on and modern than LPIC-1
+  Then LPIC-2 – For advanced concepts, networking, and scripting if you're moving toward DevOps/SRE

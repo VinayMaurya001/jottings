@@ -1,0 +1,85 @@
+Bootstrap
+	Html, CSS & JS library.
+	Include Bootstrap, locally & using CDN
+	Form Controls, Nav bars etc
+	Grid System
+	
+https://getbootstrap.com/docs/3.3/
+Migrating to Bootstrap 4 - YelpCamp Tutorial - Unedited
+	https://www.youtube.com/watch?v=NHHh0sj1uKY
+	
+Bootstrap
+Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web.
+
+Add bootstrap
+	<link rel="stylesheet" type="text/css" href="bootstrap.css"> 
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	
+Button
+	<button> & <a>
+	btn
+	btn-info
+	btn-lg
+	active
+	disabled
+
+Container
+container-fluid
+Jumbotron
+
+Form
+	form-group
+	form-control
+	form-inline
+	help-block
+	
+Nav-bar
+	hamburger
+	navbar-fixed-top
+	
+Grid System
+We have 12 units going across whatever container we're working inside of and we can designate those 12 units in any way that we want.
+.container
+.row
+.col-xs-	.col-sm-	.col-md-	.col-lg-
+
+
+Note about Bootstrap Image Gallery Pt. 1
+For HD images
+	https://unsplash.com/ 
+		If you find an image you like then you'll need to click on the image to make it full screen at which point the url will change to give you the photo's ID. 
+		It's the alphanumeric combination that comes after ?photo=.
+		Once you copy the photo's ID then you can add it to the source.unsplash address like so: 
+		<img src="https://source.unsplash.com/cPF2nlWcMY4"> 
+
+Additionally, students have reported having trouble with the grid when using images of varying sizes. 
+See below for a few solutions:
+If you don't mind the images being of varying heights, 
+	but want to get rid of the white space bug then see here
+	https://www.udemy.com/the-web-developer-bootcamp/learn/v4/questions/1989586
+If you're looking for Pinterest-like presentation of thumbnails of varying heights and/or widths, 
+	you'll need to use a third-party plugin such as Masonry, Isotope, or Salvattore.
+If you want to crop all of the images to the same size then see an example of this here
+	https://codepen.io/nax3t/pen/MJwpdb
+Glyphicons
+	Last, but not least, if you're having trouble with the Glyphicons (they're not showing up, but showing a rectangle instead)
+	 then see here for a solution.
+	https://www.youtube.com/watch?v=ksZfPOgsC4w
+we will be using a font/icon library called Font Awesome. 
+	Font Awesome can now be found at https://fontawesome.com/
+	I recommend using the following CDN link for the latest version:
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+
+
+
+Images
+.thumbnail
+
+text-shadow
+
+
+Note about making bootstrap responsive on mobile devices
+add the following meta tag to your <head>  element, above the <title>  tag:
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	.hr{max-width: 90%;}
+
