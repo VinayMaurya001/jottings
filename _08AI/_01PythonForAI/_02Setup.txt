@@ -14,12 +14,18 @@ IDE
         Jupyter
   PyCharm 
 
+Jupyter
+  pip install notebook
+  jupyter notebook
+hosted Jupyter Notebook environment
+    https://colab.research.google.com/
 
 hello.py
   print(".py is the standard file extension for a Python source-code file.")
 
 Run:
   python hello.py
+  python3 hello.py
 
 
 

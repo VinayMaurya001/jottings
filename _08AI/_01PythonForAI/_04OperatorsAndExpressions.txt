@@ -1,0 +1,71 @@
+Operators and Expressions
+  1. Arithmetic operators
+      + 
+      -
+      *
+      /                     10/3=3.333....
+      // (floor devision)   10/3=3
+      %
+      ** (Exponentiation)   2 ** 3 = 8
+
+      Important Java difference:
+        System.out.println(10 / 3);    // 3
+        System.out.println(10.0 / 3);  // 3.333...
+        print(10 / 3)  # 3.333...
+        print(10 // 3) # 3
+        Python's / produces floating-point division even when both operands are integers.
+
+        // performs floor division
+          floor division takes the greatest integer less than or equal to the actual result.
+          For negative values, it rounds down toward negative infinity, not toward zero:
+          print(-10 // 3)  # -4
+          a = (a // b) * b + (a % b)
+
+        int(-10 / 3)	  #-3
+            Truncates the decimal part toward zero
+            Python's int() conversion and // do not behave the same way for negative fractional values
+
+  2. Assignment operators
+      ==
+      +=
+      -=
+      *=
+      /=
+
+      score = 10
+      score += 5
+      print(score)  # 15
+
+  3. Comparison operators
+      Comparison operators return a Boolean: True or False.
+      ==
+      !=
+      >
+      <
+      >=
+      <=
+      score = 85
+      print(score >= 50)  # True
+
+  4. Logical operators
+      and
+      or
+      not
+
+      age = 30
+      has_license = True
+      print(age >= 18 and has_license)  # True
+
+  5. Chained comparisons — a Python feature
+      age = 25
+      print(18 <= age <= 60)  //True
+
+  6. Operator precedence
+      result = 2 + 3 * 4
+      print(result)  # 14
+
+      Multiplication happens before addition.
+      Use parentheses when you want a different order.
+          result = (2 + 3) * 4
+          print(result)  # 20
+

@@ -1,0 +1,102 @@
+variable
+    age = 30
+
+Python is dynamically typed
+  value = 10
+  print(value)
+  value = "Hello"
+  print(value)
+  value = 3.14
+  print(value)
+  The same name can refer to objects of different types during execution.
+  In Python, the type belongs to the object, not permanently to the variable name.
+  Python has a type system, but it uses dynamic typing. 
+    The type is associated with the object, 
+      and a variable name can refer to objects of different types over time.
+
+type()
+  to inspect an object's type.
+  age = 30
+  print(type(age))  #<class 'int'>
+  name = "Vinay"
+  print(type(name))  #<class 'str'>
+
+
+Basic Python data types
+  int
+    Unlike Java, Python integers can grow much larger than a Java int 
+      without you manually choosing long.
+    big_number = 999999999999999999999999999999999999
+    Python can handle this.
+  float
+    
+  str 
+    Both quotes work:
+      "Python" & 'Python'
+      Python doesn't have Java's char as a separate single-character primitive type.
+  bool
+    is_active = True
+    is_admin = False
+  NoneType
+    None roughly corresponds to the idea of Java:null
+    result = None
+    print(result)       #None
+    print(type(result)) #<class 'NoneType'>
+    None represents the absence of a value. 
+      For example, an AI function might return None when no response is available.
+
+    response = None
+    if response is None:
+      print("No response available")
+      # Notice is None. This is the standard Python way to check whether a value is None.
+  
+  
+    a = None
+      b = 0
+      c = ""
+      print(a is None)   # True
+      print(b is None)   # False
+      print(c is None)   # False
+
+    
+  age = 30
+  price = 99.99
+  name = "Vinay"
+  is_active = True
+  result = None
+
+
+Multiple assignments
+  name, age = "Vinay", 30
+  This becomes particularly useful with functions.
+
+
+Swapping variables
+  Python handles the assignment elegantly.
+    a = 10
+    b = 20
+    a, b = b, a
+    print(a)  #20
+    print(b)  #10
+
+
+important
+  x = 10
+  Don't think too literally: x = box containing 10
+  A better mental model is:
+              ┌─────────┐
+       x ───► │ int 10  │
+              └─────────┘
+  Then x = "Hello", now
+              ┌─────────────┐
+       x ───► │ str "Hello" │
+              └─────────────┘
+  The name x can refer to different objects.
+    This object/reference model will become extremely important when we reach:
+    - lists
+    - dictionaries
+    - functions
+    - classes
+    - NumPy arrays
+    - PyTorch tensors
+    The same Python name can refer to completely different objects.

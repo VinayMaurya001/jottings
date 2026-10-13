@@ -1,0 +1,393 @@
+Strings
+    A string (str) is a sequence of characters used to represent text.
+    str is the built-in string type
+
+Creating strings
+    Python supports both single and double quotes.
+    name = "Vinay"
+    language = 'Python'
+
+    You can also use triple quotes for multiline strings:
+        message = """Hello Vinay,
+        Welcome to Python.
+        Let's learn AI."""
+        print(message)
+
+
+Strings are immutable
+    Immutable means that once a string object is created, its contents cannot be changed in place.
+    
+    name = "Vinay"
+    name = "Rahul"
+    print(name)  # Rahul
+    This works because name is reassigned to a new string. 
+        It does not modify the original string object.
+
+    name = "Vinay"
+    name[0] = "R"
+    But this does not work.
+    Python raises a TypeError because individual characters of a string cannot be changed by assignment.
+
+
+String Indexing and Negative Indexing
+    In Python, indexing means accessing an individual character of a string using its position.
+    1. Positive indexing
+        Python starts string indexes at 0, just like Java.
+            Python uses language[0]; Java uses language.charAt(0).
+
+        language = "Python"
+        print(language[0])
+        print(language[1])
+        print(language[2])
+        print(language[5])
+
+    2. Negative indexing
+        This is a useful Python feature that Java's standard String indexing does not directly provide.
+        Python allows you to count backward from the end of a string.
+
+        language = "Python"
+        print(language[-1]) #n
+        print(language[-2]) #o
+        print(language[-3]) #h
+
+
+String Slicing
+    String slicing extracts part of a string. 
+        Instead of accessing one character, you can extract a substring.
+    1. Basic slicing: string[start:stop]
+        start: index where extraction begins; included.
+        stop: index where extraction ends; excluded.
+
+        language = "Python"
+        print(language[0:2])    # Py
+        print(language[2:5])    #tho
+        print(language[0:6])    #Python
+    
+    2. Omitting start or stop
+        print(language[0:3])    # Pyt
+        print(language[3:])    #hon
+        print(language[:])    #Python
+
+    3. Negative indexes in slicing
+        word = "Python"
+        print(word[-3:])    #   hon
+        print(word[:-2])    # Pyth
+        print(word[-4:-1])  #tho
+
+    4. The step parameter: string[start:stop:step]
+        The step controls how many positions Python advances between selected characters.
+        word = "Python"
+        print(word[::1])    #Python
+        print(word[::2])    #Pto
+        print(word[1::2])   #yhn
+        print(word[::-1])   #nohtyP
+        A negative step moves backward through the string. This is why [::-1] reverses it.
+    5. Java comparison
+        Java uses substring(start, end) for basic substring extraction.
+
+
+String Length and Common String Methods
+    In Python, strings have a built-in function for measuring their length and 
+        several methods for transforming, searching, and checking text.
+
+    1. Find string length using len()
+        Python uses len() to return the number of characters in a string.
+        
+        text = "Python"
+        print(len(text)) # 6
+
+        Notice that Python uses the built-in function len(), 
+            whereas Java calls the length() method on the string.
+
+
+    2. Change letter case
+
+        text = "Hello Python"
+        print(text.upper())
+        print(text.lower())
+        print(text.capitalize())  #Capitalizes the first character and lowercases the rest
+        print(text.title())       #Capitalizes the first character of each word
+
+        Output:
+            HELLO PYTHON
+            hello python
+            Hello python
+            Hello Python
+
+        Important: These methods return new strings. 
+            They do not modify the original string because Python strings are immutable.
+
+            text = "hello"
+            text.upper()
+            print(text) # hello
+            
+            To keep the transformed result, assign it:
+            text = text.upper()
+            print(text)  #HELLO
+
+    3. Remove unwanted whitespace with strip()
+        name = "   Vinay   "
+        print(name.strip())
+        print(name.lstrip())
+        print(name.rstrip())
+
+        This is useful for cleaning input before validation or searching.
+    
+    4. Replace text using replace()
+        message = "I like Java"
+        updated = message.replace("Java", "Python")
+        print(updated) #I like Python
+        print(message) #I like Java
+
+    5. Check text using startswith(), endswith(), and find()
+
+        filename = "report.pdf"
+        print(filename.startswith("report"))    #True
+        print(filename.endswith(".pdf"))        #True
+        print(filename.find("port"))            #2
+        print(filename.find("xyz"))             #-1
+
+        - startswith() checks the beginning of a string.
+        - endswith() checks the ending.
+        - find() returns the index of the first occurrence, or -1 when the substring is not found.
+        Java equivalents include startsWith(), endsWith(), and indexOf().
+
+    6. Split a string into a list
+        text = "Java Python SQL"
+        languages = text.split()
+        print(languages)        # ['Java', 'Python', 'SQL']
+        print(len(languages))   # 3
+        print(type(languages))  # <class 'list'>
+
+        When you don't provide a separator, split() separates on whitespace and handles consecutive whitespace as a single separator.
+
+        By default, split() separates text on whitespace.
+        You can also specify a separator:
+        data = "Java,Python,SQL"
+        print(data.split(","))   # ['Java', 'Python', 'SQL']
+
+        You can also limit the number of splits:
+        data = "Java,Python,SQL,React"
+        print(data.split(",", 2)) # ['Java', 'Python', 'SQL,React']
+
+    7. Join a list of strings
+        Python uses join() to combine strings using a separator.
+        languages = ["Java", "Python", "SQL"]
+        result = ", ".join(languages)
+        print(result)       # Java, Python, SQL
+
+        Important: Every item must be a string.
+            numbers = [10, 20, 30]
+            print(", ".join(numbers))  # this fails
+                It raises a TypeError because join() expects strings, not integers.
+
+            Convert the items first:
+                numbers = [10, 20, 30]
+                result = ", ".join(str(number) for number in numbers)
+                print(result)    #10, 20, 30
+
+
+Membership, Concatenation, and f-Strings
+    1. String membership: in and not in
+        Python uses in to check whether a substring exists inside a string. It returns True or False.
+        Membership is case-sensitive. 
+
+        message = "Learning Python for AI"
+        print("Python" in message)      #True
+        print("Java" in message)        #False
+        print("Java" not in message)    #True
+
+        Java comparison
+            Java typically uses contains() and negation:
+            String message = "Learning Python for AI";
+            System.out.println(message.contains("Python")); // true
+            System.out.println(!message.contains("Java"));  // true
+
+    2. String concatenation using +
+            first = "Hello"
+            second = "Vinay"
+            result = first + " " + second
+            print(result)     # Hello Vinay
+
+        Important: Python does not automatically concatenate strings and numbers
+            This raises a TypeError:
+            age = 37
+            message = "My age is " + age
+
+            Convert the number to a string if using concatenation:
+                age = 37
+                message = "My age is " + str(age)
+                print(message)      #My age is 37
+
+            However, Python has a cleaner option for this situation: f-strings.
+    
+    3. f-strings — Python's convenient string formatting
+        An f-string lets you insert variables and expressions directly into a string.
+        Put the letter f before the opening quote and place variables inside {}.
+
+        name = "Vinay"
+        age = 37
+        message = f"My name is {name} and my age is {age}"
+        print(message)  #My name is Vinay and my age is 37
+
+        You can also evaluate expressions inside {}
+            a = 10
+            b = 20
+            print(f"Sum = {a + b}")
+            print(f"Product = {a * b}")
+
+        Java comparison
+            Java supports string concatenation and, in modern Java, formatted strings through APIs such as String.formatted().
+            String name = "Vinay";
+            int age = 37;
+            String message = "My name is %s and my age is %d".formatted(name, age);
+            System.out.println(message);
+
+
+String Formatting, Escape Characters, and Raw Strings
+    These concepts help you create readable text, format numbers, and handle paths or text containing special characters. 
+        They are useful when building AI prompts, processing documents, and logging model results.
+
+    1. String formatting with f-strings
+        You already learned that f-strings insert variables into text. Now let's format numbers.
+        Decimal precision
+            price = 123.45678
+            print(f"{price:.2f}")  #123.46
+            print(f"{price:.3f}")    #123.457
+
+            - .2f displays two digits after the decimal point.
+            - .3f displays three digits after the decimal point.
+            Python rounds the displayed value to the requested precision; 
+                it does not change the original variable.
+
+        Width and alignment
+            name = "Python"
+            print(f"|{name:>10}|")
+            print(f"|{name:<10}|")
+            print(f"|{name:^10}|")
+
+            Output
+                |    Python|
+                |Python    |
+                |  Python  |
+
+            Format	Meaning
+            :>10	Right-align within width 10
+            :<10	Left-align within width 10
+            :^10	Center-align within width 10
+
+        Java comparison
+            Java's printf() provides similar formatting:
+            double price = 123.45678;
+            System.out.printf("%.2f%n", price);
+
+            Python equivalents:
+                price = 123.45678
+                print(f"{price:.2f}")
+
+            Both display 123.46.
+
+    2. Escape characters    
+        Escape sequences let you include special characters inside strings.
+        The backslash \ introduces an escape sequence.
+       
+        print("Hello\nPython")
+        print("Hello\tPython")
+        print("He said, \"Learn Python\"")
+        print("C:\\Users\\Vinay")
+
+        Output:
+            Hello
+            Python
+            Hello    Python
+            He said, "Learn Python"
+            C:\Users\Vinay
+
+
+        The main escape sequences are:
+            Sequence	Meaning
+            \n	New line
+            \t	Tab
+            \"	Double quote
+            \'	Single quote
+            \\	Literal backslash
+
+
+        Java comparison
+            Java supports these same common escape sequences.
+
+    3. Raw strings: r"..."
+        Raw strings tell Python to treat backslashes literally rather than interpreting ordinary escape sequences such as \n and \t.
+        text = r"Hello\nPython"
+        print(text) #Hello\nPython
+
+        Why raw strings are useful
+            Consider a Windows file path:
+            path = r"C:\Users\Vinay\Documents"
+            print(path)
+        Raw strings are convenient for Windows paths and regular expressions.
+        Important: 
+            Raw strings do not disable every aspect of Python string syntax. 
+            For example, a raw string cannot end with a single backslash 
+                because that backslash would escape the closing quote.
+
+String Validation Methods
+    String validation means checking whether text satisfies a particular condition before processing it.
+    For example, in an AI application, you might check whether a user entered a numeric age, whether an identifier contains only letters and digits, or whether an uploaded filename ends in .pdf.
+    Python provides several built-in string validation methods.
+
+
+    1. isdigit() — check for digits
+        print("12345".isdigit())
+        print("12.5".isdigit())
+        print("Python".isdigit())
+
+        Output:
+            True
+            False
+            False
+
+        isdigit() returns True when all characters are digits and the string is nonempty.
+        Important: "12.5" is not considered all digits because it contains a decimal point.
+
+    2. isalpha() — check for letters
+        print("Python".isalpha())
+        print("PythonAI".isalpha())
+        print("Python AI".isalpha())
+        print("Python123".isalpha())
+
+        Output:
+            True
+            True
+            False
+            False
+        Spaces and digits cause isalpha() to return False. It supports alphabetic characters beyond just English A–Z.
+
+    3. isalnum() — check for letters and digits
+        print("Python123".isalnum())
+        print("Python".isalnum())
+        print("12345".isalnum())
+        print("Python AI".isalnum())
+        print("Python@AI".isalnum())
+
+        Output
+            True
+            True
+            True
+            False
+            False
+
+    4. startswith() and endswith()
+        filename = "invoice.pdf"
+        print(filename.startswith("invoice"))
+        print(filename.endswith(".pdf"))
+        print(filename.endswith(".jpg"))
+
+
+Practical text cleaning
+    user_input = "   PYTHON   for AI   "
+    You want to remove unnecessary spaces and normalize the capitalization.
+    user_input = "   PYTHON   for AI   "
+    cleaned = " ".join(user_input.strip().lower().split())
+    print(cleaned)      #python for ai
+    This is a common normalization pattern: remove leading/trailing whitespace, standardize case, collapse repeated whitespace, and rebuild the text.

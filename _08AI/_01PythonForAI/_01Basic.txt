@@ -6,13 +6,47 @@ Python doesn't require semicolons
   age = 30
   if age >= 18:
     print("Adult")
+  Indentation is mandatory because it defines code blocks.
+  Semicolons (;) are optional at the end of a statement.
+  In Python, the colon : starts a block, and 
+    indentation determines which statements belong to that block. 
+    Semicolons are generally unnecessary.
+    Concept             Java            Python
+    Conditional syntax	if (age >= 18)	if age >= 18:
+    Block start	        {	              :
 
 Python comments
   # This is a comment
+  Docstrings — documentation for functions and classes
+      Python uses triple quotes ("""...""" or '''...''') for docstrings.
+        def add(a, b):
+            """Return the sum of two numbers."""
+            return a + b
+        print(add(10, 20))
+        You can access the docstring:
+            print(add.__doc__)
+      Triple-quoted strings are not technically comments. 
+        They are string literals, and 
+        when placed at the beginning of a function, class, or module, they serve as documentation.
+
 
 Python is case-sensitive
 Python determines the type from the value.
 
 Each print() creates a new line.
   Want them on the same line?
-    print(name, end="")               nnnnnnnnnnmnnnnnnnnnnnnnn             nnnnnnnnnnnnnnn                                        mmmmmmmmmmmmmmmmmmmmm
+    print(name, end="")             
+    
+
+    print("Adult")
+        print('Adult')
+
+    
+    name = "Vinay"
+    print("Hello " + name)
+    Same using f-string
+      name = "Vinay"
+      print(f"Hello {name}")
+
+
+no mandatory main() in python

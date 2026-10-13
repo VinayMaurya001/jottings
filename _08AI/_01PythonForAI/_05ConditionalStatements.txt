@@ -1,0 +1,61 @@
+Conditional statements
+    1. Basic if
+        age = 20
+        if age >= 18:
+            print("Adult")
+        - Parentheses around the condition are optional.
+
+    2. if and else
+        age = 16
+        if age >= 18:
+            print("Adult")
+        else:
+            print("Minor")
+        Only one branch executes.
+
+    3. if, elif, and else
+        score = 75
+        if score >= 90:
+            print("Grade A")
+        elif score >= 70:
+            print("Grade B")
+        elif score >= 50:
+            print("Grade C")
+        else:
+            print("Fail")
+
+        Python checks conditions from top to bottom and executes the first matching branch.
+        Important: Order matters. 
+            If you check score >= 50 first, a score of 95 would match that branch 
+            and never reach the A grade condition.
+
+    4. Indentation is syntax
+        Use four spaces per indentation level. VS Code can handle this automatically.
+
+    5. Combining conditions
+        age = 30
+        has_license = True
+        if age >= 18 and has_license:
+            print("Can drive")
+        else:
+            print("Cannot drive")
+
+    6. Truthiness
+        Python can evaluate values directly in an if statement.
+        name = ""
+        if name:
+            print("Name is provided")
+        else:
+            print("Name is empty")
+        Output: Name is empty
+
+        Common falsy values include:
+            - False
+            - None
+            - 0
+            - 0.0
+            - "" — empty string
+            - [ ] — empty list
+            - {} — empty dictionary
+        Most other values are truthy.
+        
