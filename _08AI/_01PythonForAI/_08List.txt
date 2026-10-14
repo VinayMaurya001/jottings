@@ -1,1 +1,472 @@
 1. What is a list?
+    A list is an ordered, mutable collection of elements.
+    In Java, the closest equivalent is ArrayList, 
+        although Python lists can hold elements of different types without declaring a generic type.
+
+    # Python
+    numbers = [10, 20, 30, 40]
+    print(numbers)  # [10, 20, 30, 40]
+
+    Java equivalent:
+        List<Integer> numbers = new ArrayList<>(Arrays.asList(10, 20, 30, 40));
+        System.out.println(numbers); // [10, 20, 30, 40]
+
+    Here are the key characteristics of Python lists:
+        - Ordered: elements retain their sequence.
+        - Mutable: you can add, remove, or replace elements.
+        - Duplicates allowed: the same value can appear multiple times.
+        - Mixed types allowed: a single list can contain integers, strings, booleans, and more.
+
+
+    values = [10, "Python", True, 10]
+    print(values)       # [10, 'Python', True, 10]
+    print(len(values))  # 4
+
+2. Creating lists
+    Use square brackets [] to create a list.
+
+        # Empty list
+        items = []
+        print(items)  # []
+
+        # List of integers
+        numbers = [10, 20, 30]
+        print(numbers)  # [10, 20, 30]
+
+        # List of strings
+        languages = ["Java", "Python", "JavaScript"]
+        print(languages)  # ['Java', 'Python', 'JavaScript']
+
+        # Mixed data types
+        data = [101, "Vinay", True, 85.5]
+        print(data)  # [101, 'Vinay', True, 85.5]
+
+    You can also create a list using the list() constructor.
+        letters = list("AI")
+        print(letters)  # ['A', 'I']
+
+        numbers = list(range(1, 5))
+        print(numbers)  # [1, 2, 3, 4]
+
+3. Accessing list elements using indexing
+    languages = ["Java", "Python", "AI", "RAG"]
+    print(languages[0])   # Java
+    print(languages[1])   # Python
+    print(languages[2])   # AI
+    print(languages[3])   # RAG
+    print(languages[-1])  # RAG
+    print(languages[-2])  # AI
+
+    Important: accessing an invalid index raises an IndexError.
+        numbers = [10, 20, 30]
+        print(numbers[3])  # IndexError: list index out of range
+
+
+4. Updating list elements
+    Lists are mutable, so you can replace an element at a particular index.
+        languages = ["Java", "Python", "JavaScript"]
+        languages[1] = "Go"
+        print(languages)  # ['Java', 'Go', 'JavaScript']
+        The original list changes. 
+            You do not need to create a new list just to replace an element.
+        Java equivalent:
+            languages.set(1, "Go");
+
+        This is different from strings, which are immutable in Python.
+            language = "Python"
+            # language[0] = "J"  # TypeError: strings do not support item assignment
+
+            languages = ["Python"]
+            languages[0] = "Java"
+            print(languages)  # ['Java']
+
+
+5. Adding elements to a list
+    Python provides three useful methods for adding elements.
+    1. append() — add one element at the end
+        languages = ["Java", "Python"]
+        languages.append("Go")
+        print(languages)  # ['Java', 'Python', 'Go']
+    2. insert() — add an element at a specific index
+        languages = ["Java", "Python"]
+        languages.insert(1, "Go")
+        print(languages)  # ['Java', 'Go', 'Python']
+        The existing elements shift to make room for the new element.
+    3. extend() — add multiple elements
+        languages = ["Java", "Python"]
+        languages.extend(["Go", "Rust"])
+        print(languages)  # ['Java', 'Python', 'Go', 'Rust']
+
+    Important difference: append() vs extend()
+        a = ["Java", "Python"]
+        a.append(["Go", "Rust"])
+        print(a)  # ['Java', 'Python', ['Go', 'Rust']]
+
+        b = ["Java", "Python"]
+        b.extend(["Go", "Rust"])
+        print(b)  # ['Java', 'Python', 'Go', 'Rust']
+
+        - append() adds its argument as one element.
+        - extend() adds each element from an iterable individually.
+        Java comparison: 
+            append() is conceptually similar to ArrayList.add(element), 
+                while extend() resembles ArrayList.addAll(collection).
+
+6.Removing elements
+    1. remove(value) — remove by value
+        Removes the first matching occurrence.
+        numbers = [10, 20, 30, 20]
+        numbers.remove(20)
+        print(numbers)  # [10, 30, 20]
+        If the value does not exist, Python raises a ValueError.
+    2. pop(index) — remove and return an element
+        numbers = [10, 20, 30]
+        removed = numbers.pop(1)
+        print(removed)  # 20
+        print(numbers)  # [10, 30]
+
+        If you omit the index, pop() removes the last element.
+            numbers = [10, 20, 30]
+            removed = numbers.pop()
+            print(removed)  # 30
+            print(numbers)  # [10, 20]  
+    3. del — delete by index or slice
+        numbers = [10, 20, 30, 40]
+        del numbers[1]
+        print(numbers)  # [10, 30, 40]
+        
+        You can also delete a range:
+            numbers = [10, 20, 30, 40, 50]
+            del numbers[1:3]
+            print(numbers)  # [10, 40, 50]
+            Remember that the slice's stop index is excluded, so indexes 1 and 2 are deleted.
+    4. clear() — remove all elements
+        numbers = [10, 20, 30]
+        numbers.clear()
+        print(numbers)  # []
+        The list still exists; it is simply empty.
+
+
+7. List slicing
+    items[start:stop:step]
+        start: index to begin at (included).
+        stop: index to stop before (excluded).
+        step: interval between selected elements.
+
+    numbers = [10, 20, 30, 40, 50, 60]
+        print(numbers[1:4])   # [20, 30, 40]
+        print(numbers[:3])    # [10, 20, 30]
+        print(numbers[3:])    # [40, 50, 60]
+        print(numbers[-3:])   # [40, 50, 60]
+        print(numbers[::2])   # [10, 30, 50]
+        print(numbers[::-1])  # [60, 50, 40, 30, 20, 10]
+
+    Important: a slice creates a new list
+        numbers = [10, 20, 30, 40]
+        subset = numbers[1:3]
+        subset[0] = 99
+        print(subset)   # [99, 30]
+        print(numbers)  # [10, 20, 30, 40]
+
+        Changing subset does not change the original list 
+            because the slice created a new list. 
+            This is a shallow copy; 
+            if the elements are themselves mutable objects, 
+            those nested objects may still be shared.
+
+        Java comparison
+            Python's numbers[1:3] is similar in purpose to extracting a sublist, 
+                but the syntax differs. 
+                Java's List.subList(1, 3) returns a view backed by the original list, 
+                whereas Python's list slice creates a new outer list.
+
+8. Iterating over lists
+    1. Iterate over values directly
+        This is the most common Python approach.    
+
+        languages = ["Java", "Python", "Go"]
+        for language in languages:
+            print(language)
+        # Output:
+        # Java
+        # Python
+        # Go
+
+    2. Iterate using indexes
+        Use range(len(list)) when you specifically need indexes.
+
+            languages = ["Java", "Python", "Go"]
+            for i in range(len(languages)):
+                print(i, languages[i])
+
+            # Output:
+            # 0 Java
+            # 1 Python
+            # 2 Go
+
+    3. Use enumerate() to get both index and value
+            languages = ["Java", "Python", "Go"]
+            for index, language in enumerate(languages):
+                print(index, language)
+
+            # Output:
+            # 0 Java
+            # 1 Python
+            # 2 Go
+
+        You can also start counting at 1:          
+            languages = ["Java", "Python", "Go"]
+            for index, language in enumerate(languages, start=1):
+                print(index, language)
+
+            # Output:
+            # 1 Java
+            # 2 Python
+            # 3 Go
+
+
+9. Common list methods
+    numbers = [30, 10, 20, 10]
+    print(len(numbers))      # 4
+    print(numbers.count(10)) # 2
+    print(numbers.index(20)) # 2
+    print(20 in numbers)     # True
+    print(99 in numbers)     # False
+
+    - len() returns the number of elements.
+    - count(value) returns how many times a value appears.
+    - index(value) returns the index of the first occurrence.
+        If index() cannot find the requested value, it raises a ValueError.
+    - in checks whether a value exists in the list.
+
+    Sorting a list
+        numbers = [30, 10, 20]
+        numbers.sort()
+        print(numbers)  # [10, 20, 30]
+        numbers.sort(reverse=True)
+        print(numbers)  # [30, 20, 10]
+        sort() modifies the original list and returns None.
+
+        By contrast, sorted() creates a new sorted list:
+            numbers = [30, 10, 20]
+            result = sorted(numbers)
+            print(result)   # [10, 20, 30]
+            print(numbers)  # [30, 10, 20]
+
+        .sort() → sorts the original list; returns None.
+        sorted() → returns a new sorted list.
+    
+        Java comparison: 
+            numbers.sort() resembles sorting a mutable ArrayList in place. 
+            Python's sorted(numbers) is useful when you want a separate sorted result.
+        Java comparison: 
+            Think of sort() as modifying the existing collection, 
+            while sorted() returns a new sorted list and leaves the original unchanged.
+
+
+        
+10. Copying lists and aliasing
+    This is an important topic for Java developers 
+        because it involves object references and mutable state.
+    1. Assignment does not create a copy
+        original = [10, 20, 30]
+        reference = original
+        print(original is reference)  # True  (The is operator checks whether two references point to the same object)
+        reference[0] = 99
+        print(original)   # [99, 20, 30]
+        print(reference)  # [99, 20, 30]
+        Both variables refer to the same list object. 
+            Updating the list through either variable changes the same object.
+
+        Java comparison:
+            List<Integer> original = new ArrayList<>(List.of(10, 20, 30));
+            List<Integer> reference = original;
+            reference.set(0, 99);
+            System.out.println(original); // [99, 20, 30]
+
+    2. Create a shallow copy using copy()
+        original = [10, 20, 30]
+        copied = original.copy()
+        copied[0] = 99
+        print(original)  # [10, 20, 30]
+        print(copied)    # [99, 20, 30]
+        Now the two variables refer to different outer list objects.
+
+        You can also create a shallow copy using slicing or list():
+            original = [10, 20, 30]
+            copy1 = original[:]
+            print(copy1)  # [10, 20, 30]
+            copy1[0] = 99
+            print(copy1)  # [99, 20, 30]
+            print(original)  # [10, 20, 30]
+
+            copy2 = list(original)
+            print(copy2)  # [10, 20, 30]
+            print(original)  # [10, 20, 30]
+            copy2[0] = 100
+            print(copy2)  # [100, 20, 30]
+            print(original)  # [10, 20, 30]
+    
+    3. Important limitation: shallow copies
+        If a list contains nested mutable objects, 
+            a shallow copy does not copy those nested objects.
+        A shallow copy creates a new outer container 
+            but copies references to the elements inside it.
+
+        original = [[1, 2], [3, 4]]
+        copied = original.copy()
+        copied[0][0] = 99
+        print(original)  # [[99, 2], [3, 4]]
+        print(copied)    # [[99, 2], [3, 4]]
+        The outer lists are different, but their nested lists are shared.
+        
+        Modify the shared nested list
+            a = [[10, 20], [30, 40]]
+            b = a.copy()
+            b[0].append(99)
+            print(a)  # [[10, 20, 99], [30, 40]]
+            print(b)  # [[10, 20, 99], [30, 40]]
+
+        Replace the nested list
+            a = [[10, 20], [30, 40]]
+            b = a.copy()
+            b[0] = [99, 88]
+            print(a)  # [[10, 20], [30, 40]]
+            print(b)  # [[99, 88], [30, 40]]
+
+                
+        Rule: Reassigning an element changes a reference in one outer list. 
+            Mutating a shared object changes that object for every reference to it.
+
+
+        For a fully independent copy of nested lists, Python provides copy.deepcopy():
+            import copy
+            original = [[1, 2], [3, 4]]
+            copied = copy.deepcopy(original)
+            copied[0][0] = 99
+            print(original)  # [[1, 2], [3, 4]]
+            print(copied)    # [[99, 2], [3, 4]]
+            Use deep copying only when you need independent nested objects; 
+                it can be more expensive than a shallow copy.
+
+        Operation	            New outer list?	    Nested lists shared?
+        b = a	                No	                Yes — same entire list
+        b = a[:]	            Yes	                Yes
+        b = a.copy()        	Yes	                Yes
+        b = copy.deepcopy(a)	Yes	                Normally no for copied mutable nested objects
+
+
+        How can you verify object identity?
+            Python provides id() and is for inspecting object identity.
+                a = [[10, 20], [30, 40]]
+                b = a.copy()
+                print(a is b)       # False
+                print(a[0] is b[0]) # True
+                print(a[1] is b[1]) # True
+
+                Interpretation:
+                - a is b is False: separate outer lists.
+                - a[0] is b[0] is True: shared first nested list.
+                - a[1] is b[1] is True: shared second nested list.
+
+                print(id(a))       # ID of outer list a
+                print(id(b))       # ID of outer list b
+                print(id(a[0]))    # ID of first nested list
+                print(id(b[0]))    # Same ID as a[0] while both references remain
+                The numeric IDs are runtime-dependent, so do not expect fixed values.
+
+        Does this apply to integers and strings too?
+            Python variables still refer to objects, 
+                but mutability determines whether an object can be changed in place.
+
+            Integers are immutable
+                a = 10
+                b = a
+                b = 20
+                print(a)  # 10
+                print(b)  # 20
+                b = 20 binds b to the integer object representing 20; 
+                it does not mutate the integer object 10.
+            
+            Lists are mutable
+                a = [10, 20]
+                b = a
+                b.append(30)
+                print(a)  # [10, 20, 30]
+                print(b)  # [10, 20, 30]
+
+            Strings are also immutable:
+                a = "hello"
+                b = a
+                b = b + " world"
+                print(a)  # hello
+                print(b)  # hello world
+
+        When reading Python code, ask these three questions:
+            1. Assignment: Is this creating a new object or binding another variable to an existing object?
+            2. Copying: Is the copy shallow or deep?
+            3. Mutation: Is this operation modifying an object in place or rebinding a variable/reference?
+
+
+11. List comprehensions
+    List comprehensions provide a concise way to create lists from existing iterables. 
+        They are widely used in Python data processing.
+    1. Create a list using a loop
+        numbers = [1, 2, 3, 4, 5]
+        squares = []
+        for number in numbers:
+            squares.append(number ** 2)
+        print(squares)  # [1, 4, 9, 16, 25]
+        
+        Using a list comprehension
+            new_list = [expression for item in iterable]
+            Read this as: “For each item in the iterable, 
+                calculate the expression and put the result into a new list.”
+
+            numbers = [1, 2, 3, 4, 5]
+            squares = [number ** 2 for number in numbers]
+            print(squares)  # [1, 4, 9, 16, 25]
+
+        Java comparison: 
+            this is similar in spirit to using a Java Stream with map() and collect().
+            List<Integer> squares = numbers.stream()
+                                         .map(n -> n * n)
+                                         .toList();
+
+
+    2. Filter elements using if
+            The condition filters which elements are included.
+
+            numbers = [1, 2, 3, 4, 5, 6]
+            even_numbers = [number for number in numbers if number % 2 == 0]
+            print(even_numbers)  # [2, 4, 6]
+
+    3.Transform and filter together
+            numbers = [1, 2, 3, 4, 5, 6]
+            squares_of_even = [
+                number ** 2
+                for number in numbers
+                if number % 2 == 0
+            ]
+            print(squares_of_even)  # [4, 16, 36]
+
+            This selects even numbers and then squares them.
+
+    4.Conditional expressions in list comprehensions
+        Pattern 1: Filter elements — if comes after the for clause.
+                numbers = [1, 2, 3, 4, 5, 6]
+                result = [n for n in numbers if n % 2 == 0]
+                print(result)  # [2, 4, 6]
+        Pattern 2: Transform every element conditionally — if-else comes before the for clause.
+                numbers = [1, 2, 3, 4, 5, 6]
+                result = ["Even" if n % 2 == 0 else "Odd" for n in numbers]
+                print(result)  # ['Odd', 'Even', 'Odd', 'Even', 'Odd', 'Even']
+
+        The first pattern removes elements that fail the condition. 
+            The second keeps every element but chooses a different output value.
+
+        # Filter: excludes elements that fail the condition
+        [n for n in numbers if n > 2]
+
+        # Conditional transformation: keeps every element
+        ["Yes" if n > 2 else "No" for n in numbers]
