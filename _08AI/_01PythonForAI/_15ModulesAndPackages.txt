@@ -1,0 +1,157 @@
+Modules and packages
+    A module is a Python file containing reusable code. 
+    A package organizes related modules into a directory structure.
+
+    As a Java developer, 
+        think of a Python module as somewhat similar to a Java class or source file used for organizing code, 
+        and a package as a way to group related modules.
+
+
+Import a module
+    Python includes a standard library module named math.
+    
+    import math
+    print(math.sqrt(25))  # 5.0
+    print(math.pi)        # 3.141592653589793
+
+    import math makes the module available. 
+    You access its members using dot notation, such as math.sqrt().
+
+    Use an alias
+        import math as m
+        print(m.factorial(5))  # 120
+        An alias gives the imported module a shorter name.
+
+
+Import a specific function
+    from math import sqrt
+    print(sqrt(36))  # 6.0
+
+    Here, sqrt is imported directly, so you can call it without writing math.sqrt().
+
+    Import multiple functions
+        from math import sqrt, factorial
+        print(sqrt(49))       # 7.0
+        print(factorial(5))   # 120
+
+Best practice: 
+    Prefer explicit imports. 
+    Avoid from math import *, 
+    because it can make it unclear where names came from and can cause naming conflicts.
+
+
+
+
+Create your own module
+    Python modules aren't limited to the standard library. 
+    You can create your own module simply by creating a .py file.
+
+    Suppose your project has these two files in the same directory.
+    calculator.py
+        def add(a, b):
+            return a + b
+        def multiply(a, b):
+            return a * b
+    main.py
+        import calculator
+        print(calculator.add(10, 20))       # 30
+        print(calculator.multiply(4, 5))    # 20
+
+    When you run main.py, 
+        Python can find calculator.py in the same directory and import its functions.
+
+
+
+
+Packages
+    A package organizes related modules into a directory.
+
+    For example:
+        myapp/
+            __init__.py
+            calculator.py
+            string_utils.py
+
+    You could import the calculator module like this:
+        from myapp import calculator
+        print(calculator.add(10, 20))  # 30
+
+    __init__.py is commonly used to mark or initialize a package. 
+        Modern Python also supports namespace packages without it, 
+        so the file isn't mandatory in every package structure.
+
+
+
+
+The if __name__ == "__main__": pattern
+    This is an important Python concept, especially when building reusable modules and applications.
+
+    Consider calculator.py:
+        def add(a, b):
+            return a + b
+        if __name__ == "__main__":
+            print(add(10, 20))  # 30
+
+    When you run this file directly:
+        python calculator.py
+
+        Python executes the code inside the if block and prints 30.
+
+    But if another file imports it:
+        import calculator
+        print(calculator.add(5, 7))  # 12
+        The if block in calculator.py does not execute during that import.
+
+    Why?
+        - When a file runs directly, Python sets __name__ to "__main__".
+        - When a file is imported as a module, __name__ is normally set to the module's name, such as "calculator".
+    
+    This pattern separates reusable code from code intended to run only when the file is executed directly.
+
+    Java comparison: 
+        Java uses an explicit public static void main(String[] args) entry point. 
+        Python commonly uses this conditional pattern for a script's entry point.
+
+
+
+Importing from different locations
+    As projects grow, modules may be nested inside packages.
+    myapp/
+        __init__.py
+        main.py
+        utils/
+            __init__.py
+            calculator.py
+
+    If calculator.py contains:
+        def add(a, b):
+            return a + b
+    and main.py contains:
+        from utils.calculator import add
+        print(add(10, 20))  # 30
+    Running main.py from the appropriate project context makes the package import available.
+
+    Important: 
+        Python's import resolution depends on the module search path 
+            and how you launch the application. 
+        For larger projects, it's usually better to structure the code as a package 
+            and run it from the project root, 
+            often with python -m package.module.
+
+
+Example:
+    Suppose math_utils.py contains:
+        PI = 3.14
+        def square(n):
+            return n * n
+    
+    Now the follwoing both are valid:
+        from math_utils import square
+        print(square(5))  # 25
+
+        import math_utils
+        print(math_utils.square(5))  # 25
+
+
+
+        

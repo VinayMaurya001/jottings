@@ -1,0 +1,185 @@
+Functions
+    A function is a reusable block of code that performs a specific task. 
+    Functions help you avoid duplicated code, organize logic, and make programs easier to test.
+
+
+    As a Java developer, 
+        a Python function is similar to a Java method, 
+        although Python functions do not need to be declared inside a class.
+
+Define and call a function
+    def greet():
+        print("Hello!")
+    greet()  # Hello!
+    greet()  # Hello!
+
+    Python does not require a return type declaration.
+
+Function parameters and arguments
+    Parameters receive values; arguments are the actual values supplied when calling a function.
+    def greet(name):
+        print(f"Hello, {name}!")
+    greet("Amit")  # Hello, Amit!
+    greet("Neha")  # Hello, Neha!
+
+    Here, name is the parameter. "Amit" and "Neha" are arguments.
+
+print() versus return
+    def add(a, b):
+        return a + b
+    result = add(10, 20)
+    print(result)  # 30
+    print(add(5, 7))  # 12
+
+    def add(a, b):
+        print(a + b)
+    result = add(10, 20)  # 30
+    print(result)  # None
+    print(add(5, 7))  # None
+
+    In Python, a function without an explicit return returns None.
+    In Java, this distinction is similar to a void method versus a method that returns an int.
+
+Return early
+    A function stops executing when it reaches return.
+    Once the first return runs, the remaining statements in that function call are skipped.
+    def check_number(n):
+        if n < 0:
+            return "Negative"
+        return "Zero or positive"
+    print(check_number(-5))  # Negative
+    print(check_number(10))  # Zero or positive
+
+
+Default parameter values
+    Python allows you to specify a default value for a parameter. 
+    The caller can omit that argument to use the default.
+    
+    def greet(name, greeting="Hello"):
+        return f"{greeting}, {name}!"
+    print(greet("Amit"))  # Hello, Amit!
+    print(greet("Neha", "Welcome"))  # Welcome, Neha!
+
+    Here:
+        - name is required.
+        - greeting="Hello" is optional because it has a default value.
+        - Passing "Welcome" overrides the default for that call.
+
+    Java comparison: 
+        this is similar to providing an overloaded method or 
+            explicitly supplying a default-like value, 
+            but Python supports default arguments directly.
+
+Positional and keyword arguments
+    You can pass arguments by position or by parameter name.
+
+    def describe_person(name, age):
+        return f"{name} is {age} years old."
+    print(describe_person("Amit", 30))  # Amit is 30 years old.
+    print(describe_person(age=25, name="Neha"))  # Neha is 25 years old.
+
+    The second call uses keyword arguments, so the order can differ from the parameter declaration.
+
+    You can also combine positional and keyword arguments, but positional arguments must come first:
+    print(describe_person("Ravi", age=28))  # Ravi is 28 years old.
+
+
+Variable-length arguments: *args
+    Sometimes you don't know how many arguments a caller will provide. 
+    Python supports *args for collecting extra positional arguments into a tuple.
+
+    def add_all(*args):
+        return sum(args)
+    print(add_all(10, 20))        # 30
+    print(add_all(10, 20, 30))    # 60
+    print(add_all(1, 2, 3, 4))    # 10
+
+
+    def calculate(*numbers):
+        return sum(numbers)
+    print(calculate(2, 4, 6))  # 12
+
+    Here, args is a tuple containing all positional arguments passed to the function.
+    Java comparison: this resembles a varargs parameter such as int... numbers, 
+        although Python's *args can accept values of different types.
+
+Variable-length keyword arguments: **kwargs
+    Use **kwargs to collect extra keyword arguments into a dictionary.
+    The names supplied by the caller become dictionary keys.
+
+    def show_details(**kwargs):
+        print(kwargs)
+    show_details(name="Amit", age=30)  # {'name': 'Amit', 'age': 30}
+    show_details(city="Lucknow", role="Developer")  # {'city': 'Lucknow', 'role': 'Developer'}
+
+
+    Syntax	    Collects	                Python type
+    *args	    Extra positional arguments	Tuple
+    **kwargs	Extra keyword arguments	    Dictionary
+
+
+Scope: local and global variables
+    A variable created inside a function is normally local to that function.
+        def calculate():
+            result = 100
+            print(result)  # 100
+        calculate()
+        # print(result)  # NameError: result is not defined here
+    The variable result exists within calculate(). It is not available in the surrounding scope.
+
+    A variable defined outside a function can usually be read inside it:
+        tax = 10
+        def calculate_price(price):
+            return price + tax
+        print(calculate_price(100))  # 110
+        print(tax)  # 10
+
+    x = 10
+    def change_value():
+        x = 20
+        print(x)
+    change_value()  # 20
+    print(x)         # 10
+        x = 10 creates a variable in the outer scope.
+        x = 20 inside the function creates a separate local variable.
+        print(x) inside the function prints 20.
+        After the function finishes, the outer x is still 10.
+        There is no error because the local assignment is valid.
+        To modify the global variable, you would explicitly use global x inside the function.
+
+    However, if you want to assign to a global variable from inside a function, 
+    Python requires the global keyword.
+        count = 0
+        def increment():
+            global count
+            count += 1
+        increment()
+        print(count)  # 1
+
+    Best practice: 
+        Prefer passing values as arguments and returning results rather than modifying global variables. 
+        This makes functions easier to test and maintain.
+
+
+Type hints
+    Python lets you annotate parameter and return types.
+
+    def add(a: int, b: int) -> int:
+        return a + b    
+    print(add(10, 20))  # 30
+
+    Here:
+        - a: int and b: int indicate the expected parameter types.
+        - -> int indicates the expected return type.
+        Unlike Java's static type system, 
+            Python generally does not enforce these annotations at runtime. 
+            They help developers, IDEs, and static type checkers understand intended usage.
+
+
+    def add(a: int, b: int) -> int:
+        return a + b
+    print(add("Hello ", "Python"))  # Hello Python        
+    Python's type hints (int) are not automatically enforced at runtime. 
+        Since both arguments are strings, + concatenates them.
+    A static type checker such as mypy would flag this call 
+        because strings were supplied where integers were indicated.

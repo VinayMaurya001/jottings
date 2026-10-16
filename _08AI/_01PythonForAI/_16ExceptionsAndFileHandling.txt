@@ -1,0 +1,175 @@
+Exceptions and file handling
+    We'll cover try, except, else, finally, raising exceptions, reading and writing files, 
+    and context managers using with open(...).
+
+    In Python, exceptions represent errors or unusual conditions that occur while a program runs.
+        Exception handling lets you respond to expected failures instead of crashing unexpectedly.
+
+    a = 10
+    b = 0
+    print(a / b)  # ZeroDivisionError
+
+    Other common exceptions include:
+    Exception	Typical cause
+    ValueError	Correct type, but an invalid value, such as int("abc")
+    TypeError	An operation uses an incompatible type, such as "5" + 2
+    KeyError	Accessing a missing dictionary key
+    IndexError	Accessing a list index that doesn't exist
+    FileNotFoundError	Opening a file that doesn't exist
+
+
+try and except
+    Use try for code that might fail and except to handle a particular exception.
+    try:
+        number = int("abc")
+    except ValueError:
+        print("Invalid number")  # Invalid number
+    print("Program continues")  # Program continues
+
+    Best practice: 
+        Catch the specific exception you expect rather than catching every possible exception.
+
+Multiple exception types
+    try:
+        number = int(input("Enter a number: "))
+        result = 100 / number
+    except ValueError:
+        print("Please enter a valid integer")
+    except ZeroDivisionError:
+        print("Number cannot be zero")
+
+
+else and finally
+    Python supports two additional blocks.
+        else runs if the try block completes without an exception.
+        finally runs whether an exception occurs or not, normally making it suitable for cleanup.
+    try:
+        number = int("25")
+    except ValueError:
+        print("Invalid input")
+    else:
+        print(number * 2)  # 50
+    finally:
+        print("Finished")  # Finished
+
+
+Raising exceptions with raise
+    You can deliberately raise an exception when a function receives invalid input.
+
+    def withdraw(balance, amount):
+        if amount <= 0:
+            raise ValueError("Amount must be positive")
+        if amount > balance:
+            raise ValueError("Insufficient balance")
+        return balance - amount
+    print(withdraw(1000, 200))  # 800
+
+    You can catch that exception at the calling point:
+        try:
+            print(withdraw(1000, 1500))
+        except ValueError as e:
+            print(e)  # Insufficient balance
+    
+    Here, as e stores the exception object in the variable e, 
+        allowing you to inspect or display its message.
+
+    Best practice: 
+        Use raise when the function cannot perform its intended operation correctly. 
+        Don't silently return an ordinary value for an invalid operation.
+
+
+
+File handling: reading a text file
+    Python uses open() to work with files.
+
+    file = open("notes.txt", "r")
+    content = file.read()
+    print(content)
+    file.close()
+
+    The mode "r" means read. 
+    This example works only if notes.txt exists at the path Python is using.
+
+    However, if an exception occurs before file.close(), the file might remain open. 
+        Python provides a safer approach: the with statement.
+    with open("notes.txt", "r") as file:
+        content = file.read()
+        print(content)
+    The file is automatically closed when the with block exits, including when an exception occurs.
+    Java comparison: this is similar to Java's try-with-resources statement.
+
+Common file modes
+    Mode	Meaning
+    "r"	    Read an existing file
+    "w"	    Write; create or overwrite a file
+    "a"	    Append to a file; create it if needed
+    "x"	    Create a new file; fail if it already exists
+    "rb"	Read binary data
+    "wb"	Write binary data
+    
+
+Reading files with read(), readline(), and readlines()
+    Python offers several ways to read text files.
+    Assume notes.txt contains:
+        Python
+        Java
+        AI
+    
+    read() — Read the entire file
+        with open("notes.txt", "r") as file:
+            content = file.read()
+        print(content)
+        # Python
+        # Java
+        # AI
+
+    readline() — Read one line
+        with open("notes.txt", "r") as file:
+            print(file.readline().strip())  # Python
+            print(file.readline().strip())  # Java
+        Each call advances the file position to the next line. 
+        .strip() removes surrounding whitespace, including the trailing newline.
+
+    readlines() — Read all lines into a list
+        with open("notes.txt", "r") as file:
+            lines = file.readlines()
+        print(lines)  # ['Python\n', 'Java\n', 'AI\n']
+        The \n characters represent line endings stored in the strings.
+
+    For large files, iterating over the file line by line is often more memory-efficient than reading everything into memory:
+        with open("notes.txt", "r") as file:
+            for line in file:
+                print(line.strip())
+
+
+    with open("data.txt", "r") as file:
+        first = file.readline().strip()
+        remaining = file.read().strip()
+    print(first)      # 10
+    print(remaining)   # 20
+                    # 30
+
+Handling file errors
+    Files may not exist, or your program may not have permission to access them. Handle expected errors explicitly.
+    try:
+        with open("data.txt", "r") as file:
+            number = int(file.read())
+    except FileNotFoundError:
+        print("File not found")
+    except ValueError:
+        print("File content is not a valid integer")
+
+File paths and working directories
+    A relative path such as "notes.txt" is resolved relative to the process's current working directory, 
+    which is not necessarily the directory containing your Python script.
+
+    You can inspect the current working directory:
+        import os
+        print(os.getcwd())  # Displays the current working directory
+
+    For more reliable path handling, Python provides pathlib:
+        from pathlib import Path
+        path = Path("data") / "notes.txt"
+        print(path)  # data/notes.txt
+    Path handles path construction in a platform-aware way, 
+        making it useful across Windows, Linux, and macOS.
