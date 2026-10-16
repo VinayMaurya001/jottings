@@ -1,0 +1,235 @@
+Dictionaries
+    A dictionary (dict) stores data as key-value pairs. 
+    In Java, the closest equivalent is Map, commonly LinkedHashMap.
+
+    Important dictionary rules
+    - Dictionaries store key-value pairs.
+    - Keys must be unique. Assigning a value to an existing key replaces its previous value.
+    - Values can be of different types.
+    - Dictionaries preserve insertion order in modern Python (Similar LinkedHashMap in Java).
+    - Keys must be hashable, such as strings, integers, or tuples containing only hashable elements.
+    - Use dict for fast lookup by a meaningful key.
+
+1. Creating a dictionary
+        employee = {
+            "name": "Amit",
+            "age": 30,
+            "role": "Developer"
+        }
+        print(employee)           # {'name': 'Amit', 'age': 30, 'role': 'Developer'}
+        print(employee["name"])   # Amit
+        print(employee["age"])    # 30
+        print(type(employee))     # <class 'dict'>
+
+2.dictionaries preserve insertion order,
+    In Python, dictionaries preserve insertion order, meaning they remember the order in which you add key-value pairs.
+    This behavior is a language guarantee in Python 3.7 and later.
+
+    1. Basic example
+        student = {
+            "name": "Amit",
+            "age": 25,
+            "city": "Lucknow"
+        }
+        print(student) #{'name': 'Amit', 'age': 25, 'city': 'Lucknow'}
+        Notice the order:
+            1. "name" was inserted first.
+            2. "age" was inserted second.
+            3. "city" was inserted third.
+            When you print the dictionary, Python preserves that order.
+    
+    2. What happens when you add a new key?
+            student = {}
+            student["name"] = "Amit"
+            student["age"] = 25
+            student["city"] = "Lucknow"
+            print(student)  #{'name': 'Amit', 'age': 25, 'city': 'Lucknow'}
+            The keys appear in the order in which you inserted them.
+
+    3. What happens when you update an existing key?
+            student = {
+                "name": "Amit",
+                "age": 25,
+                "city": "Lucknow"
+            }
+            student["age"] = 26
+            print(student)   #{'name': 'Amit', 'age': 26, 'city': 'Lucknow'}
+            Important: Updating "age" does not move it to the end. It retains its original position.
+
+    4. What happens when you delete and reinsert a key?
+            student = {
+                "name": "Amit",
+                "age": 25,
+                "city": "Lucknow"
+            }
+
+            del student["age"]
+            student["age"] = 26
+
+            print(student)      #{'name': 'Amit', 'city': 'Lucknow', 'age': 26}
+            Now "age" appears last because you deleted it and inserted it again.
+    5. Why is insertion order useful?
+        Suppose you have a dictionary of employee salaries:
+            salaries = {
+                "Rahul": 50000,
+                "Priya": 60000,
+                "Amit": 55000
+            }
+            for name, salary in salaries.items():
+                print(name, salary)
+            Output:
+                Rahul 50000
+                Priya 60000
+                Amit 55000
+        The loop follows the dictionary's insertion order.
+
+    Remember: 
+        Adding a new key places it at the end; 
+        updating an existing key does not change its position; 
+        deleting and reinserting a key places it at the end again.
+
+3. Accessing values
+        employee = {"name": "Amit", "age": 30}
+        print(employee["name"])             # Amit
+        print(employee.get("age"))          # 30
+        print(employee.get("salary"))       # None
+        print(employee.get("salary", 0))    # 0
+
+        Important difference:
+        - employee["salary"] raises a KeyError if the key doesn't exist.
+        - employee.get("salary") returns None if the key doesn't exist.
+        - employee.get("salary", 0) returns the default value 0 if the key doesn't exist.
+
+        Safe access to nested data
+            Dictionaries are often used to represent JSON API responses. 
+            user = {
+                "name": "Amit",
+                "address": {"city": "Lucknow"}
+            }
+            print(user["address"]["city"])  # Lucknow
+
+            For potentially missing keys, remember that 
+                .get() on the outer dictionary doesn't automatically protect against missing keys deeper inside the structure.
+
+        data = {"x": 10, "y": 20}
+        print(data.get("z", 100))  # 100
+        print("z" in data)         # False
+        Notice that .get() can return a default value without changing the dictionary.
+
+
+4.
+        employee = {"name": "Amit", "age": 30}
+        print("name" in employee)  # True
+        print("Amit" in employee)  # False
+        
+        Why? The in operator checks dictionary keys, not values.
+            - "name" in employee → True, because "name" is a key.
+            - "Amit" in employee → False, because "Amit" is a value.
+        To check values, use .values():
+            print("Amit" in employee.values())  # True
+            print("Amit" in employee)           # False
+
+
+5.
+
+    scores = {"Amit": 85, "Neha": 92}
+    for name in scores:
+        print(name)
+    When you iterate directly over a dictionary, Python gives you its keys by default.
+
+    To access both keys and values, use .items():
+        scores = {"Amit": 85, "Neha": 92}
+        for name, score in scores.items():
+            print(f"{name}: {score}")
+        # Amit: 85
+        # Neha: 92
+
+    Java comparison:
+        for (Map.Entry<String, Integer> entry : scores.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+
+6.
+    employee = {"name": "Amit", "age": 30, "role": "Developer"}
+    removed = employee.pop("age")
+    print(removed)             # 30
+    print("age" in employee)   # False
+    print(employee)
+    # {'name': 'Amit', 'role': 'Developer'}
+
+    pop("age") removes the "age" entry and returns its value, 30.
+
+    Other useful removal methods:
+        employee.pop("age", None)  # Removes age; returns None if missing
+        del employee["name"]       # Deletes name; KeyError if missing
+        employee.clear()           # Removes all entries
+
+
+7.
+    prices = {"apple": 50, "banana": 30}
+    print(list(prices.keys()))    # ['apple', 'banana']
+    print(list(prices.values()))  # [50, 30]
+    print(list(prices.items()))   # [('apple', 50), ('banana', 30)]
+
+    Remember:
+    - .keys() returns the dictionary's keys.
+    - .values() returns its values.
+    - .items() returns key-value pairs as tuples.
+    - list() converts these views into lists.
+
+8.Counting with a dictionary
+    words = ["AI", "Python", "AI", "Java", "AI", "Python"]
+    counts = {}
+    for word in words:
+        counts[word] = counts.get(word, 0) + 1
+    print(counts)  # {'AI': 3, 'Python': 2, 'Java': 1}
+
+
+9.Dictionary comprehension
+    # List comprehension: creates a list of values
+    numbers = [1, 2, 3, 4]
+    squares_list = [n ** 2 for n in numbers]
+    print(squares_list)  # [1, 4, 9, 16]
+
+    # Dictionary comprehension: creates key-value pairs
+    numbers = [1, 2, 3, 4]
+    squares_dict = {n: n ** 2 for n in numbers}
+    print(squares_dict)  # {1: 1, 2: 4, 3: 9, 4: 16}
+
+10.Dictionary merging
+
+    defaults = {"theme": "light", "language": "English"}
+    settings = {"theme": "dark", "font_size": 14}
+    combined = {**defaults, **settings}
+    print(combined)  # {'theme': 'dark', 'language': 'English', 'font_size': 14}
+
+    The ** operator unpacks dictionary entries into a new dictionary.
+        When both dictionaries contain the same key, the value from the dictionary unpacked later wins.
+        1. defaults contributes theme="light" and language="English".
+        2. settings overrides theme with "dark" and adds font_size=14.
+        3. No KeyError occurs.
+
+    A useful alternative in modern Python is the | merge operator:
+        combined = defaults | settings
+        print(combined)  # {'theme': 'dark', 'language': 'English', 'font_size': 14}
+
+
+
+11.
+            prices = {"apple": 50, "banana": 30}
+            prices.update({"banana": 35, "orange": 60})
+            print(prices["banana"])  # 35
+            print(prices["orange"])  # 60
+
+
+12.quick-reference notes
+    Operation	    Example	                Purpose
+    Access	        d["name"]	            Gets a value; missing key raises KeyError
+    Safe access 	d.get("age", 0)        	Returns a default if missing
+    Add/update  	d["age"] = 31	        Inserts or updates an entry
+    Remove	         d.pop("age")	        Removes an entry and returns its value
+    Check key	    "name" in d	            Tests key membership
+    Check value	    "Amit" in d.values()	Tests value membership
+    Iterate pairs	d.items()	            Gets key-value pairs
+    Merge	        a \| b	                Combines dictionaries; right side wins conflicts
+    Comprehension	{n: n*n for n in nums}	Builds a dictionary from an iterable

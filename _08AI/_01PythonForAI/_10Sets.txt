@@ -1,0 +1,123 @@
+1. What is a set?
+    A set is a collection of unique elements. 
+    Duplicate values are removed automatically, 
+        and sets do not support indexing by position.
+
+    numbers = {10, 20, 10, 30, 20}
+    print(numbers)       # {10, 20, 30}  (display order may vary)
+    print(len(numbers))  # 3
+    print(20 in numbers) # True
+
+    Key properties:
+        - Unique: duplicates are eliminated.
+        - Unordered: do not rely on a particular display or iteration order.
+        - Mutable: you can add and remove elements.
+        - No indexing: numbers[0] raises a TypeError.
+    
+    Sets are useful for removing duplicates, checking membership, and comparing collections.
+
+    Set: Collection of unique, hashable elements; useful for membership checks and set operations.
+        In Python, hashable elements are objects that have a hash value that remains constant during their lifetime 
+            and can be compared for equality. 
+            Sets use hash values to store elements efficiently and check whether an element exists.
+
+        print(hash(10))
+        print(hash("hello"))
+        print(hash((1, 2, 3)))
+        Python has a built-in function called hash() that returns an integer hash value for a hashable object.
+
+        Hashable types commonly include integers, strings, floats, Booleans, and tuples whose elements are all hashable.
+        But lists, dictionaries, and sets themselves are unhashable:
+           numbers = {10, 20, 30}          # Valid
+           names = {"Ram", "Amit", "Raj"}   # Valid
+           points = {(1, 2), (3, 4)}        # Valid
+           print(type(numbers))  # <class 'set'>
+           print(type(names))    # <class 'set'>
+           print(type(points))   # <class 'set'>
+           numbers = {[10, 20], [30, 40]}  # TypeError, Why? Lists are mutable: their contents can change. Python therefore does not allow a list to be used as a set element.
+
+
+        Why does a set require hashable elements?
+            Python uses hash-based lookup to check membership efficiently, typically in \(O(1)\) average time.
+            If an element's hash changed after insertion, finding it in the correct location could become unreliable.
+            numbers = {10, 20, 30}
+            print(20 in numbers)  # True
+            print(50 in numbers)  # False
+
+        Important distinction: tuples
+            A tuple is hashable only if all its elements are hashable.
+            valid = {(1, 2), (3, 4)}       # Works
+            invalid = {(1, [2, 3])}        # TypeError,The second example fails because the tuple contains a list, which is unhashable.
+
+        Java comparison
+            Java permits mutable objects in a HashSet, 
+                but changing fields used by their hashCode() or equals() methods can cause lookup problems. 
+                Python prevents common mutable built-in types 
+                such as lists and dictionaries from being set elements in the first place.
+        
+        Remember: 
+            A Python set stores unique, hashable elements. 
+            Integers and strings are hashable; lists and dictionaries are not. 
+            Tuples are hashable only when all their contents are hashable.
+
+2. Creating sets
+    colors = {"red", "green", "blue"}
+    print(colors)  # A set containing red, green, and blue
+
+    empty_set = set()
+    print(type(empty_set))  # <class 'set'>
+
+    empty_dict = {}
+    print(type(empty_dict)) # <class 'dict'>
+
+    Important: 
+        {} creates an empty dictionary, not an empty set. Use set() for an empty set.
+
+    items = {1, 2, 2, 3, 3, 3}
+    print(len(items))  # 3
+
+    numbers = {10, 20, 30}
+    numbers.add(40)
+    numbers.add(20)
+    print(len(numbers))  # 4
+    print(40 in numbers)  # True
+
+
+3. remove() vs discard()
+        numbers = {10, 20, 30}
+        numbers.discard(40)
+        print(numbers)          # {10, 20, 30}
+        numbers.remove(50)
+        print(numbers)          # KeyError: 50
+
+        Neither method returns a new set; both modify the existing set.
+
+        When the element does not exist in a Python set:
+            - discard() → does nothing; no error occurs.
+            - remove() → raises a KeyError.
+
+        Remember: 
+            Use discard() when you're unsure whether an element exists. 
+            Use remove() when a missing element should be treated as an error.
+
+
+4. Set operations
+    Set operations help you compare collections of unique values.
+
+    a = {1, 2, 3, 4}
+    b = {3, 4, 5, 6}
+    print(a | b)  # {1, 2, 3, 4, 5, 6} — union
+    print(a & b)  # {3, 4}             — intersection
+    print(a - b)  # {1, 2}             — difference, Elements in a that are not in b. Direction matters: a - b differs from b - a.
+    print(a ^ b)  # {1, 2, 5, 6}       — symmetric difference.Elements in either set, but not in both. The ^ operator keeps elements that belong to exactly one of the two sets.
+
+
+5.
+    student_ids = [101, 102, 101, 103, 102]   #list
+    unique_ids = set(student_ids)      # set
+
+    print(unique_ids)       # {101, 102, 103} (display order may vary)
+    print(len(unique_ids))  # 3
+
+
+

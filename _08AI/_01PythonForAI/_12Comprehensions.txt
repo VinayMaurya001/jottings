@@ -1,0 +1,121 @@
+Python Comprehensions
+    A comprehension is a concise way to create a new list, set, or dictionary 
+        from an existing iterable, often with a transformation or condition.
+    As a Java developer, 
+        think of it as a compact alternative to a loop that collects results into a new collection.    
+
+    List comprehension
+    Dictionary comprehension
+    Set comprehension
+    Nested comprehension
+    When should you use comprehensions?
+
+
+List comprehension
+    [expression for item in iterable]
+        create a list containing the expression for each item in the iterable.
+    numbers = [1, 2, 3, 4, 5]
+    squares = [n ** 2 for n in numbers]
+    print(squares)  # [1, 4, 9, 16, 25]
+
+
+    Same thing using normal loop
+        numbers = [1, 2, 3, 4, 5]
+        squares = []
+        for n in numbers:
+            squares.append(n ** 2)
+        print(squares)  # [1, 4, 9, 16, 25]
+
+
+    Filtering with if
+        [expression for item in iterable if condition]
+        numbers = [1, 2, 3, 4, 5, 6]
+        even_numbers = [n for n in numbers if n % 2 == 0]
+        print(even_numbers)  # [2, 4, 6]
+
+        if versus if-else
+            numbers = [1, 2, 3, 4]
+            result = [n * 10 if n % 2 == 0 else n for n in numbers]
+            print(result)  # [1, 20, 3, 40]
+
+        words = ["python", "java", "go"]
+        result = [word.upper() for word in words if len(word) > 3]
+        print(result)  # ['PYTHON', 'JAVA']
+
+    Transforming and filtering together
+        numbers = [1, 2, 3, 4, 5, 6]
+        result = [n ** 2 for n in numbers if n % 2 == 0]
+        print(result)  # [4, 16, 36]
+
+    Comparison with Java Streams
+        Python	                                    Similar Java Stream operation
+        [n ** 2 for n in numbers]	                map(n -> n * n) followed by collection
+        [n for n in numbers if n > 3]	            filter(n -> n > 3) followed by collection
+        [n ** 2 for n in numbers if n % 2 == 0] 	filter(...).map(...) followed by collection
+        The syntax differs, but the transformation and filtering concepts are similar.
+
+
+Dictionary comprehension
+        numbers = [1, 2, 3, 4]
+        result = {n: n ** 2 for n in numbers if n > 2}
+        print(result)  # {3: 9, 4: 16}
+
+
+        numbers = [1, 2, 3, 4, 5]
+        result = {n: "even" if n % 2 == 0 else "odd" for n in numbers}
+        print(result)  # {1: 'odd', 2: 'even', 3: 'odd', 4: 'even', 5: 'odd'}
+
+        scores = {"Amit": 80, "Neha": 45, "Ravi": 90}
+        result = {name: score for name, score in scores.items() if score >= 60}
+        print(result)
+
+Set comprehension
+    numbers = [1, 2, 2, 3, 3, 4]
+    result = {n for n in numbers if n > 1}
+    print(result)  # {2, 3, 4} (display order may vary)
+
+
+Nested comprehension
+    Nested comprehensions are useful for processing nested collections, 
+        but their syntax can initially be confusing.
+
+    matrix = [[1, 2], [3, 4]]
+    result = [n for row in matrix for n in row]
+    print(result)  # [1, 2, 3, 4]
+    This comprehension flattens the nested lists into one list.
+
+    matrix = [[1, 2], [3, 4]]
+    result = [n*2 for row in matrix for n in row]
+    print(result)  # [ 2, 4, 6, 8]
+
+    Rule: In a nested comprehension, 
+        the for clauses follow the same order as the equivalent nested loops.
+
+    Equivalent regular Python code:
+        matrix = [[1, 2], [3, 4]]
+        result = []
+        for row in matrix:
+            for n in row:
+                result.append(n)
+        print(result)  # [1, 2, 3, 4]
+
+    Nested comprehension with filtering
+        matrix = [[1, 2], [3, 4]]
+        result = [n for row in matrix for n in row if n % 2 == 0]
+        print(result)  # [2, 4]
+
+
+
+When should you use comprehensions?
+    Use a comprehension when the transformation or filtering is straightforward.
+
+    Situation	                                        Recommended approach
+    Create squares of numbers	                        List comprehension
+    Filter even numbers	                                List comprehension
+    Build a key-value mapping	                        Dictionary comprehension
+    Remove duplicates while transforming	            Set comprehension
+    Complex logic with multiple steps or side effects	Regular for loop
+
+    Python best practice: 
+        Prefer readability over writing the shortest possible code. 
+        A regular loop is better when a comprehension becomes difficult to understand.
